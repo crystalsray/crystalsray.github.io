@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body { font-family:'lucida grande', tahoma, verdana, arial, sans-serif; font-size:11px; }
+			h1 { font-size: 30px; }
+			a { color: #548dc4; text-decoration: none; font-size: 25px}
+			text {font-size: 12 px}
+			a:hover { text-decoration: underline; }
+			table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: 800px; }
+			table.testgrid td, table.testgrid th { padding: 5px; border: 5px solid #E0E0E0; }
+			table.testgrid th { background: #E5E5E5; text-align: center; }
+			input.invalid { background: red; color: #FDFDFD; }
+  margin: 0;
+  min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
+button.accordion {
+    background-color: #778899;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 22px;
+    transition: 0.5s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #D3D3D3;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;  
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+.header {
+  background-color: gray;
+  padding: 30px 40px;
+  color: black;
+  text-align: center;
+}
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the input */
+input {
+  border: none;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+table {
+  border: 200px;
+  width: 90%;
+  padding: 15px;
+  text-align: center;
+  float: center;
+  font-size: 20px;
+}
+
+
+</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Identify the Principal Strata for Your Study</title>
+		<h1 style="font-size: 30px">Identify the Principal Strata for Your Study</h1>
+		<h2> Setting up Your Model</h2>
+		
+		<link rel="stylesheet" href="../../editablegrid.css" type="text/css" media="screen">
+		
+		<style>
+			body { font-family:'lucida grande', tahoma, verdana, arial, sans-serif; font-size:20px;}
+			h1 { font-size:40px; color:gray}
+			h2 { font-size:25px}
+			text { font-size:15px;}
+			a { color: #548dc4; text-decoration: none; }
+			a:hover { text-decoration: underline; }
+		</style>
+</head>
+
+<br>
+<br>
+<br>
+
+<h2> 1. How many groups are you interested in comparing? </h2>
+<text style="font-size: 20px"> The first step is to identify the number of post-randomization groups of interest for your proposed analyses. The number of groups will be determined by the potential behaviors of participants. For example, in the Feller et. al study on Head Start impacts, both treatment and control assigned children might enroll at a Head Start Center, at a non-Head Start Center or be cared for in a home based setting, for a total of 3 post randomization behaviors. In the ECHS example, a student could enroll at an ECHS, a high quality public school or a low quality public school. In cases such as these with three possible post-randomization behaviors, you would select 3 below. 
+</text>
+<br>
+<div class="dropdown">
+<select name="Quantity" id="selection"> 
+	<option value=0> </option> 
+	<option value=2>2</option> 
+	<option value=3>3</option> 
+	<option value=4>4</option> 
+</select>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+<h2> 2. What do you call the conditions in your study? </h2>
+<text style="font-size: 20px"> Principal stratification is a method designed for analyses of randomized control studies with units assigned to treatment and a control groups. By default, the tool will label to vertical axis as “Treatment” and the Horizontal axis as “Control” group names below. You may edit these fields to reflect the details of your study below.
+</text>
+<div id="namingGroups" class="header">
+<form action="demo_form.asp">
+ <input type="text" id="group1" placeholder="Treatment"><br>
+   <input type="text" id="group2" placeholder="Control"><br>
+ </form>
+</div> 
+
+<br>
+<h2> 3. What is the outcome of interest for your study? </h2>
+<text style="font-size: 20px"> Please Please indicate a dichotomous outcome of interest for your study </text>
+<form action="demo_form.asp">
+ <input type="text" id="outcome" placeholder="Outcome..."><br>
+ </form>
+ <br><br>
+<h2> 4. What is the treatment control impact  on this outcome for your full sample? </h2>
+<text style="font-size: 20px"> Please enter in the outcome units rather effect size unit </text>
+<form action="demo_form.asp">
+ <input type="text" id="outcome_units" placeholder="Outcome Units..."><br>
+ </form>
+<br><br>
+<h2> 5. For which subgroups are you interested in calculating bounds for the effects of treatment? </h2>
+<text style="font-size: 20px"> Please label subgroups of interest for this study.  By default, the tool labels the conditions as  “Treatment”, “Subgroup1”, and “Subgroup2”. You may edit these fields to reflect the subgroups of interest for your study.  
+</text>
+<div id="myDIV" class="header">
+ <input type="text" id="subgroup1" placeholder="Treatment"><br>
+   <input type="text" id="subgroup2" placeholder="Subgroup1"><br>
+    <input type="text" id="subgroup3" placeholder="Subgroup2"><br>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<text id="exp" align="center" style="font-size: 25px"> </text>
+<br>
+<br>
+<br>
+
+
+
+<table id="dvTable" align="center">
+
+
+
+</table>
+
+<button onclick="generateFunction()">Continue</button>
+
+<br><br><br><br><br>
+
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/jquery.callback.js"></script>
+<script type="text/javascript" src="../script/ExportHTMLTable.js"></script>	
+<script>
+
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+  
+}
+// Get the continue button
+var btn = document.getElementById("myBtn");
+
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+var strataName=new Array();
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+var closedNum=0
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "hide";
+	li.splice(i,1);
+  }
+}
+
+var clickcount=0
+var strataInput=new Array();
+// When the user clicks the button, save value of dropdown and continue
+function generateFunction() {
+	var select_value = document.getElementById('selection').value
+    var strata=select_value;
+	var group1Name = document.getElementById("group1").value;
+	var group2Name = document.getElementById("group2").value;
+	var subgroup1Name = document.getElementById("subgroup1").value;
+	var subgroup2Name = document.getElementById("subgroup2").value;
+	var subgroup3Name = document.getElementById("subgroup3").value;
+	var outcome = document.getElementById("outcome").value;
+	var outcomeUnits = document.getElementById("outcome_units").value;
+	if (group1Name==""){group1Name="Treatment"};
+	if (group2Name==""){group2Name="Control"};
+	if (subgroup1Name==""){subgroup1Name=group1Name};
+	if (subgroup2Name==""){subgroup2Name="subgroup1"};
+	if (subgroup3Name==""){subgroup3Name="subgroup2"};
+	strataName.push(subgroup1Name);
+	strataName.push(subgroup2Name);
+	strataName.push(subgroup3Name);
+	var table = document.createElement("TABLE");
+    table.border = "20";
+	var columnCount = strata;
+	
+
+	//Add the data rows.
+if (clickcount==0){
+	//strataName.unshift(group1Name);
+	strataName.unshift("");
+    for (var i = 0; i <= columnCount; i++) {
+        row = table.insertRow(-1);
+        for (var j = 0; j < 1; j++) {
+            var cell = row.insertCell(-1);
+            cell.innerHTML = strataName[i];
+			cell.setAttribute("width",150);
+			if (i>0) {cell.setAttribute("bgColor","#D3D3D3")};
+        }
+		if(i==0) {
+			var cell = row.insertCell(-1);
+			cell.innerHTML = group1Name;
+			cell.setAttribute("colspan",strata+1);
+			cell.setAttribute("bgColor","white");
+			var row=table.insertRow(-1);
+			var cell = row.insertCell(-1);
+			cell.innerHTML = group2Name;
+			cell.setAttribute("rowspan",strata+1);
+			cell.setAttribute("bgColor","white");
+			cell.setAttribute("width",200);
+			var row=table.insertRow(-1);
+		for (var j = 0; j <= columnCount; j++) {
+            var cell = row.insertCell(-1);
+            cell.innerHTML = strataName[j];
+			cell.setAttribute("bgColor","#D3D3D3")
+        }
+		}
+		else {
+		for (var j = 1; j <= columnCount; j++) {
+            var cell = row.insertCell(-1);
+			if(i==j){
+			strataInput.push("Always " + strataName[i]);
+			cell.innerHTML = "Always " + strataName[i];}
+            else{
+			cell.innerHTML = "If assigned to "+group1Name+" then takes up "+strataName[j]+" and if assigned to "+group2Name+" then takes up "+strataName[i];
+			}
+        }
+		}
+	}
+    var dvTable = document.getElementById("dvTable");
+    dvTable.innerHTML = "";
+    dvTable.appendChild(table);
+	localStorage.group1Local=group1Name;
+	localStorage.group2Local=group2Name;
+	localStorage.strataLocal=strata;
+	document.getElementById('exp').innerHTML = "This matrix displays the "+ strata*strata + " possible strata for your study. Based on the information you entered, participants in the " + group1Name + " and " + group2Name + " groups could have taken up "+subgroup1Name+", "+subgroup2Name+", or "+subgroup3Name+".  On the next page you can eliminate strata for which you think there would be no impacts or that you believe are implausible.";
+	}
+	if(clickcount==1){
+	localStorage.strata1Local=strataName[1];
+	localStorage.strata2Local=strataName[2];
+	localStorage.strata3Local=strataName[3];
+	localStorage.strata4Local=strataName[4];
+	localStorage.strata1Input=strataInput[1];
+	localStorage.strata2Input=strataInput[2];
+	localStorage.strata3Input=strataInput[3];
+	localStorage.strata4Input=strataInput[4];
+	localStorage.strata5Input=strataInput[5];
+	localStorage.strata6Input=strataInput[6];
+	localStorage.strata7Input=strataInput[7];
+	localStorage.strata8Input=strataInput[8];
+	localStorage.strata9Input=strataInput[8];
+	localStorage.strata10Input=strataInput[10];
+	localStorage.strata11Input=strataInput[11];
+	localStorage.strata12Input=strataInput[12];
+	localStorage.strata13Input=strataInput[13];
+	localStorage.strata14Input=strataInput[14];
+	localStorage.strata15Input=strataInput[15];
+	localStorage.strata16Input=strataInput[16];
+	localStorage.outcome = outcome;
+	localStorage.outcomeUnits = outcomeUnits;
+	if(strata==3){window.location.href = 'file:./exclusions_3.html';}
+	}
+	clickcount=clickcount+1;
+}
+</script>
+
+</body>
+</html>
