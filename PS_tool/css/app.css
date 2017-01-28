@@ -1,0 +1,91 @@
+/* custom CSS styles */
+
+body { 
+		font-family:'lucida grande', tahoma, verdana, arial, sans-serif;
+		color: #787878;
+}
+
+h2 {
+	color: #F3954F; /* orange */
+	font-size: 30px;
+}
+
+h3 {
+	color: #F3954F; /* orange */
+	font-size: 20px;
+}
+
+h4 {
+	font-size: 16px;
+	color: #787878;
+	font-weight: bold;
+}
+
+label, input {
+	display: inline;
+}
+
+label {
+	color: #787878;
+	
+}
+
+[type=text] {
+	display: inline;
+}
+
+table {
+	border: 0px;
+	table-layout: fixed; 
+	font-size: 15px
+}
+
+select#selection {
+	width: 100px;
+}
+
+
+a:hover { text-decoration: underline; }
+			
+/* Table styling */
+table.testgrid { 
+		border-collapse: collapse; 
+		border: 1px solid #CCB; 
+		width: 100%; 
+}
+
+table.testgrid td, table.testgrid th { 
+	padding: 5px; 
+	border: 5px solid #E0E0E0; 
+}
+
+table.testgrid th { 
+	background: #E5E5E5; 
+	text-align: center; 
+}
+
+input.invalid { 
+	background: red; 
+	color: #FDFDFD; 
+}
+
+
+/* header */
+.callout.primary {
+	background-color: #444141;
+	color: #EF7C28;
+}
+
+/* footer */
+.callout.secondary { 
+	background-color: #f2f2f2;
+	color: #787878;
+}
+
+/* gray */
+
+.callout.success {
+	/*background-color: #f2f2f2;*/
+}
+
+
