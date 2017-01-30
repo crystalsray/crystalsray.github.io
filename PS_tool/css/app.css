@@ -75,11 +75,18 @@ input.invalid {
 	display: none;
 }
 
+/* topbar*/
+.top-bar, .top-bar ul, .top-bar a {
+	background-color: #FFB37B;
+	color: #9E4300;
+	font-weight: bold;
+}
+
 
 /* header */
 .callout.primary {
 	background-color: #444141;
-	color: #EF7C28;
+	color: #FFF;
 }
 
 /* footer */

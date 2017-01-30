@@ -41,7 +41,7 @@
       <div class="medium-2 medium-offset-1 columns" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
           <ol class="no-bullet">
-            <li><a href="start.html">Start</a></li>
+            <li><a href="start.html">Start &raquo; Identify the Principal Strata for Your Study</a></li>
           </ol>
         </div>
       </div>
@@ -151,8 +151,6 @@
 
           <div id="dvTable" align="center">
 
-
-
           </div>
 
           
@@ -235,7 +233,7 @@ var strataInput=new Array();
 // When the user clicks the button, save value of dropdown and continue
 function generateFunction() {
   $( ".callout.success" ).show(); //display #exp paragraph
-  var select_value = document.getElementById('selection').value
+  var select_value = document.getElementById('selection').value;
     var strata=select_value;
   var group1Name = document.getElementById("group1").value;
   var group2Name = document.getElementById("group2").value;
@@ -253,6 +251,7 @@ function generateFunction() {
   strataName.push(subgroup2Name);
   strataName.push(subgroup3Name);
   var table = document.createElement("TABLE");
+  table.className += "testgrid"; //add testgrid styling
     table.border = "20";
   var columnCount = strata;
   
