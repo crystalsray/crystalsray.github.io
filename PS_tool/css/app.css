@@ -69,6 +69,12 @@ input.invalid {
 	color: #FDFDFD; 
 }
 
+/* paragraphs that are initially  hidden */
+
+.callout.success {
+	display: none;
+}
+
 
 /* header */
 .callout.primary {

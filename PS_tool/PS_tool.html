@@ -6,8 +6,9 @@
     <title>Identify the Principal Strata for Your Study</title>
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/editablegrid.css" type="text/css" media="screen">
+    <!--<link rel="stylesheet" href="css/editablegrid.css" type="text/css" media="screen">-->
     <script src="js/mathjs-master/dist/math.js"></script>
+
   </head>
   <body>
     
@@ -148,7 +149,10 @@
 
           <p id="exp" class="callout success"> </p>
 
-          <div id="dvTable" border="0">
+          <div id="dvTable" align="center">
+
+
+
           </div>
 
           
@@ -185,11 +189,11 @@
 
     </footer>
     
-    <!--<script src="js/vendor/jquery-2.1.4.min.js"></script>-->
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
     <script src="js/vendor/foundation.js"></script>
-    <script type="text/javascript" src="../script/jquery.js"></script>
+    <!--<script type="text/javascript" src="../script/jquery.js"></script>
     <script type="text/javascript" src="../script/jquery.callback.js"></script>
-    <script type="text/javascript" src="../script/ExportHTMLTable.js"></script>
+    <script type="text/javascript" src="../script/ExportHTMLTable.js"></script>-->
 
    
   <script>
@@ -240,6 +244,7 @@ var clickcount=0
 var strataInput=new Array();
 // When the user clicks the button, save value of dropdown and continue
 function generateFunction() {
+  $( ".callout.success" ).show(); //display #exp paragraph
   var select_value = document.getElementById('selection').value
     var strata=select_value;
   var group1Name = document.getElementById("group1").value;

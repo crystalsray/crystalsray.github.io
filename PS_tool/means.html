@@ -41,6 +41,7 @@
         <div class="sticky" data-sticky data-anchor="content">
           <ol class="no-bullet">
             <li><a href="start.html">Start</a></li>
+            <li><a href="./bounds.html">&#8592; Back to Proportions</a></li>
           </ol>
         </div>
       </div>
@@ -51,13 +52,11 @@
         <div class="row">
           <h2> Calculating Means </h2>
           <p>Please note that the proportions you previously entered should be for your sample with a non-missing outcome. If you need to revise your entries, please do so. Link to go back</p>
-          <a href="./bounds.html" class="button">&#8592; Back to Proportions</a>
+          
 
           <h2 id="instructions"> </h2>
-          <br>
-          <br>
 
-          <h2> Please enter the observed mean outcome for each of the following groups: </h2>
+          <h4> Please enter the observed mean outcome for each of the following groups: </h4>
           <label for="TtoT" id="q1"></label>
           <input type="text" id="TtoT" placeholder="Mean=">
 
@@ -243,6 +242,8 @@
 
         
   function submitP(){
+    $("#tableInfo").show();
+    $("#tableInfo2").show();
     var group1 = localStorage.group1Local;
     var group2 = localStorage.group2Local;
     var isActive1 = parseInt(localStorage.isActive1);
