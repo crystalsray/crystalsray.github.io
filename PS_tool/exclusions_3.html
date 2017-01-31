@@ -339,9 +339,9 @@ function moveToBounds() {
   if(count>=3 & countRCACTIVE>1){alert("You can only have one full row or column still active in order to use this tool.");}
   if (count>4 || countRCACTIVE==0){
   alert("You can directly solve for the means under both treatment and control and you do not need bounds");
-  window.location.href = 'file:./noBoundsRedirect.html';
+  window.location.href = 'noBoundsRedirect.html';
   }
-  if (count>=3 & count<=4 & countRCACTIVE==1){window.location.href = 'file:./bounds.html';}
+  if (count>=3 & count<=4 & countRCACTIVE==1){window.location.href = 'bounds.html';}
   }
 var row = new Array();
 var column = new Array();
