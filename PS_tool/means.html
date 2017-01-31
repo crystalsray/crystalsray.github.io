@@ -54,7 +54,7 @@
           <p>Please note that the proportions you previously entered should be for your sample with a non-missing outcome. If you need to revise your entries, please do so. Link to go back</p>
           
 
-          <h2 id="instructions"> </h2>
+          <h3 id="instructions"> </h3>
 
           <h4> Please enter the observed mean outcome for each of the following groups: </h4>
           <label for="TtoT" id="q1"></label>
@@ -80,6 +80,8 @@
               <button class="button" onclick="submitP()">Continue</button>
             </div>
           </div>
+
+          <h3 id="tableH2"> Applying the Exclusion Restriction </h3>
 
           <p class="callout success" id="tableInfo"></p> 
 
@@ -244,6 +246,7 @@
   function submitP(){
     $("#tableInfo").show();
     $("#tableInfo2").show();
+    $("#tableH2").show();
     var group1 = localStorage.group1Local;
     var group2 = localStorage.group2Local;
     var isActive1 = parseInt(localStorage.isActive1);

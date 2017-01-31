@@ -5,6 +5,10 @@ body {
 		color: #787878;
 }
 
+h1 {
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
 h2 {
 	color: #F3954F; /* orange */
 	font-size: 30px;
@@ -71,22 +75,22 @@ input.invalid {
 
 /* paragraphs that are initially  hidden */
 
-.callout.success {
+.callout.success, #tableH2 { 
 	display: none;
 }
 
 /* topbar*/
 .top-bar, .top-bar ul, .top-bar a {
-	background-color: #FFB37B;
-	color: #9E4300;
+	
 	font-weight: bold;
 }
 
 
 /* header */
 .callout.primary {
-	background-color: #444141;
-	color: #FFF;
+	background-color: #EF7C28;
+	color: #FFD17B;
+
 }
 
 /* footer */
