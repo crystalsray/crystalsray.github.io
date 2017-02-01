@@ -56,25 +56,95 @@
 
           <h3 id="heading1"> </h3>
 
-          <label for="TtoT" id="q1"> </label>
-          <input type="text" id="TtoT" placeholder="P="><br>
 
-          <label for="TtoSub1" id="q2"></label>
-          <input type="text" id="TtoSub1" placeholder="P="><br>
 
-          <label  for="TtoSub2" id="q3"></label> 
-          <input type="text" id="TtoSub2" placeholder="P="><br>
+          <div class="row">
+            <div class="medium-8 small-6 columns">
+              <label for="TtoT" id="q1"> </label>
+            </div>
+            <div class="medium-4 small-6 columns">
+              <div class="input-group">
+                <input type="text" id="TtoT" placeholder="P=" class="input-group-field">
+                <span class="input-group-label input-group-label-right">%</span>
+              </div>
+            </div>
+          </div><!--/row-->
 
+          <br>
+
+          <div class="row">
+            <div class="medium-8 small-6 columns">
+              <label for="TtoSub1" id="q2"></label>
+            </div>
+            <div class="medium-4 small-6 columns">
+              <div class="input-group">
+                <input type="text" id="TtoSub1" placeholder="P=" class="input-group-field">
+                <span class="input-group-label input-group-label-right">%</span>
+              </div>
+            </div>
+          </div><!--/row-->
+
+          <br>
+
+          <div class="row">
+            <div class="medium-8 small-6 columns">
+              <label  for="TtoSub2" id="q3"></label> 
+            </div>
+            <div class="medium-4 small-6 columns">
+              <div class="input-group">
+                <input type="text" id="TtoSub2" placeholder="P=" class="input-group-field">
+                <span class="input-group-label input-group-label-right">%</span>
+              </div>
+            </div>
+          </div><!--/row-->
+
+          <br>
           <h3 id="heading2"> </h3>
 
-          <label for="CtoT" id="q4"> </label>
-          <input type="text" id="CtoT" placeholder="P="><br>
+          <div class="row">
+            <div class="medium-8 small-6 columns">
+              <label for="CtoT" id="q4"> </label> 
+            </div>
+            <div class="medium-4 small-6 columns">
+              <div class="input-group">
+                <input type="text" id="CtoT" placeholder="P=" class="input-group-field">
+                <span class="input-group-label input-group-label-right">%</span>
+              </div>
+            </div>
+          </div><!--/row-->
 
-          <label for="CtoSub1" id="q5"> </label>
-          <input type="text" id="CtoSub1" placeholder="P="><br>
+          <br>
 
-          <label for="CtoSub2" id="q6"> </label>
-          <input type="text" id="CtoSub2" placeholder="P="><br>
+          <div class="row">
+            <div class="medium-8 small-6 columns">
+              <label for="CtoSub1" id="q5"> </label> 
+            </div>
+            <div class="medium-4 small-6 columns">
+              <div class="input-group">
+                <input type="text" id="CtoSub1" placeholder="P=" class="input-group-field">
+                <span class="input-group-label input-group-label-right">%</span>
+              </div>
+            </div>
+          </div><!--/row-->
+
+          <br>
+
+          <div class="row">
+            <div class="medium-8 small-6 columns">
+              <label for="CtoSub2" id="q6"> </label> 
+            </div>
+            <div class="medium-4 small-6 columns">
+              <div class="input-group">
+                <input type="text" id="CtoSub2" placeholder="P=" class="input-group-field">
+                <span class="input-group-label input-group-label-right">%</span>
+              </div>
+            </div>
+          </div><!--/row-->
+
+
+          
+          
+
 
           <div class="row">
             <div class="small-12 text-center">
@@ -82,7 +152,9 @@
             </div>
           </div>
 
-          <p id="tableInfo" align="Left" style="font-size: 15px"> </p>  
+          <div class="callout success">
+            <p id="tableInfo" align="Left" style="font-size: 15px"> </p>  
+          </div>
 
           <table id="boundsGrid" class="testgrid" align="center">
             <tr>
@@ -177,13 +249,13 @@
         var cell9Input = localStorage.cell9;
         var outcome = localStorage.outcome;
         document.getElementById('heading1').innerHTML = "Add percentages of "+group1+" assigned participants in each condition";
-        document.getElementById('q1').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata1+"?";
-        document.getElementById('q2').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata2+"?";
-        document.getElementById('q3').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata3+"?";
+        document.getElementById('q1').innerHTML = "What percentage of "+group1+" assigned participants took up the <strong>"+strata1+"</strong>?";
+        document.getElementById('q2').innerHTML = "What percentage of "+group1+" assigned participants took up the <strong>"+strata2+"</strong>?";
+        document.getElementById('q3').innerHTML = "What percentage of "+group1+" assigned participants took up the <strong>"+strata3+"</strong>?";
         document.getElementById('heading2').innerHTML = "Add percentages of "+group2+" assigned participants in each condition";
-        document.getElementById('q4').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata1+"?";
-        document.getElementById('q5').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata2+"?";
-        document.getElementById('q6').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata3+"?";
+        document.getElementById('q4').innerHTML = "What percentage of "+group2+" assigned participants took up the <strong>"+strata1+"</strong>?";
+        document.getElementById('q5').innerHTML = "What percentage of "+group2+" assigned participants took up the <strong> "+strata2+" </strong>?";
+        document.getElementById('q6').innerHTML = "What percentage of "+group2+" assigned participants took up the <strong>"+strata3+"</strong>?";
         document.getElementById('strata1Input').innerHTML = cell1Input;
         document.getElementById('strata2Input').innerHTML = cell2Input;
         document.getElementById('strata3Input').innerHTML = cell3Input;
@@ -233,6 +305,7 @@
     }
         
   function submitP(){
+    $(".callout.success").show();
     document.getElementById('tableInfo').innerHTML = "You can directly observe the proportions of these students in your data. z % of your control students took up treatment, x% of your treatment students took up condition1, and y% of treatment students took up condition2. Participants in directly observed cells exhibit the same behavior under both treatment and control. For example, we would expect control-assigned participants who took up treatment to also take up treatment when actually assigned to that condition."
     var isActive1 = parseInt(localStorage.isActive1);
     var isActive2 = parseInt(localStorage.isActive2);
