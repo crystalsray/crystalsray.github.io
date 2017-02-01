@@ -81,11 +81,14 @@
             </div>
           </div>
 
-          <h3 id="tableH2"> Applying the Exclusion Restriction </h3>
+          <div class="callout success">
 
-          <p class="callout success" id="tableInfo"></p> 
+            <h3 id="tableH2"> Applying the Exclusion Restriction </h3>
 
-          <p class="callout success"  id="tableInfo2"></p>
+            <p id="tableInfo"></p> 
+
+            <p id="tableInfo2"></p>
+          </div>
 
           <table id="boundsGrid" class="testgrid" align="center">
             <tr>
@@ -244,9 +247,7 @@
 
         
   function submitP(){
-    $("#tableInfo").show();
-    $("#tableInfo2").show();
-    $("#tableH2").show();
+    $(".callout.success").show();
     var group1 = localStorage.group1Local;
     var group2 = localStorage.group2Local;
     var isActive1 = parseInt(localStorage.isActive1);

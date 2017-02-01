@@ -73,10 +73,15 @@ input.invalid {
 	color: #FDFDFD; 
 }
 
-/* paragraphs that are initially  hidden */
+/* divs and paragraphs that are initially  hidden */
 
-.callout.success, #tableH2 { 
+.callout.success { 
 	display: none;
+	background-color: #f6f2eb;
+}
+
+.callout {
+	border: 1px solid hsla(0,0%,4%,.1);
 }
 
 /* topbar*/
@@ -89,7 +94,7 @@ input.invalid {
 /* header */
 .callout.primary {
 	background-color: #EF7C28;
-	color: #FFD17B;
+	color: #f6f2eb;
 
 }
 
