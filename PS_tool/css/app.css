@@ -5,8 +5,14 @@ body {
 		color: #787878;
 }
 
-h1 {
+h1, h1 > a, h1 > a:active , h1 > a:visited {
 	font-family: Tahoma, Geneva, sans-serif;
+	color: #f7f3ec;
+	text-decoration: none;
+}
+
+h1 > a:hover {
+	text-decoration: underline;
 }
 
 h2 {
@@ -32,6 +38,12 @@ label, input {
 label {
 	color: #787878;
 	
+}
+
+/* side menu styling  */
+
+.menu>li>a {
+	line-height: 1.2;
 }
 
 /* right side lables on bound.html page */
@@ -108,9 +120,7 @@ input.invalid {
 
 /* header */
 .callout.primary {
-	background-color: #EF7C28;
-	color: #f6f2eb;
-
+	background-color: rgb(51,51,51);
 }
 
 /* footer */
@@ -127,6 +137,33 @@ footer .callout.secondary {
 
 .callout.success {
 	/*background-color: #f2f2f2;*/
+}
+
+/* Vertical menu */
+
+ol.menu.vertical {
+	font-size: .9rem;
+}
+
+.menu > li {
+	line-height: 1.2;
+	padding: .7rem 1rem;
+	border-left: 5px solid #fff;
+}
+
+.menu > .active a {
+	border-left: 5px solid #F3954F;
+	background-color: transparent;
+	color: #1779ba;
+}
+
+
+.button {
+	background-color: #c75b0c;
+}
+
+.button:hover, .button:active {
+	background-color: #9e4300;
 }
 
 
