@@ -158,10 +158,10 @@
 
           <table id="boundsGrid" class="testgrid" align="center">
             <tr>
-              <th colspan=5 style="font-size:15px" id="group1Name"></th>
+              <th colspan=5 class="control-treatment-header" id="group1Name"></th>
             </tr>
             <tr>
-              <th rowspan=6 style="font-size:15px" id="group2Name"></th>
+              <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
             </tr>
             <tr>
               <th> </th>
@@ -519,55 +519,55 @@
     if(pMeanKnown[0]!=0)
     {
       document.getElementById('strata1Input').innerHTML = "P=" + pMeanKnown[0];
-      document.getElementById("strata1Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata1Input").classList.add("blue-cell");
     }
 
     if(pMeanKnown[1]!=0)
     {
       document.getElementById('strata2Input').innerHTML = "P=" + pMeanKnown[1];
-      document.getElementById("strata2Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata2Input").classList.add("blue-cell");
     }
     
     if(pMeanKnown[2]!=0)
     {
       document.getElementById('strata3Input').innerHTML = "P=" + pMeanKnown[2];
-      document.getElementById("strata3Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata3Input").classList.add("blue-cell");
     }
     
     if(pMeanKnown[3]!=0)
     {
       document.getElementById('strata4Input').innerHTML = "P=" + pMeanKnown[3];
-      document.getElementById("strata4Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata4Input").classList.add("blue-cell");
     }
 
     if(pMeanKnown[4]!=0)
     {
       document.getElementById('strata5Input').innerHTML = "P=" + pMeanKnown[4];
-      document.getElementById("strata5Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata5Input").classList.add("blue-cell");
     }
     
     if(pMeanKnown[5]!=0)
     {
       document.getElementById('strata6Input').innerHTML = "P=" + pMeanKnown[5];
-      document.getElementById("strata6Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata6Input").classList.add("blue-cell");
     }
 
     if(pMeanKnown[6]!=0)
     {
       document.getElementById('strata7Input').innerHTML = "P=" + pMeanKnown[6];
-      document.getElementById("strata7Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata7Input").classList.add("blue-cell");
     }
 
     if(pMeanKnown[7]!=0)
     {
       document.getElementById('strata8Input').innerHTML = "P=" + pMeanKnown[7];
-      document.getElementById("strata8Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata8Input").classList.add("blue-cell");
     }
     
     if(pMeanKnown[8]!=0)
     {
       document.getElementById('strata9Input').innerHTML = "P=" + pMeanKnown[8];
-      document.getElementById("strata9Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata9Input").classList.add("blue-cell");
     }
     
   localStorage.countRow1 = countRow1;

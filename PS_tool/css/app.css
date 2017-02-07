@@ -83,6 +83,7 @@ table.testgrid {
 		border-collapse: collapse; 
 		border: 1px solid #CCB; 
 		width: 100%; 
+		font-size: 13px;
 }
 
 table.testgrid td, table.testgrid th { 
@@ -109,6 +110,7 @@ table tbody tr:nth-child(even) {
 	background-color: transparent;
 }
 
+/* Primary table headers */
 .table-header {
 	background-color: #D3D3D3;
 	color:#585858 ;
@@ -116,14 +118,21 @@ table tbody tr:nth-child(even) {
 	font-weight: bold;
 }
 
-.control-treatment-header {
-	/*background-color: #e6e6e6;*/
+/* secondary table headers */
+.control-treatment-header, th.control-treatment-header {
+	background-color: #fff !important;
 	text-decoration: center;
 	font-weight: bold;
 	text-align: center;
 	color: #c75b0c;
 }
 
+/* Blue cell */
+
+.blue-cell {
+	background-color: #4266a9;
+	color: #fff;
+}
 
 
 /* divs and paragraphs that are initially  hidden */

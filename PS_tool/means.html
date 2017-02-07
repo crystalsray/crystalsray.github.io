@@ -92,10 +92,10 @@
 
           <table id="boundsGrid" class="testgrid" align="center">
             <tr>
-              <th colspan=5 style="font-size:15px" id="group1Name"></th>
+              <th colspan=5 class="control-treatment-header" id="group1Name"></th>
             </tr>
             <tr>
-              <th rowspan=6 style="font-size:15px" id="group2Name"></th>
+              <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
             </tr>
             <tr>
               <th> </th>
@@ -452,55 +452,55 @@
     if(MeanKnown[0]!=0)
     {
       document.getElementById('strata1Input').innerHTML =document.getElementById('strata1Input').innerHTML+",Y"+tSub+"=" + MeanKnown[0]+",Y"+cSub+"="+MeanKnown[0];
-      document.getElementById("strata1Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata1Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[1]!=0)
     {
       document.getElementById('strata2Input').innerHTML = document.getElementById('strata2Input').innerHTML+",Y"+tSub+"=" + MeanKnown[1]+",Y"+cSub+"="+MeanKnown[1];
-      document.getElementById("strata2Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata2Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[2]!=0)
     {
       document.getElementById('strata3Input').innerHTML = document.getElementById('strata3Input').innerHTML+",Y"+tSub+"=" + MeanKnown[2]+",Y"+cSub+"="+MeanKnown[2];
-      document.getElementById("strata3Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata3Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[3]!=0)
     {
       document.getElementById('strata4Input').innerHTML = document.getElementById('strata4Input').innerHTML+",Y"+tSub+"=" + MeanKnown[3]+",Y"+cSub+"="+MeanKnown[3];
-      document.getElementById("strata4Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata4Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[4]!=0)
     {
       document.getElementById('strata5Input').innerHTML = document.getElementById('strata5Input').innerHTML+",Y"+tSub+"=" + MeanKnown[4]+",Y"+cSub+"="+MeanKnown[4];
-      document.getElementById("strata5Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata5Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[5]!=0)
     {
       document.getElementById('strata6Input').innerHTML = document.getElementById('strata6Input').innerHTML+",Y"+tSub+"=" + MeanKnown[5]+",Y"+cSub+"="+MeanKnown[5];
-      document.getElementById("strata6Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata6Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[6]!=0)
     {
       document.getElementById('strata7Input').innerHTML = document.getElementById('strata7Input').innerHTML+",Y"+tSub+"=" + MeanKnown[6]+",Y"+cSub+"="+MeanKnown[6];
-      document.getElementById("strata7Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata7Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[7]!=0)
     {
       document.getElementById('strata8Input').innerHTML = document.getElementById('strata8Input').innerHTML+",Y"+tSub+"=" + MeanKnown[7]+",Y"+cSub+"="+MeanKnown[7];
-      document.getElementById("strata8Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata8Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[8]!=0)
     {
       document.getElementById('strata9Input').innerHTML = document.getElementById('strata9Input').innerHTML+",Y"+tSub+"=" + MeanKnown[8]+",Y"+cSub+"="+MeanKnown[8];
-      document.getElementById("strata9Input").setAttribute("bgColor","#6495ED");
+      document.getElementById("strata9Input").classList.add("blue-cell");
     }
   /*
   localStorage.countRow1 = countRow1;
