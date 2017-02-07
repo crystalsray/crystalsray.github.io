@@ -87,7 +87,8 @@ table.testgrid {
 
 table.testgrid td, table.testgrid th { 
 	padding: 5px; 
-	border: 5px solid #E0E0E0; 
+	border: 2px solid #fff;
+	/*border: 5px solid #E0E0E0; */
 }
 
 table.testgrid th { 
@@ -95,10 +96,35 @@ table.testgrid th {
 	text-align: center; 
 }
 
+table.testgrid td {
+	padding: 10px;
+}
+
 input.invalid { 
 	background: red; 
 	color: #FDFDFD; 
 }
+
+table tbody tr:nth-child(even) {
+	background-color: transparent;
+}
+
+.table-header {
+	background-color: #D3D3D3;
+	color:#585858 ;
+	text-align: center;
+	font-weight: bold;
+}
+
+.control-treatment-header {
+	/*background-color: #e6e6e6;*/
+	text-decoration: center;
+	font-weight: bold;
+	text-align: center;
+	color: #c75b0c;
+}
+
+
 
 /* divs and paragraphs that are initially  hidden */
 

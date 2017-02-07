@@ -265,25 +265,25 @@ if (clickcount==0){
         for (var j = 0; j < 1; j++) {
             var cell = row.insertCell(-1);
             cell.innerHTML = strataName[i];
-      cell.setAttribute("width",150);
-      if (i>0) {cell.setAttribute("bgColor","#D3D3D3")};
+      cell.setAttribute("width",90); //first column width
+      if (i>0) {cell.classList.add("table-header")}; // x & y header cells
         }
     if(i==0) {
       var cell = row.insertCell(-1);
       cell.innerHTML = group1Name;
       cell.setAttribute("colspan",strata+1);
-      cell.setAttribute("bgColor","white");
+      cell.classList.add("control-treatment-header"); //treatment header
       var row=table.insertRow(-1);
       var cell = row.insertCell(-1);
       cell.innerHTML = group2Name;
       cell.setAttribute("rowspan",strata+1);
-      cell.setAttribute("bgColor","white");
-      cell.setAttribute("width",200);
+      cell.classList.add("control-treatment-header"); // control header
+      cell.setAttribute("width",80);
       var row=table.insertRow(-1);
     for (var j = 0; j <= columnCount; j++) {
             var cell = row.insertCell(-1);
             cell.innerHTML = strataName[j];
-      cell.setAttribute("bgColor","#D3D3D3")
+      cell.classList.add("table-header")
         }
     }
     else {
