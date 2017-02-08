@@ -186,10 +186,10 @@ ol.menu.vertical {
 
 .menu > li {
 	line-height: 1.2;
-	padding: .7rem 1rem;
+	padding: .4rem 1rem;
 }
 
-.menu > .active  {
+.menu > .active a {
 	border-left: 5px solid #F3954F;
 	background-color: transparent;
 	color: #1779ba;
