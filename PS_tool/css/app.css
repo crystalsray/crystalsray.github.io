@@ -132,6 +132,14 @@ table tbody tr:nth-child(even) {
 .blue-cell {
 	background-color: #4266a9;
 	color: #fff;
+	text-align: center;
+}
+
+/* Gray Cell */
+.gray-cell {
+	background-color: #808080;
+	color: #fff;
+	text-align: center;
 }
 
 

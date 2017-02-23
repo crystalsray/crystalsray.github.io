@@ -344,9 +344,9 @@ function moveToBounds() {
   if(count>=3 & countRCACTIVE>1){alert("You can only have one full row or column still active in order to use this tool.");}
   if (count>4 || countRCACTIVE==0){
   alert("You can directly solve for the means under both treatment and control and you do not need bounds");
-  window.location.href = 'file:./noBoundsRedirect.html';
+  window.location.href = 'noBoundsRedirect.html';
   }
-  if (count>=3 & count<=4 & countRCACTIVE==1){window.location.href = 'file:./pKnown.html';}
+  if (count>=3 & count<=4 & countRCACTIVE==1){window.location.href = 'pKnown.html';}
   }
 var row = new Array();
 var column = new Array();
@@ -358,127 +358,127 @@ var column = new Array();
     function tableText11_mono() {
     document.getElementById("strata1InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata1InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata1InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata1InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata1InputMono").classList.add("blue-cell");
+    document.getElementById("strata1InputIrr").classList.add("blue-cell");
     }
 
     function tableText12_mono() {
     document.getElementById("strata2InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata2InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata2InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata2InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata2InputMono").classList.add("blue-cell");
+    document.getElementById("strata2InputIrr").classList.add("blue-cell");
     }
 
     function tableText13_mono() {
     document.getElementById("strata3InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata3InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata3InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata3InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata3InputMono").classList.add("blue-cell");
+    document.getElementById("strata3InputIrr").classList.add("blue-cell");
     }
 
     function tableText21_mono() {
     document.getElementById("strata4InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata4InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata4InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata4InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata4InputMono").classList.add("blue-cell");
+    document.getElementById("strata4InputIrr").classList.add("blue-cell");
     }
 
     function tableText22_mono() {
     document.getElementById("strata5InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata5InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata5InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata5InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata5InputMono").classList.add("blue-cell");
+    document.getElementById("strata5InputIrr").classList.add("blue-cell");
     }
 
     function tableText23_mono() {
     document.getElementById("strata6InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata6InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata6InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata6InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata6InputMono").classList.add("blue-cell");
+    document.getElementById("strata6InputIrr").classList.add("blue-cell");
     }
 
     function tableText31_mono() {
     document.getElementById("strata7InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata7InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata7InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata7InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata7InputMono").classList.add("blue-cell");
+    document.getElementById("strata7InputIrr").classList.add("blue-cell");
     }
 
     function tableText32_mono() {
     document.getElementById("strata8InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata8InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata8InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata8InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata8InputMono").classList.add("blue-cell");
+    document.getElementById("strata8InputIrr").classList.add("blue-cell");
     }
 
     function tableText33_mono() {
     document.getElementById("strata9InputMono").innerHTML = "Monotonicity Assumption";
     document.getElementById("strata9InputIrr").innerHTML = "Monotonicity Assumption";
-    document.getElementById("strata9InputMono").setAttribute("bgColor","#B0C4DE");
-    document.getElementById("strata9InputIrr").setAttribute("bgColor","#B0C4DE");
+    document.getElementById("strata9InputMono").classList.add("blue-cell");
+    document.getElementById("strata9InputIrr").classList.add("blue-cell");
     }
 
     function tableText11_irr() {
     document.getElementById("strata1InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata1InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata1InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata1InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata1InputMono").classList.add("gray-cell");
+    document.getElementById("strata1InputIrr").classList.add("gray-cell");
     }
 
     function tableText12_irr() {
     document.getElementById("strata2InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata2InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata2InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata2InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata2InputMono").classList.add("gray-cell");
+    document.getElementById("strata2InputIrr").classList.add("gray-cell");
     }
 
     function tableText13_irr() {
     document.getElementById("strata3InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata3InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata3InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata3InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata3InputMono").classList.add("gray-cell");
+    document.getElementById("strata3InputIrr").classList.add("gray-cell");
     }
 
     function tableText21_irr() {
     document.getElementById("strata4InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata4InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata4InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata4InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata4InputMono").classList.add("gray-cell");
+    document.getElementById("strata4InputIrr").classList.add("gray-cell");
     }
 
     function tableText22_irr() {
     document.getElementById("strata5InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata5InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata5InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata5InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata5InputMono").classList.add("gray-cell");
+    document.getElementById("strata5InputIrr").classList.add("gray-cell");
     }
 
     function tableText23_irr() {
     document.getElementById("strata6InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata6InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata6InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata6InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata6InputMono").classList.add("gray-cell");
+    document.getElementById("strata6InputIrr").classList.add("gray-cell");
     }
 
     function tableText31_irr() {
     document.getElementById("strata7InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata7InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata7InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata7InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata7InputMono").classList.add("gray-cell");
+    document.getElementById("strata7InputIrr").classList.add("gray-cell");
     }
 
     function tableText32_irr() {
     document.getElementById("strata8InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata8InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata8InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata8InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata8InputMono").classList.add("gray-cell");
+    document.getElementById("strata8InputIrr").classList.add("gray-cell");
     }
 
     function tableText33_irr() {
     document.getElementById("strata9InputMono").innerHTML = "Irrelevant Alternative";
     document.getElementById("strata9InputIrr").innerHTML = "Irrelevant Alternative";
-    document.getElementById("strata9InputMono").setAttribute("bgColor","#808080");
-    document.getElementById("strata9InputIrr").setAttribute("bgColor","#808080");
+    document.getElementById("strata9InputMono").classList.add("gray-cell");
+    document.getElementById("strata9InputIrr").classList.add("gray-cell");
     }
   
     </script>
