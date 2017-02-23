@@ -86,7 +86,7 @@
 
               <div class="row">
                 <div class="medium-2 columns">
-                  <label for="group2">Control</labeL>
+                  <label for="group2">Control</label>
                 </div>
                 <div class="medium-10 columns">
                   <input type="text" id="group2" placeholder="Control"><br>
@@ -103,7 +103,7 @@
           <div id="myDIV" class="header">
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="subgroup1">Treatment</labeL>
+                  <label for="subgroup1">Treatment</label>
                 </div>
                 <div class="medium-10 columns">
                   <input type="text" id="subgroup1" placeholder="Treatment">
@@ -112,7 +112,7 @@
 
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="subgroup2">Subgroup1</labeL>
+                  <label for="subgroup2">Subgroup1</label>
                 </div>
                 <div class="medium-10 columns">
                  <input type="text" id="subgroup2" placeholder="Subgroup1">
@@ -122,7 +122,7 @@
 
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="subgroup3">Subgroup2</labeL>
+                  <label for="subgroup3">Subgroup2</label>
                 </div>
                 <div class="medium-10 columns">
                   <input type="text" id="subgroup3" placeholder="Subgroup2">
@@ -137,7 +137,7 @@
           <form action="demo_form.asp">
               <div class="row">
                 <div class="medium-3 columns">
-                  <label for="outcome">Outcome</labeL>
+                  <label for="outcome">Outcome</label>
                 </div>
                 <div class="medium-9 columns">
                   <input type="text" id="outcome" placeholder="Outcome...">
@@ -287,25 +287,25 @@ if (clickcount==0){
         for (var j = 0; j < 1; j++) {
             var cell = row.insertCell(-1);
             cell.innerHTML = strataName[i];
-      cell.setAttribute("width",150);
-      if (i>0) {cell.setAttribute("bgColor","#D3D3D3")};
+      cell.setAttribute("width",90);
+      if (i>0) {cell.classList.add("table-header")}; // x & y header cells
         }
     if(i==0) {
       var cell = row.insertCell(-1);
       cell.innerHTML = "Assigned to " + group1Name;
       cell.setAttribute("colspan",strata+1);
-      cell.setAttribute("bgColor","white");
+      cell.classList.add("control-treatment-header"); //treatment header
       var row=table.insertRow(-1);
       var cell = row.insertCell(-1);
       cell.innerHTML = "Assigned to " + group2Name;
       cell.setAttribute("rowspan",strata+1);
-      cell.setAttribute("bgColor","white");
-      cell.setAttribute("width",200);
+      cell.classList.add("control-treatment-header"); // control header
+      cell.setAttribute("width",80);
       var row=table.insertRow(-1);
     for (var j = 0; j <= columnCount; j++) {
             var cell = row.insertCell(-1);
             cell.innerHTML = strataName[j];
-      cell.setAttribute("bgColor","#D3D3D3")
+      cell.classList.add("table-header")
         }
     }
     else {
