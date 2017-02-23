@@ -1,0 +1,185 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate bounds for the effects of the treatment for in strata of interest</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/mathjs-master/dist/math.js"></script>
+  </head>
+  <body>
+    
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Principal Stratification Tool</h1>
+      </div>
+    </div>
+    
+    <div class="row" id="content">
+
+      <div class="medium-3 medium-offset-1 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+          <ol class="menu vertical">
+            <li><a href="PS_tool.html">&larr; Back to Proportions</a></li>
+            <li><a href="index.html"><strong>Start &raquo;</strong> Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool</a></li>
+            <li><a href="PS_tool.html">Identify the principal strata for your study</a></li>
+            <li><a href="exclusions_3.html">Use substantive assumptions to constrain the number of strata forof interest for these analyses Determining proportions of subgroups using observed quantities</a></li>
+            <li class="active"><a href="pUnknown.html">Solving for proportions that are not directly observed</a></li>
+            <li>Solving for means under treatment and control</li>
+            <li>Calculating the bounds and estimating ranges of impact</li>
+            <li>Next steps</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="medium-7 columns">
+
+          <h2>Solving for Means under Treatment and Control</h2>
+
+          <p id="intro"></p>
+          <p id="changeOutcome"> </p>
+
+          <input type="text" id="newOutcome" placeholder="New Outcome...">
+          <p>Please note that the proportions you previously entered should be for your sample with a non-missing outcome. If you need to revise your entries, please do so.</p>
+
+          <h3 id="instructions"> </h3>
+
+          <h3 id="observedValues"> </h3>
+
+          <div class="row column">
+            <div class="medium-7 small-8 columns">
+              <label for="TtoT" id="q1"></label>
+            </div>
+            <div class="medium-5 small-4 columns">
+              <input type="text" id="TtoT" placeholder="Mean=">
+            </div>
+          </div>
+
+          <div class="row column">
+            <div class="medium-7 small-8 columns">
+              <label for="TtoSub1" id="q2"></label>
+            </div>
+            <div class="medium-5 small-4 columns">
+               <input type="text" id="TtoSub1" placeholder="Mean=">
+            </div>
+          </div>
+
+          <div class="row column">
+            <div class="medium-7 small-8 columns">
+              <label for="TtoSub2" id="q3"></label>
+            </div>
+            <div class="medium-5 small-4 columns">
+               <input type="text" id="TtoSub2" placeholder="Mean=">
+            </div>
+          </div>
+        
+          <div class="row column">
+            <div class="medium-7 small-8 columns">
+              <label for="CtoT" id="q4"></label>
+            </div>
+            <div class="medium-5 small-4 columns">
+               <input type="text" id="CtoT" placeholder="Mean=">
+            </div>
+          </div>
+
+
+          <div class="row column">
+            <div class="medium-7 small-8 columns">
+              <label for="CtoSub1" id="q5"></label>
+            </div>
+            <div class="medium-5 small-4 columns">
+               <input type="text" id="CtoSub1" placeholder="Mean=">
+            </div>
+          </div>
+
+          <div class="row column">
+            <div class="medium-7 small-8 columns">
+              <label for="CtoSub2" id="q6"></label>
+            </div>
+            <div class="medium-5 small-4 columns">
+               <input type="text" id="CtoSub2" placeholder="Mean=">
+            </div>
+          </div>
+
+
+
+
+        <div class="row">
+            <div class="small-12 text-center">
+              <button class="button" onclick="cont()">Continue</button>
+            </div>
+        </div>
+
+      </div> <!--/ end medium- 7-->
+
+      
+      
+
+      <div class="medium-1 columns">&nbsp;
+      </div>
+
+    </div><!--/ end row -->
+    
+
+    <footer>
+      <div class="row expanded callout secondary">
+        <div class="medium-10 medium-offset-1 columns">
+      <p>Funding for this project was provided through a grant from Spencer Foundation. This website is designed to assist researchers interested in applying a principal stratification approach to their research questions. This tool intended for researchers who have a familiarity with the principal stratification approach. Researchers unfamiliar with the approach are encouraged to consult <a href="https://gspp.berkeley.edu/assets/uploads/research/pdf/Principal_Stratification.pdf" target="_blank">Page <em>et al</em> 2015 </a>  before using this tool. </p>
+
+        </div>
+      </div>
+
+
+      <!--<div class="row">
+        <div class="medium-12 columns text-center">
+          <p><strong>Funding for this project was provided through a grant from Spencer Foundation</strong></p>
+        </div>
+      </div>-->
+
+    </footer>
+    
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script>
+     window.onload = function() {
+        var outcome = localStorage.outcome;
+        var groupNames= new Array();
+        var strataNames = new Array();
+        var group1 = localStorage.group1Local;
+        var group2 = localStorage.group2Local;
+        var strata = localStorage.strataLocal;
+        strata = strata*strata;
+        var strata1 = localStorage.strata1Local;
+        var strata2 = localStorage.strata2Local;
+        var strata3 = localStorage.strata3Local;
+        document.getElementById('q1').innerHTML = group1+" participants who took up <strong>"+strata1+"</strong>:";
+        document.getElementById('q2').innerHTML = group1+" participants who took up <strong>"+strata2+"</strong>:";
+        document.getElementById('q3').innerHTML = group1+" participants who took up <strong>"+strata3+"</strong>:";
+        document.getElementById('q4').innerHTML = group2+" participants who took up <strong>"+strata1+"</strong>:";
+        document.getElementById('q5').innerHTML = group2+" participants who took up <strong>"+strata2+"</strong>:";
+        document.getElementById('q6').innerHTML = group2+" participants who took up <strong>"+strata3+"</strong>:";
+        document.getElementById('instructions').innerHTML = "What are the observed values for the "+outcome+"?";
+        document.getElementById('intro').innerHTML = "Now that you have determined the proportions of your sample in each stratum, the tool will help you determine their outcomes. Each participant in a study has two potential behaviors: they can show one behavior when assigned to treatment and one behavior when assigned to "+group1+". The tool will use the values of an outcome for the observable groups from your study to determine the mean under "+group1+" (Yt) and the mean under "+group2+" (Yc) for each principal strata.  The mean under "+group1+" represents the participants’ mean outcome under their "+group1+" behavior, while the mean under "+group2+" represents their mean outcome based on their "+group2+" behavior.";
+        document.getElementById('changeOutcome').innerHTML = "Is "+outcome+" still the outcome you are interested in? If not, please enter a new outcome below.";
+        document.getElementById('observedValues').innerHTML = "What are the observed values for the "+outcome+"?";
+      }
+
+
+  function cont(){
+    localStorage.TtoT = document.getElementById("TtoT").value;
+    localStorage.TtoSub1 = document.getElementById("TtoSub1").value;
+    localStorage.TtoSub2 = document.getElementById("TtoSub2").value;
+    localStorage.CtoT = document.getElementById("CtoT").value;
+    localStorage.CtoSub1 = document.getElementById("CtoSub1").value;
+    localStorage.CtoSub2 = document.getElementById("CtoSub2").value;
+    window.location.href = 'means.html';
+  }
+        
+    </script>
+  </body>
+</html>
+
+
+
