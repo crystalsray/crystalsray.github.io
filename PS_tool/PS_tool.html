@@ -55,10 +55,11 @@
       <div class="medium-7 columns">
 
           <h2>Identify the Principal Strata for Your Study</h2>
-          <h3> Setting up Your Model</h3>
-          <h4> 1. How many groups are you interested in comparing? </h4>
-          <p> The first step is to identify the number of post-randomization groups of interest for your proposed analyses. The number of groups will be determined by the potential behaviors of participants. For example, in the Feller et. al study on Head Start impacts, both treatment and control assigned children might enroll at a Head Start Center, at a non-Head Start Center or be cared for in a home based setting, for a total of 3 post randomization behaviors. In the ECHS example, a student could enroll at an ECHS, a high quality public school or a low quality public school. In cases such as these with three possible post-randomization behaviors, you would select 3 below. 
-          </p>
+          <p> Please fill in the following information needed to estimate bounds for principal causes effects</p>
+          <h3> 1. How many groups are you interested in comparing? </h3>
+          <p> The first step is to identify the post-randomization activities that you want to examine for this study. These are behaviors and actions that might be possible for study participants under both assignment to the treatment condition and under assignment to the control condition. In the Feller et. al study of Head Start impacts researchers were interested in three types of early childhood education experiences: enrollment Head Start, at a non-Head Start Center or care provided in a home based setting. The Miratrix et al. 2016 study of Early College High schools focused on enrollment student could enroll at an Early College High schools, a high-quality public school or a low -quality public school. </p>
+
+          <p>This tool is designed to support the calculation of bounds for principal causal effects for two, three or four conditions defined by post-randomization activities or behaviors. Please indicate the number of post-randomization actions / behaviors for which you wish to estimate bounds in this study. </p>
 
           <div class="dropdown">
           <select name="Quantity" id="selection"> 
@@ -69,8 +70,8 @@
           </select>
           </div>
 
-          <h4> 2. What do you call the conditions in your study? </h4>
-          <p> Principal stratification is a method designed for analyses of randomized control studies with units assigned to treatment and a control groups. By default, the tool will label to vertical axis as “Treatment” and the Horizontal axis as “Control” group names below. You may edit these fields to reflect the details of your study below.</p>
+          <h3> 2. What do you call the conditions in your study? </h3>
+          <p> Principal stratification is a method designed for analyses of randomized control studies with units assigned to treatment and a control groups. Please use the field below to reflect the specific names for the treatment and control conditions in your study. </p>
 
           <div id="namingGroups" class="header">
             <form action="demo_form.asp">
@@ -95,63 +96,69 @@
             </form>
           </div> 
 
-          <h4> 3. What is the outcome of interest for your study? </h4>
-          <p> Please Please indicate a dichotomous outcome of interest for your study </p>
+          <h3> 3. For which latent subgroups are you interested in calculating bounds for the effects of treatment?  </h3>
+          <p> Principal stratification allows you to estimate impacts on latent subgroups that you can determine after random assignment. These groups are based on the experimental subjects’ observed and counterfactual post-randomization actions and behaviors. Please label the conditions of interest for this study. By default, the tool labels the conditions as “Condition1”, “Condition2”, and “Condition3”. You may edit these fields to reflect the condition of interest for your study. For example, in the Feller et. al Head Start example, we would label the treatment condition as “Head Start” and the alternate conditions as “Center Care” and “Home Care.” </p>
 
-          <form action="demo_form.asp">
+
+          <div id="myDIV" class="header">
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="outcome">Outcome</labeL>
+                  <label for="subgroup1">Treatment</labeL>
                 </div>
                 <div class="medium-10 columns">
+                  <input type="text" id="subgroup1" placeholder="Treatment">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="medium-2 columns">
+                  <label for="subgroup2">Subgroup1</labeL>
+                </div>
+                <div class="medium-10 columns">
+                 <input type="text" id="subgroup2" placeholder="Subgroup1">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="medium-2 columns">
+                  <label for="subgroup3">Subgroup2</labeL>
+                </div>
+                <div class="medium-10 columns">
+                  <input type="text" id="subgroup3" placeholder="Subgroup2">
+                </div>
+            </div>
+
+          </div>
+
+
+          <h4>4. What is the outcome of interest for your study? </h4>
+          <p> Please indicate an outcome of interest for your study. Note:  the tool only supports binary outcomes </p>
+          <form action="demo_form.asp">
+              <div class="row">
+                <div class="medium-3 columns">
+                  <label for="outcome">Outcome</labeL>
+                </div>
+                <div class="medium-9 columns">
                   <input type="text" id="outcome" placeholder="Outcome...">
                 </div>
               </div>
            </form>
 
-          <h4> 4. What is the treatment control impact  on this outcome for your full sample? </h4>
-          <p> Please enter in the outcome units rather effect size unit </p>
-          <form action="demo_form.asp">
-              <div class="row">
-                <div class="medium-3 columns">
-                  <label for="outcome_units">Outcome Units</labeL>
-                </div>
-                <div class="medium-9 columns">
-                  <input type="text" id="outcome_units" placeholder="Outcome Units...">
-                </div>
+          <h4> 5. What is the estimated intent-to-treat effects on this outcome for your full sample? </h4>
+          <p>Please enter in the outcome units rather effect size units. This this should be a percentage point difference between treatment and that ranges between -100 and 100</p>
+
+          <div class="row">
+            <form action="demo_form.asp">
+              <div class="medium-2 columns">
+                <label for="outcome_units">Estimated Effect</label>
               </div>
-           </form>
+              <div class="medium-10 columns">
+                <input type="text" id="outcome_units" placeholder="Estimated Effect...">
+              </div>
+            </form>
+          </div> <!--/row-->
 
-          <h4> 5. For which subgroups are you interested in calculating bounds for the effects of treatment? </h4>
-          <p> Please label subgroups of interest for this study.  By default, the tool labels the conditions as  “Treatment”, “Subgroup1”, and “Subgroup2”. You may edit these fields to reflect the subgroups of interest for your study.</p>
-          <div id="myDIV" class="header">
-              <div class="row">
-                <div class="medium-2 columns">
-                  <label for="subgroup1">Treatment</label>
-                </div>
-                <div class="medium-10 columns">
-                  <input type="text" id="subgroup1" placeholder="Treatment">
-                </div>
-              </div> <!--/row-->
-
-              <div class="row">
-                <div class="medium-2 columns">
-                  <label for="subgroup2">Subgroup1</label>
-                </div>
-                <div class="medium-10 columns">
-                  <input type="text" id="subgroup2" placeholder="Subgroup1">
-                </div>
-              </div><!--/row-->
-
-              <div class="row">
-                <div class="medium-2 columns">
-                  <label for="subgroup3">Subgroup2</label>
-                </div>
-                <div class="medium-10 columns">
-                  <input type="text" id="subgroup3" placeholder="Subgroup2">
-                </div>
-              </div><!--/row-->
-          </div>
 
           <p id="exp" class="callout success"> </p>
 
@@ -220,6 +227,16 @@ window.onclick = function(event) {
 // Get the continue button
 var btn = document.getElementById("myBtn");
 
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
 
 var strataName=new Array();
 // Click on a close button to hide the current list item
@@ -238,8 +255,7 @@ var clickcount=0
 var strataInput=new Array();
 // When the user clicks the button, save value of dropdown and continue
 function generateFunction() {
-  $( ".callout.success" ).show(); //display #exp paragraph
-  var select_value = document.getElementById('selection').value;
+  var select_value = document.getElementById('selection').value
     var strata=select_value;
   var group1Name = document.getElementById("group1").value;
   var group2Name = document.getElementById("group2").value;
@@ -250,14 +266,14 @@ function generateFunction() {
   var outcomeUnits = document.getElementById("outcome_units").value;
   if (group1Name==""){group1Name="Treatment"};
   if (group2Name==""){group2Name="Control"};
-  if (subgroup1Name==""){subgroup1Name=group1Name};
-  if (subgroup2Name==""){subgroup2Name="subgroup1"};
-  if (subgroup3Name==""){subgroup3Name="subgroup2"};
+  if (outcome==""){outcome="Outcome"};
+  if (subgroup1Name==""){subgroup1Name="Condition1"};
+  if (subgroup2Name==""){subgroup2Name="Condition2"};
+  if (subgroup3Name==""){subgroup3Name="Condition3"};
   strataName.push(subgroup1Name);
   strataName.push(subgroup2Name);
   strataName.push(subgroup3Name);
   var table = document.createElement("TABLE");
-  table.className += "testgrid"; //add testgrid styling
     table.border = "20";
   var columnCount = strata;
   
@@ -271,25 +287,25 @@ if (clickcount==0){
         for (var j = 0; j < 1; j++) {
             var cell = row.insertCell(-1);
             cell.innerHTML = strataName[i];
-      cell.setAttribute("width",90); //first column width
-      if (i>0) {cell.classList.add("table-header")}; // x & y header cells
+      cell.setAttribute("width",150);
+      if (i>0) {cell.setAttribute("bgColor","#D3D3D3")};
         }
     if(i==0) {
       var cell = row.insertCell(-1);
-      cell.innerHTML = group1Name;
+      cell.innerHTML = "Assigned to " + group1Name;
       cell.setAttribute("colspan",strata+1);
-      cell.classList.add("control-treatment-header"); //treatment header
+      cell.setAttribute("bgColor","white");
       var row=table.insertRow(-1);
       var cell = row.insertCell(-1);
-      cell.innerHTML = group2Name;
+      cell.innerHTML = "Assigned to " + group2Name;
       cell.setAttribute("rowspan",strata+1);
-      cell.classList.add("control-treatment-header"); // control header
-      cell.setAttribute("width",80);
+      cell.setAttribute("bgColor","white");
+      cell.setAttribute("width",200);
       var row=table.insertRow(-1);
     for (var j = 0; j <= columnCount; j++) {
             var cell = row.insertCell(-1);
             cell.innerHTML = strataName[j];
-      cell.classList.add("table-header")
+      cell.setAttribute("bgColor","#D3D3D3")
         }
     }
     else {
@@ -339,6 +355,8 @@ if (clickcount==0){
   }
   clickcount=clickcount+1;
 }
+
+
 </script>
   </body>
 </html>
