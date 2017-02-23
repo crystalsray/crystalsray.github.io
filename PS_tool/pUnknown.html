@@ -53,7 +53,7 @@
       <div class="medium-7 columns">
         <div class="row">
           <h2>Solving for Proportions that are not Directly Observed</h2>
-          <p>Using the directly observable proportions, we can solve for the proportions of the remaining groups. For example, We know that x% of control students took up Condition 1 when assigned to control. We know that y% of treatment students took up Condition 1, even though they were assigned to treatment. Thus, the compliers who took up Condition 1 under control (and would take up the treatment condition under treatment) is w%.</p>
+          <p id="tableInfo"></p>
 
           <table id="boundsGrid" class="testgrid" align="center">
             <tr>
@@ -87,6 +87,7 @@
               <td id="strata9Input"> </td>
             </tr>
           </table>
+
         </div> <!--/ end blog post -->
 
         <div class="row">
@@ -193,11 +194,14 @@
             node.style.backgroundColor = "#6495ED";
 
         }
+        
+        document.getElementById('tableInfo').innerHTML = "Using the directly observable proportions and the data you entered, we can solve for the proportions of observations in the remaining strata. We know that the proportions across each row, or down each column, must sum to the quantities in the margins. This rule allows us to solve for the remaining proportions. Sometimes these calculations are rather simple, and it involves subtracting a directly observed proportion from a marginal proportion. Other times, you can solve using a system of several equations. In the grid below, you will find all proportions filled in and you can note that the quantities in the rows and columns sum to the marginal proportions.";
       }
       
       function submitP(){
-      window.location.href = 'means.html';
+      window.location.href = 'meansIntro.html';
       }
+
 
         
     </script>
