@@ -65,12 +65,12 @@
           <p id="tableInfo3"></p>
 
 
-          <table id="boundsGrid" class="testgrid" align="center">
+          <table id="boundsGrid" class="testgrid table_blue_bg" align="center">
             <tr>
-              <th colspan=5 style="font-size:15px" id="group1Name"></th>
+              <th colspan=5 class="control-treatment-header" id="group1Name"></th>
             </tr>
             <tr>
-              <th rowspan=6 style="font-size:15px" id="group2Name"></th>
+              <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
             </tr>
             <tr>
               <th> </th>
@@ -250,12 +250,12 @@ window.onload = function() {
     var CtoTNum= Number(CtoT);
     var CtoSub1Num = Number(CtoSub1);
     var CtoSub2Num = Number(CtoSub2);   
-    document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (Mean=" + TtoTNum + ")";
-    document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (Mean=" + TtoSub1Num + ")";
-    document.getElementById('strata3Name').innerHTML = localStorage.strata3Local + " (Mean=" + TtoSub2Num + ")";
-    document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (Mean=" + CtoTNum + ")";
-    document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (Mean=" + CtoSub1Num + ")";
-    document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (Mean=" + CtoSub2Num + ")";
+    document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (Mean=" + TtoTNum + "%)";
+    document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (Mean=" + TtoSub1Num + "%)";
+    document.getElementById('strata3Name').innerHTML = localStorage.strata3Local + " (Mean=" + TtoSub2Num + "%)";
+    document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (Mean=" + CtoTNum + "%)";
+    document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (Mean=" + CtoSub1Num + "%)";
+    document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (Mean=" + CtoSub2Num + "%)";
     document.getElementById('tableInfo').innerHTML="We will use this information to solve for means under "+group1+" and "+group2+". Each of the groups in the grid below represents a group of participants who have a behavior under assignment to treatment and behavior under assignment to control. The mean outcomes in the margins represent the outcomes for observable groups in your data. If the means in the margins are incorrect, please return to the previous page.";
     document.getElementById('tableInfo2').innerHTML = "Similar to how you could directly observe the proportion of participants in several groups, you can also directly observe the mean outcomes of these groups under "+group1+" and "+group2+". The means of the principal strata in a given row or a given column will average out to the mean displayed in the margin of that column and row.  This represents a weighted average according to the relative share of participants in each cell. If a cell in the grid below is the only active cell in a column, you know their mean under "+group1+", and if it is the only active cell in a row, you know their mean under "+group2+". ";
     document.getElementById('tableInfo3').innerHTML = "You can apply the exclusion restriction to these cells. In doing so, we assume that participants in these groups’ assignments to either "+group1+" or "+group2+" do not affect their behavior, and thus do not influence their outcome. Their outcome under assignment to "+group1+" and assignment to "+group2+" will be the same. The exclusion restriction allows us to assume that the mean outcomes under "+group1+" and under "+group2+" are equal in these groups. Thus, there is no "+group1+" impact for these groups.";
@@ -430,56 +430,56 @@ window.onload = function() {
     var tSub = T.sub();
     if(MeanKnown[0]!=0)
     {
-      document.getElementById('strata1Input').innerHTML =document.getElementById('strata1Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[0]+",Y"+cSub+"="+MeanKnown[0];
-      document.getElementById("strata1Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata1Input').innerHTML =document.getElementById('strata1Input').innerHTML+"    <br> Y"+tSub+"=" + MeanKnown[0]+",Y"+cSub+"="+MeanKnown[0];
+      document.getElementById("strata1Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[1]!=0)
     {
-      document.getElementById('strata2Input').innerHTML = document.getElementById('strata2Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[1]+",Y"+cSub+"="+MeanKnown[1];
-      document.getElementById("strata2Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata2Input').innerHTML = document.getElementById('strata2Input').innerHTML+"   <br>  Y"+tSub+"=" + MeanKnown[1]+",Y"+cSub+"="+MeanKnown[1];
+      document.getElementById("strata2Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[2]!=0)
     {
-      document.getElementById('strata3Input').innerHTML = document.getElementById('strata3Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[2]+",Y"+cSub+"="+MeanKnown[2];
-      document.getElementById("strata3Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata3Input').innerHTML = document.getElementById('strata3Input').innerHTML+"   <br>  Y"+tSub+"=" + MeanKnown[2]+",Y"+cSub+"="+MeanKnown[2];
+      document.getElementById("strata3Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[3]!=0)
     {
-      document.getElementById('strata4Input').innerHTML = document.getElementById('strata4Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[3]+",Y"+cSub+"="+MeanKnown[3];
-      document.getElementById("strata4Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata4Input').innerHTML = document.getElementById('strata4Input').innerHTML+"    <br> Y"+tSub+"=" + MeanKnown[3]+",Y"+cSub+"="+MeanKnown[3];
+      document.getElementById("strata4Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[4]!=0)
     {
-      document.getElementById('strata5Input').innerHTML = document.getElementById('strata5Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[4]+",Y"+cSub+"="+MeanKnown[4];
-      document.getElementById("strata5Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata5Input').innerHTML = document.getElementById('strata5Input').innerHTML+"   <br>  Y"+tSub+"=" + MeanKnown[4]+",Y"+cSub+"="+MeanKnown[4];
+      document.getElementById("strata5Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[5]!=0)
     {
-      document.getElementById('strata6Input').innerHTML = document.getElementById('strata6Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[5]+",Y"+cSub+"="+MeanKnown[5];
-      document.getElementById("strata6Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata6Input').innerHTML = document.getElementById('strata6Input').innerHTML+"    <br> Y"+tSub+"=" + MeanKnown[5]+",Y"+cSub+"="+MeanKnown[5];
+      document.getElementById("strata6Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[6]!=0)
     {
-      document.getElementById('strata7Input').innerHTML = document.getElementById('strata7Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[6]+",Y"+cSub+"="+MeanKnown[6];
-      document.getElementById("strata7Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata7Input').innerHTML = document.getElementById('strata7Input').innerHTML+"    <br> Y"+tSub+"=" + MeanKnown[6]+",Y"+cSub+"="+MeanKnown[6];
+      document.getElementById("strata7Input").classList.add("blue-cell");
     }
 
     if(MeanKnown[7]!=0)
     {
-      document.getElementById('strata8Input').innerHTML = document.getElementById('strata8Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[7]+",Y"+cSub+"="+MeanKnown[7];
-      document.getElementById("strata8Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata8Input').innerHTML = document.getElementById('strata8Input').innerHTML+"    <br> Y"+tSub+"=" + MeanKnown[7]+",Y"+cSub+"="+MeanKnown[7];
+      document.getElementById("strata8Input").classList.add("blue-cell");
     }
     
     if(MeanKnown[8]!=0)
     {
-      document.getElementById('strata9Input').innerHTML = document.getElementById('strata9Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[8]+",Y"+cSub+"="+MeanKnown[8];
-      document.getElementById("strata9Input").setAttribute("bgColor","#6495ED");
+      document.getElementById('strata9Input').innerHTML = document.getElementById('strata9Input').innerHTML+"    <br> Y"+tSub+"=" + MeanKnown[8]+",Y"+cSub+"="+MeanKnown[8];
+      document.getElementById("strata9Input").classList.add("blue-cell");
     }
     
   localStorage.xMeans1 = xMeans[0];

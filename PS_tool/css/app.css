@@ -67,7 +67,6 @@ label {
 
 table {
 	border: 0px;
-	
 	font-size: 15px
 }
 
@@ -95,6 +94,7 @@ table.testgrid td, table.testgrid th, table td, table th {
 table.testgrid th, table th { 
 	background: #E5E5E5; 
 	text-align: center; 
+	color: #595959;
 }
 
 table.testgrid td, table td {
@@ -111,9 +111,10 @@ table tbody tr:nth-child(even) {
 }
 
 /* Styling for table on pKnown.html */
-
-#boundsGrid td {
+.table_blue_bg td {
 	background-color: #99ccff; /* light blue */
+	text-align: center;
+	color: #000;
 }
 
 /* Primary table headers */
@@ -130,20 +131,20 @@ table tbody tr:nth-child(even) {
 	text-decoration: center;
 	font-weight: bold;
 	text-align: center;
-	color: #c75b0c;
+	color: #c75b0c !important; /* dark orange */
 }
 
 /* Blue cell */
 
-.blue-cell {
-	background-color: #4266a9 !important;
+.table_blue_bg td.blue-cell, .blue-cell {
+	background-color: #4266a9;
 	color: #fff;
 	text-align: center;
 }
 
 /* Gray Cell */
-.gray-cell {
-	background-color: #808080 !important;
+.table_blue_bg td.gray-cell, .gray-cell {
+	background-color: #808080;
 	color: #fff;
 	text-align: center;
 }
