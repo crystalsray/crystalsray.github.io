@@ -1,0 +1,658 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate bounds for the effects of the treatment for in strata of interest</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/mathjs-master/dist/math.js"></script>
+  </head>
+  <body>
+    
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Principal Stratification Tool</h1>
+      </div>
+    </div>
+    
+    <div class="row" id="content">
+
+      <div class="medium-3 medium-offset-1 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+          <ol class="menu vertical">
+            <li><a href="PS_tool.html">&larr; Back to Input</a></li>
+            <li><a href="index.html"><strong>Start &raquo;</strong> Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool</a></li>
+            <li><a href="PS_tool.html">Identify the principal strata for your study</a></li>
+            <li><a href="exclusions_3.html">Use substantive assumptions to constrain the number of strata forof interest for these analyses Determining proportions of subgroups using observed quantities</a></li>
+            <li class="active"><a href="pUnknown.html">Solving for proportions that are not directly observed</a></li>
+            <li>Solving for means under treatment and control</li>
+            <li>Calculating the bounds and estimating ranges of impact</li>
+            <li>Next steps</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="medium-7 columns">
+
+      <h2>Determining proportions of subgroups using observed quantities</h2>
+
+      <p id="instructions"> </p>
+      
+      <p id="instructions2"> </p>
+
+      
+      <h3 id="heading1"> </h3>
+
+      <div class="row">
+        <div class="medium-8 small-6 columns">
+          <label for="TtoT" id="q1"></label>
+        </div>
+        <div class="medium-4 small-6 columns">
+          <div class="input-group">
+            <input type="text" id="TtoT" placeholder="P=" class="input-group-field">
+            <span class="input-group-label input-group-label-right">%</span>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="row">
+        <div class="medium-8 small-6 columns">
+          <label for="TtoSub1" id="q2"></label>
+        </div>
+        <div class="medium-4 small-6 columns">
+          <div class="input-group">
+            <input type="text" id="TtoSub1" placeholder="P=" class="input-group-field">
+            <span class="input-group-label input-group-label-right">%</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="medium-8 small-6 columns">
+          <label for="TtoSub1" id="q3"></label>
+        </div>
+        <div class="medium-4 small-6 columns">
+          <div class="input-group">
+            <input type="text" id="TtoSub2" placeholder="P=" class="input-group-field">
+            <span class="input-group-label input-group-label-right">%</span>
+          </div>
+        </div>
+      </div>
+
+
+      <h3 id="heading2"> </h3>
+
+      <div class="row">
+        <div class="medium-8 small-6 columns">
+          <label for="CtoT" id="q4"></label>
+        </div>
+        <div class="medium-4 small-6 columns">
+          <div class="input-group">
+            <input type="text" id="CtoT" placeholder="P=" class="input-group-field">
+            <span class="input-group-label input-group-label-right">%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="medium-8 small-6 columns">
+          <label for="CtoSub1" id="q5"></label>
+        </div>
+        <div class="medium-4 small-6 columns">
+          <div class="input-group">
+            <input type="text" id="CtoSub1" placeholder="P=" class="input-group-field">
+            <span class="input-group-label input-group-label-right">%</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="medium-8 small-6 columns">
+          <label for="CtoSub1" id="q6"></label>
+        </div>
+        <div class="medium-4 small-6 columns">
+          <div class="input-group">
+            <input type="text" id="CtoSub2" placeholder="P=" class="input-group-field">
+            <span class="input-group-label input-group-label-right">%</span>
+          </div>
+        </div>
+      </div>
+
+
+
+        <div class="row">
+            <div class="small-12 text-center">
+              <button class="button" onclick="submitP()">Continue</button>
+            </div>
+        </div>
+
+
+        <p id="tableInfo" align="Left" style="font-size: 15px"> </p>   
+
+        <table id="boundsGrid" class="testgrid" align="center">
+        <tr>
+          <th colspan=5  class="control-treatment-header" id="group1Name"></th>
+        </tr>
+        <tr>
+          <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
+        </tr>
+        <tr>
+          <th> </th>
+          <th id="strata1Name"></th>
+          <th id="strata2Name"></th>
+          <th id="strata3Name"></th>
+        </tr>
+        <tr>
+          <th id="strata1Name2"></th>
+          <td id="strata1Input"> </td>
+          <td id="strata2Input"> </td>
+          <td id="strata3Input"> </td>
+        </tr>
+        <tr>
+          <th id="strata2Name2"></th>
+          <td id="strata4Input"> </td>
+          <td id="strata5Input"> </td>
+          <td id="strata6Input"> </td>
+        </tr>
+        <tr>
+          <th id="strata3Name2"></th>
+          <td id="strata7Input"> </td>
+          <td id="strata8Input"> </td>
+          <td id="strata9Input"> </td>
+        </tr>
+      </table>
+
+
+
+      <div class="row">
+        <div class="small-12 text-center">
+          <button class="button" onclick="cont()">Continue</button>
+        </div>
+      </div>  
+
+      </div> <!--/ end medium- 7-->
+
+      
+      
+
+      <div class="medium-1 columns">&nbsp;
+      </div>
+
+    </div><!--/ end row -->
+    
+
+    <footer>
+      <div class="row expanded callout secondary">
+        <div class="medium-10 medium-offset-1 columns">
+      <p>Funding for this project was provided through a grant from Spencer Foundation. This website is designed to assist researchers interested in applying a principal stratification approach to their research questions. This tool intended for researchers who have a familiarity with the principal stratification approach. Researchers unfamiliar with the approach are encouraged to consult <a href="https://gspp.berkeley.edu/assets/uploads/research/pdf/Principal_Stratification.pdf" target="_blank">Page <em>et al</em> 2015 </a>  before using this tool. </p>
+
+        </div>
+      </div>
+
+
+    </footer>
+    
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script>
+
+window.onload = function() {
+        var groupNames= new Array();
+        var strataNames = new Array();
+        var group1 = localStorage.group1Local;
+        var group2 = localStorage.group2Local;
+        var strata = localStorage.strataLocal;
+        strata = strata*strata;
+        var strata1 = localStorage.strata1Local;
+        var strata2 = localStorage.strata2Local;
+        var strata3 = localStorage.strata3Local;
+        var cell1Input = localStorage.cell1;
+        var cell2Input = localStorage.cell2;
+        var cell3Input = localStorage.cell3;
+        var cell4Input = localStorage.cell4;
+        var cell5Input = localStorage.cell5;
+        var cell6Input = localStorage.cell6;
+        var cell7Input = localStorage.cell7;
+        var cell8Input = localStorage.cell8;
+        var cell9Input = localStorage.cell9;
+        var outcome = localStorage.outcome;
+        document.getElementById('heading1').innerHTML = "Add percentages of "+group1+" assigned participants in each condition";
+        document.getElementById('q1').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata1+"?";
+        document.getElementById('q2').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata2+"?";
+        document.getElementById('q3').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata3+"?";
+        document.getElementById('heading2').innerHTML = "Add percentages of "+group2+" assigned participants in each condition";
+        document.getElementById('q4').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata1+"?";
+        document.getElementById('q5').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata2+"?";
+        document.getElementById('q6').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata3+"?";
+        document.getElementById('strata1Input').innerHTML = cell1Input;
+        document.getElementById('strata2Input').innerHTML = cell2Input;
+        document.getElementById('strata3Input').innerHTML = cell3Input;
+        document.getElementById('strata4Input').innerHTML = cell4Input;
+        document.getElementById('strata5Input').innerHTML = cell5Input;
+        document.getElementById('strata6Input').innerHTML = cell6Input;
+        document.getElementById('strata7Input').innerHTML = cell7Input;
+        document.getElementById('strata8Input').innerHTML = cell8Input;
+        document.getElementById('strata9Input').innerHTML = cell9Input;
+        document.getElementById('strata1Name').innerHTML = strata1;
+        document.getElementById('strata2Name').innerHTML = strata2;
+        document.getElementById('strata3Name').innerHTML = strata3;
+        document.getElementById('strata1Name2').innerHTML = strata1;
+        document.getElementById('strata2Name2').innerHTML = strata2;
+        document.getElementById('strata3Name2').innerHTML = strata3;
+        document.getElementById('group1Name').innerHTML = group1;
+        document.getElementById('group2Name').innerHTML = group2;
+        document.getElementById('instructions').innerHTML = "Below please enter the number of "+group1+" and "+group2+"-assigned participants who were observed in "+strata1+", "+strata2+" or "+strata3+".  The tool will use these proportions to estimate the share of participants in each of the groups represented in each of your strata of interest.";
+        document.getElementById('instructions2').innerHTML = "Please limit your sample to observations that are not missing "+outcome;
+        //gray out excluded cells
+        var allCells = document.getElementsByTagName("td");
+        for(var i = 0; i < strata; i++) {
+          var node = allCells[i];
+          var cellContent = node.childNodes[0].nodeValue; 
+          //check for 'one' and assign this table cell's background color accordingly 
+          if (cellContent === "Monotonicity Assumption")
+            node.classList.add("gray-cell");
+          if (cellContent == "Irrelevant Alternative")
+            node.classList.add("gray-cell");
+        }
+        
+        document.getElementById('strata1Input').innerHTML = "";
+        document.getElementById('strata2Input').innerHTML = "";
+        document.getElementById('strata3Input').innerHTML = "";
+        document.getElementById('strata4Input').innerHTML = "";
+        document.getElementById('strata5Input').innerHTML = "";
+        document.getElementById('strata6Input').innerHTML = "";
+        document.getElementById('strata7Input').innerHTML = "";
+        document.getElementById('strata8Input').innerHTML = "";
+        document.getElementById('strata9Input').innerHTML = "";
+      }
+
+  function removeArray(array,element){
+    for(var i = array.length; i--;){
+      if (array[i] === element) array.splice(i, 1);
+    }
+    }
+        
+  function submitP(){
+    var group1 = localStorage.group1Local;
+    var group2 = localStorage.group2Local;
+    var strata1 = localStorage.strata1Local;
+    var strata2 = localStorage.strata2Local;
+    var strata3 = localStorage.strata3Local;
+    var isActive1 = parseInt(localStorage.isActive1);
+    var isActive2 = parseInt(localStorage.isActive2);
+    var isActive3 = parseInt(localStorage.isActive3);
+    var isActive4 = parseInt(localStorage.isActive4);
+    var isActive5 = parseInt(localStorage.isActive5);
+    var isActive6 = parseInt(localStorage.isActive6);
+    var isActive7 = parseInt(localStorage.isActive7);
+    var isActive8 = parseInt(localStorage.isActive8);
+    var isActive9 = parseInt(localStorage.isActive9);
+    var isActive = [isActive1, isActive2, isActive3, isActive4, isActive5, isActive6, isActive7, isActive8, isActive9];
+    var isActiveBaseline = isActive;
+    var pMean = [0,0,0,0,0,0,0,0,0];
+    var countRow1 = localStorage.countRow1;
+    var countRow2 = localStorage.countRow2;
+    var countRow3 = localStorage.countRow3;
+    var countColumn1 = localStorage.countColumn1;
+    var countColumn2 = localStorage.countColumn2;
+    var countColumn3 = localStorage.countColumn3;
+    var TtoT = document.getElementById("TtoT").value;
+    var TtoSub1 = document.getElementById("TtoSub1").value;
+    var TtoSub2 = document.getElementById("TtoSub2").value;
+    var CtoT = document.getElementById("CtoT").value;
+    var CtoSub1 = document.getElementById("CtoSub1").value;
+    var CtoSub2 = document.getElementById("CtoSub2").value;
+    var TtoTNum= Number(TtoT);
+    var TtoSub1Num = Number(TtoSub1);
+    var TtoSub2Num = Number(TtoSub2);
+    var CtoTNum= Number(CtoT);
+    var CtoSub1Num = Number(CtoSub1);
+    var CtoSub2Num = Number(CtoSub2);   
+    var sumT = TtoTNum + TtoSub1Num + TtoSub2Num;
+    var sumC = CtoTNum + CtoSub1Num + CtoSub2Num;
+    if (sumT==100){
+      TtoTNum = TtoTNum/100;
+      TtoSub1Num = TtoSub1Num/100;
+      TtoSub2Num = TtoSub2Num/100;
+    }
+    if (sumC==100){
+      CtoTNum = CtoTNum/100;
+      CtoSub1Num = CtoSub1Num/100;
+      CtoSub2Num = CtoSub2Num/100;
+    }
+    sumT = TtoTNum + TtoSub1Num + TtoSub2Num;
+    sumC = CtoTNum + CtoSub1Num + CtoSub2Num;
+    if (sumT !=1 || sumC!=1){alert("Your proportions do not add up to 1, please fix this and then re-submit.");}
+    if(sumT==1 & sumC==1){
+    document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (P=" + TtoTNum + ")";
+    document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (P=" + TtoSub1Num + ")";
+    document.getElementById('strata3Name').innerHTML = localStorage.strata3Local + " (P=" + TtoSub2Num + ")";
+    document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (P=" + CtoTNum + ")";
+    document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (P=" + CtoSub1Num + ")";
+    document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (P=" + CtoSub2Num + ")";
+    }
+    
+    var cellsLocalRow1 = [localStorage.cell1, localStorage.cell2, localStorage.cell3];
+    var cellsLocalRow2 = [localStorage.cell4, localStorage.cell5, localStorage.cell6];
+    var cellsLocalRow3 = [localStorage.cell7, localStorage.cell8, localStorage.cell9];
+    var cellsLocalColumn1 = [localStorage.cell1, localStorage.cell4, localStorage.cell7];
+    var cellsLocalColumn2 = [localStorage.cell2, localStorage.cell5, localStorage.cell8];
+    var cellsLocalColumn3 = [localStorage.cell3, localStorage.cell6, localStorage.cell9];
+    var ticker = 1;
+    var pHeadings = [CtoTNum, CtoSub1Num, CtoSub2Num, TtoTNum, TtoSub1Num, TtoSub2Num];
+    var rcCounts = [countRow1,countRow2,countRow3,countColumn1,countColumn2,countColumn3];
+    
+    var pMeanTrack=[];
+    var pMeanKnown=[0,0,0,0,0,0,0,0,0];
+    
+    var group = [0,0,0,0,0,0,0,0,0];
+    var subgroupsREF = [strata1, strata2, strata3];
+    var groupsKNOWN = [];
+    var subgroupsKNOWN = [];
+    var pForTextKNOWN = [];
+    
+    for(i=0; i<3; i++) {
+      if(rcCounts[0]==1 & isActive[i]==1){
+      pMeanKnown[i]=pHeadings[0];
+      groupsKNOWN.push(group2);
+      subgroupsKNOWN.push(subgroupsREF[i]);
+      pForTextKNOWN.push(Math.round(parseFloat(pHeadings[0])*100));
+      }
+    }
+    for(i=3; i<6; i++) {
+      if(rcCounts[1]==1 & isActive[i]==1){
+      pMeanKnown[i]=pHeadings[1];
+      groupsKNOWN.push(group2);
+      subgroupsKNOWN.push(subgroupsREF[i-3]);
+      pForTextKNOWN.push(Math.round(parseFloat(pHeadings[1])*100));
+      }
+    }
+    for(i=6; i<9; i++) {
+      if(rcCounts[2]==1 & isActive[i]==1){
+      pMeanKnown[i]=pHeadings[2];
+      groupsKNOWN.push(group2);
+      subgroupsKNOWN.push(subgroupsREF[i-6]);
+      pForTextKNOWN.push(Math.round(parseFloat(pHeadings[2])*100));
+      }
+    }
+    
+    var column1Nums = [0,3,6];
+    for(i=0; i<3; i++) {
+      if(rcCounts[3]==1 & isActive[column1Nums[i]]==1){
+      pMeanKnown[column1Nums[i]]=pHeadings[3];
+      groupsKNOWN.push(group1);
+      subgroupsKNOWN.push(subgroupsREF[i]);
+      pForTextKNOWN.push(Math.round(parseFloat(pHeadings[3])*100));
+      }
+    }
+    
+    var column2Nums = [1,4,7];
+    for(i=0; i<3; i++) {
+      if(rcCounts[4]==1 & isActive[column2Nums[i]]==1){
+      pMeanKnown[column2Nums[i]]=pHeadings[4];
+      groupsKNOWN.push(group1);
+      subgroupsKNOWN.push(subgroupsREF[i]);
+      pForTextKNOWN.push(Math.round(parseFloat(pHeadings[4])*100));
+      }
+    }
+    
+    var column3Nums = [2,5,8];
+    for(i=0; i<3; i++) {
+      if(rcCounts[5]==1 & isActive[column3Nums[i]]==1){
+      pMeanKnown[column3Nums[i]]=pHeadings[5];
+      groupsKNOWN.push(group1);
+      subgroupsKNOWN.push(subgroupsREF[i]);
+      pForTextKNOWN.push(Math.round(parseFloat(pHeadings[5])*100));
+      }
+    }
+    
+    var groups = [];
+    var subgroups = []; 
+    var pForText = [];
+    while(ticker>0)
+    {
+    ticker = 0;
+    for(i=0; i<3; i++) {
+      if(rcCounts[0]==1 & isActive[i]==1){
+      pMean[i]=pHeadings[0];
+      ticker = ticker + 1;
+      isActive[i]==0;
+      rcCounts[0]=0;
+      pHeadings[i+3] = pHeadings[i+3] - pHeadings[0];
+      rcCounts[i+3] = rcCounts[i+3]-1;
+      groups.unshift(group2);
+      subgroups.unshift(subgroupsREF[i]);
+      pForText.unshift(parseFloat(pHeadings[0])*100);
+      }
+    }
+    for(i=3; i<6; i++) {
+      if(rcCounts[1]==1 & isActive[i]==1){
+      pMean[i]=pHeadings[1];
+      ticker = ticker + 1;
+      isActive[i]==0;
+      rcCounts[1]=0;
+      pHeadings[i] = pHeadings[i] - pHeadings[1];
+      rcCounts[i]=rcCounts[i]-1;
+      groups.unshift(group2);
+      subgroups.unshift(subgroupsREF[i-3]);
+      pForText.unshift(parseFloat(pHeadings[1])*100);
+
+      }
+    }
+    for(i=6; i<9; i++) {
+      if(rcCounts[2]==1 & isActive[i]==1){
+      pMean[i]=pHeadings[2];
+      ticker = ticker + 1;
+      isActive[i]==0;
+      rcCounts[2]=0;
+      pHeadings[i-3] = pHeadings[i-3] - pHeadings[2];
+      rcCounts[i-3]=rcCounts[i-3]-1;
+      groups.unshift(group2);
+      subgroups.unshift(subgroupsREF[i-6]);
+      pForText.unshift(parseFloat(pHeadings[2])*100);
+
+      }
+    }
+    
+    var column1Nums = [0,3,6];
+    for(i=0; i<3; i++) {
+      if(rcCounts[3]==1 & isActive[column1Nums[i]]==1){
+      pMean[column1Nums[i]]=pHeadings[3];
+      ticker = ticker + 1;
+      isActive[i]==0;
+      rcCounts[3]=0
+      pHeadings[i]=pHeadings[i]-pHeadings[3];
+      rcCounts[i]=rcCounts[i]-1;
+      groups.unshift(group1);
+      subgroups.unshift(subgroupsREF[i]);
+      pForText.unshift(parseFloat(pHeadings[3])*100);
+
+      }
+    }
+    
+    var column2Nums = [1,4,7];
+    for(i=0; i<3; i++) {
+      if(rcCounts[4]==1 & isActive[column2Nums[i]]==1){
+      pMean[column2Nums[i]]=pHeadings[4];
+      ticker = ticker + 1;
+      isActive[i]==0;
+      rcCounts[4]=0
+      pHeadings[i]=pHeadings[i]-pHeadings[4];
+      rcCounts[i]=rcCounts[i]-1;
+      groups.unshift(group1);
+      subgroups.unshift(subgroupsREF[i]);
+      pForText.unshift(parseFloat(pHeadings[4])*100);
+
+      }
+    }
+    
+    var column3Nums = [2,5,8];
+    for(i=0; i<3; i++) {
+      if(rcCounts[5]==1 & isActive[column3Nums[i]]==1){
+      pMean[column3Nums[i]]=pHeadings[5];
+      ticker = ticker + 1;
+      isActive[i]==0;
+      rcCounts[5]=0
+      pHeadings[i]=pHeadings[i]-pHeadings[5];
+      rcCounts[i]=rcCounts[i]-1;
+      groups.unshift(group1);
+      subgroups.unshift(subgroupsREF[i]);
+      pForText.unshift(parseFloat(pHeadings[5])*100);
+
+      }
+    }
+    }
+
+    
+    var stillActive = 0;
+    for(i=0; i<9; i++) {
+    if(isActive[i] == 1) {stillActive = stillActive + 1;}
+    }
+    
+    var row1 = [1,1,1,0,0,0,0,0,0];
+    var row2 = [0,0,0,1,1,1,0,0,0];
+    var row3 = [0,0,0,0,0,0,1,1,1];
+    var column1 = [1,0,0,1,0,0,1,0,0];
+    var column2 = [0,1,0,0,1,0,0,1,0];
+    var column3 = [0,0,1,0,0,1,0,0,1];
+    for(i=0; i<9; i++) {
+      if(isActive[i]==0 || pMean[i]!=0){
+      row1[i] = 3;
+      row2[i] = 3;
+      row3[i] = 3;
+      column1[i] = 3;
+      column2[i] = 3;
+      column3[i] = 3;
+      }
+    }
+    
+    removeArray(row1,3);
+    removeArray(row2,3);
+    removeArray(row3,3);
+    removeArray(column1,3);
+    removeArray(column2,3);
+    removeArray(column3,3);
+    
+    var xMatrix = [row1, row2, row3, column1, column2, column3];
+    //var bMatrix = [CtoTNum, CtoSub1Num, CtoSub2Num, TtoTNum, TtoSub1Num, TtoSub2Num];
+    //var solutionMatrix = math.usolve(xMatrix,bMatrix);
+    if(pMeanKnown[0]!=0)
+    {
+      document.getElementById('strata1Input').innerHTML = "P=" + pMeanKnown[0];
+      document.getElementById("strata1Input").classList.add("blue-cell");
+    }
+
+    if(pMeanKnown[1]!=0)
+    {
+      document.getElementById('strata2Input').innerHTML = "P=" + pMeanKnown[1];
+      document.getElementById("strata2Input").classList.add("blue-cell");
+    }
+    
+    if(pMeanKnown[2]!=0)
+    {
+      document.getElementById('strata3Input').innerHTML = "P=" + pMeanKnown[2];
+      document.getElementById("strata3Input").classList.add("blue-cell");
+    }
+    
+    if(pMeanKnown[3]!=0)
+    {
+      document.getElementById('strata4Input').innerHTML = "P=" + pMeanKnown[3];
+      document.getElementById("strata4Input").classList.add("blue-cell");
+    }
+
+    if(pMeanKnown[4]!=0)
+    {
+      document.getElementById('strata5Input').innerHTML = "P=" + pMeanKnown[4];
+      document.getElementById("strata5Input").classList.add("blue-cell");
+    }
+    
+    if(pMeanKnown[5]!=0)
+    {
+      document.getElementById('strata6Input').innerHTML = "P=" + pMeanKnown[5];
+      document.getElementById("strata6Input").classList.add("blue-cell");
+    }
+
+    if(pMeanKnown[6]!=0)
+    {
+      document.getElementById('strata7Input').innerHTML = "P=" + pMeanKnown[6];
+      document.getElementById("strata7Input").classList.add("blue-cell");
+    }
+
+    if(pMeanKnown[7]!=0)
+    {
+      document.getElementById('strata8Input').innerHTML = "P=" + pMeanKnown[7];
+      document.getElementById("strata8Input").classList.add("blue-cell");
+    }
+    
+    if(pMeanKnown[8]!=0)
+    {
+      document.getElementById('strata9Input').innerHTML = "P=" + pMeanKnown[8];
+      document.getElementById("strata9Input").classList.add("blue-cell");
+    }
+    
+  localStorage.countRow1 = countRow1;
+  localStorage.countRow2 = countRow2;
+  localStorage.countRow3 = countRow3;
+  localStorage.countColumn1 = countColumn1;
+  localStorage.countColumn2 = countColumn2;
+  localStorage.countColumn3 = countColumn3;
+  localStorage.isActive1 = isActive[0];
+  localStorage.isActive2 = isActive[1];
+  localStorage.isActive3 = isActive[2];
+  localStorage.isActive4 = isActive[3];
+  localStorage.isActive5 = isActive[4];
+  localStorage.isActive6 = isActive[5];
+  localStorage.isActive7 = isActive[6];
+  localStorage.isActive8 = isActive[7];
+  localStorage.isActive9 = isActive[8];
+  localStorage.TtoTNum = TtoTNum;
+  localStorage.TtoSub1Num = TtoSub1Num;
+  localStorage.TtoSub2Num = TtoSub2Num;
+  localStorage.CtoTNum = CtoTNum;
+  localStorage.CtoSub1Num = CtoSub1Num;
+  localStorage.CtoSub2Num = CtoSub2Num;
+  localStorage.pMeanKnown1 = pMeanKnown[0];
+  localStorage.pMeanKnown2 = pMeanKnown[1];
+  localStorage.pMeanKnown3 = pMeanKnown[2];
+  localStorage.pMeanKnown4 = pMeanKnown[3];
+  localStorage.pMeanKnown5 = pMeanKnown[4];
+  localStorage.pMeanKnown6 = pMeanKnown[5];
+  localStorage.pMeanKnown7 = pMeanKnown[6];
+  localStorage.pMeanKnown8 = pMeanKnown[7];
+  localStorage.pMeanKnown9 = pMeanKnown[8];
+  localStorage.pMean1 = pMean[0];
+  localStorage.pMean2 = pMean[1];
+  localStorage.pMean3 = pMean[2];
+  localStorage.pMean4 = pMean[3];
+  localStorage.pMean5 = pMean[4];
+  localStorage.pMean6 = pMean[5];
+  localStorage.pMean7 = pMean[6];
+  localStorage.pMean8 = pMean[7];
+  localStorage.pMean9 = pMean[8]; 
+  var knownCount = 0;
+  var tableInfoKnown = "";
+  var lenghtminus1 = groupsKNOWN.length - 1;
+  for(i=0; i<groupsKNOWN.length; i++)
+  {
+    if(i<lenghtminus1){tableInfoKnown = tableInfoKnown + Math.round(pForTextKNOWN[i]) + "% of your " + groupsKNOWN[i] + " participants took up " + subgroupsKNOWN[i] + ", ";}
+    if(i==lenghtminus1){tableInfoKnown = tableInfoKnown + "and " + Math.round(pForTextKNOWN[i]) + "% of your " + groupsKNOWN[i] + " participants took up " + subgroupsKNOWN[i] + ".";}
+  }
+  document.getElementById('tableInfo').innerHTML = "Using this information and your previous assumptions, you can begin to fill in the grid with the proportions of individuals in each stratum. .You can directly observe the proportions of these students in your data. "+tableInfoKnown+" Participants in directly observed cells exhibit the same behavior under both treatment and control. For example, we would expect control-assigned participants who took up treatment to also take up treatment when actually assigned to that condition. We would also assume that a participant who was assigned to "+group1+" but took up "+strata2+" would also take up "+strata2+" under assignment to "+group2+".";
+  var tableInfoUnknown = pForText[0] + "% of your " + groups[0] + " participants took up " + subgroups[i];
+  localStorage.tableInfo = tableInfoUnknown;
+  } 
+  function cont(){
+  window.location.href = 'pUnknown.html';
+  }
+
+        
+    </script>
+  </body>
+</html>
+
+
+

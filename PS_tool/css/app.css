@@ -110,6 +110,12 @@ table tbody tr:nth-child(even) {
 	background-color: transparent;
 }
 
+/* Styling for table on pKnown.html */
+
+#boundsGrid td {
+	background-color: #99ccff; /* light blue */
+}
+
 /* Primary table headers */
 .table-header {
 	background-color: #D3D3D3;
@@ -130,14 +136,14 @@ table tbody tr:nth-child(even) {
 /* Blue cell */
 
 .blue-cell {
-	background-color: #4266a9;
+	background-color: #4266a9 !important;
 	color: #fff;
 	text-align: center;
 }
 
 /* Gray Cell */
 .gray-cell {
-	background-color: #808080;
+	background-color: #808080 !important;
 	color: #fff;
 	text-align: center;
 }
