@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script src="js/mathjs-master/dist/math.js"></script>
-    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_renderers.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_editors.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_validators.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_utils.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_charts.js" ></script>
-    <link rel="stylesheet" href="js/editablegrind-master/editablegrid.css" type="text/css" media="screen">
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_renderers.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_editors.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_validators.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_utils.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_charts.js" ></script>
+    <link rel="stylesheet" href="js/editablegrid-master/editablegrid.css" type="text/css" media="screen">
 
     <script>
       window.onload = function() {
@@ -124,15 +124,40 @@
             </tr>
           </table>
 
-          <h2>The Exclusion Restriction</h2>
+          <h3>The Exclusion Restriction</h3>
           <p>The exclusion restriction can be applied in cases where random assignment would likely not include a change subgroup membership. Some strata may be theoretically possible but not plausible in the context of your study. For example, in the Feller et al  Head Start study , it was plausible to assume that there were not participants who would enroll in a non-Head Start center care (subgroup 1) program if assigned to Head Start (treatment), would take up Home-based(subgroup 1) care if assigned to the control group. There may be similar circumstances in your study.    In the matrix below, click any strata in which you think you can apply the exclusion restriction.</p>
+
+          <table id="irrGrid" class="testgrid" align="center">
+          <tr>
+            <th colspan=4 class="control-treatment-header" id=group1Name2></th>
+          </tr>
+          <tr>
+            <th rowspan=4 class="control-treatment-header" id=group2Name2></th>
+          </tr>
+          <tr>
+            <th> </th>
+            <th id=strata1Name2></th>
+            <th id=strata2Name2></th>
+          </tr>
+          <tr id="R1">
+            <th id=strata1Name4></th>
+            <td> </td>
+            <td> </td>
+          </tr>
+          <tr id="R2">
+            <th id=strata2Name4></th>
+            <td> </td>
+            <td> </td>
+          </tr>
+          </tr>
+        </table>
 
 
         </div> <!--/ end blog post -->
 
         <div class="row column">
             <div class="small-12 text-center">
-              <button class="button" onclick="submitP()">Continue</button>
+              <button class="button" onclick="moveToBounds()">Continue</button>
             </div>
         </div>
 
@@ -162,7 +187,10 @@
     <script src="js/vendor/foundation.js"></script>
     <script>
 
-        //JS here
+        function moveToBounds() {
+          localStorage.irr=irrGrid;
+          window.location.href = 'file:///C:/Notepad++/test/editablegrid-master/examples/attach/bounds2.html'
+        }
         
     </script>
   </body>
