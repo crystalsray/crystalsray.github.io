@@ -55,7 +55,7 @@
           <h2>Solving for Proportions that are not Directly Observed</h2>
           <p id="tableInfo"></p>
 
-          <table id="boundsGrid" class="testgrid table_blue_bg" align="center">
+          <table id="boundsGrid" class="testgrid" align="center">
             <tr>
               <th colspan=5 class="control-treatment-header" id="group1Name"></th>
             </tr>
@@ -191,7 +191,8 @@
           if(isActive[i]!=0)
             node.innerHTML = "P="+ pMean[i].substring(0,4);
           if(pMeanKnown[i]==0 & pMean[i]!=0)
-            node.style.backgroundColor = "#6495ED";
+            node.classList.add("blue-cell");
+            //node.style.backgroundColor = "#6495ED";
 
         }
         
