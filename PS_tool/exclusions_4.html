@@ -3,41 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Use substantive assumptions to constraints the number of strata for this study</title>
+    <title>Calculate bounds for the effects of the treatment for in strata of interest</title>
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
-
-    <link rel="stylesheet" href="css/editablegrid.css" type="text/css" media="screen">
-
-    <script src="../../editablegrid.js"></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_renderers.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_editors.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_validators.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_utils.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_charts.js" ></script>
-    
+    <script src="js/editablegrid-master/editablegrid.js"></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_renderers.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_editors.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_validators.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_utils.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrid-master/editablegrid_charts.js" ></script>
+    <link rel="stylesheet" href="js/editablegrid-master/editablegrid.css" type="text/css" media="screen">
 
   </head>
   <body>
     
-    <!-- Start Top Bar 
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text">PS Tool</li>
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li><a href="#">Menu 1</a></li>
-          <li><a href="#">Menu 2</a></li>
-          <li><a href="#">Menu 3</a></li>
-          <li><a href="#">Menu 4</a></li>
-        </ul>
-      </div>
-    </div>
-    End Top Bar -->
-
     <div class="callout large primary">
       <div class="row column text-center">
         <h1>Principal Stratification Tool</h1>
@@ -49,11 +28,10 @@
       <div class="medium-3 medium-offset-1 columns" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
           <ol class="menu vertical">
-            <li><a href="PS_tool.html">&#8592; Back to Input</a></li>
             <li><a href="index.html"><strong>Start &raquo;</strong> Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool</a></li>
             <li><a href="PS_tool.html">Identify the principal strata for your study</a></li>
             <li><a href="exclusions_3.html">Use substantive assumptions to constrain the number of strata forof interest for these analyses Determining proportions of subgroups using observed quantities</a></li>
-            <li><a href="pUnknown.html">Solving for proportions that are not directly observed</a></li>
+            <li class="active"><a href="pUnknown.html">Solving for proportions that are not directly observed</a></li>
             <li>Solving for means under treatment and control</li>
             <li>Calculating the bounds and estimating ranges of impact</li>
             <li>Next steps</li>
@@ -62,115 +40,120 @@
       </div>
 
       <div class="medium-7 columns">
-        <h2>Use Substantive Assumptions to Constraints the Number of Strata for this Study</h2>
-        <p>In most cases, it is possible to eliminate some of these strata based on two substantively driven assumptions. This page will walk you through those assumptions and help to refine your matrix to reflect the context of your study and research questions</p>
-        
-        <h3> The Monotonicity Assumption </h3>
-        <p>Monotonicity assumption that individual would be at least as likely to take up the treatment under assignment to the treatment condition as under assignment to the control condition.  For example, if the treatment were assignment to receiving a new medication, it might be appropriate to assume that there are no patients who would take up the medication under assignment to the control group but not take up the medication under assignment to treatment.  In the matrix below, click any strata in which you think you can apply the Monotonicity assumption.</p>
+        <div class="row column">
+          <h2>Use substantive assumptions to constraints the number of strata for this study</h2>
+          
+          <p>In most cases, it is possible to eliminate some of these strata based on two substantively driven assumptions. This page will walk you through those assumptions and help to refine your matrix to reflect the context of your study and research questions</p>
 
+          <h3>The Monotonicity Assumption</h3>
 
-        <table id="monoGrid" class="testgrid" align="center">
-          <tr>
-            <th colspan=6 class="control-treatment-header" id="group1Name"></th>
-          </tr>
-          <tr>
-            <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
-          </tr>
-          <tr>
-            <th> </th>
-            <th id="strata1Name"></th>
-            <th id="strata2Name"></th>
-            <th id="strata3Name"></th>
-            <th id="strata4Name"></th>
-          </tr>
-          <tr>
-            <th id="strata1Name3"></th>
-            <td id="strata1Inputs"> </td>
-            <td id="strata2Inputs"> </td>
-            <td id="strata3Inputs"> </td>
-            <td id="strata4Inputs"> </td>
-          </tr>
-          <tr>
-            <th id="strata2Name3"></th>
-            <td id="strata5Inputs"> </td>
-            <td id="strata6Inputs"> </td>
-            <td id="strata7Inputs"> </td>
-            <td id="strata8Inputs"> </td>
-          </tr>
-          <tr>
-            <th id="strata3Name3"></th>
-            <td id="strata9Inputs"> </td>
-            <td id="strata10Inputs"> </td>
-            <td id="strata11Inputs"> </td>
-            <td id="strata12Inputs"> </td>
-          </tr>
-          <tr>
-            <th id="strata4Name3"></th>
-            <td id="strata13Inputs"> </td>
-            <td id="strata14Inputs"> </td>
-            <td id="strata15Inputs"> </td>
-            <td id="strata16Inputs"> </td>
-          </tr>
-        </table>
+          <p>Monotonicity assumption that individual would be at least as likely to take up the treatment under assignment to the treatment condition as under assignment to the control condition.  For example, if the treatment were assignment to receiving a new medication, it might be appropriate to assume that there are no patients who would take up the medication under assignment to the control group but not take up the medication under assignment to treatment.  In the matrix below, click any strata in which you think you can apply the Monotonicity assumption.  </p>
 
-        <h3>The Exclusion Restriction</h3>
-        <p>The exclusion restriction can be applied in cases where random assignment would likely not include a change subgroup membership. Some strata may be theoretically possible but not plausible in the context of your study. For example, in the Feller et al  Head Start study , it was plausible to assume that there were not participants who would enroll in a non-Head Start center care (subgroup 1) program if assigned to Head Start (treatment), would take up Home-based(subgroup 1) care if assigned to the control group. There may be similar circumstances in your study.    In the matrix below, click any strata in which you think you can apply the exclusion restriction.     
-        </p>
+          <table id="monoGrid" class="testgrid" align="center">
+            <tr>
+              <th colspan=6 class="control-treatment-header" id="group1Name"></th>
+            </tr>
+            <tr>
+              <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
+            </tr>
+            <tr>
+              <th> </th>
+              <th id="strata1Name"></th>
+              <th id="strata2Name"></th>
+              <th id="strata3Name"></th>
+              <th id="strata4Name"></th>
+            </tr>
+            <tr>
+              <th id="strata1Name3"></th>
+              <td id="strata1Inputs"> </td>
+              <td id="strata2Inputs"> </td>
+              <td id="strata3Inputs"> </td>
+              <td id="strata4Inputs"> </td>
+            </tr>
+            <tr>
+              <th id="strata2Name3"></th>
+              <td id="strata5Inputs"> </td>
+              <td id="strata6Inputs"> </td>
+              <td id="strata7Inputs"> </td>
+              <td id="strata8Inputs"> </td>
+            </tr>
+            <tr>
+              <th id="strata3Name3"></th>
+              <td id="strata9Inputs"> </td>
+              <td id="strata10Inputs"> </td>
+              <td id="strata11Inputs"> </td>
+              <td id="strata12Inputs"> </td>
+            </tr>
+            <tr>
+              <th id="strata4Name3"></th>
+              <td id="strata13Inputs"> </td>
+              <td id="strata14Inputs"> </td>
+              <td id="strata15Inputs"> </td>
+              <td id="strata16Inputs"> </td>
+            </tr>
+          </table>
 
-        <table id="irrGrid" class="testgrid" align="center">
-          <tr>
-            <th colspan=6 class="control-treatment-header" id=group1Name2></th>
-          </tr>
-          <tr>
-            <th rowspan=6 class="control-treatment-header" id=group2Name2></th>
-          </tr>
-          <tr>
-            <th> </th>
-            <th id=strata1Name2></th>
-            <th id=strata2Name2></th>
-            <th id=strata3Name2></th>
-            <th id=strata4Name2></th>
-          </tr>
-          <tr>
-            <th id=strata1Name4></th>
-            <td id=strata1Input1> </td>
-            <td id=strata2Input1> </td>
-            <td id=strata3Input1> </td>
-            <td id=strata4Input1> </td>
-          </tr>
-          <tr>
-            <th id=strata2Name4></th>
-            <td id=strata5Input1></td>
-            <td id=strata6Input1> </td>
-            <td id=strata7Input1> </td>
-            <td id=strata8Input1> </td>
-          </tr>
-          <tr>
-            <th id=strata3Name4></th>
-            <td id=strata9Input1> </td>
-            <td id=strata10Input1> </td>
-            <td id=strata11Input1> </td>
-            <td id=strata12Input1> </td>
-          </tr>
-          <tr>
-            <th id=strata4Name4></th>
-            <td id=strata13Input1> </td>
-            <td id=strata14Input1> </td>
-            <td id=strata15Input1> </td>
-            <td id=strata16Input1> </td>
-          </tr>
-        </table>
+          <h3>The Exclusion Restriction</h3>
+          <p>The exclusion restriction can be applied in cases where random assignment would likely not include a change subgroup membership. Some strata may be theoretically possible but not plausible in the context of your study. For example, in the Feller et al  Head Start study , it was plausible to assume that there were not participants who would enroll in a non-Head Start center care (subgroup 1) program if assigned to Head Start (treatment), would take up Home-based(subgroup 1) care if assigned to the control group. There may be similar circumstances in your study.    In the matrix below, click any strata in which you think you can apply the exclusion restriction.</p>
 
-        <div class="row">
-          <div class="small-12 text-center">
-            <button class="button" onclick="moveToBounds()">Continue</button>
-          </div>
+          <table id="irrGrid" class="testgrid" align="center">
+            <tr>
+              <th colspan=6  class="control-treatment-header" id=group1Name2></th>
+            </tr>
+            <tr>
+              <th rowspan=6 class="control-treatment-header" id=group2Name2></th>
+            </tr>
+            <tr>
+              <th> </th>
+              <th id=strata1Name2></th>
+              <th id=strata2Name2></th>
+              <th id=strata3Name2></th>
+              <th id=strata4Name2></th>
+            </tr>
+            <tr>
+              <th id=strata1Name4></th>
+              <td id=strata1Input1> </td>
+              <td id=strata2Input1> </td>
+              <td id=strata3Input1> </td>
+              <td id=strata4Input1> </td>
+            </tr>
+            <tr>
+              <th id=strata2Name4></th>
+              <td id=strata5Input1></td>
+              <td id=strata6Input1> </td>
+              <td id=strata7Input1> </td>
+              <td id=strata8Input1> </td>
+            </tr>
+            <tr>
+              <th id=strata3Name4></th>
+              <td id=strata9Input1> </td>
+              <td id=strata10Input1> </td>
+              <td id=strata11Input1> </td>
+              <td id=strata12Input1> </td>
+            </tr>
+            <tr>
+              <th id=strata4Name4></th>
+              <td id=strata13Input1> </td>
+              <td id=strata14Input1> </td>
+              <td id=strata15Input1> </td>
+              <td id=strata16Input1> </td>
+            </tr>
+          </table>
+
+        </div> <!--/ end blog post -->
+
+        <div class="row column">
+            <div class="small-12 text-center">
+              <button class="button" onclick="moveToBounds()">Continue</button>
+            </div>
         </div>
 
-      </div><!--/ end medium-7 -->
+      </div> <!--/ end medium- 7-->
 
-  
-      <div class="medium-1 columns">&nbsp;
+      
+      
+
+      <div class="medium-1 columns">&nbsp; <!-- keep column empty, last column spans the remaining width of the page -->
       </div>
 
     </div><!--/ end row -->
@@ -185,20 +168,166 @@
       </div>
 
 
-      <!--<div class="row">
-        <div class="medium-12 columns text-center">
-          <p><strong>Funding for this project was provided through a grant from Spencer Foundation</strong></p>
-        </div>
-      </div>-->
-
     </footer>
     
     <script src="js/vendor/jquery-2.1.4.min.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script>
-      $(document).foundation();
-      var btn = document.getElementById("firstContinue");
-      btn.onclick = function(){window.location.href = 'PS_tool.html';}
+
+       window.onload = function() {
+        var groupNames= new Array();
+        var strataNames = new Array();
+        var group1 = localStorage.group1Local;
+        var group2 = localStorage.group2Local;
+        var strata = localStorage.strataLocal;
+        var strata1 = localStorage.strata1Local;
+        var strata2 = localStorage.strata2Local;
+        var strata3 = localStorage.strata3Local;
+        var strata4 = localStorage.strata4Local;
+        var strata1Input=localStorage.strata1Input;
+        var strata2Input=localStorage.strata2Input;
+        var strata3Input=localStorage.strata3Input;
+        var strata4Input=localStorage.strata4Input;
+        var strata5Input=localStorage.strata5Input;
+        var strata6Input=localStorage.strata6Input;
+        var strata7Input=localStorage.strata7Input;
+        var strata8Input=localStorage.strata8Input;
+        var strata9Input=localStorage.strata9Input;
+        var strata10Input=localStorage.strata10Input;
+        var strata11Input=localStorage.strata11Input;
+        var strata12Input=localStorage.strata12Input;
+        var strata13Input=localStorage.strata13Input;
+        var strata14Input=localStorage.strata14Input;
+        var strata15Input=localStorage.strata15Input;
+        var strata16Input=localStorage.strata16Input;
+
+        
+        groupNames.push(group1);
+        groupNames.push(group2);
+        strataNames.push(strata1);
+        strataNames.push(strata2);
+        strataNames.push(strata3);
+        strataNames.push(strata4);
+        /*monoGrid = new EditableGrid("DemoGridAttach", { sortIconUp: "up.png", sortIconDown: "down.png"}); 
+        // we build and load the metadata in Javascript
+        monoGrid.load({ metadata: [
+          { name: "strata02", datatype: "string", editable: false },
+          { name: "strata11", datatype: "string", editable: false },
+          { name: "strata21", datatype: "string", editable: false },
+          { name: "strata31", datatype: "string", editable: false },
+          { name: "strata41", datatype: "string", editable: false },
+        ]});
+        monoGrid.attachToHTMLTable('monoGrid');
+        monoGrid.renderGrid();        
+        // we build and load the metadata in Javascript
+        irrGrid = new EditableGrid("DemoGridAttach", { sortIconUp: "up.png", sortIconDown: "down.png"});
+        irrGrid.load({ metadata: [
+          { name: "strata02", datatype: "string", editable: false },
+          { name: "strata12", datatype: "string", editable: false },
+          { name: "strata22", datatype: "string", editable: false },
+          { name: "strata32", datatype: "string", editable: false },
+          { name: "strata42", datatype: "string", editable: false },
+        ]});
+        irrGrid.attachToHTMLTable('irrGrid');
+        irrGrid.renderGrid();*/
+        document.getElementById('group1Name').innerHTML = group1;
+        document.getElementById('group2Name').innerHTML = group2;
+        document.getElementById('group1Name2').innerHTML = group1;
+        document.getElementById('group2Name2').innerHTML = group2;
+        document.getElementById('strata1Name').innerHTML = strata1;
+        document.getElementById('strata2Name').innerHTML = strata2;
+        document.getElementById('strata3Name').innerHTML = strata3;
+        document.getElementById('strata4Name').innerHTML = strata4;
+        document.getElementById('strata1Name2').innerHTML = strata1;
+        document.getElementById('strata2Name2').innerHTML = strata2;
+        document.getElementById('strata3Name2').innerHTML = strata3;
+        document.getElementById('strata4Name2').innerHTML = strata4;
+        document.getElementById('strata1Name3').innerHTML = strata1;
+        document.getElementById('strata2Name3').innerHTML = strata2;
+        document.getElementById('strata3Name3').innerHTML = strata3;
+        document.getElementById('strata4Name3').innerHTML = strata4;
+        document.getElementById('strata1Name4').innerHTML = strata1;
+        document.getElementById('strata2Name4').innerHTML = strata2;
+        document.getElementById('strata3Name4').innerHTML = strata3;
+        document.getElementById('strata4Name4').innerHTML = strata4;
+        document.getElementById("strata1Inputs").innerHTML = "Always "+strata1;
+        document.getElementById("strata2Inputs").innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata1;
+        document.getElementById("strata3Inputs").innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata1;
+        document.getElementById("strata4Inputs").innerHTML = "If assigned to "+group1+" then takes up "+strata4+" and if assigned to "+group2+" then takes up "+strata1;
+        document.getElementById("strata5Inputs").innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata6Inputs').innerHTML = "Always "+strata2;
+        document.getElementById('strata7Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata8Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata4+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata9Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata10Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata3;
+        document.getElementById('strata11Inputs').innerHTML = "Always "+strata3;
+        document.getElementById('strata12Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata4+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata13Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata14Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata15Inputs').innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata16Inputs').innerHTML = "Always "+strata4;
+        document.getElementById("strata1Input1").innerHTML = "Always "+strata1;
+        document.getElementById("strata2Input1").innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata1;
+        document.getElementById("strata3Input1").innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata1;
+        document.getElementById("strata4Input1").innerHTML = "If assigned to "+group1+" then takes up "+strata4+" and if assigned to "+group2+" then takes up "+strata1;
+        document.getElementById("strata5Input1").innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata6Input1').innerHTML = "Always "+strata2;
+        document.getElementById('strata7Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata8Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata4+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata9Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
+        document.getElementById('strata10Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata3;
+        document.getElementById('strata11Input1').innerHTML = "Always "+strata3;
+        document.getElementById('strata12Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata4+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata13Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata14Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata15Input1').innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata4;
+        document.getElementById('strata16Input1').innerHTML = "Always "+strata4;
+        } 
+
+  
+
+
+function moveToBounds() {
+  window.location.href = 'file:///C:/Notepad++/test/editablegrid-master/examples/attach/bounds.html';
+}
+
+var row = new Array();
+var column = new Array();
+
+ var table = document.getElementById("irrGrid");
+ var table2 = document.getElementById("monoGrid");
+    if (table != null) {
+        for (var i = 3; i < table.rows.length; i++) {
+            for (var j = 1; j < table.rows[i].cells.length; j++)
+            table.rows[i].cells[j].onclick = function () {
+                tableText(this);
+        row.push(i);
+        column.push(j);
+            };
+        }
+    }
+
+   if (table2 != null) {
+        for (var i = 3; i < table2.rows.length; i++) {
+            for (var j = 1; j < table2.rows[i].cells.length; j++)
+            table2.rows[i].cells[j].onclick = function () {
+                table2Text(this);
+        row.push(i);
+        column.push(j);
+            };
+        }
+    }
+  
+    function tableText(tableCell) {
+        tableCell.innerHTML="Irrelevant Alternative";
+        tableCell.setAttribute("bgColor","#B0C4DE");
+    }
+
+    function table2Text(tableCell) {
+        tableCell.innerHTML="Monotonicity Assumption";
+        tableCell.setAttribute("bgColor","#808080");
+    }
+        
     </script>
   </body>
 </html>
