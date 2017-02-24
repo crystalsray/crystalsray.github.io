@@ -211,13 +211,13 @@
           if(isActive[i]!=0)
             node.innerHTML = "P="+ pMean[i].substring(0,4)+"   Y"+tSub+"=" + xMean[i].substring(0,4)+"       Y"+cSub+"="+yMean[i].substring(0,4);
           if(MeanKnown[i]==0 & isActive[i]==1)
-            node.style.backgroundColor = "#6495ED";
-
+            //node.style.backgroundColor = "#6495ED";
+            node.classList.add("blue-cell");
         }
       }
       
       function submitP(){
-      window.location.href = 'bounds_calc.html';
+        window.location.href = 'bounds_calc.html';
       }
 
         
