@@ -6,15 +6,14 @@
     <title>Use substantive assumptions to constraints the number of strata for this study</title>
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/editablegrid.css" type="text/css" media="screen">
+    <script src="js/mathjs-master/dist/math.js"></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_renderers.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_editors.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_validators.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_utils.js" ></script>
+    <!-- [DO NOT DEPLOY] --> <script src="js/editablegrind-master/editablegrid_charts.js" ></script>
+    <link rel="stylesheet" href="js/editablegrind-master/editablegrid.css" type="text/css" media="screen">
 
-    <script src="../../editablegrid.js"></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_renderers.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_editors.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_validators.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_utils.js" ></script>
-    <!-- [DO NOT DEPLOY] --> <script src="../../editablegrid_charts.js" ></script>
-    
     <script>
       window.onload = function() {
         var groupNames= new Array();
@@ -64,27 +63,10 @@
         document.getElementById('strata2Name4').innerHTML = strata2;
       } 
     </script>
+
   </head>
   <body>
     
-    <!-- Start Top Bar 
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text">PS Tool</li>
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li><a href="#">Menu 1</a></li>
-          <li><a href="#">Menu 2</a></li>
-          <li><a href="#">Menu 3</a></li>
-          <li><a href="#">Menu 4</a></li>
-        </ul>
-      </div>
-    </div>
-    End Top Bar -->
-
     <div class="callout large primary">
       <div class="row column text-center">
         <h1>Principal Stratification Tool</h1>
@@ -96,11 +78,11 @@
       <div class="medium-3 medium-offset-1 columns" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
           <ol class="menu vertical">
-            <li><a href="PS_tool.html">&#8592; Back to Input</a></li>
+            <li><a href="PS_tool.html">Back to Input</a></li>
             <li><a href="index.html"><strong>Start &raquo;</strong> Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool</a></li>
             <li><a href="PS_tool.html">Identify the principal strata for your study</a></li>
             <li><a href="exclusions_3.html">Use substantive assumptions to constrain the number of strata forof interest for these analyses Determining proportions of subgroups using observed quantities</a></li>
-            <li><a href="pUnknown.html">Solving for proportions that are not directly observed</a></li>
+            <li class="active"><a href="pUnknown.html">Solving for proportions that are not directly observed</a></li>
             <li>Solving for means under treatment and control</li>
             <li>Calculating the bounds and estimating ranges of impact</li>
             <li>Next steps</li>
@@ -109,15 +91,14 @@
       </div>
 
       <div class="medium-7 columns">
-        
-          <h2>Use Substantive Assumptions to Constraints the Number of Strata for this Study</h2>
+        <div class="row column">
+          <h2>Use substantive assumptions to constraints the number of strata for this study</h2>
+          
           <p>In most cases, it is possible to eliminate some of these strata based on two substantively driven assumptions. This page will walk you through those assumptions and help to refine your matrix to reflect the context of your study and research questions</p>
 
-          <h3> The Monotonicity Assumption </h3>
-          <p>Monotonicity assumption that individual would be at least as likely to take up the treatment under assignment to the treatment condition as under assignment to the control condition.  For example, if the treatment were assignment to receiving a new medication, it might be appropriate to assume that there are no patients who would take up the medication under assignment to the control group but not take up the medication under assignment to treatment.  In the matrix below, click any strata in which you think you can apply the Monotonicity assumption. </p>
+          <h3>The Monotonicity Assumption</h3>
+          <p>Monotonicity assumption that individual would be at least as likely to take up the treatment under assignment to the treatment condition as under assignment to the control condition.  For example, if the treatment were assignment to receiving a new medication, it might be appropriate to assume that there are no patients who would take up the medication under assignment to the control group but not take up the medication under assignment to treatment.  In the matrix below, click any strata in which you think you can apply the Monotonicity assumption.</p>
 
-      
-       
           <table id="monoGrid" class="testgrid" align="center">
             <tr>
               <th colspan=4 class="control-treatment-header" id=group1Name></th>
@@ -142,51 +123,28 @@
             </tr>
             </tr>
           </table>
-          
-          
-          <h3>The Exclusion Restriction</h3>
-          <p>The exclusion restriction can be applied in cases where random assignment would likely not include a change subgroup membership. Some strata may be theoretically possible but not plausible in the context of your study. For example, in the Feller <em>et al</em>  Head Start study , it was plausible to assume that there were not participants who would enroll in a non-Head Start center care (subgroup 1) program if assigned to Head Start (treatment), would take up Home-based(subgroup 1) care if assigned to the control group. There may be similar circumstances in your study.    In the matrix below, click any strata in which you think you can apply the exclusion restriction. </p>
 
-          <table id="irrGrid" class="testgrid" align="center">
-            <tr>
-              <th colspan=4 class="control-treatment-header" id=group1Name2></th>
-            </tr>
-            <tr>
-              <th rowspan=4 class="control-treatment-header" id=group2Name2></th>
-            </tr>
-            <tr>
-              <th> </th>
-              <th id=strata1Name2></th>
-              <th id=strata2Name2></th>
-            </tr>
-            <tr id="R1">
-              <th id=strata1Name4></th>
-              <td> </td>
-              <td> </td>
-            </tr>
-            <tr id="R2">
-              <th id=strata2Name4></th>
-              <td> </td>
-              <td> </td>
-            </tr>
-            </tr>
-          </table>
+          <h2>The Exclusion Restriction</h2>
+          <p>The exclusion restriction can be applied in cases where random assignment would likely not include a change subgroup membership. Some strata may be theoretically possible but not plausible in the context of your study. For example, in the Feller et al  Head Start study , it was plausible to assume that there were not participants who would enroll in a non-Head Start center care (subgroup 1) program if assigned to Head Start (treatment), would take up Home-based(subgroup 1) care if assigned to the control group. There may be similar circumstances in your study.    In the matrix below, click any strata in which you think you can apply the exclusion restriction.</p>
 
-          <div class="row">
+
+        </div> <!--/ end blog post -->
+
+        <div class="row column">
             <div class="small-12 text-center">
-              <button class="button" onclick="moveToBounds()">Continue</button>
+              <button class="button" onclick="submitP()">Continue</button>
             </div>
-          </div>
+        </div>
 
-      </div><!--/ medium-8-->
+      </div> <!--/ end medium- 7-->
 
       
       
 
-      <div class="medium-1 columns">&nbsp;
+      <div class="medium-1 columns">&nbsp; <!-- keep column empty, last column spans the remaining width of the page -->
       </div>
 
-    </div><!-- end row -->
+    </div><!--/ end row -->
     
 
     <footer>
@@ -198,21 +156,14 @@
       </div>
 
 
-      <!--<div class="row">
-        <div class="medium-12 columns text-center">
-          <p><strong>Funding for this project was provided through a grant from Spencer Foundation</strong></p>
-        </div>
-      </div>-->
-
     </footer>
     
     <script src="js/vendor/jquery-2.1.4.min.js"></script>
     <script src="js/vendor/foundation.js"></script>
     <script>
-    function moveToBounds() {
-      localStorage.irr=irrGrid;
-      window.location.href = 'file:///C:/Notepad++/test/editablegrid-master/examples/attach/bounds2.html'
-    }
+
+        //JS here
+        
     </script>
   </body>
 </html>
