@@ -204,10 +204,22 @@ ol.menu.vertical {
 	padding: .4rem 1rem;
 }
 
-.menu > .active a {
+.menu > .active  {
 	border-left: 5px solid #F3954F;
 	background-color: transparent;
-	color: #1779ba;
+	color: #585858  ; /*gray color*/ 
+	font-weight: bold;
+}
+
+.menu .active>a {
+	
+	background-color: transparent;
+	color: #1779ba ; /*blue color */ 
+	font-weight: bold;
+}
+
+.menu>li>a {
+	padding: 0;
 }
 
 
