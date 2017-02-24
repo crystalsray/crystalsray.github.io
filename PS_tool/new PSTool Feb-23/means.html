@@ -1,0 +1,462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Exclusion Restriction</title>
+		
+		<script src="./mathjs-master/dist/math.js"></script>
+		
+		<style>
+			body { font-family:'lucida grande', tahoma, verdana, arial, sans-serif; font-size:11px; }
+			h1 { font-size: 30px; }
+			a { color: #548dc4; text-decoration: none; font-size: 25px}
+			text {font-size: 12 px}
+			table { table-layout: fixed; text-align: center; font-size: 15px}
+			a:hover { text-decoration: underline; }
+			table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: 650px;}
+			table.testgrid td, table.testgrid th { padding: 5px; border: 5px solid #E0E0E0; word-wrap:break-word;}
+			table.testgrid th { background: #E5E5E5; text-align: center; }
+			input.invalid { background: red; color: #FDFDFD; }
+			</style>
+
+	</head>
+	
+	<body>
+		<h1>Applying the Exclusion Restriction</h1>
+<h2 id="tableInfo" align="left"></h2> 
+<br>
+<br>
+<br>
+<h2 id="tableInfo2" align="left"></h2>
+<br>
+<br>
+<h2 id="tableInfo3" align="left"></h2>
+<br>
+<br>
+<table id="boundsGrid" class="testgrid" align="center">
+			<tr>
+				<th colspan=5 style="font-size:15px" id="group1Name"></th>
+			</tr>
+			<tr>
+				<th rowspan=6 style="font-size:15px" id="group2Name"></th>
+			</tr>
+			<tr>
+				<th> </th>
+				<th id="strata1Name"></th>
+				<th id="strata2Name"></th>
+				<th id="strata3Name"></th>
+			</tr>
+			<tr>
+				<th id="strata1Name2"></th>
+				<td id="strata1Input"> </td>
+				<td id="strata2Input"> </td>
+				<td id="strata3Input"> </td>
+			</tr>
+			<tr>
+				<th id="strata2Name2"></th>
+				<td id="strata4Input"> </td>
+				<td id="strata5Input"> </td>
+				<td id="strata6Input"> </td>
+			</tr>
+			<tr>
+				<th id="strata3Name2"></th>
+				<td id="strata7Input"> </td>
+				<td id="strata8Input"> </td>
+				<td id="strata9Input"> </td>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+<button onclick="cont()">Continue</button>		
+
+		<br><br><br><br><br>
+</html>
+</body>
+<script>
+			window.onload = function() {
+				var groupNames= new Array();
+				var strataNames = new Array();
+				var group1 = localStorage.group1Local;
+				var group2 = localStorage.group2Local;
+				var strata = localStorage.strataLocal;
+				strata = strata*strata;
+				var strata1 = localStorage.strata1Local;
+				var strata2 = localStorage.strata2Local;
+				var strata3 = localStorage.strata3Local;
+				var cell1Input = localStorage.cell1;
+				var cell2Input = localStorage.cell2;
+				var cell3Input = localStorage.cell3;
+				var cell4Input = localStorage.cell4;
+				var cell5Input = localStorage.cell5;
+				var cell6Input = localStorage.cell6;
+				var cell7Input = localStorage.cell7;
+				var cell8Input = localStorage.cell8;
+				var cell9Input = localStorage.cell9;
+				var outcome = localStorage.outcome;
+				document.getElementById('strata1Input').innerHTML = cell1Input;
+				document.getElementById('strata2Input').innerHTML = cell2Input;
+				document.getElementById('strata3Input').innerHTML = cell3Input;
+				document.getElementById('strata4Input').innerHTML = cell4Input;
+				document.getElementById('strata5Input').innerHTML = cell5Input;
+				document.getElementById('strata6Input').innerHTML = cell6Input;
+				document.getElementById('strata7Input').innerHTML = cell7Input;
+				document.getElementById('strata8Input').innerHTML = cell8Input;
+				document.getElementById('strata9Input').innerHTML = cell9Input;
+				document.getElementById('strata1Name').innerHTML = strata1;
+				document.getElementById('strata2Name').innerHTML = strata2;
+				document.getElementById('strata3Name').innerHTML = strata3;
+				document.getElementById('strata1Name2').innerHTML = strata1;
+				document.getElementById('strata2Name2').innerHTML = strata2;
+				document.getElementById('strata3Name2').innerHTML = strata3;
+				document.getElementById('group1Name').innerHTML = group1;
+				document.getElementById('group2Name').innerHTML = group2;
+				//gray out excluded cells
+				var allCells = document.getElementsByTagName("td");
+				for(var i = 0; i < strata; i++) {
+					var node = allCells[i];
+					var cellContent = node.childNodes[0].nodeValue; 
+					//check for 'one' and assign this table cell's background color accordingly 
+					if (cellContent === "Monotonicity Assumption")
+						node.style.backgroundColor = "#808080";
+					if (cellContent == "Irrelevant Alternative")
+						node.style.backgroundColor = "#808080";
+				}
+				var isActive1 = parseInt(localStorage.isActive1);
+				var isActive2 = parseInt(localStorage.isActive2);
+				var isActive3 = parseInt(localStorage.isActive3);
+				var isActive4 = parseInt(localStorage.isActive4);
+				var isActive5 = parseInt(localStorage.isActive5);
+				var isActive6 = parseInt(localStorage.isActive6);
+				var isActive7 = parseInt(localStorage.isActive7);
+				var isActive8 = parseInt(localStorage.isActive8);
+				var isActive9 = parseInt(localStorage.isActive9);
+				var isActive = [isActive1, isActive2, isActive3, isActive4, isActive5, isActive6, isActive7, isActive8, isActive9];		
+
+				var pMean1 = localStorage.pMean1;
+				var pMean2 = localStorage.pMean2;
+				var pMean3 = localStorage.pMean3;
+				var pMean4 = localStorage.pMean4;
+				var pMean5 = localStorage.pMean5;
+				var pMean6 = localStorage.pMean6;
+				var pMean7 = localStorage.pMean7;
+				var pMean8 = localStorage.pMean8;
+				var pMean9 = localStorage.pMean9;
+				var pMean = [pMean1, pMean2, pMean3, pMean4, pMean5, pMean6, pMean7, pMean8, pMean9];
+				
+				var allCells = document.getElementsByTagName("td");
+				for(var i = 0; i < strata; i++) {
+					var node = allCells[i];
+					var cellContent = node.childNodes[0].nodeValue; 
+					if(isActive[i]!=0)
+						node.innerHTML = "P="+ pMean[i].substring(0,4);
+					if(isActive[i]==0)
+						node.innerHTML = "";
+				}
+		var group1 = localStorage.group1Local;
+		var group2 = localStorage.group2Local;
+		var isActive1 = parseInt(localStorage.isActive1);
+		var isActive2 = parseInt(localStorage.isActive2);
+		var isActive3 = parseInt(localStorage.isActive3);
+		var isActive4 = parseInt(localStorage.isActive4);
+		var isActive5 = parseInt(localStorage.isActive5);
+		var isActive6 = parseInt(localStorage.isActive6);
+		var isActive7 = parseInt(localStorage.isActive7);
+		var isActive8 = parseInt(localStorage.isActive8);
+		var isActive9 = parseInt(localStorage.isActive9);
+		var isActive = [isActive1, isActive2, isActive3, isActive4, isActive5, isActive6, isActive7, isActive8, isActive9];		
+		var countRow1 = localStorage.countRow1;
+		var countRow2 = localStorage.countRow2;
+		var countRow3 = localStorage.countRow3;
+		var countColumn1 = localStorage.countColumn1;
+		var countColumn2 = localStorage.countColumn2;
+		var countColumn3 = localStorage.countColumn3;
+		var TtoT = localStorage.TtoT;
+		var TtoSub1 = localStorage.TtoSub1;
+		var TtoSub2 = localStorage.TtoSub2;
+		var CtoT = localStorage.CtoT;
+		var CtoSub1 = localStorage.CtoSub1;
+		var CtoSub2 = localStorage.CtoSub2;
+		var TtoTNum= Number(TtoT);
+		var TtoSub1Num = Number(TtoSub1);
+		var TtoSub2Num = Number(TtoSub2);
+		var CtoTNum= Number(CtoT);
+		var CtoSub1Num = Number(CtoSub1);
+		var CtoSub2Num = Number(CtoSub2);		
+		document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (Mean=" + TtoTNum + ")";
+		document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (Mean=" + TtoSub1Num + ")";
+		document.getElementById('strata3Name').innerHTML = localStorage.strata3Local + " (Mean=" + TtoSub2Num + ")";
+		document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (Mean=" + CtoTNum + ")";
+		document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (Mean=" + CtoSub1Num + ")";
+		document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (Mean=" + CtoSub2Num + ")";
+		document.getElementById('tableInfo').innerHTML="We will use this information to solve for means under "+group1+" and "+group2+". Each of the groups in the grid below represents a group of participants who have a behavior under assignment to treatment and behavior under assignment to control. The mean outcomes in the margins represent the outcomes for observable groups in your data. If the means in the margins are incorrect, please return to the previous page.";
+		document.getElementById('tableInfo2').innerHTML = "Similar to how you could directly observe the proportion of participants in several groups, you can also directly observe the mean outcomes of these groups under "+group1+" and "+group2+". The means of the principal strata in a given row or a given column will average out to the mean displayed in the margin of that column and row.  This represents a weighted average according to the relative share of participants in each cell. If a cell in the grid below is the only active cell in a column, you know their mean under "+group1+", and if it is the only active cell in a row, you know their mean under "+group2+". ";
+		document.getElementById('tableInfo3').innerHTML = "You can apply the exclusion restriction to these cells. In doing so, we assume that participants in these groups’ assignments to either "+group1+" or "+group2+" do not affect their behavior, and thus do not influence their outcome. Their outcome under assignment to "+group1+" and assignment to "+group2+" will be the same. The exclusion restriction allows us to assume that the mean outcomes under "+group1+" and under "+group2+" are equal in these groups. Thus, there is no "+group1+" impact for these groups.";
+		var pMean1 = localStorage.pMean1;
+		var pMean2 = localStorage.pMean2;
+		var pMean3 = localStorage.pMean3;
+		var pMean4 = localStorage.pMean4;
+		var pMean5 = localStorage.pMean5;
+		var pMean6 = localStorage.pMean6;
+		var pMean7 = localStorage.pMean7;
+		var pMean8 = localStorage.pMean8;
+		var pMean9 = localStorage.pMean9;
+		var pMean = [pMean1, pMean2, pMean3, pMean4, pMean5, pMean6, pMean7, pMean8, pMean9];		
+		var cellsLocalRow1 = [localStorage.cell1, localStorage.cell2, localStorage.cell3];
+		var cellsLocalRow2 = [localStorage.cell4, localStorage.cell5, localStorage.cell6];
+		var cellsLocalRow3 = [localStorage.cell7, localStorage.cell8, localStorage.cell9];
+		var cellsLocalColumn1 = [localStorage.cell1, localStorage.cell4, localStorage.cell7];
+		var cellsLocalColumn2 = [localStorage.cell2, localStorage.cell5, localStorage.cell8];
+		var cellsLocalColumn3 = [localStorage.cell3, localStorage.cell6, localStorage.cell9];
+		var ticker = 1;
+		var Headings = [CtoTNum, CtoSub1Num, CtoSub2Num, TtoTNum, TtoSub1Num, TtoSub2Num];
+		var rcCounts = [countRow1,countRow2,countRow3,countColumn1,countColumn2,countColumn3];
+		var p=0;
+		var yc=0;
+		var yt=0;
+		var MeanTrack=[];
+		var MeanKnown=[0,0,0,0,0,0,0,0,0];
+		var yMeans = [,,,,,,,,];
+		var xMeans = [,,,,,,,,];		
+		var column1Nums = [0,3,6];
+		var column2Nums = [1,4,7];
+		var column3Nums = [2,5,8];
+		var columns = [column1Nums,column2Nums, column3Nums];
+		var row1Nums = [0,1,2];
+		var row2Nums = [3,4,5];
+		var row3Nums = [6,7,8];
+		var rows = [row1Nums, row2Nums, row3Nums];
+		for(i=0; i<3; i++) {
+			if(rcCounts[0]==1 & isActive[i]==1){
+			MeanKnown[i]=Headings[0];
+			isActive[i]=0;
+			xMeans[i]=Headings[0];
+			yMeans[i]=Headings[0];
+			pk=parseFloat(pMean[i].substring(0,4));
+			xMeank=Headings[0];
+			if(rcCounts[i+3]==2)
+			{
+				for(j=0;j<3;j++)
+				{
+					if(isActive[columns[i][j]]==1)
+						{
+							pu=parseFloat(pMean[columns[i][j]].substring(0,4))
+							xMeans[columns[i][j]]=((Headings[i+3]-(pk/(pu+pk))*xMeank)*((pu+pk)/pu));
+						}
+				}
+			}
+			}
+		}
+		for(i=3; i<6; i++) {
+			if(rcCounts[1]==1 & isActive[i]==1){
+			MeanKnown[i]=Headings[1];
+			isActive[i]=0;
+			xMeans[i]=Headings[1];
+			yMeans[i]=Headings[1];
+			pk=parseFloat(pMean[i].substring(0,4));
+			xMeank=Headings[1];
+			if(rcCounts[i]==2)
+			{
+				for(j=0;j<3;j++)
+				{
+					if(isActive[columns[i-3][j]]==1)
+						{
+							pu=parseFloat(pMean[columns[i-3][j]].substring(0,4))
+							xMeans[columns[i-3][j]]=((Headings[i]-(pk/(pu+pk))*xMeank)*((pu+pk)/pu));
+						};
+				}
+			}
+			}
+		}
+		for(i=6; i<9; i++) {
+			if(rcCounts[2]==1 & isActive[i]==1){
+			MeanKnown[i]=Headings[2];
+			isActive[i]=0;
+			xMeans[i]=Headings[2];
+			yMeans[i]=Headings[2];
+			pk=parseFloat(pMean[i].substring(0,4));
+			xMeank=Headings[2];
+			if(rcCounts[i-3]==2)
+			{
+				for(j=0;j<3;j++)
+				{
+					if(isActive[columns[i-6][j]]==1)
+						{
+							pu=parseFloat(pMean[columns[i-6][j]].substring(0,4))
+							xMeans[columns[i-6][j]]=((Headings[i-3]-(pk/(pu+pk))*xMeank)*((pu+pk)/pu));
+						}
+				}
+			}
+			}
+		}
+
+		for(i=0; i<3; i++) {
+			if(rcCounts[3]==1 & isActive[column1Nums[i]]==1){
+			MeanKnown[column1Nums[i]]=Headings[3];
+			isActive[column1Nums[i]]=0;
+			xMeans[column1Nums[i]]=Headings[3];
+			yMeans[column1Nums[i]]=Headings[3];
+			pk=parseFloat(pMean[column1Nums[i]].substring(0,4));
+			xMeank=Headings[3];
+			if(rcCounts[i]==2)
+			{
+				for(j=0;j<3;j++)
+				{
+					if(isActive[rows[i][j]]==1)
+						{
+							pu=parseFloat(pMean[rows[i][j]].substring(0,4))
+							yMeans[rows[i][j]]=((Headings[i]-(pk/(pu+pk))*xMeank)*((pu+pk)/pu));
+						}				
+				}
+			}
+			}
+		}
+		
+		for(i=0; i<3; i++) {
+			if(rcCounts[4]==1 & isActive[column2Nums[i]]==1){
+			MeanKnown[column2Nums[i]]=Headings[4];
+			isActive[column2Nums[i]]=0;
+			xMeans[column2Nums[i]]=Headings[4];
+			yMeans[column2Nums[i]]=Headings[4];
+			pk=parseFloat(pMean[column2Nums[i]].substring(0,4));
+			xMeank=Headings[4];
+			if(rcCounts[i]==2)
+			{
+				for(j=0;j<3;j++)
+				{
+					if(isActive[rows[i][j]]==1)
+						{
+							pu=parseFloat(pMean[rows[i][j]].substring(0,4))
+							yMeans[rows[i][j]]=((Headings[i]-(pk/(pu+pk))*xMeank)*((pu+pk)/pu));
+						}	
+				}
+			}
+			}
+		}
+		
+		for(i=0; i<3; i++) {
+			if(rcCounts[5]==1 & isActive[column3Nums[i]]==1){
+			MeanKnown[column3Nums[i]]=Headings[5];
+			isActive[column3Nums[i]]=0;
+			xMeans[column3Nums[i]]=Headings[5];
+			yMeans[column3Nums[i]]=Headings[5];
+			pk=parseFloat(pMean[column3Nums[i]].substring(0,4));
+			xMeank=Headings[5];
+			if(rcCounts[i]==2)
+			{
+				for(j=0;j<3;j++)
+				{
+					if(isActive[rows[i][j]]==1)
+						{
+							pu=parseFloat(pMean[rows[i][j]].substring(0,4))
+							yMeans[rows[i][j]]=((Headings[i]-(pk/(pu+pk))*xMeank)*((pu+pk)/pu));
+						}	
+				}
+			}
+			}
+		}
+		
+
+		var C = "c";
+		var cSub = C.sub();
+		var T = "t"
+		var tSub = T.sub();
+		if(MeanKnown[0]!=0)
+		{
+			document.getElementById('strata1Input').innerHTML =document.getElementById('strata1Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[0]+",Y"+cSub+"="+MeanKnown[0];
+			document.getElementById("strata1Input").setAttribute("bgColor","#6495ED");
+		}
+
+		if(MeanKnown[1]!=0)
+		{
+			document.getElementById('strata2Input').innerHTML = document.getElementById('strata2Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[1]+",Y"+cSub+"="+MeanKnown[1];
+			document.getElementById("strata2Input").setAttribute("bgColor","#6495ED");
+		}
+		
+		if(MeanKnown[2]!=0)
+		{
+			document.getElementById('strata3Input').innerHTML = document.getElementById('strata3Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[2]+",Y"+cSub+"="+MeanKnown[2];
+			document.getElementById("strata3Input").setAttribute("bgColor","#6495ED");
+		}
+		
+		if(MeanKnown[3]!=0)
+		{
+			document.getElementById('strata4Input').innerHTML = document.getElementById('strata4Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[3]+",Y"+cSub+"="+MeanKnown[3];
+			document.getElementById("strata4Input").setAttribute("bgColor","#6495ED");
+		}
+
+		if(MeanKnown[4]!=0)
+		{
+			document.getElementById('strata5Input').innerHTML = document.getElementById('strata5Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[4]+",Y"+cSub+"="+MeanKnown[4];
+			document.getElementById("strata5Input").setAttribute("bgColor","#6495ED");
+		}
+		
+		if(MeanKnown[5]!=0)
+		{
+			document.getElementById('strata6Input').innerHTML = document.getElementById('strata6Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[5]+",Y"+cSub+"="+MeanKnown[5];
+			document.getElementById("strata6Input").setAttribute("bgColor","#6495ED");
+		}
+
+		if(MeanKnown[6]!=0)
+		{
+			document.getElementById('strata7Input').innerHTML = document.getElementById('strata7Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[6]+",Y"+cSub+"="+MeanKnown[6];
+			document.getElementById("strata7Input").setAttribute("bgColor","#6495ED");
+		}
+
+		if(MeanKnown[7]!=0)
+		{
+			document.getElementById('strata8Input').innerHTML = document.getElementById('strata8Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[7]+",Y"+cSub+"="+MeanKnown[7];
+			document.getElementById("strata8Input").setAttribute("bgColor","#6495ED");
+		}
+		
+		if(MeanKnown[8]!=0)
+		{
+			document.getElementById('strata9Input').innerHTML = document.getElementById('strata9Input').innerHTML+"     Y"+tSub+"=" + MeanKnown[8]+",Y"+cSub+"="+MeanKnown[8];
+			document.getElementById("strata9Input").setAttribute("bgColor","#6495ED");
+		}
+		
+	localStorage.xMeans1 = xMeans[0];
+	localStorage.xMeans2 = xMeans[1];
+	localStorage.xMeans3 = xMeans[2];
+	localStorage.xMeans4 = xMeans[3];
+	localStorage.xMeans5 = xMeans[4];
+	localStorage.xMeans6 = xMeans[5];
+	localStorage.xMeans7 = xMeans[6];
+	localStorage.xMeans8 = xMeans[7];
+	localStorage.xMeans9 = xMeans[8];
+	localStorage.yMeans1 = yMeans[0];
+	localStorage.yMeans2 = yMeans[1];
+	localStorage.yMeans3 = yMeans[2];
+	localStorage.yMeans4 = yMeans[3];
+	localStorage.yMeans5 = yMeans[4];
+	localStorage.yMeans6 = yMeans[5];
+	localStorage.yMeans7 = yMeans[6];
+	localStorage.yMeans8 = yMeans[7];
+	localStorage.yMeans9 = yMeans[8];
+	localStorage.MeanKnown1 = MeanKnown[0];
+	localStorage.MeanKnown2 = MeanKnown[1];
+	localStorage.MeanKnown3 = MeanKnown[2];
+	localStorage.MeanKnown4 = MeanKnown[3];
+	localStorage.MeanKnown5 = MeanKnown[4];
+	localStorage.MeanKnown6 = MeanKnown[5];
+	localStorage.MeanKnown7 = MeanKnown[6];
+	localStorage.MeanKnown8 = MeanKnown[7];
+	localStorage.MeanKnown9 = MeanKnown[8];
+	localStorage.NewisActive1 = isActive[0];
+	localStorage.NewisActive2 = isActive[1];
+	localStorage.NewisActive3 = isActive[2];
+	localStorage.NewisActive4 = isActive[3];
+	localStorage.NewisActive5 = isActive[4];
+	localStorage.NewisActive6 = isActive[5];
+	localStorage.NewisActive7 = isActive[6];
+	localStorage.NewisActive8 = isActive[7];
+	localStorage.NewisActive9 = isActive[8];
+
+}	
+
+	function cont(){
+	window.location.href = 'file:./meanUnknown.html';
+	}
+				
+		</script>

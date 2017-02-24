@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title> Calculating tBounds</title>
+		
+		<script src="./mathjs-master/dist/math.js"></script>
+		
+		<style>
+			body { font-family:'lucida grande', tahoma, verdana, arial, sans-serif; font-size:11px; }
+			h1 { font-size: 30px; }
+			a { color: #548dc4; text-decoration: none; font-size: 25px}
+			text {font-size: 12 px}
+			table { table-layout: fixed; text-align: center; font-size: 15px}
+			a:hover { text-decoration: underline; }
+			table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: 650px;}
+			table.testgrid td, table.testgrid th { padding: 5px; border: 5px solid #E0E0E0; word-wrap:break-word;}
+			table.testgrid th { background: #E5E5E5; text-align: center; }
+			input.invalid { background: red; color: #FDFDFD; }
+			</style>
+
+	</head>
+	
+	<body>
+		<h1>Calculating the Bounds and Estimating Ranges of Impact </h1>
+<h2 id="tableInfo"></h2> 
+<br>
+<br>
+<h2>Using the information in your grid, you can calculate maximum and minimum values for the remaining unknown means. You will then know the range of possible values the means will fall between, which will allow you to calculate the range of treatment effects on that specific group.</h2>
+<br>
+<h2 id="tableInfo2" align="left"></h2>
+<table id="boundsGrid" class="testgrid" align="center">
+			<tr>
+				<th colspan=5 style="font-size:15px" id="group1Name"></th>
+			</tr>
+			<tr>
+				<th rowspan=6 style="font-size:15px" id="group2Name"></th>
+			</tr>
+			<tr>
+				<th> </th>
+				<th id="strata1Name"></th>
+				<th id="strata2Name"></th>
+				<th id="strata3Name"></th>
+			</tr>
+			<tr>
+				<th id="strata1Name2"></th>
+				<td id="strata1Input"> </td>
+				<td id="strata2Input"> </td>
+				<td id="strata3Input"> </td>
+			</tr>
+			<tr>
+				<th id="strata2Name2"></th>
+				<td id="strata4Input"> </td>
+				<td id="strata5Input"> </td>
+				<td id="strata6Input"> </td>
+			</tr>
+			<tr>
+				<th id="strata3Name2"></th>
+				<td id="strata7Input"> </td>
+				<td id="strata8Input"> </td>
+				<td id="strata9Input"> </td>
+			</tr>
+		</table>
+
+		<br>
+		<br>
+		
+		<h2> Because you now have solved for all means under treatment and control, you can estimate the possible treatment-control differences within each of the latent subgroups. You simply need to subtract the possible values of the means under control from the possible values of the means under treatment to get your possible treatment-control differences. </h2>
+		<br>
+		<br>
+		
+<button onclick="cont()">Continue</button>		
+
+		<br><br><br><br><br>
+</html>
+</body>
+<script>
+			window.onload = function() {
+				var groupNames= new Array();
+				var strataNames = new Array();
+				var group1 = localStorage.group1Local;
+				var group2 = localStorage.group2Local;
+				var strata = localStorage.strataLocal;
+				strata = strata*strata;
+				var strata1 = localStorage.strata1Local;
+				var strata2 = localStorage.strata2Local;
+				var strata3 = localStorage.strata3Local;
+				var isActive1 = parseInt(localStorage.NewisActive1);
+				var isActive2 = parseInt(localStorage.NewisActive2);
+				var isActive3 = parseInt(localStorage.NewisActive3);
+				var isActive4 = parseInt(localStorage.NewisActive4);
+				var isActive5 = parseInt(localStorage.NewisActive5);
+				var isActive6 = parseInt(localStorage.NewisActive6);
+				var isActive7 = parseInt(localStorage.NewisActive7);
+				var isActive8 = parseInt(localStorage.NewisActive8);
+				var isActive9 = parseInt(localStorage.NewisActive9);
+				var isActive = [isActive1, isActive2, isActive3, isActive4, isActive5, isActive6, isActive7, isActive8, isActive9];
+				var isActive1O = parseInt(localStorage.isActive1);
+				var isActive2O = parseInt(localStorage.isActive2);
+				var isActive3O = parseInt(localStorage.isActive3);
+				var isActive4O = parseInt(localStorage.isActive4);
+				var isActive5O = parseInt(localStorage.isActive5);
+				var isActive6O = parseInt(localStorage.isActive6);
+				var isActive7O = parseInt(localStorage.isActive7);
+				var isActive8O = parseInt(localStorage.isActive8);
+				var isActive9O = parseInt(localStorage.isActive9);
+				var isActiveO = [isActive1O, isActive2O, isActive3O, isActive4O, isActive5O, isActive6O, isActive7O, isActive8O, isActive9O];
+				var pMeanKnown1 = localStorage.pMeanKnown1;
+				var pMeanKnown2 = localStorage.pMeanKnown2;
+				var pMeanKnown3 = localStorage.pMeanKnown3;
+				var pMeanKnown4 = localStorage.pMeanKnown4;
+				var pMeanKnown5 = localStorage.pMeanKnown5;
+				var pMeanKnown6 = localStorage.pMeanKnown6;
+				var pMeanKnown7 = localStorage.pMeanKnown7;
+				var pMeanKnown8 = localStorage.pMeanKnown8;
+				var pMeanKnown9 = localStorage.pMeanKnown9;
+				var pMeanKnown = [pMeanKnown1, pMeanKnown2, pMeanKnown3, pMeanKnown4, pMeanKnown5, pMeanKnown6, pMeanKnown7, pMeanKnown8, pMeanKnown9];
+				var pMean1 = localStorage.pMean1;
+				var pMean2 = localStorage.pMean2;
+				var pMean3 = localStorage.pMean3;
+				var pMean4 = localStorage.pMean4;
+				var pMean5 = localStorage.pMean5;
+				var pMean6 = localStorage.pMean6;
+				var pMean7 = localStorage.pMean7;
+				var pMean8 = localStorage.pMean8;
+				var pMean9 = localStorage.pMean9;
+				var pMean = [pMean1, pMean2, pMean3, pMean4, pMean5, pMean6, pMean7, pMean8, pMean9];
+				var xMean1 = localStorage.xMeans1;
+				var xMean2 = localStorage.xMeans2;
+				var xMean3 = localStorage.xMeans3;
+				var xMean4 = localStorage.xMeans4;
+				var xMean5 = localStorage.xMeans5;
+				var xMean6 = localStorage.xMeans6;
+				var xMean7 = localStorage.xMeans7;
+				var xMean8 = localStorage.xMeans8;
+				var xMean9 = localStorage.xMeans9;
+				var xMean = [xMean1, xMean2, xMean3, xMean4, xMean5, xMean6, xMean7, xMean8, xMean9];
+				var yMean1 = localStorage.yMeans1;
+				var yMean2 = localStorage.yMeans2;
+				var yMean3 = localStorage.yMeans3;
+				var yMean4 = localStorage.yMeans4;
+				var yMean5 = localStorage.yMeans5;
+				var yMean6 = localStorage.yMeans6;
+				var yMean7 = localStorage.yMeans7;
+				var yMean8 = localStorage.yMeans8;
+				var yMean9 = localStorage.yMeans9;
+				var yMean = [yMean1, yMean2, yMean3, yMean4, yMean5, yMean6, yMean7, yMean8, yMean9];
+				var MeanKnown1 = localStorage.MeanKnown1;
+				var MeanKnown2 = localStorage.MeanKnown2;
+				var MeanKnown3 = localStorage.MeanKnown3;
+				var MeanKnown4 = localStorage.MeanKnown4;
+				var MeanKnown5 = localStorage.MeanKnown5;
+				var MeanKnown6 = localStorage.MeanKnown6;
+				var MeanKnown7 = localStorage.MeanKnown7;
+				var MeanKnown8 = localStorage.MeanKnown8;
+				var MeanKnown9 = localStorage.MeanKnown9;
+				var MeanKnown = [MeanKnown1, MeanKnown2, MeanKnown3, MeanKnown4, MeanKnown5, MeanKnown6, MeanKnown7, MeanKnown8, MeanKnown9];
+				var TtoTNum = localStorage.TtoTNum;
+				var TtoSub1Num = localStorage.TtoSub1Num;
+				var TtoSub2Num = localStorage.TtoSub2Num;
+				var CtoTNum = localStorage.CtoTNum;
+				var CtoSub1Num = localStorage.CtoSub1Num;
+				var CtoSub2Num = localStorage.CtoSub2Num;
+				document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (P=" + TtoTNum + ")";
+				document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (P=" + TtoSub1Num + ")";
+				document.getElementById('strata3Name').innerHTML = localStorage.strata3Local + " (P=" + TtoSub2Num + ")";
+				document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (P=" + CtoTNum + ")";
+				document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (P=" + CtoSub1Num + ")";
+				document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (P=" + CtoSub2Num + ")";
+				document.getElementById('group1Name').innerHTML = group1;
+				document.getElementById('group2Name').innerHTML = group2;
+				var TtoT = localStorage.TtoT;
+				var TtoSub1 = localStorage.TtoSub1;
+				var TtoSub2 = localStorage.TtoSub2;
+				var CtoT = localStorage.CtoT;
+				var CtoSub1 = localStorage.CtoSub1;
+				var CtoSub2 = localStorage.CtoSub2;
+				var TtoTNumMean= Number(TtoT)/100;
+				var TtoSub1NumMean = Number(TtoSub1)/100;
+				var TtoSub2NumMean = Number(TtoSub2)/100;
+				var CtoTNumMean= Number(CtoT)/100;
+				var CtoSub1NumMean = Number(CtoSub1)/100;
+				var CtoSub2NumMean = Number(CtoSub2)/100;
+				var Headings = [CtoTNumMean, CtoSub1NumMean, CtoSub2NumMean, TtoTNumMean, TtoSub1NumMean, TtoSub2NumMean];
+				var column1Nums = [0,3,6];
+				var column2Nums = [1,4,7];
+				var column3Nums = [2,5,8];
+				//gray out excluded cells
+				var C = "c";
+				var cSub = C.sub();
+				var T = "t"
+				var tSub = T.sub()			
+				var allCells = document.getElementsByTagName("td");
+				document.getElementById('tableInfo').innerHTML = "Up to this point, you have been able to point estimate stratum-specific values of interest using observations from your study data and leveraging assumptions. However, you have not solved for every stratum-specific mean under "+group1+" and "+group2+", and you do not have enough information to estimate these means exactly. ";
+
+		
+		row1Count = 0;
+		for(i=0; i<3; i++) {
+		if(isActive[i]==1){row1Count = row1Count + 1;}
+		}
+		row2Count = 0;
+		for(i=3; i<6; i++) {
+		if(isActive[i]==1){row2Count = row2Count + 1;}
+		}
+		row3Count = 0;
+		for(i=6; i<9; i++) {
+		if(isActive[i]==1){row3Count = row3Count + 1;}
+		}
+		column1Count = 0;
+		column2Count = 0;
+		column3Count = 0;
+		for(i=0; i<3; i++) {
+		if(isActive[column1Nums[i]]==1){column1Count = column1Count + 1;}
+		}
+		for(i=0; i<3; i++) {
+		if(isActive[column2Nums[i]]==1){column2Count = column2Count + 1;}
+		}
+		for(i=0; i<3; i++) {
+		if(isActive[column3Nums[i]]==1){column3Count = column3Count + 1;}
+		}
+		
+		var xMeansHigh = [0,0,0,0,0,0,0,0,0];		
+		var xMeansLow = [0,0,0,0,0,0,0,0,0];
+		var yMeansHigh = [0,0,0,0,0,0,0,0,0];		
+		var yMeansLow = [0,0,0,0,0,0,0,0,0];		
+		for(i=0; i<3; i++) {
+			if(isActive[i]==1 & row1Count>1){
+			isActive[i]=0;
+			pk=parseFloat(pMean[i].substring(0,4))/CtoTNum;
+			yMeansLow[i]=((pk-(1-Headings[0]))/pk)*100;
+			if(Headings[0]>pk){yMeansHigh[i]=100;}
+			if(Headings[0]<=pk){yMeansHigh[i]=((100-Headings[0])/pk)*100;}
+			}
+		}
+		for(i=3; i<6; i++) {
+			if(isActive[i]==1 & row2Count>1){
+			isActive[i]=0;
+			pk=parseFloat(pMean[i].substring(0,4))/CtoSub1Num;
+			yMeansLow[i]=((pk-(1-Headings[1]))/pk)*100;
+			if(Headings[1]>pk){yMeansHigh[i]=100;}
+			if(Headings[1]<=pk){yMeansHigh[i]=((100-Headings[1])/pk)*100;}
+			}
+		}
+		
+		for(i=6; i<9; i++) {
+			if(isActive[i]==1 & row3Count>1){
+			isActive[i]=0;
+			pk=parseFloat(pMean[i].substring(0,4))/CtoSub2Num;
+			yMeansLow[i]=((pk-(1-Headings[2]))/pk)*100;
+			if(Headings[2]>pk){yMeansHigh[i]=100;}
+			if(Headings[2]<=pk){yMeansHigh[i]=((100-Headings[2])/pk)*100;}
+			}
+		}
+
+		for(i=0; i<3; i++) {
+			if(isActive[column1Nums[i]]==1 & column1Count>1){
+			isActive[column1Nums[i]]=0;
+			pk=parseFloat(pMean[column1Nums[i]].substring(0,4))/TtoTNum;
+			xMeansLow[column1Nums[i]]=((pk-(1-Headings[3]))/pk)*100;
+			if(Headings[3]>pk){xMeansHigh[column1Nums[i]]=100;}
+			if(Headings[3]<=pk){xMeansHigh[column1Nums[i]]=((100-Headings[3])/pk)*100;}
+			}
+		}
+		
+		for(i=0; i<3; i++) {
+			if(isActive[column2Nums[i]]==1 & column2Count>1){
+			isActive[column2Nums[i]]=0;
+			pk=parseFloat(pMean[column2Nums[i]].substring(0,4))/TtoTNum;
+			xMeansLow[column2Nums[i]]=((pk-(1-Headings[4]))/pk)*100;
+			if(Headings[4]>pk){xMeansHigh[column2Nums[i]]=100;}
+			if(Headings[4]<=pk){xMeansHigh[column2Nums[i]]=((100-Headings[4])/pk)*100;}
+			}
+		}
+		
+		for(i=0; i<3; i++) {
+			if(isActive[column3Nums[i]]==1 & column3Count>1){
+			isActive[column3Nums[i]]=0;
+			pk=parseFloat(pMean[column3Nums[i]].substring(0,4))/TtoTNum;
+			xMeansLow[column3Nums[i]]=((pk-(1-Headings[5]))/pk)*100;
+			if(Headings[5]>pk){xMeansHigh[column3Nums[i]]=100;}
+			if(Headings[5]<=pk){xMeansHigh[column3Nums[i]]=((100-Headings[5])/pk)*100;}
+			}
+		}
+
+		for(i=0;i<9;i++){
+		if(xMean[i]!=0){
+		xMean[i] = xMean[i].substring(0,4);
+		}
+		if(yMean[i]!=0){
+		yMean[i] = yMean[i].substring(0,4);
+		}
+		}		
+		
+		for(i=0;i<9;i++){
+		if(xMeansLow[i]!=0){
+		xMean[i] = String(xMeansLow[i]).substring(0,4) + "-" + String(xMeansHigh[i]).substring(0,4);
+		}
+		if(yMeansLow[i]!=0){
+		yMean[i] = String(yMeansLow[i]).substring(0,4) + "-" + String(yMeansHigh[i]).substring(0,4);
+		}
+		}
+
+		var C = "c";
+		var cSub = C.sub();
+		var T = "t"
+		var tSub = T.sub();
+		for(var i = 0; i < strata; i++) {
+				var node = allCells[i];
+				var cellContent = node.childNodes[0].nodeValue; 
+				if (isActiveO[i]==0)
+					node.style.backgroundColor = "#808080";
+				if(isActiveO[i]!=0)
+					node.innerHTML = "P="+ pMean[i].substring(0,4)+"   Y"+tSub+"=" + xMean[i].substring(0,10)+"       Y"+cSub+"="+yMean[i].substring(0,10);
+				if(xMeansLow[i]!=0 | yMeansLow[i]!=0)
+					node.style.backgroundColor = "#6495ED";
+
+		}
+		
+		
+	localStorage.xMeans1 = xMeans[0];
+	localStorage.xMeans2 = xMeans[1];
+	localStorage.xMeans3 = xMeans[2];
+	localStorage.xMeans4 = xMeans[3];
+	localStorage.xMeans5 = xMeans[4];
+	localStorage.xMeans6 = xMeans[5];
+	localStorage.xMeans7 = xMeans[6];
+	localStorage.xMeans8 = xMeans[7];
+	localStorage.xMeans9 = xMeans[8];
+	localStorage.yMeans1 = yMeans[0];
+	localStorage.yMeans2 = yMeans[1];
+	localStorage.yMeans3 = yMeans[2];
+	localStorage.yMeans4 = yMeans[3];
+	localStorage.yMeans5 = yMeans[4];
+	localStorage.yMeans6 = yMeans[5];
+	localStorage.yMeans7 = yMeans[6];
+	localStorage.yMeans8 = yMeans[7];
+	localStorage.yMeans9 = yMeans[8];
+	localStorage.MeanKnown1 = MeanKnown[0];
+	localStorage.MeanKnown2 = MeanKnown[1];
+	localStorage.MeanKnown3 = MeanKnown[2];
+	localStorage.MeanKnown4 = MeanKnown[3];
+	localStorage.MeanKnown5 = MeanKnown[4];
+	localStorage.MeanKnown6 = MeanKnown[5];
+	localStorage.MeanKnown7 = MeanKnown[6];
+	localStorage.MeanKnown8 = MeanKnown[7];
+	localStorage.MeanKnown9 = MeanKnown[8];
+
+}	
+
+	function cont(){
+	window.location.href = 'file:./NextSteps.html';
+	}
+				
+		</script>
