@@ -196,7 +196,7 @@
         document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (Mean=" + CtoSub2 + ")";
         document.getElementById('group1Name').innerHTML = group1;
         document.getElementById('group2Name').innerHTML = group2;
-        document.getElementById('tableInfo').innerHTML = "Knowing the means under "+group1+" and "+group2+" for some of the groups in the grid will allow the tool to solve for the remaining values. For example, we know that the means across a row or down a column must average out to the marginal mean in that row or column.  We also know the proportions of participants who are members of the groups represented by each cell in the grid. Using the means we can observe, and these proportions, we can back out some of the mean outcomes under "+group1+" and "+group2+".";
+        document.getElementById('tableInfo').innerHTML = "Knowing the means under "+group1+" and "+group2+" for some of the groups in the grid will allow the tool to solve for the remaining values. For example, we know that the means across a row or down a column must average out to the marginal mean in that row or column. The mean in the margin is the weighted average of the means across the row or down the column. We also know the proportions of participants who are members of the groups represented by each cell in the grid. Using the means we can observe, and these proportions, we can back out some of the mean outcomes under "+group1+" and "+group2+".";
         //gray out excluded cells
         var C = "c";
         var cSub = C.sub();

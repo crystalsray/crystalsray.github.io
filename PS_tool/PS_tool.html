@@ -40,7 +40,7 @@
           <h2>Identify the Principal Strata for Your Study</h2>
           <p> Please fill in the following information needed to estimate bounds for principal causes effects</p>
           <h3> 1. How many groups are you interested in comparing? </h3>
-          <p> The first step is to identify the post-randomization activities that you want to examine for this study. These are behaviors and actions that might be possible for study participants under both assignment to the treatment condition and under assignment to the control condition. In the Feller et. al study of Head Start impacts researchers were interested in three types of early childhood education experiences: enrollment Head Start, at a non-Head Start Center or care provided in a home based setting. The Miratrix et al. 2016 study of Early College High schools focused on enrollment student could enroll at an Early College High schools, a high-quality public school or a low -quality public school. </p>
+          <p> The first step is to identify the post-randomization activities that you want to examine for this study.   These are behaviors and actions that might be possible for study participants under both assignment to the treatment condition and under assignment to the control condition.  In the  Miratrix et al. 2016 study of Early College High schools, researchers focused on enrollment in different types of high schools; students could enroll at an Early College High schools, high-quality public schools or low -quality public schools. </p>
 
           <p>This tool is designed to support the calculation of bounds for principal causal effects for two, three or four conditions defined by post-randomization activities or behaviors. Please indicate the number of post-randomization actions / behaviors for which you wish to estimate bounds in this study. </p>
 
@@ -79,36 +79,36 @@
             </form>
           </div> 
 
-          <h3> 3. For which latent subgroups are you interested in calculating bounds for the effects of treatment?  </h3>
-          <p> Principal stratification allows you to estimate impacts on latent subgroups that you can determine after random assignment. These groups are based on the experimental subjects’ observed and counterfactual post-randomization actions and behaviors. Please label the conditions of interest for this study. By default, the tool labels the conditions as “Condition1”, “Condition2”, and “Condition3”. You may edit these fields to reflect the condition of interest for your study. For example, in the Feller et. al Head Start example, we would label the treatment condition as “Head Start” and the alternate conditions as “Center Care” and “Home Care.” </p>
+          <h3> 3. For which strata are you interested in calculating bounds for the effects of treatment?  </h3>
+          <p> Principal stratification allows you to estimate impacts on strata, or subgroups that you can determine after random assignment. These groups are based on the experimental subjects’ observed and counterfactual post-randomization actions and behaviors. Please label the strata of interest for this study. By default, the tool labels the conditions as "Condition1", “Condition2”, and “Condition3”. You may edit these fields to reflect the condition of interest for your study. For example, in the Miratrix et. al. Early College High School (ECHS) example, we would label the treatment condition as “ECHS” and the alternate conditions as “Low Quality High School” and “High Quality High School.” </p>
 
 
           <div id="myDIV" class="header">
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="subgroup1">Treatment</label>
+                  <label for="subgroup1">Condition 1</label>
                 </div>
                 <div class="medium-10 columns">
-                  <input type="text" id="subgroup1" placeholder="Treatment">
+                  <input type="text" id="subgroup1" placeholder="Condition1">
                 </div>
             </div>
 
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="subgroup2">Subgroup1</label>
+                  <label for="subgroup2">Condition 2</label>
                 </div>
                 <div class="medium-10 columns">
-                 <input type="text" id="subgroup2" placeholder="Subgroup1">
+                 <input type="text" id="subgroup2" placeholder="Condition2">
                 </div>
             </div>
 
 
             <div class="row">
                 <div class="medium-2 columns">
-                  <label for="subgroup3">Subgroup2</label>
+                  <label for="subgroup3">Condition 3</label>
                 </div>
                 <div class="medium-10 columns">
-                  <input type="text" id="subgroup3" placeholder="Subgroup2">
+                  <input type="text" id="subgroup3" placeholder="Condition3">
                 </div>
             </div>
 
@@ -116,7 +116,7 @@
 
 
           <h4>4. What is the outcome of interest for your study? </h4>
-          <p> Please indicate an outcome of interest for your study. Note:  the tool only supports binary outcomes </p>
+          <p> Please indicate an outcome of interest for your study  Note:  the tool only supports binary outcomes </p>
           <form action="demo_form.asp">
               <div class="row">
                 <div class="medium-3 columns">
@@ -137,7 +137,7 @@
                 <label for="outcome_units">Estimated Effect</label>
               </div>
               <div class="medium-10 columns">
-                <input type="text" id="outcome_units" placeholder="Estimated Effect...">
+                <input type="text" id="outcome_units" placeholder="%">
               </div>
             </form>
           </div> <!--/row-->
@@ -295,10 +295,10 @@ if (clickcount==0){
     for (var j = 1; j <= columnCount; j++) {
             var cell = row.insertCell(-1);
       if(i==j){
-      strataInput.push("Always " + strataName[i]);
-      cell.innerHTML = "Always " + strataName[i];}
+      strataInput.push("Always takes up " + strataName[i]);
+      cell.innerHTML = "Always takes up " + strataName[i];}
             else{
-      cell.innerHTML = "If assigned to "+group1Name+" then takes up "+strataName[j]+" and if assigned to "+group2Name+" then takes up "+strataName[i];
+      cell.innerHTML = "Under assignment to "+group1Name+" takes up "+strataName[j]+"; under assignment to "+group2Name+" takes up "+strataName[i];
       }
         }
     }

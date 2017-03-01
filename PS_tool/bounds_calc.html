@@ -328,6 +328,13 @@
     }
     }   
     
+	for(i=0; i<9; i++) {
+	if(xMeansLow[i]>100){xMeans[i]=100;}
+	if(yMeansLow[i]>100){yMeans[i]=100;}
+	if(xMeansHigh[i]>100){xMeans[i]=100;}
+	if(yMeansHigh[i]>100){yMeans[i]=100;}
+	}
+		
     for(i=0;i<9;i++){
     if(xMeansLow[i]!=0){
     xMean[i] = String(xMeansLow[i]).substring(0,4) + "-" + String(xMeansHigh[i]).substring(0,4);

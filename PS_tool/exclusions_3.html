@@ -36,10 +36,10 @@
 
           <h2>Use Substantive Assumptions to Restrict the Number of Strata of Interest for these Analyses</h2>
           
-          <p>In most cases, it is possible to eliminate one or more of the strata based on two substantively driven assumptions. This page will walk you through those assumptions and help to refine your matrix to reflect the context of your study and research questions. </p>
+          <p>It is necessary to eliminate one or more of the strata in order to solve for the bounds. In most cases, it is possible to identify these strata based on two substantively driven assumptions. This page will walk you through those assumptions and help to refine your matrix to reflect the context of your study and research questions. </p>
 
           <h3> The Monotonicity Assumption </h3>
-          <p>The monotonicity assumption is that an individual would be at least as likely to take up the treatment under assignment to the treatment condition as under assignment to the control condition. For example, if the treatment were assignment to receiving a new medication, it might be appropriate to assume that there are no patients who would take up the medication under assignment to the control group but not take up the medication under assignment to the treatment. In the matrix below, click any strata in which you think you can apply the monotonicity assumption.</p>
+          <p>The monotonicity assumption is that an individual would be at least as likely to take up the treatment under assignment to the treatment condition as under assignment to the control condition. For example, in the ECHS study, a participant who enrolled in an ECHS under assignment to control would not attend a traditional high school under assignment to treatment. In the matrix below, click any strata where you think you can apply the monotonicity assumption.</p>
 
 
           <table id="monoGrid" class="testgrid" align="center">
@@ -188,10 +188,10 @@
         strataNames.push(strata3);
         strataNames.push(strata4);
 
-        document.getElementById('group1Name').innerHTML = group1;
-        document.getElementById('group2Name').innerHTML = group2;
-        document.getElementById('group1Name2').innerHTML = group1;
-        document.getElementById('group2Name2').innerHTML = group2;
+        document.getElementById('group1Name').innerHTML = "Assigned to " + group1;
+        document.getElementById('group2Name').innerHTML = "Assigned to " + group2;
+        document.getElementById('group1Name2').innerHTML = "Assigned to " + group1;
+        document.getElementById('group2Name2').innerHTML = "Assigned to " + group2;
         document.getElementById('strata1Name').innerHTML = strata1;
         document.getElementById('strata2Name').innerHTML = strata2;
         document.getElementById('strata3Name').innerHTML = strata3;
@@ -204,24 +204,24 @@
         document.getElementById('strata1Name4').innerHTML = strata1;
         document.getElementById('strata2Name4').innerHTML = strata2;
         document.getElementById('strata3Name4').innerHTML = strata3;
-        document.getElementById("strata1InputMono").innerHTML = "Always "+strata1;
-        document.getElementById("strata2InputMono").innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata1;
-        document.getElementById("strata3InputMono").innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata1;
-        document.getElementById("strata4InputMono").innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
-        document.getElementById('strata5InputMono').innerHTML = "Always "+strata2;
-        document.getElementById('strata6InputMono').innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata2;
-        document.getElementById('strata7InputMono').innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
-        document.getElementById('strata8InputMono').innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata3;
-        document.getElementById('strata9InputMono').innerHTML = "Always "+strata3;
-        document.getElementById("strata1InputIrr").innerHTML = "Always "+strata1;
-        document.getElementById("strata2InputIrr").innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata1;
-        document.getElementById("strata3InputIrr").innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata1;
-        document.getElementById("strata4InputIrr").innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
-        document.getElementById('strata5InputIrr').innerHTML = "Always "+strata2;
-        document.getElementById('strata6InputIrr').innerHTML = "If assigned to "+group1+" then takes up "+strata3+" and if assigned to "+group2+" then takes up "+strata2;
-        document.getElementById('strata7InputIrr').innerHTML = "If assigned to "+group1+" then takes up "+strata1+" and if assigned to "+group2+" then takes up "+strata2;
-        document.getElementById('strata8InputIrr').innerHTML = "If assigned to "+group1+" then takes up "+strata2+" and if assigned to "+group2+" then takes up "+strata3;
-        document.getElementById('strata9InputIrr').innerHTML = "Always "+strata3;
+        document.getElementById("strata1InputMono").innerHTML = "Always takes up "+strata1;
+        document.getElementById("strata2InputMono").innerHTML = "Under assignment to to "+group1+" takes up "+strata2+"; under assignment to "+group2+" takes up "+strata1;
+        document.getElementById("strata3InputMono").innerHTML = "Under assignment to to "+group1+" takes up "+strata3+"; under assignment to "+group2+" takes up "+strata1;
+        document.getElementById("strata4InputMono").innerHTML = "Under assignment to to "+group1+" takes up "+strata1+"; under assignment to "+group2+" takes up "+strata2;
+        document.getElementById('strata5InputMono').innerHTML = "Always takes up "+strata2;
+        document.getElementById('strata6InputMono').innerHTML = "Under assignment to to "+group1+" takes up "+strata3+"; under assignment to "+group2+" takes up "+strata2;
+        document.getElementById('strata7InputMono').innerHTML = "Under assignment to to "+group1+" takes up "+strata1+"; under assignment to "+group2+" takes up "+strata2;
+        document.getElementById('strata8InputMono').innerHTML = "Under assignment to to "+group1+" takes up "+strata2+"; under assignment to "+group2+" takes up "+strata3;
+        document.getElementById('strata9InputMono').innerHTML = "Always takes up "+strata3;
+        document.getElementById("strata1InputIrr").innerHTML = "Always takes up "+strata1;
+        document.getElementById("strata2InputIrr").innerHTML = "Under assignment to to "+group1+" takes up "+strata2+"; under assignment to "+group2+" takes up "+strata1;
+        document.getElementById("strata3InputIrr").innerHTML = "Under assignment to to "+group1+" takes up "+strata3+"; under assignment to "+group2+" takes up "+strata1;
+        document.getElementById("strata4InputIrr").innerHTML = "Under assignment to to "+group1+" takes up "+strata1+"; under assignment to "+group2+" takes up "+strata2;
+        document.getElementById('strata5InputIrr').innerHTML = "Always takes up "+strata2;
+        document.getElementById('strata6InputIrr').innerHTML = "Under assignment to to "+group1+" takes up "+strata3+"; under assignment to "+group2+" takes up "+strata2;
+        document.getElementById('strata7InputIrr').innerHTML = "Under assignment to to "+group1+" takes up "+strata1+"; under assignment to "+group2+" takes up "+strata2;
+        document.getElementById('strata8InputIrr').innerHTML = "Under assignment to to "+group1+" takes up "+strata2+"; under assignment to "+group2+" takes up "+strata3;
+        document.getElementById('strata9InputIrr').innerHTML = "Always takes up "+strata3;
         } 
 
   
@@ -252,17 +252,17 @@ function moveToBounds() {
     countColumn1 = countColumn1 + 1;
   }
   
-  if (localStorage.cell2.substring(0,2) == "If"){
+  if (localStorage.cell2.substring(0,2) == "Un"){
     countRow1 = countRow1 + 1;
     countColumn2 = countColumn2 + 1;
   }
   
-  if (localStorage.cell3.substring(0,2) == "If"){
+  if (localStorage.cell3.substring(0,2) == "Un"){
     countRow1 = countRow1 + 1;
     countColumn3 = countColumn3 + 1;
   }
   
-  if (localStorage.cell4.substring(0,2) == "If"){
+  if (localStorage.cell4.substring(0,2) == "Un"){
     countRow2 = countRow2 + 1;
     countColumn1 = countColumn1 + 1;
   }
@@ -272,17 +272,17 @@ function moveToBounds() {
     countColumn2 = countColumn2 + 1;
   }
 
-  if (localStorage.cell6.substring(0,2) == "If"){
+  if (localStorage.cell6.substring(0,2) == "Un"){
     countRow2 = countRow2 + 1;
     countColumn3 = countColumn3 + 1;
   }
 
-  if (localStorage.cell7.substring(0,2) == "If"){
+  if (localStorage.cell7.substring(0,2) == "Un"){
     countRow3 = countRow3 + 1;
     countColumn1 = countColumn1 + 1;
   }
 
-  if (localStorage.cell8.substring(0,2) == "If"){
+  if (localStorage.cell8.substring(0,2) == "Un"){
     countRow3 = countRow3 + 1;
     countColumn2 = countColumn2 + 1;
   }
@@ -294,15 +294,15 @@ function moveToBounds() {
   
   var isActive = [1,1,1,1,1,1,1,1,1];
   var cellsLocal = [localStorage.cell1, localStorage.cell2, localStorage.cell3, localStorage.cell4, localStorage.cell5, localStorage.cell6, localStorage.cell7, localStorage.cell8, localStorage.cell9];
-  if (countRow1==3){countRCACTIVE = countRCACTIVE+1;}
-  if (countRow2==3){countRCACTIVE = countRCACTIVE+1;}
-  if (countRow3==3){countRCACTIVE = countRCACTIVE+1;}
-  if (countColumn1==3){countRCACTIVE = countRCACTIVE+1;}
-  if (countColumn2==3){countRCACTIVE = countRCACTIVE+1;}
-  if (countColumn3==3){countRCACTIVE = countRCACTIVE+1;}
+  if (countRow1>=1){countRCACTIVE = countRCACTIVE+1;}
+  if (countRow2>=1){countRCACTIVE = countRCACTIVE+1;}
+  if (countRow3>=1){countRCACTIVE = countRCACTIVE+1;}
+  if (countColumn1>=1){countRCACTIVE = countRCACTIVE+1;}
+  if (countColumn2>=1){countRCACTIVE = countRCACTIVE+1;}
+  if (countColumn3>=1){countRCACTIVE = countRCACTIVE+1;}
   for (var i = 0; i<9 ; i++)
   {
-    if(cellsLocal[i].substring(0,2)!="Al" && cellsLocal[i].substring(0,2)!= "If"){
+    if(cellsLocal[i].substring(0,2)!="Al" && cellsLocal[i].substring(0,2)!= "Un"){
     count = count + 1;
     isActive[i] = 0;
     }
@@ -322,13 +322,13 @@ function moveToBounds() {
   localStorage.isActive7 = isActive[6];
   localStorage.isActive8 = isActive[7];
   localStorage.isActive9 = isActive[8];
-  if(count<3){alert("You must make 3 or more assumptions to use this tool.");}
-  if(count>=3 & countRCACTIVE>1){alert("You can only have one full row or column still active in order to use this tool.");}
-  if (count>4 || countRCACTIVE==0){
-  alert("You can directly solve for the means under both treatment and control and you do not need bounds");
-  window.location.href = 'noBoundsRedirect.html';
-  }
-  if (count>=3 & count<=4 & countRCACTIVE==1){window.location.href = 'pKnown.html';}
+  if(count<4){alert("You must make 4 or more assumptions to use this tool.");}
+  if(countRCACTIVE<6){alert("You must have at least one cell active in each row and column");}
+  //if (count>4 || countRCACTIVE==0){
+  //alert("You can directly solve for the means under both treatment and control and you do not need bounds");
+  //window.location.href = 'noBoundsRedirect.html';
+  //}
+  if (count>=4 & countRCACTIVE==6){window.location.href = 'pKnown.html';}
   }
 var row = new Array();
 var column = new Array();

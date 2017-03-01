@@ -40,7 +40,7 @@
       <p id="instructions"> </p>
       
       <p id="instructions2"> </p>
-
+		<p> This application assumes that there is not an imbalance in attrition between the treatment and control conditions, as high differential can bias results. Please see the <a href="https://ies.ed.gov/ncee/wwc/Docs/referenceresources/wwc_brief_attrition_080715.pdf" target="_blank" alt="WWC">WWC Attrition Standards</a> for more information.</p>
       
       <h3 id="heading1"> </h3>
 
@@ -220,11 +220,11 @@ window.onload = function() {
         var cell8Input = localStorage.cell8;
         var cell9Input = localStorage.cell9;
         var outcome = localStorage.outcome;
-        document.getElementById('heading1').innerHTML = "Add percentages of "+group1+" assigned participants in each condition";
+        document.getElementById('heading1').innerHTML = "Enter the percentages of "+group1+"-assigned participants who took up each condition (Note: These percentages should sum to 1)";
         document.getElementById('q1').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata1+"?";
         document.getElementById('q2').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata2+"?";
         document.getElementById('q3').innerHTML = "What percentage of "+group1+" assigned participants took up the "+strata3+"?";
-        document.getElementById('heading2').innerHTML = "Add percentages of "+group2+" assigned participants in each condition";
+        document.getElementById('heading2').innerHTML = "Enter the percentages of "+group2+"-assigned participants who took up each condition (Note: These percentages should sum to 1)";
         document.getElementById('q4').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata1+"?";
         document.getElementById('q5').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata2+"?";
         document.getElementById('q6').innerHTML = "What percentage of "+group2+" assigned participants took up the "+strata3+"?";
@@ -245,7 +245,7 @@ window.onload = function() {
         document.getElementById('strata3Name2').innerHTML = strata3;
         document.getElementById('group1Name').innerHTML = group1;
         document.getElementById('group2Name').innerHTML = group2;
-        document.getElementById('instructions').innerHTML = "Below please enter the number of "+group1+" and "+group2+"-assigned participants who were observed in "+strata1+", "+strata2+" or "+strata3+".  The tool will use these proportions to estimate the share of participants in each of the groups represented in each of your strata of interest.";
+        document.getElementById('instructions').innerHTML = "Below please enter the proportions of "+group1+" and "+group2+"-assigned participants who were observed in "+strata1+", "+strata2+" or "+strata3+".  The tool will use these proportions to estimate the share of participants in each of the groups represented in each of your strata of interest.";
         document.getElementById('instructions2').innerHTML = "Please limit your sample to observations that are not missing "+outcome;
         //gray out excluded cells
         var allCells = document.getElementsByTagName("td");
@@ -641,7 +641,7 @@ window.onload = function() {
     if(i<lenghtminus1){tableInfoKnown = tableInfoKnown + Math.round(pForTextKNOWN[i]) + "% of your " + groupsKNOWN[i] + " participants took up " + subgroupsKNOWN[i] + ", ";}
     if(i==lenghtminus1){tableInfoKnown = tableInfoKnown + "and " + Math.round(pForTextKNOWN[i]) + "% of your " + groupsKNOWN[i] + " participants took up " + subgroupsKNOWN[i] + ".";}
   }
-  document.getElementById('tableInfo').innerHTML = "Using this information and your previous assumptions, you can begin to fill in the grid with the proportions of individuals in each stratum. .You can directly observe the proportions of these students in your data. "+tableInfoKnown+" Participants in directly observed cells exhibit the same behavior under both treatment and control. For example, we would expect control-assigned participants who took up treatment to also take up treatment when actually assigned to that condition. We would also assume that a participant who was assigned to "+group1+" but took up "+strata2+" would also take up "+strata2+" under assignment to "+group2+".";
+	document.getElementById('tableInfo').innerHTML = "Below, you can see the grid representing possible principal strata based on your study specific conditions. Participants can be assigned to "+group1+" or "+group2+" and take up "+strata1+", "+strata2+" or "+strata3+". Based on "+group1+" and "+group2+" group specific values you have entered, you can use this information to determine the share of individuals in certain strata. "+tableInfoKnown+" Participants in directly observed cells exhibit the same behavior under both treatment and control. For example, we would expect control-assigned participants who took up treatment to also take up treatment when actually assigned to that condition. We would also assume that a participant who was assigned to "+group1+" but took up "+strata2+" would also take up "+strata2+" under assignment to "+group2+".";
   var tableInfoUnknown = pForText[0] + "% of your " + groups[0] + " participants took up " + subgroups[i];
   localStorage.tableInfo = tableInfoUnknown;
   } 

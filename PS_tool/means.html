@@ -39,14 +39,15 @@
       
 
         <div class="row">
-          <h2> Applying the Exclusion Restriction </h2>
-
-          <p id="tableInfo"></p> 
+          <h2> Applying the Exclusion Restriction to Directly Observed Means</h2>
 
           <p id="tableInfo2"></p>
 
           <p id="tableInfo3"></p>
 
+		  <p id="tableInfo4"></p>
+
+          <p id="tableInfo5"></p>
 
           <table id="boundsGrid" class="testgrid table_blue_bg" align="center">
             <tr>
@@ -239,10 +240,11 @@ window.onload = function() {
     document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (Mean=" + CtoTNum + "%)";
     document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (Mean=" + CtoSub1Num + "%)";
     document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (Mean=" + CtoSub2Num + "%)";
-    document.getElementById('tableInfo').innerHTML="We will use this information to solve for means under "+group1+" and "+group2+". Each of the groups in the grid below represents a group of participants who have a behavior under assignment to treatment and behavior under assignment to control. The mean outcomes in the margins represent the outcomes for observable groups in your data. If the means in the margins are incorrect, please return to the previous page.";
-    document.getElementById('tableInfo2').innerHTML = "Similar to how you could directly observe the proportion of participants in several groups, you can also directly observe the mean outcomes of these groups under "+group1+" and "+group2+". The means of the principal strata in a given row or a given column will average out to the mean displayed in the margin of that column and row.  This represents a weighted average according to the relative share of participants in each cell. If a cell in the grid below is the only active cell in a column, you know their mean under "+group1+", and if it is the only active cell in a row, you know their mean under "+group2+". ";
-    document.getElementById('tableInfo3').innerHTML = "You can apply the exclusion restriction to these cells. In doing so, we assume that participants in these groups’ assignments to either "+group1+" or "+group2+" do not affect their behavior, and thus do not influence their outcome. Their outcome under assignment to "+group1+" and assignment to "+group2+" will be the same. The exclusion restriction allows us to assume that the mean outcomes under "+group1+" and under "+group2+" are equal in these groups. Thus, there is no "+group1+" impact for these groups.";
-    var pMean1 = localStorage.pMean1;
+    document.getElementById('tableInfo2').innerHTML = "Similar to how you could directly observe the proportion of participants in several strata, you can also directly observe the mean outcomes of these strata under assignment to "+group1+" and "+group2+". The means of the principal strata in a given row or a given column will average out to the mean displayed in the margin of that column and row.  This marginal mean represents a weighted average based on the relative share of students in each cell. If a cell in the grid below is the only active cell in a column, you know their mean under assignment to "+group1+" is equal to the mean in the margin of that column, and if it is the only active cell in a row, you know their mean under assignment to "+group2+" is equal to the mean in the margin of that row.";
+    document.getElementById('tableInfo3').innerHTML = "These observations allow you to apply the exclusion restriction. The exclusion restriction is another assumption that is useful in determining the program impacts on different strata. You can apply the exclusion restriction to the highlighted cells below. The exclusion restriction assumes that the mean outcome under assignment to "+group1+" and the mean outcome under assignment to "+group2+" will be the same in cases where "+group1+" assignment does not influence participants’ behavior.";
+    document.getElementById('tableInfo4').innerHTML = "For example, if a student entered an ECHS lottery and did not receive an ECHS offer, they may find their way into an ECHS anyway (these students are cross-overs). We would assume that these students would also attend an ECHS if they had actually won the lottery. This student’s assignment to the treatment or control condition does not affect his or her behavior. Regardless of assignment, the student still enrolls at an ECHS, and will have the same outcomes under both the treatment and control conditions. "
+	document.getElementById('tableInfo5').innerHTML = "Thus, applying the exclusion restriction allows you to assume that for these strata, the mean outcomes under both assignment to "+group1+" and "+group2+" are the same, and that the program impacts on these strata is 0."
+	var pMean1 = localStorage.pMean1;
     var pMean2 = localStorage.pMean2;
     var pMean3 = localStorage.pMean3;
     var pMean4 = localStorage.pMean4;
@@ -406,7 +408,18 @@ window.onload = function() {
       }
     }
     
-
+//set upper bound at 100
+	for(i=0; i<9; i++) {
+	if(xMeans[i]>100){xMeans[i]=100;}
+	if(yMeans[i]>100){yMeans[i]=100;}
+	}
+	
+//set upper bound at 100
+	for(i=0; i<9; i++) {
+	if(xMeans[i]<0){alert("Your means are not logical; you would end up with negative outcome values");}
+	if(yMeans[i]<0){alert("Your means are not logical; you would end up with negative outcome values");}
+	}
+	
     var C = "c";
     var cSub = C.sub();
     var T = "t"
