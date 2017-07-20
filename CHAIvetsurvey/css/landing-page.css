@@ -54,16 +54,17 @@ a.white-link:hover {
     color: #f8f8f8;
     background: url(../img/hero.png) no-repeat top center;
     background-size: cover;
+    border-bottom: 1px solid #ccc;
 
 
 }
 
 .header-gradient {
     background: rgb(24,231,255); /* For browsers that do not support gradients */
-     background: -webkit-linear-gradient(-45deg,rgba(82,255,250,.),rgba(255,240,176,1)); /*Safari 5.1-6*/
-     background: -o-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,240,176,1)); /*Opera 11.1-12*/
-     background: -moz-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,240,176,1)); /*Fx 3.6-15*/
-     background: linear-gradient(-45deg, rgba(82,255,250,0), rgba(255,240,176,1)); /*Standard*/
+     background: -webkit-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,255,225,1)); /*Safari 5.1-6*/
+     background: -o-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,255,225,1)); /*Opera 11.1-12*/
+     background: -moz-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,255,225,1)); /*Fx 3.6-15*/
+     background: linear-gradient(-45deg, rgba(82,255,250,0), rgba(255,255,225,1)); /*Standard*/
      padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
      padding-bottom: 50px;
 }
@@ -190,11 +191,11 @@ a.white-link:hover {
 
 @media(max-width:991px) {
     .header-gradient {
-         background: red; /* For browsers that do not support gradients */
-         background: -webkit-linear-gradient(-90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Safari 5.1-6*/
-         background: -o-linear-gradient(-90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Opera 11.1-12*/
-         background: -moz-linear-gradient(-90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Fx 3.6-15*/
-         background: linear-gradient(-90deg, rgba(255,255,225,1), rgba(255,240,176,1)); /*Standard*/
+         background: rgb(255,240,176); /* For browsers that do not support gradients */
+         background: -webkit-linear-gradient(90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Safari 5.1-6*/
+         background: -o-linear-gradient(90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Opera 11.1-12*/
+         background: -moz-linear-gradient(90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Fx 3.6-15*/
+         background: linear-gradient(90deg, rgba(255,255,225,1), rgba(255,240,176,1)); /*Standard*/
 
     }
 
