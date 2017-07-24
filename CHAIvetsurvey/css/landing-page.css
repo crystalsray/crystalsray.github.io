@@ -53,23 +53,17 @@ a.white-link:hover {
 }
 
 .intro-header {
-    background-color: red;
+    background-color: #ffffe1;
     text-align: center;
-    color: #f8f8f8;
-    background: url(../img/hero.png) no-repeat top center;
-    background-size: auto;
-    background-position: top right;
-    border-bottom: 1px solid #ccc;
-
 
 }
 
 .header-gradient {
-    background: orange; /* For browsers that do not support gradients */
-     background: -webkit-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,255,225,1)); /*Safari 5.1-6*/
-     background: -o-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,255,225,1)); /*Opera 11.1-12*/
-     background: -moz-linear-gradient(-45deg,rgba(82,255,250,0),rgba(255,255,225,1)); /*Fx 3.6-15*/
-     background: linear-gradient(-45deg, rgba(82,255,250,0), rgba(255,255,225,1)); /*Standard*/
+
+        background: url(../img/hero.png) no-repeat top center;
+    background-size: auto;
+    background-position: bottom right;
+    border-bottom: 1px solid #ccc;
      padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
      padding-bottom: 50px;
 }
