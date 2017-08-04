@@ -24,7 +24,7 @@ h6 {
 h1, .logotext {
     color: #444;
     font-family: Palatino;
-    
+    margin-bottom: 30px;
 }
 
 .logotext {
@@ -307,4 +307,13 @@ p.copyright {
 
 body {
     margin-top: 100px;
+}
+
+i.fa {
+    font-size: 18px;  /* styling for font awesome icons */
+    margin-right: 10px;
+}
+
+a.btn {
+    white-space: normal; /* wrap text for button links */
 }
