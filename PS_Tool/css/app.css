@@ -1,0 +1,246 @@
+/* custom CSS styles */
+
+body { 
+		font-family:'lucida grande', tahoma, verdana, arial, sans-serif;
+		color: #787878;
+}
+
+h1, h1 > a, h1 > a:active , h1 > a:visited {
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #f7f3ec;
+	text-decoration: none;
+}
+
+h1 > a:hover {
+	text-decoration: underline;
+}
+
+h2 {
+	color: #F3954F; /* orange */
+	font-size: 30px;
+}
+
+h3 {
+	color: #F3954F; /* orange */
+	font-size: 20px;
+}
+
+h4 {
+	font-size: 16px;
+	color: #787878;
+	font-weight: bold;
+}
+
+label, input {
+	display: inline;
+}
+
+label {
+	color: #787878;
+	
+}
+
+/* side menu styling  */
+
+.menu>li>a {
+	line-height: 1.2;
+}
+
+/* right side lables on bound.html page */
+ .input-group-label-right {
+ 	border-right: 1px solid #cacaca;
+ 	border-top: 1px solid #cacaca;
+ 	border-bottom: 1px solid #cacaca;
+ 	background-color: transparent;
+ }
+
+.input-group input {
+	text-align: center;
+	border-right: 0px;
+	box-shadow: none;
+}
+
+
+[type=text] {
+	display: inline;
+}
+
+table {
+	border: 0px;
+	font-size: 15px
+}
+
+select#selection {
+	width: 100px;
+}
+
+
+a:hover { text-decoration: underline; }
+			
+/* Table styling, #dvTable */
+table.testgrid, table { 
+		border-collapse: collapse; 
+		border: 1px solid #CCB; 
+		width: 100%; 
+		font-size: 13px;
+}
+
+table.testgrid td, table.testgrid th, table td, table th { 
+	padding: 5px; 
+	border: 2px solid #fff;
+	/*border: 5px solid #E0E0E0; */
+}
+
+table.testgrid th, table th { 
+	background: #E5E5E5; 
+	text-align: center; 
+	color: #595959;
+}
+
+table.testgrid td, table td {
+	padding: 10px;
+}
+
+input.invalid { 
+	background: red; 
+	color: #FDFDFD; 
+}
+
+table tbody tr:nth-child(even) {
+	background-color: transparent;
+}
+
+/* Styling for table on pKnown.html */
+.table_blue_bg td {
+	background-color: #99ccff; /* light blue */
+	text-align: center;
+	color: #000;
+}
+
+/* Primary table headers */
+.table-header {
+	background-color: #D3D3D3;
+	color:#585858 ;
+	text-align: center;
+	font-weight: bold;
+}
+
+/* secondary table headers */
+.control-treatment-header, th.control-treatment-header {
+	background-color: #fff !important;
+	text-decoration: center;
+	font-weight: bold;
+	text-align: center;
+	color: #c75b0c !important; /* dark orange */
+}
+
+/* Blue cell */
+
+.testgrid td.blue-cell, .blue-cell {
+	background-color: #4266a9;
+	color: #fff;
+	text-align: center;
+}
+
+/* Gray Cell */
+.testgrid td.gray-cell, .gray-cell {
+	background-color: #707070;
+	color: #fff;
+	text-align: center;
+}
+
+/* White Cell */
+.testgrid td.white-cell, .white-cell {
+	background-color: #ffffff;
+	color: #585858;
+	text-align: center;
+}
+
+/* Bold Cell */
+.testgrid td.bold-cell, .bold-cell {
+	text-align: center;
+	border: 5px solid black;
+}
+
+/* divs and paragraphs that are initially  hidden */
+
+.callout.success { 
+	display: none;
+	background-color: #f6f2eb;
+}
+
+.callout {
+	border: 1px solid hsla(0,0%,4%,.1);
+}
+
+/* topbar*/
+.top-bar, .top-bar ul, .top-bar a {
+	
+	font-weight: bold;
+}
+
+
+/* header */
+.callout.primary {
+	background-color: rgb(51,51,51);
+}
+
+/* footer */
+.callout.secondary { 
+	background-color: #f2f2f2;
+	color: #787878;
+}
+
+footer .callout.secondary {
+	margin: 0 0 0;
+}
+
+/* gray */
+
+.callout.success {
+	/*background-color: #f2f2f2;*/
+}
+
+/* Vertical menu */
+
+ol.menu.vertical {
+	font-size: .9rem;
+}
+
+ol.menu.vertical {
+	border-left: 5px solid #fff;
+}
+
+.menu > li {
+	line-height: 1.2;
+	padding: .4rem 1rem;
+}
+
+.menu > .active  {
+	border-left: 5px solid #F3954F;
+	background-color: transparent;
+	color: #585858  ; /*gray color*/ 
+	font-weight: bold;
+}
+
+.menu .active>a {
+	
+	background-color: transparent;
+	color: #1779ba ; /*blue color */ 
+	font-weight: bold;
+}
+
+.menu>li>a {
+	padding: 0;
+}
+
+
+.button {
+	background-color: #c75b0c;
+}
+
+.button:hover, .button:active {
+	background-color: #9e4300;
+}
+
+

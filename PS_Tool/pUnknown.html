@@ -1,0 +1,201 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate bounds for the effects of the treatment for in strata of interest</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/mathjs-master/dist/math.js"></script>
+  </head>
+  <body>
+    
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Principal Stratification Tool</h1>
+      </div>
+    </div>
+    
+    <div class="row" id="content">
+
+      <div class="medium-3 medium-offset-1 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+          <ol class="menu vertical">
+            <li><a href="index.html"><strong>Start &rarr;</strong> Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool</a></li>
+            <li><a href="intro_1a.html">Design Requirements</a></li>
+			<li><a href="PS_tool.html"> Identify the Principal Strata for your Study</a></li>
+			<li><a href="exclusions_3.html">Use Substantive Assumptions to Restrict the Number of Strata of Interest for these Analyses</a></li>
+            <li><a href="pKnown.html"> Determining Proportions of Subgroups using Observed Quantities</a></li>
+            <li class="active"><a href="pUnknown.html">Solving for Proportions that are not Directly Observed</a></li>
+            <li><!-- meansIntro.html -->Solving for Means under Treatment and Control</li>
+			<li><!-- means.html -->Applying the Exclusion Restriction</li>
+			<li><!-- meansUnknown.html -->Solving for the Remaining Means</li>
+            <li><!-- bounds_calc.html -->Calculating the Bounds and Estimating Ranges of Impact</li>
+            <li><!-- NextSteps.html -->Next Steps</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="medium-7 columns">
+        <div class="row">
+          <h2>Solving for Proportions that are not Directly Observed</h2>
+          <p id="tableInfo"></p>
+
+          <table id="boundsGrid" class="testgrid" align="center">
+            <tr>
+              <th colspan=5 class="control-treatment-header" id="group1Name"></th>
+            </tr>
+            <tr>
+              <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
+            </tr>
+            <tr>
+              <th> </th>
+              <th id="strata1Name"></th>
+              <th id="strata2Name"></th>
+              <th id="strata3Name"></th>
+            </tr>
+            <tr>
+              <th id="strata1Name2"></th>
+              <td id="strata1Input"> </td>
+              <td id="strata2Input"> </td>
+              <td id="strata3Input"> </td>
+            </tr>
+            <tr>
+              <th id="strata2Name2"></th>
+              <td id="strata4Input"> </td>
+              <td id="strata5Input"> </td>
+              <td id="strata6Input"> </td>
+            </tr>
+            <tr>
+              <th id="strata3Name2"></th>
+              <td id="strata7Input"> </td>
+              <td id="strata8Input"> </td>
+              <td id="strata9Input"> </td>
+            </tr>
+          </table>
+
+        </div> <!--/ end blog post -->
+
+        <div class="row">
+            <div class="small-12 text-center">
+              <button class="button" onclick="submitP()">Continue</button>
+            </div>
+        </div>
+
+      </div> <!--/ end medium- 7-->
+
+      
+      
+
+      <div class="medium-1 columns">&nbsp;
+      </div>
+
+    </div><!--/ end row -->
+    
+
+    <footer>
+      <div class="row expanded callout secondary">
+        <div class="medium-10 medium-offset-1 columns">
+          <p>Funding for this project was provided by Grant #201500035 from the Spencer Foundation. This website is designed to assist researchers interested in applying a principal stratification approach to their research questions. This tool intended for researchers who have a familiarity with the principal stratification approach. Researchers unfamiliar with the approach are encouraged to consult Page et al 2015 before using this tool.</p>
+<br><p>Furey, J., Grindal, T., & Page, L. (2017). Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool (Version 1.0, Software]. Available from <a> www.INSERTPAGE<a>  <p>
+
+        </div>
+      </div>
+
+
+      <!--<div class="row">
+        <div class="medium-12 columns text-center">
+          <p><strong>Funding for this project was provided through a grant from Spencer Foundation</strong></p>
+        </div>
+      </div>-->
+
+    </footer>
+    
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script>
+     window.onload = function() {
+        var groupNames= new Array();
+        var strataNames = new Array();
+        var group1 = localStorage.group1Local;
+        var group2 = localStorage.group2Local;
+        var strata = localStorage.strataLocal;
+        strata = strata*strata;
+        var strata1 = localStorage.strata1Local;
+        var strata2 = localStorage.strata2Local;
+        var strata3 = localStorage.strata3Local;
+        var isActive1 = parseInt(localStorage.isActive1);
+        var isActive2 = parseInt(localStorage.isActive2);
+        var isActive3 = parseInt(localStorage.isActive3);
+        var isActive4 = parseInt(localStorage.isActive4);
+        var isActive5 = parseInt(localStorage.isActive5);
+        var isActive6 = parseInt(localStorage.isActive6);
+        var isActive7 = parseInt(localStorage.isActive7);
+        var isActive8 = parseInt(localStorage.isActive8);
+        var isActive9 = parseInt(localStorage.isActive9);
+        var isActive = [isActive1, isActive2, isActive3, isActive4, isActive5, isActive6, isActive7, isActive8, isActive9];
+        var pMeanKnown1 = localStorage.pMeanKnown1;
+        var pMeanKnown2 = localStorage.pMeanKnown2;
+        var pMeanKnown3 = localStorage.pMeanKnown3;
+        var pMeanKnown4 = localStorage.pMeanKnown4;
+        var pMeanKnown5 = localStorage.pMeanKnown5;
+        var pMeanKnown6 = localStorage.pMeanKnown6;
+        var pMeanKnown7 = localStorage.pMeanKnown7;
+        var pMeanKnown8 = localStorage.pMeanKnown8;
+        var pMeanKnown9 = localStorage.pMeanKnown9;
+        var pMeanKnown = [pMeanKnown1, pMeanKnown2, pMeanKnown3, pMeanKnown4, pMeanKnown5, pMeanKnown6, pMeanKnown7, pMeanKnown8, pMeanKnown9];
+        var pMean1 = localStorage.pMean1;
+        var pMean2 = localStorage.pMean2;
+        var pMean3 = localStorage.pMean3;
+        var pMean4 = localStorage.pMean4;
+        var pMean5 = localStorage.pMean5;
+        var pMean6 = localStorage.pMean6;
+        var pMean7 = localStorage.pMean7;
+        var pMean8 = localStorage.pMean8;
+        var pMean9 = localStorage.pMean9;
+        var pMean = [pMean1, pMean2, pMean3, pMean4, pMean5, pMean6, pMean7, pMean8, pMean9];
+        var TtoTNum = localStorage.TtoTNum;
+        var TtoSub1Num = localStorage.TtoSub1Num;
+        var TtoSub2Num = localStorage.TtoSub2Num;
+        var CtoTNum = localStorage.CtoTNum;
+        var CtoSub1Num = localStorage.CtoSub1Num;
+        var CtoSub2Num = localStorage.CtoSub2Num;
+        document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (P=" + TtoTNum + ")";
+        document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (P=" + TtoSub1Num + ")";
+        document.getElementById('strata3Name').innerHTML = localStorage.strata3Local + " (P=" + TtoSub2Num + ")";
+        document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (P=" + CtoTNum + ")";
+        document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (P=" + CtoSub1Num + ")";
+        document.getElementById('strata3Name2').innerHTML = localStorage.strata3Local + " (P=" + CtoSub2Num + ")";
+        document.getElementById('group1Name').innerHTML = "Assigned to "+group1;
+        document.getElementById('group2Name').innerHTML = "Assigned to "+group2;
+        //gray out excluded cells
+        var allCells = document.getElementsByTagName("td");
+        for(var i = 0; i < strata; i++) {
+          var node = allCells[i];
+          var cellContent = node.childNodes[0].nodeValue; 
+          if (isActive[i]==0)
+            node.style.backgroundColor = "#808080";
+          if(isActive[i]!=0)
+            node.innerHTML = "P="+ Math.round(pMean[i]*1000)/1000;
+			node.classList.add("white-cell");
+          if(pMeanKnown[i]==0 & pMean[i]!=0)
+		    node.classList.remove("white-cell");
+            node.classList.add("blue-cell");
+        }
+        
+        document.getElementById('tableInfo').innerHTML = "Using the directly observable proportions and the data you entered, we can solve for the proportions of observations in the remaining strata. We know that the proportions across each row, or down each column, must sum to the quantities in the margins. This rule allows us to solve for the remaining proportions. Sometimes these calculations are rather simple, and it involves subtracting a directly observed proportion from a marginal proportion. Other times, you can solve using a system of several equations. In the grid below, you will find all proportions filled in and you can note that the quantities in the rows and columns sum to the marginal proportions.";
+      }
+      
+      function submitP(){
+      window.location.href = 'meansIntro.html';
+      }
+
+
+        
+    </script>
+  </body>
+</html>
+
+
+

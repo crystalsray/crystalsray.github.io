@@ -1,0 +1,404 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculating the Bounds and Estimating Ranges of Impact</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/mathjs-master/dist/math.js"></script>
+  </head>
+  <body>
+    
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Principal Stratification Tool</h1>
+      </div>
+    </div>
+    
+    <div class="row" id="content">
+
+      <div class="medium-3 medium-offset-1 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+          <ol class="menu vertical">
+            <li><a href="index.html"><strong>Start &rarr;</strong> Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool</a></li>
+            <li><a href="intro_1a.html">Design Requirements</a></li>
+			<li><a href="PS_tool.html"> Identify the Principal Strata for your Study</a></li>
+			<li><a href="exclusions_2.html">Use Substantive Assumptions to Restrict the Number of Strata of Interest for these Analyses</a></li>
+            <li><a href="pKnown2.html"> Determining Proportions of Subgroups using Observed Quantities</a></li>
+            <li><a href="pUnknown2.html">Solving for Proportions that are not Directly Observed</a></li>
+            <li><a href="meansIntro2.html">Solving for Means under Treatment and Control</a></li>
+			<li><a href="means2.html">Applying the Exclusion Restriction</a></li>
+			<li><a href="meansUnknown2.html">Solving for the Remaining Means</a></li>
+            <li class="active"><a href="bounds_calc2.html">Calculating the Bounds and Estimating Ranges of Impact</a></li>
+            <li><!-- NextSteps.html -->Next Steps</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="medium-7 columns">
+        <div class="row column">
+          <h2>Calculating the Bounds and Estimating Ranges of Impact</h2>
+
+          <p id="tableInfo"></p> 
+          
+          <p>Using the information in your grid, you can calculate maximum and minimum values for the remaining unknown means. You will then know the range of possible values the means will fall between, which will allow you to calculate the range of treatment effects on that specific group. </p>
+
+          <p id="tableInfo2" align="left"></p>
+
+          <table id="boundsGrid" class="testgrid" align="center">
+            <tr>
+              <th colspan=5 class="control-treatment-header" id="group1Name"></th>
+            </tr>
+            <tr>
+              <th rowspan=6 class="control-treatment-header" id="group2Name"></th>
+            </tr>
+            <tr>
+              <th> </th>
+              <th id="strata1Name"></th>
+              <th id="strata2Name"></th>
+            </tr>
+            <tr>
+              <th id="strata1Name2"></th>
+              <td id="strata1Input"> </td>
+              <td id="strata2Input"> </td>
+            </tr>
+            <tr>
+              <th id="strata2Name2"></th>
+              <td id="strata4Input"> </td>
+              <td id="strata5Input"> </td>
+            </tr>
+        </table>
+
+        <p>Because you now have solved for all means under treatment and control, you can estimate the possible treatment-control differences within each of the latent subgroups. You simply need to subtract the possible values of the means under control from the possible values of the means under treatment to get your possible treatment-control differences.</p>
+
+
+        </div> <!--/ end blog post -->
+
+        <div class="row column">
+            <div class="small-12 text-center">
+              <button class="button" onclick="cont()">Continue</button>
+            </div>
+        </div>
+
+      </div> <!--/ end medium- 7-->
+
+      
+      
+
+      <div class="medium-1 columns">&nbsp; <!-- keep column empty, last column spans the remaining width of the page -->
+      </div>
+
+    </div><!--/ end row -->
+    
+
+    <footer>
+      <div class="row expanded callout secondary">
+        <div class="medium-10 medium-offset-1 columns">
+          <p>Funding for this project was provided by Grant #201500035 from the Spencer Foundation. This website is designed to assist researchers interested in applying a principal stratification approach to their research questions. This tool intended for researchers who have a familiarity with the principal stratification approach. Researchers unfamiliar with the approach are encouraged to consult Page et al 2015 before using this tool.</p>
+<br><p>Furey, J., Grindal, T., & Page, L. (2017). Calculating Bounds for Principal Causal Effects: Interactive Analysis Tool (Version 1.0, Software]. Available from <a> www.INSERTPAGE<a>  <p>
+
+        </div>
+      </div>
+
+
+    </footer>
+    
+    <script src="js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script>
+
+       window.onload = function() {
+	  var unknownX1= localStorage.unknownX1;
+	  var unknownX2= localStorage.unknownX2;
+	  var unknownX3= localStorage.unknownX3;
+	  var unknownX4= localStorage.unknownX4;
+	  var unknownX = [unknownX1, unknownX2, unknownX3, unknownX4];
+	  var unknownY1= localStorage.unknownY1;
+	  var unknownY2= localStorage.unknownY2;
+	  var unknownY3= localStorage.unknownY3;
+	  var unknownY4= localStorage.unknownY4;
+	  var unknownY = [unknownY1, unknownY2, unknownY3, unknownY4];
+        var groupNames= new Array();
+        var strataNames = new Array();
+        var group1 = localStorage.group1Local;
+        var group2 = localStorage.group2Local;
+        var strata = localStorage.strataLocal;
+        strata = strata*strata;
+        var strata1 = localStorage.strata1Local;
+        var strata2 = localStorage.strata2Local;
+        var isActive1 = parseInt(localStorage.NewisActive1);
+        var isActive2 = parseInt(localStorage.NewisActive2);
+        var isActive3 = parseInt(localStorage.NewisActive3);
+        var isActive4 = parseInt(localStorage.NewisActive4);
+        var isActive = [isActive1, isActive2, isActive3, isActive4];
+        var isActive1O = parseInt(localStorage.isActive1);
+        var isActive2O = parseInt(localStorage.isActive2);
+        var isActive3O = parseInt(localStorage.isActive3);
+        var isActive4O = parseInt(localStorage.isActive4);
+        var isActiveO = [isActive1O, isActive2O, isActive3O, isActive4O];
+        var pMeanKnown1 = localStorage.pMeanKnown1;
+        var pMeanKnown2 = localStorage.pMeanKnown2;
+        var pMeanKnown3 = localStorage.pMeanKnown3;
+        var pMeanKnown4 = localStorage.pMeanKnown4;
+        var pMeanKnown = [pMeanKnown1, pMeanKnown2, pMeanKnown3, pMeanKnown4];
+        var pMean1 = localStorage.pMean1;
+        var pMean2 = localStorage.pMean2;
+        var pMean3 = localStorage.pMean3;
+        var pMean4 = localStorage.pMean4;
+        var pMean = [pMean1, pMean2, pMean3, pMean4];
+        var xMean1 = localStorage.xMeans1;
+        var xMean2 = localStorage.xMeans2;
+        var xMean3 = localStorage.xMeans3;
+        var xMean4 = localStorage.xMeans4;
+        var xMean = [xMean1, xMean2, xMean3, xMean4];
+        var yMean1 = localStorage.yMeans1;
+        var yMean2 = localStorage.yMeans2;
+        var yMean3 = localStorage.yMeans3;
+        var yMean4 = localStorage.yMeans4;
+        var yMean = [yMean1, yMean2, yMean3, yMean4];
+        var MeanKnown1 = localStorage.MeanKnown1;
+        var MeanKnown2 = localStorage.MeanKnown2;
+        var MeanKnown3 = localStorage.MeanKnown3;
+        var MeanKnown4 = localStorage.MeanKnown4;
+        var MeanKnown = [MeanKnown1, MeanKnown2, MeanKnown3, MeanKnown4];
+        var TtoTNum = localStorage.TtoTNum;
+        var TtoSub1Num = localStorage.TtoSub1Num;
+        var CtoTNum = localStorage.CtoTNum;
+        var CtoSub1Num = localStorage.CtoSub1Num;
+        var TtoT = localStorage.TtoT;
+        var TtoSub1 = localStorage.TtoSub1;
+        var CtoT = localStorage.CtoT;
+        var CtoSub1 = localStorage.CtoSub1;
+        document.getElementById('strata1Name').innerHTML = localStorage.strata1Local + " (Y=" + TtoT + "%)";
+        document.getElementById('strata2Name').innerHTML = localStorage.strata2Local + " (Y=" + TtoSub1 + "%)";
+        document.getElementById('strata1Name2').innerHTML = localStorage.strata1Local + " (Y=" + CtoT + "%)";
+        document.getElementById('strata2Name2').innerHTML = localStorage.strata2Local + " (Y=" + CtoSub1 + "%)";
+        document.getElementById('group1Name').innerHTML = "Assigned to "+group1;
+        document.getElementById('group2Name').innerHTML = "Assigned to "+group2;
+        var TtoTNumMean= Number(TtoT)/100;
+        var TtoSub1NumMean = Number(TtoSub1)/100;
+        var CtoTNumMean= Number(CtoT)/100;
+        var CtoSub1NumMean = Number(CtoSub1)/100;
+        var Headings = [CtoTNumMean, CtoSub1NumMean, TtoTNumMean, TtoSub1NumMean];
+        var column1Nums = [0,2];
+        var column2Nums = [1,3];
+        //gray out excluded cells
+        var C = "c";
+        var cSub = C.sub();
+        var T = "t"
+        var tSub = T.sub()      
+        var allCells = document.getElementsByTagName("td");
+        document.getElementById('tableInfo').innerHTML = "Up to this point, you have been able to point estimate stratum-specific values of interest using observations from your study data and leveraging assumptions. However, you have not solved for every stratum-specific mean under "+group1+" and "+group2+", and you do not have enough information to estimate these means exactly. ";
+
+    
+    row1Count = 0;
+    for(i=0; i<2; i++) {
+    if(isActive[i]==1){row1Count = row1Count + 1;}
+    }
+    row2Count = 0;
+    for(i=2; i<4; i++) {
+    if(isActive[i]==1){row2Count = row2Count + 1;}
+    }
+
+    column1Count = 0;
+    column2Count = 0;
+    for(i=0; i<2; i++) {
+    if(isActive[column1Nums[i]]==1){column1Count = column1Count + 1;}
+    }
+    for(i=0; i<2; i++) {
+    if(isActive[column2Nums[i]]==1){column2Count = column2Count + 1;}
+    }
+    
+    var xMeansHigh = [0,0,0,0];   
+    var xMeansLow = [0,0,0,0];
+    var yMeansHigh = [0,0,0,0];   
+    var yMeansLow = [0,0,0,0];    
+ 	var xMeanR = [0,0,0,0];
+	var yMeanR = [0,0,0,0];
+
+	var row1Sum = parseFloat(pMean[0].substring(0,4))+parseFloat(pMean[1].substring(0,4));
+	var row2Sum = parseFloat(pMean[2].substring(0,4))+parseFloat(pMean[3].substring(0,4));
+	var column1Sum = parseFloat(pMean[0].substring(0,4))+parseFloat(pMean[2].substring(0,4));
+	var column2Sum = parseFloat(pMean[1].substring(0,4))+parseFloat(pMean[3].substring(0,4));
+	
+	var rowSums = [row1Sum, row2Sum];
+	var columnSums = [column1Sum, column2Sum];
+	var denominatorR = [];
+	var denominatorC = [];
+
+	for(i=0;i<2;i++)
+	{
+		for(j=0;j<2;j++){
+			denominatorR.push(rowSums[i]);
+		}
+		for(k=0;k<2;k++){
+			denominatorC.push(columnSums[k]);
+		}
+	}
+	
+
+	var xMult = [];
+	var yMult = [];
+	
+for(i=0;i<4;i++)
+	{
+		yMult.push((pMean[i].substring(0,4))/denominatorR[i]);
+		xMult.push((pMean[i].substring(0,4))/denominatorC[i]);
+	}
+
+	
+	for(i=0;i<strata;i++){
+	if(xMean[i]>=0){xMeanR[i]=xMult[i]*(xMean[i]/100);}
+	if(yMean[i]>=0){yMeanR[i]=yMult[i]*(yMean[i]/100);}
+	}
+
+	Headings[0]=Headings[0]-yMeanR[0]-yMeanR[1];
+	Headings[1]=Headings[1]-yMeanR[2]-yMeanR[3];
+
+	Headings[2]=Headings[2]-xMeanR[0]-xMeanR[2];
+	Headings[3]=Headings[3]-xMeanR[1]-xMeanR[3];
+	
+	for(i=0;i<strata;i++)
+	{
+		if(unknownY[i]==0){yMult[i]=0;}
+		if(unknownX[i]==0){xMult[i]=0;}
+	}
+	
+
+    for(i=0; i<2; i++) {
+      if(unknownY[i]==1){
+      pk=parseFloat(pMean[i].substring(0,4))/(parseFloat(pMean[0].substring(0,4))+parseFloat(pMean[1].substring(0,4)));
+	  yMeansLow[i]=(Headings[0]-yMult[0]-yMult[1]+yMult[i])*100/yMult[i];
+	  if(Headings[0]>pk){yMeansHigh[i]=100;}
+      if(Headings[0]<=pk){yMeansHigh[i]=Headings[0]*100/yMult[i];}
+      }
+    }
+    for(i=2; i<4; i++) {
+      if(unknownY[i]==1){
+      pk=parseFloat(pMean[i].substring(0,4))/(parseFloat(pMean[2].substring(0,4))+parseFloat(pMean[3].substring(0,4)));
+	  yMeansLow[i]=(Headings[1]-yMult[2]-yMult[3]+yMult[i])*100/yMult[i];
+      if(Headings[1]>pk){yMeansHigh[i]=100;}
+      if(Headings[1]<=pk){yMeansHigh[i]=Headings[1]*100/yMult[i];}
+      }
+    }
+	
+    for(i=0; i<2; i++) {
+      if(unknownX[column1Nums[i]]==1){
+      pk=parseFloat(pMean[column1Nums[i]].substring(0,4))/(parseFloat(pMean[0].substring(0,4))+parseFloat(pMean[2].substring(0,4)));
+	  xMeansLow[column1Nums[i]]=(Headings[2]-xMult[0]-xMult[2]+xMult[column1Nums[i]])*100/xMult[column1Nums[i]];
+      if(Headings[2]>pk){xMeansHigh[column1Nums[i]]=100;}
+      if(Headings[2]<=pk){xMeansHigh[column1Nums[i]]=(Headings[2]*100/xMult[column1Nums[i]]);}
+      }
+    }
+    
+    for(i=0; i<2; i++) {
+      if(unknownX[column2Nums[i]]==1){
+      pk=parseFloat(pMean[column2Nums[i]].substring(0,4))/(parseFloat(pMean[1].substring(0,4))+parseFloat(pMean[3].substring(0,4)));
+	  xMeansLow[column2Nums[i]]=(Headings[3]-xMult[1]-xMult[3]+xMult[column2Nums[i]])*100/xMult[column2Nums[i]];
+      if(Headings[3]>pk){xMeansHigh[column2Nums[i]]=100;}
+      if(Headings[3]<=pk){xMeansHigh[column2Nums[i]]=(Headings[3]*100/xMult[column2Nums[i]]);}
+      }
+    }
+
+	
+    for(i=0;i<4;i++){
+    if(xMean[i]!=0){
+    xMean[i] = xMean[i].substring(0,4);
+    }
+    if(yMean[i]!=0){
+    yMean[i] = yMean[i].substring(0,4);
+    }
+    }   
+    
+	for(i=0; i<4; i++) {
+	if(xMeansLow[i]>100){xMeansLow[i]=100;}
+	if(xMeansLow[i]<0){xMeansLow[i]=0;}
+	if(yMeansLow[i]>100){yMeansLow[i]=100;}
+	if(yMeansLow[i]<0){yMeansLow[i]=0;}
+	if(xMeansHigh[i]>100){xMeansHigh[i]=100;}
+	if(xMeansHigh[i]<0){xMeansHigh[i]=0;}
+	if(yMeansHigh[i]>100){yMeansHigh[i]=100;}
+	if(yMeansHigh[i]<0){yMeansHigh[i]=0;}
+	}
+
+	
+	var xMeansLowP = [0,0,0,0];
+	var xMeansHighP = [0,0,0,0];
+	var yMeansLowP = [0,0,0,0];
+	var yMeansHighP = [0,0,0,0];
+    for(i=0;i<4;i++){
+    if(unknownX[i]==1){
+	xMeansLowP[i]=xMeansLow[i]
+	xMeansHighP[i] = xMeansHigh[i]
+    xMean[i] = String(Math.round(xMeansLow[i]*1000)/1000) + "-" + String(Math.round(xMeansHigh[i]*1000)/1000);
+    }
+    if(unknownY[i]==1){
+	yMeansLowP[i]=yMeansLow[i]
+	yMeansHighP[i] = yMeansHigh[i]
+    yMean[i] = String(Math.round(yMeansLow[i]*1000)/1000) + "-" + String(Math.round(yMeansHigh[i]*1000)/1000);
+    }
+    }
+
+	
+    var C = "c";
+    var cSub = C.sub();
+    var T = "t"
+    var tSub = T.sub();
+    for(var i = 0; i < strata; i++) {
+        var node = allCells[i];
+        var cellContent = node.childNodes[0].nodeValue; 
+	if (pMean[i]==0)
+          node.style.backgroundColor = "#808080";
+	if(pMean[i]!=0)
+            node.innerHTML = "P="+ Math.round(pMean[i]*100)/100+"   Y"+cSub+"=" + xMean[i].substring(0,10)+"       Y"+tSub+"="+yMean[i].substring(0,10);
+            if(isActive[i]==1){node.classList.add("blue-cell");}
+			if(isActive[i]==0){node.classList.add("white-cell");}
+    }
+    
+	xMeansLow = xMeansLowP;
+	xMeansHigh = xMeansHighP;
+	yMeansLow = yMeansLowP;
+	yMeansHigh = yMeansHighP;
+	
+  localStorage.xMeans1 = xMean[0];
+  localStorage.xMeans2 = xMean[1];
+  localStorage.xMeans3 = xMean[2];
+  localStorage.xMeans4 = xMean[3];
+  localStorage.yMeans1 = yMean[0];
+  localStorage.yMeans2 = yMean[1];
+  localStorage.yMeans3 = yMean[2];
+  localStorage.yMeans4 = yMean[3];
+  localStorage.MeanKnown1 = MeanKnown[0];
+  localStorage.MeanKnown2 = MeanKnown[1];
+  localStorage.MeanKnown3 = MeanKnown[2];
+  localStorage.MeanKnown4 = MeanKnown[3];
+  localStorage.xMeans1Low = xMeansLow[0];
+  localStorage.xMeans2Low = xMeansLow[1];
+  localStorage.xMeans3Low = xMeansLow[2];
+  localStorage.xMeans4Low = xMeansLow[3];
+  localStorage.xMeans1High = xMeansHigh[0];
+  localStorage.xMeans2High = xMeansHigh[1];
+  localStorage.xMeans3High = xMeansHigh[2];
+  localStorage.xMeans4High = xMeansHigh[3];
+  localStorage.yMeans1Low = yMeansLow[0];
+  localStorage.yMeans2Low = yMeansLow[1];
+  localStorage.yMeans3Low = yMeansLow[2];
+  localStorage.yMeans4Low = yMeansLow[3];
+  localStorage.yMeans1High = yMeansHigh[0];
+  localStorage.yMeans2High = yMeansHigh[1];
+  localStorage.yMeans3High = yMeansHigh[2];
+  localStorage.yMeans4High = yMeansHigh[3];
+
+} 
+
+  function cont(){
+      window.location.href = 'NextSteps2.html';
+  }
+        
+    </script>
+  </body>
+</html>
+
+
+
