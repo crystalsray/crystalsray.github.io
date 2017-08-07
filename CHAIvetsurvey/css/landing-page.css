@@ -38,11 +38,16 @@ h1.welcomehome {
 }
 
 
-h2 {
+h2, h2 a  {
     color: #EF4610;
     font-size: 26px;
     margin-top: 30px;
    
+}
+
+h2 a:hover, h2 a:focus {
+    color: #EF4610;
+    text-decoration: underline;
 }
 
 a.white-link {
@@ -57,6 +62,8 @@ a.white-link:hover {
     text-decoration: none;
 }
 
+
+
 p  {
     font-size: 16px;
     font-weight: 400;
@@ -64,11 +71,18 @@ p  {
     line-height: 1.7;
 }
 
+
+
 .row li {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 10px;
 }
+
+.row ol {
+    margin-bottom: 20px;
+}
+
 
 strong {
     color: #333;
