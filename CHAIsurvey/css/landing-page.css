@@ -329,3 +329,12 @@ i.fa {
 a.btn {
     white-space: normal; /* wrap text for button links */
 }
+
+.x-ms-questions {
+    border: 2px solid #D82E00; 
+    border-radius: 5px; 
+    display: inline-block; 
+    padding: 10px;
+
+}
+
