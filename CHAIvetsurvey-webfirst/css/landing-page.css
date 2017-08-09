@@ -135,11 +135,8 @@ strong {
 }
 
 .intro-header {
-    background-color: #ffffe1;
-    background: -webkit-linear-gradient(90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Safari 5.1-6*/
-         background: -o-linear-gradient(90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Opera 11.1-12*/
-         background: -moz-linear-gradient(90deg,rgba(255,255,225,1),rgba(255,240,176,1)); /*Fx 3.6-15*/
-         background: linear-gradient(90deg, rgba(255,255,225,1), rgba(255,240,176,1)); /*Standard*/
+    background-color: #F4E8DF;
+
     text-align: center;
 
 }
