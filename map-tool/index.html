@@ -82,13 +82,13 @@
           <div class="form-group">
           <label for="states">Select State</label>
             <select id="states" class="form-control" onchange="selectedState()">
-              <option>Don't Know</option>
+              <option disabled selected>Select State</option>
               <option>Connecticut</option>
               <option>Maine</option>
               <option>Massachusetts</option>
               <option>New Hampshire</option>
               <option>Rhode Island</option>
-              
+              <option>Don't Know</option>
             </select>
           </div> <!--/ .form-group -->
 
@@ -97,21 +97,21 @@
           <div class="form-group" id="groupConnecticutTowns">
           <label for="conneticutTowns">Select Town</label>
             <select id="conneticutTowns" class="form-control" onchange="selectedTown('conneticutTowns')">
-              <option>Select a town/city</option><option>Don't Know</option><option>Addison</option><option>Alna</option><option>Arrowsic</option><option>Arundel</option><option>Bar Harbor</option><option>Bath Cty</option><option>Beals</option><option>Belfast Cty</option><option>Biddeford Cty</option><option>Bluehill</option><option>Boothbay</option><option>Boothbay Harbor</option><option>Breman</option><option>Bristol</option><option>Brooklin</option><option>Brooksville</option><option>Brunswick</option><option>Bucksport</option><option>Calais Cty</option><option>Camden</option><option>Cape Elizabeth</option><option>Castine</option><option>Centerville</option><option>Cherryfield</option><option>Columbia</option><option>Columbia Falls</option><option>Cranberry Isles</option><option>Cumberland</option><option>Cushing</option><option>Cutler</option><option>Damariscotta</option><option>Deer Isle</option><option>East Machias</option><option>Eastport Cty</option><option>Edgecomb</option><option>Edmunds</option><option>Eliot</option><option>Ellsworth Cty</option><option>Falmouth</option><option>Frankfort</option><option>Franklin</option><option>Freeport</option><option>Frenchboro</option><option>Friendship</option><option>Georgetown</option><option>Gouldsboro</option><option>Hancock</option><option>Harpswell</option><option>Harrington</option><option>Isle Au Haut</option><option>Isle Boro</option><option>Jonesboro</option><option>Jonesport</option><option>Kennebunk</option><option>Kennebunkport</option><option>Kittery</option><option>Lamoine</option><option>Lincolnville</option><option>Lubec</option><option>Machias</option><option>Machiasport</option><option>Marshfield</option><option>Milbridge</option><option>Mount Desert</option><option>Newcastle</option><option>North Haven</option><option>North Port</option><option>North Yarmouth</option><option>Ogunquit</option><option>Old Orchard Beach</option><option>Orland</option><option>Owlshead</option><option>Pembroke</option><option>Penobscot</option><option>Perry</option><option>Phippsburg</option><option>Portland Cty</option><option>Pownall</option><option>Prospect</option><option>Robinston</option><option>Rockland Cty</option><option>Rockport</option><option>Roque Bluffs</option><option>Saco Cty</option><option>Scarborough</option><option>Searsport</option><option>Sedgewick</option><option>Sorrento</option><option>South Berick</option><option>South Bristol</option><option>South Portland Cty</option><option>South Thomaston</option><option>South West Harbor</option><option>Southport</option><option>St George</option><option>Steuben</option><option>Stockton Springs</option><option>Stonington</option><option>Sullivan</option><option>Surry</option><option>Swans Island</option><option>Swanville</option><option>Thomaston</option><option>Topsham</option><option>Tremont</option><option>Trenton</option><option>Trescott Twp</option><option>Verona</option><option>Waldoboro</option><option>Warren</option><option>Wells</option><option>West Bath</option><option>Westbrook Cty</option><option>Westport</option><option>Whiting</option><option>Whitneyville</option><option>Winter Harbor</option><option>Wisscasset</option><option>Woolwich</option><option>Yarmouth</option><option>York</option>
+              <option disabled selected>Select a town/city</option><option>Don't Know</option><option>Addison</option><option>Alna</option><option>Arrowsic</option><option>Arundel</option><option>Bar Harbor</option><option>Bath Cty</option><option>Beals</option><option>Belfast Cty</option><option>Biddeford Cty</option><option>Bluehill</option><option>Boothbay</option><option>Boothbay Harbor</option><option>Breman</option><option>Bristol</option><option>Brooklin</option><option>Brooksville</option><option>Brunswick</option><option>Bucksport</option><option>Calais Cty</option><option>Camden</option><option>Cape Elizabeth</option><option>Castine</option><option>Centerville</option><option>Cherryfield</option><option>Columbia</option><option>Columbia Falls</option><option>Cranberry Isles</option><option>Cumberland</option><option>Cushing</option><option>Cutler</option><option>Damariscotta</option><option>Deer Isle</option><option>East Machias</option><option>Eastport Cty</option><option>Edgecomb</option><option>Edmunds</option><option>Eliot</option><option>Ellsworth Cty</option><option>Falmouth</option><option>Frankfort</option><option>Franklin</option><option>Freeport</option><option>Frenchboro</option><option>Friendship</option><option>Georgetown</option><option>Gouldsboro</option><option>Hancock</option><option>Harpswell</option><option>Harrington</option><option>Isle Au Haut</option><option>Isle Boro</option><option>Jonesboro</option><option>Jonesport</option><option>Kennebunk</option><option>Kennebunkport</option><option>Kittery</option><option>Lamoine</option><option>Lincolnville</option><option>Lubec</option><option>Machias</option><option>Machiasport</option><option>Marshfield</option><option>Milbridge</option><option>Mount Desert</option><option>Newcastle</option><option>North Haven</option><option>North Port</option><option>North Yarmouth</option><option>Ogunquit</option><option>Old Orchard Beach</option><option>Orland</option><option>Owlshead</option><option>Pembroke</option><option>Penobscot</option><option>Perry</option><option>Phippsburg</option><option>Portland Cty</option><option>Pownall</option><option>Prospect</option><option>Robinston</option><option>Rockland Cty</option><option>Rockport</option><option>Roque Bluffs</option><option>Saco Cty</option><option>Scarborough</option><option>Searsport</option><option>Sedgewick</option><option>Sorrento</option><option>South Berick</option><option>South Bristol</option><option>South Portland Cty</option><option>South Thomaston</option><option>South West Harbor</option><option>Southport</option><option>St George</option><option>Steuben</option><option>Stockton Springs</option><option>Stonington</option><option>Sullivan</option><option>Surry</option><option>Swans Island</option><option>Swanville</option><option>Thomaston</option><option>Topsham</option><option>Tremont</option><option>Trenton</option><option>Trescott Twp</option><option>Verona</option><option>Waldoboro</option><option>Warren</option><option>Wells</option><option>West Bath</option><option>Westbrook Cty</option><option>Westport</option><option>Whiting</option><option>Whitneyville</option><option>Winter Harbor</option><option>Wisscasset</option><option>Woolwich</option><option>Yarmouth</option><option>York</option>
             </select>
           </div> <!--/ .form-group --> 
 
           <div class="form-group" id="groupMaineTowns">
             <label for="maineTowns">Select Town</label>
             <select class="form-control" id="maineTowns" onchange="selectedTown('maineTowns')">
-              <option>Select a town/city</option><option>Addison</option><option>Alna</option><option>Arrowsic</option><option>Arundel</option><option>Bar Harbor</option><option>Bath Cty</option><option>Beals</option><option>Belfast Cty</option><option>Biddeford Cty</option><option>Bluehill</option><option>Boothbay</option><option>Boothbay Harbor</option><option>Breman</option><option>Bristol</option><option>Brooklin</option><option>Brooksville</option><option>Brunswick</option><option>Bucksport</option><option>Calais Cty</option><option>Camden</option><option>Cape Elizabeth</option><option>Castine</option><option>Centerville</option><option>Cherryfield</option><option>Columbia</option><option>Columbia Falls</option><option>Cranberry Isles</option><option>Cumberland</option><option>Cushing</option><option>Cutler</option><option>Damariscotta</option><option>Deer Isle</option><option>East Machias</option><option>Eastport Cty</option><option>Edgecomb</option><option>Edmunds</option><option>Eliot</option><option>Ellsworth Cty</option><option>Falmouth</option><option>Frankfort</option><option>Franklin</option><option>Freeport</option><option>Frenchboro</option><option>Friendship</option><option>Georgetown</option><option>Gouldsboro</option><option>Hancock</option><option>Harpswell</option><option>Harrington</option><option>Isle Au Haut</option><option>Isle Boro</option><option>Jonesboro</option><option>Jonesport</option><option>Kennebunk</option><option>Kennebunkport</option><option>Kittery</option><option>Lamoine</option><option>Lincolnville</option><option>Lubec</option><option>Machias</option><option>Machiasport</option><option>Marshfield</option><option>Milbridge</option><option>Mount Desert</option><option>Newcastle</option><option>North Haven</option><option>North Port</option><option>North Yarmouth</option><option>Ogunquit</option><option>Old Orchard Beach</option><option>Orland</option><option>Owlshead</option><option>Pembroke</option><option>Penobscot</option><option>Perry</option><option>Phippsburg</option><option>Portland Cty</option><option>Pownall</option><option>Prospect</option><option>Robinston</option><option>Rockland Cty</option><option>Rockport</option><option>Roque Bluffs</option><option>Saco Cty</option><option>Scarborough</option><option>Searsport</option><option>Sedgewick</option><option>Sorrento</option><option>South Berick</option><option>South Bristol</option><option>South Portland Cty</option><option>South Thomaston</option><option>South West Harbor</option><option>Southport</option><option>St George</option><option>Steuben</option><option>Stockton Springs</option><option>Stonington</option><option>Sullivan</option><option>Surry</option><option>Swans Island</option><option>Swanville</option><option>Thomaston</option><option>Topsham</option><option>Tremont</option><option>Trenton</option><option>Trescott Twp</option><option>Verona</option><option>Waldoboro</option><option>Warren</option><option>Wells</option><option>West Bath</option><option>Westbrook Cty</option><option>Westport</option><option>Whiting</option><option>Whitneyville</option><option>Winter Harbor</option><option>Wisscasset</option><option>Woolwich</option><option>Yarmouth</option><option>York</option>
+              <option disabled selected>Select a town/city</option><option>Addison</option><option>Alna</option><option>Arrowsic</option><option>Arundel</option><option>Bar Harbor</option><option>Bath Cty</option><option>Beals</option><option>Belfast Cty</option><option>Biddeford Cty</option><option>Bluehill</option><option>Boothbay</option><option>Boothbay Harbor</option><option>Breman</option><option>Bristol</option><option>Brooklin</option><option>Brooksville</option><option>Brunswick</option><option>Bucksport</option><option>Calais Cty</option><option>Camden</option><option>Cape Elizabeth</option><option>Castine</option><option>Centerville</option><option>Cherryfield</option><option>Columbia</option><option>Columbia Falls</option><option>Cranberry Isles</option><option>Cumberland</option><option>Cushing</option><option>Cutler</option><option>Damariscotta</option><option>Deer Isle</option><option>East Machias</option><option>Eastport Cty</option><option>Edgecomb</option><option>Edmunds</option><option>Eliot</option><option>Ellsworth Cty</option><option>Falmouth</option><option>Frankfort</option><option>Franklin</option><option>Freeport</option><option>Frenchboro</option><option>Friendship</option><option>Georgetown</option><option>Gouldsboro</option><option>Hancock</option><option>Harpswell</option><option>Harrington</option><option>Isle Au Haut</option><option>Isle Boro</option><option>Jonesboro</option><option>Jonesport</option><option>Kennebunk</option><option>Kennebunkport</option><option>Kittery</option><option>Lamoine</option><option>Lincolnville</option><option>Lubec</option><option>Machias</option><option>Machiasport</option><option>Marshfield</option><option>Milbridge</option><option>Mount Desert</option><option>Newcastle</option><option>North Haven</option><option>North Port</option><option>North Yarmouth</option><option>Ogunquit</option><option>Old Orchard Beach</option><option>Orland</option><option>Owlshead</option><option>Pembroke</option><option>Penobscot</option><option>Perry</option><option>Phippsburg</option><option>Portland Cty</option><option>Pownall</option><option>Prospect</option><option>Robinston</option><option>Rockland Cty</option><option>Rockport</option><option>Roque Bluffs</option><option>Saco Cty</option><option>Scarborough</option><option>Searsport</option><option>Sedgewick</option><option>Sorrento</option><option>South Berick</option><option>South Bristol</option><option>South Portland Cty</option><option>South Thomaston</option><option>South West Harbor</option><option>Southport</option><option>St George</option><option>Steuben</option><option>Stockton Springs</option><option>Stonington</option><option>Sullivan</option><option>Surry</option><option>Swans Island</option><option>Swanville</option><option>Thomaston</option><option>Topsham</option><option>Tremont</option><option>Trenton</option><option>Trescott Twp</option><option>Verona</option><option>Waldoboro</option><option>Warren</option><option>Wells</option><option>West Bath</option><option>Westbrook Cty</option><option>Westport</option><option>Whiting</option><option>Whitneyville</option><option>Winter Harbor</option><option>Wisscasset</option><option>Woolwich</option><option>Yarmouth</option><option>York</option>
             </select>
           </div>
 
           <div class="form-group" id="groupMassachusettsTowns">
             <label for="">Select Town</label>
             <select class="form-control" id="massachusettsTowns" onchange="selectedTown('massachusettsTowns')">
-              <option>Select a town/city</option><option>Acushnet</option><option>Aquinnah</option><option>Barnstable</option><option>Berkley</option><option>Beverly</option><option>Boston</option><option>Bourne</option><option>Braintree</option><option>Brewster</option><option>Brookline</option><option>Cambridge</option><option>Chatham</option><option>Chelsea</option><option>Chilmark</option><option>Cohasset</option><option>Danvers</option><option>Dartmouth</option><option>Dennis</option><option>Dighton</option><option>Duxbury</option><option>Eastham</option><option>Edgartown</option><option>Essex</option><option>Everett</option><option>Fairhaven</option><option>Fall River</option><option>Falmouth</option><option>Freetown</option><option>Gloucester</option><option>Gosnold</option><option>Hamilton</option><option>Harwich</option><option>Hingham</option><option>Hull</option><option>Ipswich</option><option>Kingston</option><option>Lynn</option><option>Malden</option><option>Manchester</option><option>Marblehead</option><option>Marion</option><option>Marshfield</option><option>Mashpee</option><option>Mattapoisett</option><option>Medford</option><option>Milton</option><option>Nahant</option><option>Nantucket</option><option>New Bedford</option><option>Newbury</option><option>Newburyport</option><option>Norwell</option><option>Oak Bluffs</option><option>Orleans</option><option>Peabody</option><option>Plymouth</option><option>Provincetown</option><option>Quincy</option><option>Rehoboth</option><option>Revere</option><option>Rochester</option><option>Rockport</option><option>Rowley</option><option>Salem</option><option>Salisbury</option><option>Sandwich</option><option>Saugus</option><option>Scituate</option><option>Seekonk</option><option>Somerset</option><option>Somerville</option><option>Swampscott</option><option>Swansea</option><option>Tisbury</option><option>Truro</option><option>Wareham</option><option>Wellfleet</option><option>Wenham</option><option>West Tisbury</option><option>Westport</option><option>Weymouth</option><option>Winthrop</option><option>Yarmouth</option>
+              <option disabled selected>Select a town/city</option><option>Acushnet</option><option>Aquinnah</option><option>Barnstable</option><option>Berkley</option><option>Beverly</option><option>Boston</option><option>Bourne</option><option>Braintree</option><option>Brewster</option><option>Brookline</option><option>Cambridge</option><option>Chatham</option><option>Chelsea</option><option>Chilmark</option><option>Cohasset</option><option>Danvers</option><option>Dartmouth</option><option>Dennis</option><option>Dighton</option><option>Duxbury</option><option>Eastham</option><option>Edgartown</option><option>Essex</option><option>Everett</option><option>Fairhaven</option><option>Fall River</option><option>Falmouth</option><option>Freetown</option><option>Gloucester</option><option>Gosnold</option><option>Hamilton</option><option>Harwich</option><option>Hingham</option><option>Hull</option><option>Ipswich</option><option>Kingston</option><option>Lynn</option><option>Malden</option><option>Manchester</option><option>Marblehead</option><option>Marion</option><option>Marshfield</option><option>Mashpee</option><option>Mattapoisett</option><option>Medford</option><option>Milton</option><option>Nahant</option><option>Nantucket</option><option>New Bedford</option><option>Newbury</option><option>Newburyport</option><option>Norwell</option><option>Oak Bluffs</option><option>Orleans</option><option>Peabody</option><option>Plymouth</option><option>Provincetown</option><option>Quincy</option><option>Rehoboth</option><option>Revere</option><option>Rochester</option><option>Rockport</option><option>Rowley</option><option>Salem</option><option>Salisbury</option><option>Sandwich</option><option>Saugus</option><option>Scituate</option><option>Seekonk</option><option>Somerset</option><option>Somerville</option><option>Swampscott</option><option>Swansea</option><option>Tisbury</option><option>Truro</option><option>Wareham</option><option>Wellfleet</option><option>Wenham</option><option>West Tisbury</option><option>Westport</option><option>Weymouth</option><option>Winthrop</option><option>Yarmouth</option>
             </select>
           </div>
 
@@ -119,7 +119,7 @@
           <div class="form-group" id="groupNewHampshireTowns">
           <label for="newHampshireTowns">Select Town </label>
             <select class="form-control" id="newhampshireTowns" onchange="selectedTown('newHampshireTowns')">
-              <option>Select a town/city</option><option>Atkinson</option><option>Brentwood</option><option>Danville</option><option>Dover</option><option>Durham</option><option>East Kingston</option><option>Epping</option><option>Exeter</option><option>Fremont</option><option>Greenland</option><option>Hampstead</option><option>Hampton</option><option>Hampton Falls</option><option>Kensington</option><option>Kingston</option><option>Lee</option><option>Madbury</option><option>New Castle</option><option>Newfields</option><option>Newington</option><option>Newmarket</option><option>Newton</option><option>North Hampton</option><option>Plaistow</option><option>Portsmouth</option><option>Rollinsford</option><option>Rye</option><option>Seabrook</option><option>Somersworth</option><option>South Hampton</option><option>Stratham</option>
+              <option disabled selected>Select a town/city</option><option>Atkinson</option><option>Brentwood</option><option>Danville</option><option>Dover</option><option>Durham</option><option>East Kingston</option><option>Epping</option><option>Exeter</option><option>Fremont</option><option>Greenland</option><option>Hampstead</option><option>Hampton</option><option>Hampton Falls</option><option>Kensington</option><option>Kingston</option><option>Lee</option><option>Madbury</option><option>New Castle</option><option>Newfields</option><option>Newington</option><option>Newmarket</option><option>Newton</option><option>North Hampton</option><option>Plaistow</option><option>Portsmouth</option><option>Rollinsford</option><option>Rye</option><option>Seabrook</option><option>Somersworth</option><option>South Hampton</option><option>Stratham</option>
             </select>
           </div>
 
@@ -127,24 +127,26 @@
           <div class="form-group" id="groupRhodeIslandTowns">
           <label for="rhodeIslandTowns">Select Town </label>
             <select class="form-control" id="rhodeIslandTowns" onchange="selectedTown('rhodeIslandTowns')">
-              <option>Select a town/city</option><option>Barrington</option><option>Bristol</option><option>Charlestown</option><option>Cranston</option><option>East Greenwich</option><option>East Providence</option><option>Exeter</option><option>Hopkinton</option><option>Jamestown</option><option>Little Compton</option><option>Middletown</option><option>Narragansett</option><option>Newport</option><option>North Kingstown</option><option>North Providence</option><option>Pawtucket</option><option>Portsmouth</option><option>Providence</option><option>South Kingstown</option><option>Tiverton</option><option>Warren</option><option>Warwick</option><option>Westerly</option>
+              <option disabled selected>Select a town/city</option><option>Barrington</option><option>Bristol</option><option>Charlestown</option><option>Cranston</option><option>East Greenwich</option><option>East Providence</option><option>Exeter</option><option>Hopkinton</option><option>Jamestown</option><option>Little Compton</option><option>Middletown</option><option>Narragansett</option><option>Newport</option><option>North Kingstown</option><option>North Providence</option><option>Pawtucket</option><option>Portsmouth</option><option>Providence</option><option>South Kingstown</option><option>Tiverton</option><option>Warren</option><option>Warwick</option><option>Westerly</option>
             </select>
           </div>
 
 
-          <!-- Select State -->
-          <div class="form-group" id="groupPlaceName">
+          <!-- Select Place -->
+
+          <div id="groupPlaceName">
+
+          <div class="form-group">
             <label for="placeName">Name of Place</label>
             <input type="text" class="form-control" placeholder="Enter place name" id="placeName">
             <small><span class="help-block text-muted">Examples: beach name, street name, marina, or park name.</span></small>
           </div> <!--/ .form-group -->
 
+          <input class="btn btn-default" type="submit" value="Search" onclick="placeName('placeName')">
 
-          <br><br><br>
+          </div>
 
-            <!--<input id="address" type="textbox" value="Sydney, NSW">
-            <input id="submit" type="button" value="Geocode">-->
-          <!--<input class="btn btn-primary" type="submit" value="Submit" id="submit">-->
+          
 
         </div> <!--/ .col-md-3 -->
 
@@ -155,6 +157,14 @@
 
         </div> <!-- / .col-md-9 -->
 
+      </div> <!--/ .row -->
+
+      <div class="row">
+        <div class="col-md-12">
+          <hr>
+          <p> <strong>Developer's return value </strong></p>
+          <p id="devReturnVal"></p>
+        </div>
       </div>
 
     </div>
@@ -167,6 +177,71 @@
 
            var geocoder;
            var map;
+           var marker;
+           var returnVal;
+
+           var town;
+           var state;
+           var place;
+
+           var maineBoundary = [
+              { lat:45.3425, lng:-71.0129},
+              { lat:45.3328, lng:-70.9525},
+              { lat:45.2294, lng:-70.8618},
+              { lat:45.3917, lng:-70.8247},
+              { lat:45.4274, lng:-70.7808},
+              { lat:45.3830, lng:-70.6380},
+              { lat:45.5092, lng:-70.7190},
+              { lat:45.6544, lng:-70.5721},
+              { lat:45.7292, lng:-70.3894},
+              { lat:45.7924, lng:-70.4169},
+              { lat:45.9368, lng:-70.2493},
+              { lat:45.9597, lng:-70.3098},
+              { lat:46.0923, lng:-70.2946},
+              { lat:46.0989, lng:-70.2589},
+              { lat:46.1342, lng:-70.2466},
+              { lat:46.1903, lng:-70.2905},
+              { lat:46.2710, lng:-70.2466},
+              { lat:46.3270, lng:-70.2040},
+              { lat:46.4151, lng:-70.0571},
+              { lat:46.6956, lng:-69.9994},
+              { lat:47.4550, lng:-69.2303},
+              { lat:47.4132, lng:-69.0381},
+              { lat:47.2578, lng:-69.0504},
+              { lat:47.1748, lng:-68.8843},
+              { lat:47.2643, lng:-68.6206},
+              { lat:47.3546, lng:-68.3350},
+              { lat:47.3165, lng:-68.1564},
+              { lat:47.1038, lng:-67.8804},
+              { lat:47.0664, lng:-67.7898},
+              { lat:45.9359, lng:-67.7802},
+              { lat:45.9177, lng:-67.7527},
+              { lat:45.7599, lng:-67.8090},
+              { lat:45.6208, lng:-67.6524},
+              { lat:45.5987, lng:-67.4533},
+              { lat:45.5044, lng:-67.4176},
+              { lat:45.4823, lng:-67.5014},
+              { lat:45.3714, lng:-67.4231},
+              { lat:45.2768, lng:-67.4863},
+              { lat:45.1297, lng:-67.3434},
+              { lat:45.1830, lng:-67.2487},
+              { lat:45.1230, lng:-67.1223},
+              { lat:44.8315, lng:-66.9672},
+              { lat:44.7409, lng:-66.8628},
+              { lat:44.4945, lng:-67.3105},
+              { lat:44.3268, lng:-67.9051},
+              { lat:43.8702, lng:-68.6673},
+              { lat:43.7274, lng:-68.8431},
+              { lat:43.6639, lng:-69.7137},
+              { lat:43.5625, lng:-70.0818},
+              { lat:42.9182, lng:-70.5569},
+              { lat:43.0649, lng:-70.7108},
+              { lat:43.1391, lng:-70.8302},
+              { lat:43.2292, lng:-70.8179},
+              { lat:43.3631, lng:-70.9799},
+              { lat:43.5675, lng:-70.9717},
+              { lat:45.3029, lng:-71.0829}
+            ];
 
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
@@ -176,38 +251,55 @@
 
               geocoder = new google.maps.Geocoder();
 
-              document.getElementById('submit').addEventListener('click', function() {
-                geocodeAddress(geocoder, map);
+
+              google.maps.event.addListener(map, 'click', function (evt) {
+                placeMarker(evt.latLng);
               });
+
             }
 
 
-            function geocodeAddress(geocoder, resultsMap) {
-              var address = document.getElementById('address').value;
-              geocoder.geocode({'address': address}, function(results, status) {
-                if (status === 'OK') {
-                  resultsMap.setCenter(results[0].geometry.location);
-                  var marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location
-                  });
-                } else {
-                  alert('Geocode was not successful for the following reason: ' + status);
-                }
-              });
+            function placeMarker(location) {
+
+              if (marker) {
+                  //if marker already was created change positon
+                  marker.setPosition(location);
+              } else {
+                  //create a marker
+                  marker = new google.maps.Marker({          
+                      position: location,
+                      map: map,
+                      draggable: true
+                  });  
+              }
+
+
+              var input = marker.getPosition();
+              //console.log(input);
+              //var latlngStr = input.split(',', 2);
+              var latlng = {lat: input.lat(), lng: input.lng()};
+              
+              geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') { returnVal = results[0].formatted_address; } 
+                else { window.alert('No results found'); }
+              }); // end geocoder 
+
+              updateDevValue(returnVal);
+            }
+
+            function updateDevValue (val) {
+              //update return value for the developer
+              returnVal = val;
+              document.getElementById("devReturnVal").innerHTML = returnVal;
             }
 
 
             function geocodeLocation(geocoder, resultsMap, location, zoom) {
-              //var address = document.getElementById('address').value;
               geocoder.geocode({'address': location}, function(results, status) {
                 if (status === 'OK') {
                   resultsMap.setCenter(results[0].geometry.location);
-                  /*var marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location
-                  });*/
-                  map.setZoom(zoom);
+                  //map.setZoom(zoom);
+                  map.fitBounds(results[0].geometry.viewport);
                 } else {
                   alert('Geocode was not successful for the following reason: ' + status);
                 }
@@ -216,15 +308,29 @@
 
 
             function selectedState() {
-              var state = document.getElementById("states").value;
+              state = document.getElementById("states").value;
               var zoom = 8; //find way to fit state
-              geocodeLocation(geocoder, map, state, zoom);
-              showTowns(state);
+
+              console.log(state);
+
+              if (state === "Don't Know") {
+                //do nothing?
+              }
+
+              else {
+                geocodeLocation(geocoder, map, state, zoom);
+                showTowns(state);
+
+                //update the return value for the developer
+                returnVal = state;
+                document.getElementById("devReturnVal").innerHTML = returnVal;
+              }
+              
             }
 
             function showTowns(state) {
 
-              //hide other towsn
+              //hide other towns
               var ct = document.getElementById("groupConnecticutTowns");
               var mn = document.getElementById("groupMaineTowns");
               var ma = document.getElementById("groupMassachusettsTowns");
@@ -238,7 +344,7 @@
               nh.style.display = "none";
 
 
-              //show selected towns
+              //show towns for selected state
               if (state==="Connecticut") {
                 ct.style.display = "block"; 
               }
@@ -262,19 +368,36 @@
 
             function selectedTown(townID) {
               //center map on town
-              var town = document.getElementById(townID).value;
-              var state = document.getElementById("states").value;
+              town = document.getElementById(townID).value;
+              //var state = document.getElementById("states").value;
               var location= town + ", " + state;
               var zoom = 14;
 
               geocodeLocation(geocoder, map, location, zoom);
-
               var placeName = document.getElementById("groupPlaceName");
               placeName.style.display = "block";
+
+              //update the return value for the developer
+              returnVal = location;
+              document.getElementById("devReturnVal").innerHTML = returnVal;
             }
 
 
+            function placeName(placeID) {
+              //var town = document.getElementById(placeID).value;
+              //var state = document.getElementById("states").value;
+              var place = document.getElementById("placeName").value;
+              var location = place + ", " + town + ", " + state;
+              console.log(location);
+              var zoom = 20;
 
+              geocodeLocation(geocoder, map, location, zoom);  
+
+              //update the return value for the developer
+              returnVal = location;
+              document.getElementById("devReturnVal").innerHTML = returnVal;
+                          
+            }
 
 
 
