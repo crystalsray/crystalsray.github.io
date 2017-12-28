@@ -245,7 +245,9 @@
 
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
+                mapTypeId: google.maps.MapTypeId.HYBRID,
                 zoom: 6,
+                scaleControl: true,
                 center: {lat: 44.247658, lng: -71.553955}
               });
 
@@ -274,11 +276,9 @@
               }
 
 
+              // change lat, lng coordinates to readable text
               var input = marker.getPosition();
-              //console.log(input);
-              //var latlngStr = input.split(',', 2);
               var latlng = {lat: input.lat(), lng: input.lng()};
-              
               geocoder.geocode({'location': latlng}, function(results, status) {
                 if (status === 'OK') { returnVal = results[0].formatted_address; } 
                 else { window.alert('No results found'); }
@@ -286,6 +286,7 @@
 
               updateDevValue(returnVal);
             }
+
 
             function updateDevValue (val) {
               //update return value for the developer
@@ -300,6 +301,13 @@
                   resultsMap.setCenter(results[0].geometry.location);
                   //map.setZoom(zoom);
                   map.fitBounds(results[0].geometry.viewport);
+                  console.log(place);
+                  if (place) {
+                      marker = new google.maps.Marker({
+                      map: resultsMap,
+                      position: results[0].geometry.location
+                    });
+                  }
                 } else {
                   alert('Geocode was not successful for the following reason: ' + status);
                 }
@@ -314,7 +322,7 @@
               console.log(state);
 
               if (state === "Don't Know") {
-                //do nothing?
+                //do nothing? Show instructional text 
               }
 
               else {
@@ -322,9 +330,13 @@
                 showTowns(state);
 
                 //update the return value for the developer
-                returnVal = state;
-                document.getElementById("devReturnVal").innerHTML = returnVal;
+                updateDevValue(state);
               }
+
+              // if marker exists, delete marker
+              if (marker) {
+                  marker.setMap(null);
+              } 
               
             }
 
@@ -362,14 +374,14 @@
 
               else  { //New Hampshire
                   nh.style.display = "block";
-              }
+              } 
+
             }
 
 
             function selectedTown(townID) {
               //center map on town
               town = document.getElementById(townID).value;
-              //var state = document.getElementById("states").value;
               var location= town + ", " + state;
               var zoom = 14;
 
@@ -378,15 +390,12 @@
               placeName.style.display = "block";
 
               //update the return value for the developer
-              returnVal = location;
-              document.getElementById("devReturnVal").innerHTML = returnVal;
+              updateDevValue(location);
             }
 
 
             function placeName(placeID) {
-              //var town = document.getElementById(placeID).value;
-              //var state = document.getElementById("states").value;
-              var place = document.getElementById("placeName").value;
+              place = document.getElementById("placeName").value;
               var location = place + ", " + town + ", " + state;
               console.log(location);
               var zoom = 20;
@@ -394,8 +403,7 @@
               geocodeLocation(geocoder, map, location, zoom);  
 
               //update the return value for the developer
-              returnVal = location;
-              document.getElementById("devReturnVal").innerHTML = returnVal;
+              updateDevValue(location);
                           
             }
 
