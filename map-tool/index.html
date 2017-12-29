@@ -176,6 +176,7 @@
     <script>
 
            var geocoder;
+           var infowindow;
            var map;
            var marker;
            var returnVal;
@@ -252,6 +253,7 @@
               });
 
               geocoder = new google.maps.Geocoder();
+              infowindow = new google.maps.InfoWindow; //for dropped pin
 
 
               google.maps.event.addListener(map, 'click', function (evt) {
@@ -262,7 +264,7 @@
 
 
             function placeMarker(location) {
-
+            console.log("placeMarker()");
               if (marker) {
                   //if marker already was created change positon
                   marker.setPosition(location);
@@ -275,16 +277,22 @@
                   });  
               }
 
-
               // change lat, lng coordinates to readable text
               var input = marker.getPosition();
               var latlng = {lat: input.lat(), lng: input.lng()};
               geocoder.geocode({'location': latlng}, function(results, status) {
-                if (status === 'OK') { returnVal = results[0].formatted_address; } 
-                else { window.alert('No results found'); }
+                if (status === 'OK') { 
+                  returnVal = results[0].formatted_address;
+                  infowindow.setContent(results[0].formatted_address);
+                  infowindow.open(map, marker); 
+                  updateDevValue(returnVal);
+                } 
+                else { 
+                   window.alert('No results found'); 
+                 }
               }); // end geocoder 
 
-              updateDevValue(returnVal);
+              
             }
 
 
@@ -296,17 +304,19 @@
 
 
             function geocodeLocation(geocoder, resultsMap, location, zoom) {
+              console.log('geocodeLocation()');
               geocoder.geocode({'address': location}, function(results, status) {
                 if (status === 'OK') {
                   resultsMap.setCenter(results[0].geometry.location);
                   //map.setZoom(zoom);
                   map.fitBounds(results[0].geometry.viewport);
-                  console.log(place);
                   if (place) {
                       marker = new google.maps.Marker({
-                      map: resultsMap,
-                      position: results[0].geometry.location
-                    });
+                        map: resultsMap,
+                        position: results[0].geometry.location
+                      });
+                      infowindow.setContent(results[0].formatted_address);
+                      infowindow.open(map, marker);
                   }
                 } else {
                   alert('Geocode was not successful for the following reason: ' + status);
