@@ -83,12 +83,12 @@
           <label for="states">Select State</label>
             <select id="states" class="form-control" onchange="selectedState()">
               <option disabled selected>Select State</option>
+              <option>Don't Know</option>
               <option>Connecticut</option>
               <option>Maine</option>
               <option>Massachusetts</option>
               <option>New Hampshire</option>
               <option>Rhode Island</option>
-              <option>Don't Know</option>
             </select>
           </div> <!--/ .form-group -->
 
@@ -185,64 +185,6 @@
            var state;
            var place;
 
-           var maineBoundary = [
-              { lat:45.3425, lng:-71.0129},
-              { lat:45.3328, lng:-70.9525},
-              { lat:45.2294, lng:-70.8618},
-              { lat:45.3917, lng:-70.8247},
-              { lat:45.4274, lng:-70.7808},
-              { lat:45.3830, lng:-70.6380},
-              { lat:45.5092, lng:-70.7190},
-              { lat:45.6544, lng:-70.5721},
-              { lat:45.7292, lng:-70.3894},
-              { lat:45.7924, lng:-70.4169},
-              { lat:45.9368, lng:-70.2493},
-              { lat:45.9597, lng:-70.3098},
-              { lat:46.0923, lng:-70.2946},
-              { lat:46.0989, lng:-70.2589},
-              { lat:46.1342, lng:-70.2466},
-              { lat:46.1903, lng:-70.2905},
-              { lat:46.2710, lng:-70.2466},
-              { lat:46.3270, lng:-70.2040},
-              { lat:46.4151, lng:-70.0571},
-              { lat:46.6956, lng:-69.9994},
-              { lat:47.4550, lng:-69.2303},
-              { lat:47.4132, lng:-69.0381},
-              { lat:47.2578, lng:-69.0504},
-              { lat:47.1748, lng:-68.8843},
-              { lat:47.2643, lng:-68.6206},
-              { lat:47.3546, lng:-68.3350},
-              { lat:47.3165, lng:-68.1564},
-              { lat:47.1038, lng:-67.8804},
-              { lat:47.0664, lng:-67.7898},
-              { lat:45.9359, lng:-67.7802},
-              { lat:45.9177, lng:-67.7527},
-              { lat:45.7599, lng:-67.8090},
-              { lat:45.6208, lng:-67.6524},
-              { lat:45.5987, lng:-67.4533},
-              { lat:45.5044, lng:-67.4176},
-              { lat:45.4823, lng:-67.5014},
-              { lat:45.3714, lng:-67.4231},
-              { lat:45.2768, lng:-67.4863},
-              { lat:45.1297, lng:-67.3434},
-              { lat:45.1830, lng:-67.2487},
-              { lat:45.1230, lng:-67.1223},
-              { lat:44.8315, lng:-66.9672},
-              { lat:44.7409, lng:-66.8628},
-              { lat:44.4945, lng:-67.3105},
-              { lat:44.3268, lng:-67.9051},
-              { lat:43.8702, lng:-68.6673},
-              { lat:43.7274, lng:-68.8431},
-              { lat:43.6639, lng:-69.7137},
-              { lat:43.5625, lng:-70.0818},
-              { lat:42.9182, lng:-70.5569},
-              { lat:43.0649, lng:-70.7108},
-              { lat:43.1391, lng:-70.8302},
-              { lat:43.2292, lng:-70.8179},
-              { lat:43.3631, lng:-70.9799},
-              { lat:43.5675, lng:-70.9717},
-              { lat:45.3029, lng:-71.0829}
-            ];
 
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
@@ -332,7 +274,7 @@
               console.log(state);
 
               if (state === "Don't Know") {
-                //do nothing? Show instructional text 
+                //do nothing? Show autocomplete field / have user zoom and scroll to location on map, drop pin 
               }
 
               else {
@@ -392,7 +334,15 @@
             function selectedTown(townID) {
               //center map on town
               town = document.getElementById(townID).value;
-              var location= town + ", " + state;
+              var location;
+
+              if (town==="Don't Know") {
+                location= state; // exclude town if "Don't Know" is chosen
+              }
+              else {
+                location= town + ", " + state;
+              }
+               
               var zoom = 14;
 
               geocodeLocation(geocoder, map, location, zoom);
@@ -406,7 +356,15 @@
 
             function placeName(placeID) {
               place = document.getElementById("placeName").value;
-              var location = place + ", " + town + ", " + state;
+              var location;
+
+              if (town==="Don't Know") {
+                location= place + ", " + state; // exclude town if "Don't Know" is chosen
+              }
+              else {
+                location = place + ", " + town + ", " + state;
+              }
+
               console.log(location);
               var zoom = 20;
 
