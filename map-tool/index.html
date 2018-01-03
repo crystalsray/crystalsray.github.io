@@ -165,7 +165,7 @@
           <!-- Pn Instructions if state isn't selected -->
           <div id="pinInfoState">
            <br>
-           <div class="bg-info" style="padding: 10px;">
+           <div class="bg-info">
              <p class="text-center"><strong>Place Pin on the Map</strong></p>
              <p>Use the controls on the map to pan and zoom to location and click on the map to add a pin.</p>
            </div>
@@ -276,14 +276,15 @@
               var latlng = {lat: input.lat(), lng: input.lng()};
               geocoder.geocode({'location': latlng}, function(results, status) {
                 if (status === 'OK') { 
-                  returnVal = results[0].formatted_address;
                   infowindow.setContent(results[0].formatted_address);
                   infowindow.open(map, marker); 
-                  updateDevValue(returnVal);
+                  updateDevValue(results[0].formatted_address);
 
                   //check if Pin is added in correct place
                   pinInfo.style.display = "none";
+                  statePinInfo.style.display = "none";
                   confirm.style.display = "block";
+                  console.log('tes');
 
                 } 
                 else { 
@@ -318,6 +319,7 @@
                       infowindow.open(map, marker);
                       //update the return value for the developer
                       updateDevValue(results[0].formatted_address);
+                      statePinInfo.style.display = "none";
                       confirm.style.display = "block";
                   }
                 } else {

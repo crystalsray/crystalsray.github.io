@@ -2,6 +2,6 @@
 	display: none;
 }
 
-.bg-danger, .bg-success {
+.bg-danger, .bg-success, .bg-info {
 	padding: 10px;
 }
