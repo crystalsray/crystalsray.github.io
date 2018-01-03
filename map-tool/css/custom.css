@@ -1,3 +1,7 @@
-#groupConnecticutTowns, #groupMaineTowns, #groupMassachusettsTowns, #groupNewHampshireTowns, #groupRhodeIslandTowns, #groupPlaceName {
+#groupConnecticutTowns, #groupMaineTowns, #groupMassachusettsTowns, #groupNewHampshireTowns, #groupRhodeIslandTowns, #groupPlaceName, #pinInstructions, #confirm, #pinInfoState {
 	display: none;
+}
+
+.bg-danger, .bg-success {
+	padding: 10px;
 }

@@ -142,10 +142,45 @@
             <small><span class="help-block text-muted">Examples: beach name, street name, marina, or park name.</span></small>
           </div> <!--/ .form-group -->
 
-          <input class="btn btn-default" type="submit" value="Search" onclick="placeName('placeName')">
+
+
+
+          <button type="button" class="btn btn-default btn-block" aria-label="Left Align" onclick="placeName('placeName')">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+          </button>
 
           </div>
 
+
+          <!-- Instructions to place pin -->
+          <div id="pinInstructions">
+           <br>
+              <div class="bg-danger">
+                <p class="text-center"><strong>Place Pin on the Map</strong></p>
+                <p>The place has not been found. Use the controls on the map to pan and zoom to location and <em>click</em> on the map to add a pin.</p>
+              </div>
+          </div>
+
+
+          <!-- Pn Instructions if state isn't selected -->
+          <div id="pinInfoState">
+           <br>
+           <div class="bg-info" style="padding: 10px;">
+             <p class="text-center"><strong>Place Pin on the Map</strong></p>
+             <p>Use the controls on the map to pan and zoom to location and click on the map to add a pin.</p>
+           </div>
+          </div>
+
+
+          <!-- Confirmation -->
+          <div id="confirm">
+          <br>
+            <div class="bg-success">
+             <p class="text-center"><strong>Confirm Location</strong></p>
+             <p>Confirm text lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae massa dignissim, mollis tortor at, pharetra nunc. Nullam vitae fringilla ex.</p>
+             <input class="btn btn-success btn-block" type="submit" value="Confirm Location">
+            </div>
+          </div>
           
 
         </div> <!--/ .col-md-3 -->
@@ -185,11 +220,23 @@
            var state;
            var place;
 
+           var pinInfo = document.getElementById("pinInstructions");
+           var confirm = document.getElementById("confirm");
+           var statePinInfo = document.getElementById("pinInfoState");
+
+           //hide other towns
+          var ct = document.getElementById("groupConnecticutTowns");
+          var mn = document.getElementById("groupMaineTowns");
+          var ma = document.getElementById("groupMassachusettsTowns");
+          var ri = document.getElementById("groupRhodeIslandTowns");
+          var nh = document.getElementById("groupNewHampshireTowns");
+
 
             function initMap() {
               map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.HYBRID,
                 zoom: 6,
+                streetViewControl: false,
                 scaleControl: true,
                 center: {lat: 44.247658, lng: -71.553955}
               });
@@ -197,6 +244,11 @@
               geocoder = new google.maps.Geocoder();
               infowindow = new google.maps.InfoWindow; //for dropped pin
 
+              /*var autoInput = document.getElementById("placeName");
+              var autocomplete = new google.maps.places.Autocomplete(autoInput);
+              autocomplete.setComponentRestrictions({
+                  'country': ['us']
+              });*/
 
               google.maps.event.addListener(map, 'click', function (evt) {
                 placeMarker(evt.latLng);
@@ -219,7 +271,7 @@
                   });  
               }
 
-              // change lat, lng coordinates to readable text
+              // change lat/lng coordinates to readable text
               var input = marker.getPosition();
               var latlng = {lat: input.lat(), lng: input.lng()};
               geocoder.geocode({'location': latlng}, function(results, status) {
@@ -228,6 +280,11 @@
                   infowindow.setContent(results[0].formatted_address);
                   infowindow.open(map, marker); 
                   updateDevValue(returnVal);
+
+                  //check if Pin is added in correct place
+                  pinInfo.style.display = "none";
+                  confirm.style.display = "block";
+
                 } 
                 else { 
                    window.alert('No results found'); 
@@ -259,9 +316,14 @@
                       });
                       infowindow.setContent(results[0].formatted_address);
                       infowindow.open(map, marker);
+                      //update the return value for the developer
+                      updateDevValue(results[0].formatted_address);
+                      confirm.style.display = "block";
                   }
                 } else {
-                  alert('Geocode was not successful for the following reason: ' + status);
+                  pinInfo.style.display = "block"; // show instructional text to drop a pin
+                  confirm.style.display = "none";
+                  //alert('Geocode was not successful for the following reason: ' + status);
                 }
               });
             }
@@ -274,12 +336,17 @@
               console.log(state);
 
               if (state === "Don't Know") {
-                //do nothing? Show autocomplete field / have user zoom and scroll to location on map, drop pin 
+                //show instructions for dropping a pin 
+                statePinInfo.style.display = "block";
+                hideTowns();
               }
 
               else {
                 geocodeLocation(geocoder, map, state, zoom);
                 showTowns(state);
+
+                //hide Pin Instructions incase  users changes selection from "Don't Know" to State
+                statePinInfo.style.display = "none";
 
                 //update the return value for the developer
                 updateDevValue(state);
@@ -292,21 +359,18 @@
               
             }
 
-            function showTowns(state) {
 
-              //hide other towns
-              var ct = document.getElementById("groupConnecticutTowns");
-              var mn = document.getElementById("groupMaineTowns");
-              var ma = document.getElementById("groupMassachusettsTowns");
-              var ri = document.getElementById("groupRhodeIslandTowns");
-              var nh = document.getElementById("groupNewHampshireTowns");
-
+            function hideTowns() {
               ct.style.display = "none";
               mn.style.display = "none";
               ma.style.display = "none";
               ri.style.display = "none";
               nh.style.display = "none";
+            }
 
+            function showTowns(state) {
+
+              hideTowns();
 
               //show towns for selected state
               if (state==="Connecticut") {
@@ -378,7 +442,7 @@
 
 
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOlaySnzB2tBKFR3us5byUMV96cbcZYoY&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOlaySnzB2tBKFR3us5byUMV96cbcZYoY&callback=initMap&libraries=places""></script>
 
   </body>
 
