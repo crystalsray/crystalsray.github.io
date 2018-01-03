@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>View by Source | Private Sector Counts | SHOPS</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Load Bootstrap Multiselect CSS https://github.com/davidstutz/bootstrap-multiselect -->
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+
+    <!-- Custom CSS -->
+    <link href="css/style-v2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+     
+
+
+    <!-- Load Tableau JS API -->
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type='text/javascript'>
+
+         
+
+        var viz;
+        var workbook;
+        var activeSheet;
+
+
+              
+        function initViz() {
+            var containerDiv = document.getElementById("tableauViz"),
+            url = "https://public.tableau.com/views/DHSCHVizzesnosidefilters02Jan/DashCSLevelsBubbles?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no",
+            options = {
+                hideTabs: true,
+                hideToolbar: true,
+                width: containerDiv.offsetWidth,
+                height: containerDiv.offsetHeight,
+                onFirstInteractive: function () {
+                    //run this code with the viz has bfinishe loading
+                    workbook = viz.getWorkbook();
+                    activeSheet = workbook.getActiveSheet();
+                }
+
+            };
+            
+            // Create a viz object and embed it in the container div.
+            viz = new tableau.Viz(containerDiv, url, options);
+
+            //Use to test whether a paramater change or filter event is happening
+            //parametervaluechange, filterchange, vizresize, marksselection, tabswitch, toolbarstatechange, customviewsetdefault
+            viz.addEventListener('filterchange', function(event){
+                //console.log('event name: ' + event.getEventName());
+            });
+        }
+
+        // Switch the viz to the sheet specified
+        function switchView(sheetName) {
+          var workbook = viz.getWorkbook();
+          // switch to new sheet and reset to original state
+          workbook.activateSheetAsync(sheetName); 
+          workbook.revertAllAsync();
+
+
+          //reset multiselect fields
+          $('.shops-multiselect option').each(function() { $(this).prop('selected',true); });
+          $('.shops-multiselect').multiselect('refresh');
+
+          //reset single value input fields
+          document.getElementById("CSsourcesBar_demographics").value='Total Population';
+          document.getElementById("IP_demographics").value="Total Population";
+          document.getElementById("CSLevels_demographics").value="Total Population";
+          document.getElementById("CSsourcesBar2_demographics").value="Maternal Education";
+          document.getElementById("CSLevels_demographics2").value="Maternal Education";
+          document.getElementById("IP_illnesses2").value="One or more illnesses";
+
+
+          //show/hide filtering input fields for visualizations
+          if (sheetName==="CS Sources Bar" ) {
+            //reset radio group button
+            $("#CSSourceOpt1").addClass("active");
+            $("#CSSourceOpt2").removeClass("active");
+
+            $("#CSsourcesBar_group1").show();
+            $("#CSsourcesBar_group2").hide()
+          } 
+
+          else if ( sheetName==="CS Sources Bubble" ) {
+
+            $("#CSsourcesBar_group1").hide();
+            $("#CSsourcesBar_group2").show();
+          }
+
+
+          /////////////////////////////
+
+
+          else if ( sheetName==="IP Map" ) {
+                //reset radio group button
+                $("#IPOption1").addClass("active");
+                $("#IPOption2").removeClass("active");
+
+                //hide muliple select illnesses
+                $("#IPillnesses_group1").show();
+                $("#IPillnesses_group2").hide();
+
+                //hide demographics for map
+                $("#IP_map_demographics_group").hide();
+          }
+
+          else if ( sheetName==="IP Bar" ) {
+
+                //hide muliple select illnesses
+                $("#IPillnesses_group1").hide();
+                $("#IPillnesses_group2").show();
+
+                //show demographics for map
+                $("#IP_map_demographics_group").show();
+
+         }
+
+
+          //////////////////////////
+
+
+          else if (sheetName==="CS Levels Bubble") {
+            $("#CSLevels_illnesses_group").hide();
+            $("#CS_levels_demographics_group").hide();
+            $("#CS_levels_demographics_group2").show();
+          }
+
+          else if(sheetName==="CS Levels Map") {
+              $("#CSLevels_illnesses_group").show();
+              $("#CS_levels_demographics_group").hide();
+              $("#CS_levels_demographics_group2").hide();
+              
+              $('#CSLevels_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
+              $('#CSLevels_region').multiselect('deselect', ['Regional Averages']);
+          }
+
+          //CS Levels Bar
+          else  {
+            //reset radio group button
+            $("#CSlevelOpt1").addClass("active");
+            $("#CSlevelOpt2").removeClass("active");
+            $("#CSlevelOpt3").removeClass("active");
+
+            $("#CSLevels_illnesses_group").show();
+            $("#CS_levels_demographics_group").show();
+            $("#CS_levels_demographics_group2").hide();
+                
+          }
+
+
+
+        } // end switchView()
+
+        //use for single parameter changes
+        function show(fieldID, filterName) {
+            var option = document.getElementById(fieldID).value;
+            var parameter=viz.getWorkbook().changeParameterValueAsync(filterName, option); 
+        }
+
+        //use for single filter change
+        function showSingle(fieldID, filterName) {
+            var value = document.getElementById(fieldID).value;
+            sheet = viz.getWorkbook().getActiveSheet();
+            sheet.applyFilterAsync(filterName, value, 'REPLACE');
+        }
+
+        //use for multiple select filter change
+        function showMultiple(fieldID, filterName) {
+            //filter worksheet based on multiple select fields
+            var colOfSelectedOpt = document.getElementById(fieldID).selectedOptions;
+
+            var values = [];
+            for(var i=0;i<colOfSelectedOpt.length;i++) {
+                 values.push(colOfSelectedOpt[i].value);
+            }      
+
+           sheet = viz.getWorkbook().getActiveSheet();
+               if(sheet.getSheetType() === 'worksheet') {
+                   sheet.applyFilterAsync(filterName, values, 'REPLACE');
+                } else {
+
+                   worksheetArray = sheet.getWorksheets();
+                   for(var i = 0; i < worksheetArray.length; i++) {
+                  worksheetArray[i].applyFilterAsync(filterName, values, 'REPLACE');
+                 }
+            }
+        }
+
+
+    </script>
+
+    <style>
+      h2 {
+        margin-bottom: 10px;
+      }
+    </style>
+
+</head>
+
+
+
+
+<body id="page-top" class="index">
+
+    <div class="logo-bar text-center">
+        
+            <h1>Private Sector Counts - Child Health</h1>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+       <div class="shops-logo-brand navbar-brand"><a class="page-scroll" href="http://www.shopsproject.org/"><img src="img/Shops_Plus_Color_sm.png" height="80px" /></a></div>
+       <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="main-container">
+            <div class="fixer-container">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="index.html">Home</a>
+                </li>
+                <li class="active-static">
+                    <a class="page-scroll" href="prevalence.html">Explore the Data</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="about-data.html">About the Data</a>
+                </li>
+                 <li>
+                    <a class="page-scroll" href="about.html">About this Tool</a>
+                </li>
+               <li>
+                    <a class="page-scroll far-right" href="https://www.shopsplusproject.org/" target="_blank">SHOPSPlusProject.org</a>
+                </li>
+            </ul>
+            </div>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="bg-light-gray">
+        <div class="container">
+
+            <div class="row">
+              <h2 class="text-center">Explore the Data</h2>
+            </div>
+
+            <p class="text-center">Hover over the bar graphs for more detail.</p>
+
+            <div class="row">
+
+                <div class="col-lg-9">
+
+                    
+
+          					<!--desktop-->
+          					<div align="center" style="background: #fff; border: 1px solid #ccc;">
+
+          						
+                                  
+                                  <div id='tableauViz' style="width: 100%; height: 850px;">
+                                  </div>   
+
+                                  <script type='text/javascript'>
+                                      //Initialize the viz after the div is created
+                                      initViz();
+                                  </script>             
+
+                                  
+
+          					</div>
+
+
+				        </div> <!-- // col-lg-9 -->
+
+                <div class="col-lg-3">
+                    <aside>
+                        <nav>
+                        
+                           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                              <!-- Panel #1 Illness Prevalence -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading down-arrow" role="tab" id="headingOne">
+                                  <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('CS Sources Bar')">
+                                      Where do caregivers seek treatment for their sick children?
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                  <div class="panel-body">
+
+                                    <form id="formIllnessPrevalence">
+                                        <div class="form-group">
+                                            <label for="IllnessPrevalence_country">Country</label>
+                                            <select class="form-control shops-multiselect" id="IllnessPrevalence_country" onchange="showMultiple('IllnessPrevalence_country','Country')" multiple="multiple">
+                                                <option selected>Afghanistan 2015</option>
+                                                <option selected>Asia average</option>
+                                                <option selected>Bangladesh 2014</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ghana 2014</option>
+                                                <option selected>Haiti 2012</option>
+                                                <option selected>India 2005-06</option>
+                                                <option selected>Indonesia 2012</option>
+                                                <option selected>Kenya 2014</option>
+                                                <option selected>Liberia 2013</option>
+                                                <option selected>Madagascar 2009</option>
+                                                <option selected>Malawi 2015-16</option>
+                                                <option selected>Mali 2012-13</option>
+                                                <option selected>Mozambique 2011</option>
+                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Nepal 2011</option>
+                                                <option selected>Nigeria 2013</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>Pakistan 2012-13</option>
+                                                <option selected>Rwanda 2015-16</option>
+                                                <option selected>Senegal 2016</option>
+                                                <option selected>Tanzania 2015-16</option>
+                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>Uganda 2011</option>
+                                                <option selected>W.C. Africa average</option>
+                                                <option selected>Yemen 2013</option>
+                                                <option selected>Zambia 2013-14</option>
+                                              
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group">
+                                            <label for="CSsourcesBar_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
+                                              <option selected>Regional Averages</option>
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="CSsourcesBar_group1">
+                                            <label for="CSsourcesBar_demographics">Demographics</label>
+                                            <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
+                                              <option selected>Total Population</option>
+                                              <option>All Quintiles</option>
+                                              <option>Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        <div class="form-group" id="CSsourcesBar_group2">
+                                            <label for="CSsourcesBar2_demographics">Demographics</label>
+                                            <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
+                                              <option>All Quintiles</option>
+                                              <option>Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option selected>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+                                   
+
+                                        <br>
+                                        <div class="btn-group" data-toggle="buttons">
+                                          <label class="btn btn-default active" onclick="switchView('CS Sources Bar')" id="CSSourceOpt1">
+                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bar" checked>  Bar Chart
+                                          </label>
+                                          <label class="btn btn-default" onclick="switchView('CS Sources Bubble')" id="CSSourceOpt2">
+                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bubble"> Bubble Chart
+                                          </label>
+                                        </div>
+                                     </form>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                            <!-- Panel #2 Care-Seeking Levels -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="switchView('IP Map')">
+                                      How often do children get sick? 
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                  <div class="panel-body">
+
+                                  <form>
+                                        <div class="form-group" id="IPillnesses_group2">
+                                            <label for="IP_illnesses">Illnesses</label>
+                                            <select class="form-control shops-multiselect" onchange="showMultiple('IP_illnesses','Illnesses')" id="IP_illnesses" multiple="multiple">
+                                              <option selected>ARI</option>
+                                              <option selected>Diarrhea</option>
+                                              <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="IPillnesses_group1">
+                                            <label for="IP_illnesses2">Illnesses</label>
+                                            <select class="form-control " onchange="showSingle('IP_illnesses2','Illnesses')" id="IP_illnesses2">
+                                              <option selected>ARI</option>
+                                              <option selected>Diarrhea</option>
+                                              <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group">
+                                            <label for="IP_country">Country</label>
+                                            <select class="form-control shops-multiselect" id="IP_country" onchange="showMultiple('IP_country','Country')" multiple="multiple">
+                                                <option selected>Afghanistan 2015</option>
+                                                <option selected>Asia average</option>
+                                                <option selected>Bangladesh 2014</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ghana 2014</option>
+                                                <option selected>Haiti 2012</option>
+                                                <option selected>India 2005-06</option>
+                                                <option selected>Indonesia 2012</option>
+                                                <option selected>Kenya 2014</option>
+                                                <option selected>Liberia 2013</option>
+                                                <option selected>Madagascar 2009</option>
+                                                <option selected>Malawi 2015-16</option>
+                                                <option selected>Mali 2012-13</option>
+                                                <option selected>Mozambique 2011</option>
+                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Nepal 2011</option>
+                                                <option selected>Nigeria 2013</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>Pakistan 2012-13</option>
+                                                <option selected>Rwanda 2015-16</option>
+                                                <option selected>Senegal 2016</option>
+                                                <option selected>Tanzania 2015-16</option>
+                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>Uganda 2011</option>
+                                                <option selected>W.C. Africa average</option>
+                                                <option selected>Yemen 2013</option>
+                                                <option selected>Zambia 2013-14</option>
+                                              
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group">
+                                            <label for="IP_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Region')" multiple="multiple">
+                                              <option selected>Regional Averages</option>
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        <div class="form-group" id="IP_map_demographics_group">
+                                            <label for="IP_demographics">Demographics</label>
+                                            <select class="form-control" onchange="show('IP_demographics','Demographics')" id="IP_demographics">
+                                              <option selected>Total Population</option>
+                                              <option>All Quintiles</option>
+                                              <option>Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        
+
+                                        <div class="btn-group" data-toggle="buttons">
+                                          <label class="btn btn-default active" onclick="switchView('IP Map')" id="IPOption1">
+                                            <input type="radio" name="IPOptions" id="IP Map" autocomplete="off" value="IP Map"> </i> Map
+                                          </label>
+                                          <label class="btn btn-default" onclick="switchView('IP Bar')" id="IPOption2">
+                                            <input type="radio" name="IPOptions" id="IP bar" autocomplete="off" checked value="IP Map"> Bar Chart
+                                          </label>
+                                        </div>
+
+
+
+                                  </form>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <!-- Panel #3 Care-Seeking Levels and Key Characteristics -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('CS Levels Bar')">
+                                      How often do caregivers seek assistance outside the home?
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                  <div class="panel-body">
+
+
+                                    <form>
+
+                                        <div class="form-group" id="CSLevels_illnesses_group">
+                                            <label for="CSLevels_illnesses">Illnesses</label>
+                                            <select class="form-control shops-multiselect" onchange="showMultiple('CSLevels_illnesses','Illnesses')" id="CSLevels_illnesses" multiple="multiple">
+                                              <option selected>ARI</option>
+                                              <option selected>Diarrhea</option>
+                                              <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        <div class="form-group">
+                                            <label for="CSLevels_country">Country</label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_country" onchange="showMultiple('CSLevels_country','Country')" multiple="multiple">
+                                                <option selected>Afghanistan 2015</option>
+                                                <option selected>Asia average</option>
+                                                <option selected>Bangladesh 2014</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ghana 2014</option>
+                                                <option selected>Haiti 2012</option>
+                                                <option selected>India 2005-06</option>
+                                                <option selected>Indonesia 2012</option>
+                                                <option selected>Kenya 2014</option>
+                                                <option selected>Liberia 2013</option>
+                                                <option selected>Madagascar 2009</option>
+                                                <option selected>Malawi 2015-16</option>
+                                                <option selected>Mali 2012-13</option>
+                                                <option selected>Mozambique 2011</option>
+                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Nepal 2011</option>
+                                                <option selected>Nigeria 2013</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>Pakistan 2012-13</option>
+                                                <option selected>Rwanda 2015-16</option>
+                                                <option selected>Senegal 2016</option>
+                                                <option selected>Tanzania 2015-16</option>
+                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>Uganda 2011</option>
+                                                <option selected>W.C. Africa average</option>
+                                                <option selected>Yemen 2013</option>
+                                                <option selected>Zambia 2013-14</option>
+                                              
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group">
+                                            <label for="CSLevels_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Region')" multiple="multiple">
+                                              
+                                              <option selected>Regional Averages</option>
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="CS_levels_demographics_group">
+                                            <label for="CSLevels_demographics">Demographics</label>
+                                            <select class="form-control" onchange="show('CSLevels_demographics','Demographics')" id="CSLevels_demographics">
+                                              <option selected>Total Population</option>
+                                              <option>All Quintiles</option>
+                                              <option>Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="CS_levels_demographics_group2">
+                                            <label for="CSLevels_demographics2">Demographics</label>
+                                            <select class="form-control" onchange="show('CSLevels_demographics2','Demographics no total 1to4')" id="CSLevels_demographics2">
+                                              <option>All Quintiles</option>
+                                              <option>Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option selected>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+                                   
+
+                                        <br>
+                                        <div class="btn-group" data-toggle="buttons">
+                                          <label class="btn btn-default active" onclick="switchView('CS Levels Bar')" id="CSlevelOpt1">
+                                            <input type="radio" name="CSlevelsOptions" autocomplete="off" value="CS Levels Bar">  Bar Chart
+                                          </label>
+                                          <label class="btn btn-default" onclick="switchView('CS Levels Map')" id="CSlevelOpt2">
+                                            <input type="radio" name="CSlevelsOptions" autocomplete="off" checked value="CS Levels Map"> Map
+                                          </label>
+                                          <label class="btn btn-default" onclick="switchView('CS Levels Bubble')" id="CSlevelOpt3">
+                                            <input type="radio" name="CSlevelsOptions" autocomplete="off" checked value="CS Levels Map"> Bubble Chart
+                                          </label>
+                                        </div>
+
+                                     </form>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              
+
+
+
+
+
+
+                            </div>
+
+
+
+                                    
+
+
+                        </nav>
+
+
+
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+			
+      				<div class="col-xs-12">
+      					<p class="text-left col-xs-12">The Strengthening Health Outcomes through the Private Sector (SHOPS) project is funded by the United States Agency for International Development (USAID) under Cooperative Agreement No. GPO-A-00-09-00007-00. The information provided on this website is not official U.S. government information and does not represent the views or positions of USAID or the U.S. government.</p>
+      					<p class="col-xs-12 text-center">
+
+      						<a href="https://www.usaid.gov/" target="_blank" style="margin-right: 50px;"><img src="img/logo_USAID.png" alt="USAID Website"></a>
+
+                  <a href="https://www.shopsplusproject.org/" target="_blank"><img src="img/logo_SHOPS_Plus.png" alt="SHOPS Plus website"></a>	
+      					</p>		
+      				
+              </div>
+                
+            </div>
+        </div>
+    </footer>
+
+	
+
+
+	
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
+
+    
+
+</body>
+
+</html>
