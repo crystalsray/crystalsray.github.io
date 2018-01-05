@@ -51,7 +51,7 @@
               
         function initViz() {
             var containerDiv = document.getElementById("tableauViz"),
-            url = "https://public.tableau.com/views/DHSCHVizzesnosidefilters02Jan/DashCSLevelsBubbles?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no",
+            url = "https://public.tableau.com/views/DHSCHVizzesnosidefilters02Jan/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no",
             options = {
                 hideTabs: true,
                 hideToolbar: true,
@@ -97,7 +97,7 @@
 
 
           //show/hide filtering input fields for visualizations
-          if (sheetName==="CS Sources Bar" ) {
+          if (sheetName==="Dash CS Sources Bar" ) {
             //reset radio group button
             $("#CSSourceOpt1").addClass("active");
             $("#CSSourceOpt2").removeClass("active");
@@ -106,7 +106,7 @@
             $("#CSsourcesBar_group2").hide()
           } 
 
-          else if ( sheetName==="CS Sources Bubble" ) {
+          else if ( sheetName==="Dash CS Sources Bubble" ) {
 
             $("#CSsourcesBar_group1").hide();
             $("#CSsourcesBar_group2").show();
@@ -116,7 +116,7 @@
           /////////////////////////////
 
 
-          else if ( sheetName==="IP Map" ) {
+          else if ( sheetName==="Dash IP Map" ) {
                 //reset radio group button
                 $("#IPOption1").addClass("active");
                 $("#IPOption2").removeClass("active");
@@ -129,7 +129,7 @@
                 $("#IP_map_demographics_group").hide();
           }
 
-          else if ( sheetName==="IP Bar" ) {
+          else if ( sheetName==="Dash IP Bar" ) {
 
                 //hide muliple select illnesses
                 $("#IPillnesses_group1").hide();
@@ -144,13 +144,13 @@
           //////////////////////////
 
 
-          else if (sheetName==="CS Levels Bubble") {
+          else if (sheetName==="Dash CS Levels Bubbles") {
             $("#CSLevels_illnesses_group").hide();
             $("#CS_levels_demographics_group").hide();
             $("#CS_levels_demographics_group2").show();
           }
 
-          else if(sheetName==="CS Levels Map") {
+          else if(sheetName==="Dash CS Levels Map") {
               $("#CSLevels_illnesses_group").show();
               $("#CS_levels_demographics_group").hide();
               $("#CS_levels_demographics_group2").hide();
@@ -178,15 +178,28 @@
 
         //use for single parameter changes
         function show(fieldID, filterName) {
-            var option = document.getElementById(fieldID).value;
-            var parameter=viz.getWorkbook().changeParameterValueAsync(filterName, option); 
+            var value = document.getElementById(fieldID).value;
+            var parameter=viz.getWorkbook().changeParameterValueAsync(filterName, value); 
+
         }
 
         //use for single filter change
         function showSingle(fieldID, filterName) {
             var value = document.getElementById(fieldID).value;
+            //sheet = viz.getWorkbook().getActiveSheet();
+            //sheet.applyFilterAsync(filterName, value, 'REPLACE');
+
             sheet = viz.getWorkbook().getActiveSheet();
-            sheet.applyFilterAsync(filterName, value, 'REPLACE');
+            console.log(sheet);
+               if(sheet.getSheetType() === 'worksheet') {
+                   sheet.applyFilterAsync(filterName, value, 'REPLACE');
+                } else {
+
+                   worksheetArray = sheet.getWorksheets();
+                   for(var i = 0; i < worksheetArray.length; i++) {
+                  worksheetArray[i].applyFilterAsync(filterName, value, 'REPLACE');
+                 }
+            }
         }
 
         //use for multiple select filter change
@@ -321,7 +334,7 @@
                               <div class="panel panel-default">
                                 <div class="panel-heading down-arrow" role="tab" id="headingOne">
                                   <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('CS Sources Bar')">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('Dash CS Sources Bar')">
                                       Where do caregivers seek treatment for their sick children?
                                     </a>
                                   </h4>
@@ -401,10 +414,10 @@
 
                                         <br>
                                         <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-default active" onclick="switchView('CS Sources Bar')" id="CSSourceOpt1">
+                                          <label class="btn btn-default active" onclick="switchView('Dash CS Sources Bar')" id="CSSourceOpt1">
                                             <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bar" checked>  Bar Chart
                                           </label>
-                                          <label class="btn btn-default" onclick="switchView('CS Sources Bubble')" id="CSSourceOpt2">
+                                          <label class="btn btn-default" onclick="switchView('Dash CS Sources Bubble')" id="CSSourceOpt2">
                                             <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bubble"> Bubble Chart
                                           </label>
                                         </div>
@@ -418,7 +431,7 @@
                               <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                   <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="switchView('IP Map')">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="switchView('Dash IP Map')">
                                       How often do children get sick? 
                                     </a>
                                   </h4>
@@ -509,10 +522,10 @@
                                         
 
                                         <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-default active" onclick="switchView('IP Map')" id="IPOption1">
+                                          <label class="btn btn-default active" onclick="switchView('Dash IP Map')" id="IPOption1">
                                             <input type="radio" name="IPOptions" id="IP Map" autocomplete="off" value="IP Map"> </i> Map
                                           </label>
-                                          <label class="btn btn-default" onclick="switchView('IP Bar')" id="IPOption2">
+                                          <label class="btn btn-default" onclick="switchView('Dash IP Bar')" id="IPOption2">
                                             <input type="radio" name="IPOptions" id="IP bar" autocomplete="off" checked value="IP Map"> Bar Chart
                                           </label>
                                         </div>
@@ -529,7 +542,7 @@
                               <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingThree">
                                   <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('CS Levels Bar')">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('Dash CS Levels Bar')">
                                       How often do caregivers seek assistance outside the home?
                                     </a>
                                   </h4>
@@ -622,13 +635,13 @@
 
                                         <br>
                                         <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-default active" onclick="switchView('CS Levels Bar')" id="CSlevelOpt1">
+                                          <label class="btn btn-default active" onclick="switchView('Dash CS Levels Bar')" id="CSlevelOpt1">
                                             <input type="radio" name="CSlevelsOptions" autocomplete="off" value="CS Levels Bar">  Bar Chart
                                           </label>
-                                          <label class="btn btn-default" onclick="switchView('CS Levels Map')" id="CSlevelOpt2">
+                                          <label class="btn btn-default" onclick="switchView('Dash CS Levels Map')" id="CSlevelOpt2">
                                             <input type="radio" name="CSlevelsOptions" autocomplete="off" checked value="CS Levels Map"> Map
                                           </label>
-                                          <label class="btn btn-default" onclick="switchView('CS Levels Bubble')" id="CSlevelOpt3">
+                                          <label class="btn btn-default" onclick="switchView('Dash CS Levels Bubbles')" id="CSlevelOpt3">
                                             <input type="radio" name="CSlevelsOptions" autocomplete="off" checked value="CS Levels Map"> Bubble Chart
                                           </label>
                                         </div>
