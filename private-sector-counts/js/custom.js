@@ -32,7 +32,8 @@ $(function() {
 
 // format mulselect into checkboxes
  $('.shops-multiselect').multiselect({
-  includeSelectAllOption:true
+  includeSelectAllOption:true,
+  selectAllText: 'Check Select/Deselect All'
  })
 
  //hide fields

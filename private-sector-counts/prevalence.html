@@ -51,7 +51,7 @@
               
         function initViz() {
             var containerDiv = document.getElementById("tableauViz"),
-            url = "https://public.tableau.com/views/DHSCHVizzesnosidefilters02Jan/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no",
+            url = "https://public.tableau.com/views/DHSCHVizzes10Jan/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no",
             options = {
                 hideTabs: true,
                 hideToolbar: true,
@@ -91,8 +91,8 @@
           document.getElementById("CSsourcesBar_demographics").value='Total Population';
           document.getElementById("IP_demographics").value="Total Population";
           document.getElementById("CSLevels_demographics").value="Total Population";
-          document.getElementById("CSsourcesBar2_demographics").value="Maternal Education";
-          document.getElementById("CSLevels_demographics2").value="Maternal Education";
+          document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
+          document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
           document.getElementById("IP_illnesses2").value="One or more illnesses";
 
 
@@ -389,7 +389,7 @@
                                             </select>
                                         </div><!-- form-group-->
 
-                                        <div class="form-group" id="CSsourcesBar_group1">
+                                        <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
                                             <label for="CSsourcesBar_demographics">Demographics</label>
                                             <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
                                               <option selected>Total Population</option>
@@ -401,13 +401,13 @@
                                         </div><!-- form-group-->
 
 
-                                        <div class="form-group" id="CSsourcesBar_group2">
+                                        <div class="form-group" id="CSsourcesBar_group2"> <!-- Bubble chart -->
                                             <label for="CSsourcesBar2_demographics">Demographics</label>
                                             <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
                                               <option>All Quintiles</option>
-                                              <option>Poorest and Richest Quintiles</option>
+                                              <option selected="">Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
-                                              <option selected>Maternal Education</option>
+                                              <option>Maternal Education</option>
                                             </select>
                                         </div><!-- form-group-->
                                    
@@ -626,9 +626,9 @@
                                             <label for="CSLevels_demographics2">Demographics</label>
                                             <select class="form-control" onchange="show('CSLevels_demographics2','Demographics no total 1to4')" id="CSLevels_demographics2">
                                               <option>All Quintiles</option>
-                                              <option>Poorest and Richest Quintiles</option>
+                                              <option selected>Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
-                                              <option selected>Maternal Education</option>
+                                              <option>Maternal Education</option>
                                             </select>
                                         </div><!-- form-group-->
                                    
