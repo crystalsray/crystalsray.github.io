@@ -152,6 +152,16 @@
           </div>
 
 
+           <!-- Instructions to place pin -->
+          <div id="placeNotFound">
+           <br>
+              <div class="bg-warning">
+                <p class="text-center"><strong>Search Again</strong></p>
+                <p>The place has not been found. Please enter name of place in the field above. </p>
+              </div>
+          </div>
+
+
           <!-- Instructions to place pin -->
           <div id="pinInstructions">
            <br>
@@ -177,7 +187,8 @@
           <br>
             <div class="bg-success">
              <p class="text-center"><strong>Confirm Location</strong></p>
-             <p>Confirm text lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae massa dignissim, mollis tortor at, pharetra nunc. Nullam vitae fringilla ex.</p>
+             <p>Is this the correct place?</p>
+             <p id="placeSearchResult"></p>
              <input class="btn btn-success btn-block" type="submit" value="Confirm Location">
             </div>
           </div>
@@ -208,243 +219,295 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <script>
+<script>
 
-           var geocoder;
-           var infowindow;
-           var map;
-           var marker;
-           var returnVal;
+var geocoder;
+var infowindow;
+var map;
+var marker;
+var returnVal;
 
-           var town;
-           var state;
-           var place;
+var town;
+var state;
+var place;
 
-           var pinInfo = document.getElementById("pinInstructions");
-           var confirm = document.getElementById("confirm");
-           var statePinInfo = document.getElementById("pinInfoState");
+var notFound = document.getElementById("placeNotFound");
+var pinInfo = document.getElementById("pinInstructions");
+var confirm = document.getElementById("confirm");
+var statePinInfo = document.getElementById("pinInfoState");
 
-           //hide other towns
-          var ct = document.getElementById("groupConnecticutTowns");
-          var mn = document.getElementById("groupMaineTowns");
-          var ma = document.getElementById("groupMassachusettsTowns");
-          var ri = document.getElementById("groupRhodeIslandTowns");
-          var nh = document.getElementById("groupNewHampshireTowns");
+var placeNameSearch = 0; //Count attempts by viewer in "Place" field
+var groupPlaceName = document.getElementById("groupPlaceName");
 
-
-            function initMap() {
-              map = new google.maps.Map(document.getElementById('map'), {
-                mapTypeId: google.maps.MapTypeId.HYBRID,
-                zoom: 6,
-                streetViewControl: false,
-                scaleControl: true,
-                center: {lat: 44.247658, lng: -71.553955}
-              });
-
-              geocoder = new google.maps.Geocoder();
-              infowindow = new google.maps.InfoWindow; //for dropped pin
-
-              /*var autoInput = document.getElementById("placeName");
-              var autocomplete = new google.maps.places.Autocomplete(autoInput);
-              autocomplete.setComponentRestrictions({
-                  'country': ['us']
-              });*/
-
-              google.maps.event.addListener(map, 'click', function (evt) {
-                placeMarker(evt.latLng);
-              });
-
-            }
+// towns
+var ct = document.getElementById("groupConnecticutTowns");
+var mn = document.getElementById("groupMaineTowns");
+var ma = document.getElementById("groupMassachusettsTowns");
+var ri = document.getElementById("groupRhodeIslandTowns");
+var nh = document.getElementById("groupNewHampshireTowns");
 
 
-            function placeMarker(location) {
-            console.log("placeMarker()");
-              if (marker) {
-                  //if marker already was created change positon
-                  marker.setPosition(location);
-              } else {
-                  //create a marker
-                  marker = new google.maps.Marker({          
-                      position: location,
-                      map: map,
-                      draggable: true
-                  });  
-              }
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    zoom: 6,
+    streetViewControl: false,
+    scaleControl: true,
+    center: {lat: 44.247658, lng: -71.553955}
+  });
 
-              // change lat/lng coordinates to readable text
-              var input = marker.getPosition();
-              var latlng = {lat: input.lat(), lng: input.lng()};
-              geocoder.geocode({'location': latlng}, function(results, status) {
-                if (status === 'OK') { 
-                  infowindow.setContent(results[0].formatted_address);
-                  infowindow.open(map, marker); 
-                  updateDevValue(results[0].formatted_address);
+  geocoder = new google.maps.Geocoder();
+  infowindow = new google.maps.InfoWindow; //for dropped pin
 
-                  //check if Pin is added in correct place
-                  pinInfo.style.display = "none";
-                  statePinInfo.style.display = "none";
-                  confirm.style.display = "block";
-                  console.log('tes');
+  /*var autoInput = document.getElementById("placeName");
+  var autocomplete = new google.maps.places.Autocomplete(autoInput);
+  autocomplete.setComponentRestrictions({
+      'country': ['us']
+  });*/
 
-                } 
-                else { 
-                   window.alert('No results found'); 
-                 }
-              }); // end geocoder 
+  google.maps.event.addListener(map, 'click', function (evt) {
+    placeMarker(evt.latLng);
+  });
 
+}
+
+
+function placeMarker(location) {
+console.log("placeMarker()");
+  if (marker) {
+      //if marker already was created change positon
+      marker.setPosition(location);
+  } else {
+      //create a marker
+      marker = new google.maps.Marker({          
+          position: location,
+          map: map,
+          draggable: true
+      });  
+  }
+
+  // change lat/lng coordinates to readable text
+  var input = marker.getPosition();
+  var latlng = {lat: input.lat(), lng: input.lng()};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === 'OK') { 
+      infowindow.setContent(results[0].formatted_address);
+      infowindow.open(map, marker); 
+      updateDevValue(results[0].formatted_address);
+
+      //check if Pin is added in correct place
+      pinInfo.style.display = "none";
+      statePinInfo.style.display = "none";
+      confirm.style.display = "block";
+      console.log('tes');
+
+    } 
+    else { 
+       window.alert('No results found'); 
+     }
+  }); // end geocoder 
+
+  
+}
+
+//hide help fields
+function hideHelpFields() {
+  notFound.style.display = "none";
+  pinInfo.style.display = "none";
+  confirm.style.display = "none";
+  statePinInfo.style.display = "none";
+}
+
+
+function updateDevValue(val) {
+  //update return value for the developer
+  returnVal = val;
+  document.getElementById("devReturnVal").innerHTML = returnVal;
+}
+
+
+function geocodeLocation(geocoder, resultsMap, location, zoom) {
+  console.log('geocodeLocation()');
+  geocoder.geocode({'address': location}, function(results, status) {
+    if (status === 'OK') {
+      resultsMap.setCenter(results[0].geometry.location);
+      //map.setZoom(zoom);
+      map.fitBounds(results[0].geometry.viewport); //zoom into select
+      if (place) {
+          console.log("geocodeLocation() -> place: "+place);
+          console.log("geocodeLocation() -> location: "+location);
+          marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+          infowindow.setContent(results[0].formatted_address);
+          infowindow.open(map, marker);
+          //update the return value for the developer
+          updateDevValue(results[0].formatted_address);
+          statePinInfo.style.display = "none";
+          confirm.style.display = "block";
+      }
+    } else {
+      // Location not found from search text input field.
+      // Show insturctions to drop pin after two attempts.
+      console.log("geocodeLocation() -> placeNameSearch: " + placeNameSearch);
+      hideHelpFields(); //hide other helpfields
+        if ( placeNameSearch > 1 ) {
+          
+          pinInfo.style.display = "block"; // show instructional text to drop a pin
+
+          
+        }
+        else {
+          notFound.style.display = "block"; // show info to search input field again
+        }
+
+      //alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+
+
+function selectedState() {
+  state = document.getElementById("states").value;
+  var zoom = 8; //find way to fit state
+  placeNameSearch = 0;
+
+  console.log("selectedState(): " + state);
+
+  hideHelpFields(); //hide Help fields
+
+  if (state === "Don't Know") {
+    //show instructions for dropping a pin 
+    hideTowns();
+    groupPlaceName.style.display = "none";  // If town and place name fields have been filled out, reset fields
+    statePinInfo.style.display = "block";
+    updateDevValue("");
+
+  }
+
+  else {
+
+    //RESET state, field and place name
+    //Hide place name field, help text and search button in case the user has filled these out, but change the state
+    groupPlaceName.style.display = "none";
+    document.getElementById("placeName").value = "";
+    place=null;
+
+
+    //update the return value for the developer
+    updateDevValue(state);
+
+    //geocode state
+    geocodeLocation(geocoder, map, state, zoom);
+    showTowns(state);
+  }
+
+  // if marker exists, delete marker
+  if (marker) {
+      marker.setMap(null);
+  } 
+  
+}
+
+
+function hideTowns() {
+  ct.style.display = "none";
+  mn.style.display = "none";
+  ma.style.display = "none";
+  ri.style.display = "none";
+  nh.style.display = "none";
+}
+
+
+function showTowns(state) {
+
+  hideTowns();
+
+  //initialize selections, in the event that the user has already selected a town, but then chooses a different state.
+  document.getElementById("conneticutTowns").value='Select a town/city';
+  document.getElementById("rhodeIslandTowns").value='Select a town/city';
+  document.getElementById("massachusettsTowns").value='Select a town/city';
+  document.getElementById("newHampshireTowns").value='Select a town/city';
+  document.getElementById("maineTowns").value='Select a town/city';
+
+  //show towns for selected state
+  if (state==="Connecticut") {
+    ct.style.display = "block"; 
+  }
+  else if (state==="Maine") {
+    mn.style.display = "block";
+  }
+
+  else if (state==="Massachusetts")  {
+    ma.style.display = "block";
+  }
+
+  else if (state==="Rhode Island")  {
+    ri.style.display = "block";
+  }
+
+  else  { //New Hampshire
+      nh.style.display = "block";
+  } 
+
+}
+
+
+function selectedTown(townID) {
+  //center map on town
+
+  town = document.getElementById(townID).value;
+  var location;
+  console.log("selectedTown()" + town);
+
+  if (town==="Don't Know") {
+    location= state; // if "Don't Know" is chosen for state, don't include town name in "location" for geocoding
+  }
+  else {
+    location= town + ", " + state;
+  }
+   
+  var zoom = 14;
+
+  geocodeLocation(geocoder, map, location, zoom);
+  var placeName = document.getElementById("groupPlaceName");
+  placeName.style.display = "block";
+
+  //update the return value for the developer
+  updateDevValue(location);
+}
+
+
+function placeName(placeID) {
+  place = document.getElementById("placeName").value;
+  var location;
+
+  if (town==="Don't Know") {
+    location= place + ", " + state; // if "Don't Know" is chosen for state, don't include town name in "location" for geocoding
+  }
+  else {
+    location = place + ", " + town + ", " + state;
+  }
+
+  console.log(location);
+  var zoom = 20;
+
+  geocodeLocation(geocoder, map, location, zoom);  
+
+  //update the return value for the developer
+  updateDevValue(location);
+
+  // increment attempt count
+  placeNameSearch++;
               
-            }
-
-
-            function updateDevValue (val) {
-              //update return value for the developer
-              returnVal = val;
-              document.getElementById("devReturnVal").innerHTML = returnVal;
-            }
-
-
-            function geocodeLocation(geocoder, resultsMap, location, zoom) {
-              console.log('geocodeLocation()');
-              geocoder.geocode({'address': location}, function(results, status) {
-                if (status === 'OK') {
-                  resultsMap.setCenter(results[0].geometry.location);
-                  //map.setZoom(zoom);
-                  map.fitBounds(results[0].geometry.viewport);
-                  if (place) {
-                      marker = new google.maps.Marker({
-                        map: resultsMap,
-                        position: results[0].geometry.location
-                      });
-                      infowindow.setContent(results[0].formatted_address);
-                      infowindow.open(map, marker);
-                      //update the return value for the developer
-                      updateDevValue(results[0].formatted_address);
-                      statePinInfo.style.display = "none";
-                      confirm.style.display = "block";
-                  }
-                } else {
-                  pinInfo.style.display = "block"; // show instructional text to drop a pin
-                  confirm.style.display = "none";
-                  //alert('Geocode was not successful for the following reason: ' + status);
-                }
-              });
-            }
-
-
-            function selectedState() {
-              state = document.getElementById("states").value;
-              var zoom = 8; //find way to fit state
-
-              console.log(state);
-
-              if (state === "Don't Know") {
-                //show instructions for dropping a pin 
-                statePinInfo.style.display = "block";
-                hideTowns();
-              }
-
-              else {
-                geocodeLocation(geocoder, map, state, zoom);
-                showTowns(state);
-
-                //hide Pin Instructions incase  users changes selection from "Don't Know" to State
-                statePinInfo.style.display = "none";
-
-                //update the return value for the developer
-                updateDevValue(state);
-              }
-
-              // if marker exists, delete marker
-              if (marker) {
-                  marker.setMap(null);
-              } 
-              
-            }
-
-
-            function hideTowns() {
-              ct.style.display = "none";
-              mn.style.display = "none";
-              ma.style.display = "none";
-              ri.style.display = "none";
-              nh.style.display = "none";
-            }
-
-            function showTowns(state) {
-
-              hideTowns();
-
-              //show towns for selected state
-              if (state==="Connecticut") {
-                ct.style.display = "block"; 
-              }
-              else if (state==="Maine") {
-                mn.style.display = "block";
-              }
-
-              else if (state==="Massachusetts")  {
-                ma.style.display = "block";
-              }
-
-              else if (state==="Rhode Island")  {
-                ri.style.display = "block";
-              }
-
-              else  { //New Hampshire
-                  nh.style.display = "block";
-              } 
-
-            }
-
-
-            function selectedTown(townID) {
-              //center map on town
-              town = document.getElementById(townID).value;
-              var location;
-
-              if (town==="Don't Know") {
-                location= state; // exclude town if "Don't Know" is chosen
-              }
-              else {
-                location= town + ", " + state;
-              }
-               
-              var zoom = 14;
-
-              geocodeLocation(geocoder, map, location, zoom);
-              var placeName = document.getElementById("groupPlaceName");
-              placeName.style.display = "block";
-
-              //update the return value for the developer
-              updateDevValue(location);
-            }
-
-
-            function placeName(placeID) {
-              place = document.getElementById("placeName").value;
-              var location;
-
-              if (town==="Don't Know") {
-                location= place + ", " + state; // exclude town if "Don't Know" is chosen
-              }
-              else {
-                location = place + ", " + town + ", " + state;
-              }
-
-              console.log(location);
-              var zoom = 20;
-
-              geocodeLocation(geocoder, map, location, zoom);  
-
-              //update the return value for the developer
-              updateDevValue(location);
-                          
-            }
+}
 
 
 
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOlaySnzB2tBKFR3us5byUMV96cbcZYoY&callback=initMap&libraries=places""></script>
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOlaySnzB2tBKFR3us5byUMV96cbcZYoY&callback=initMap&libraries=places""></script>
 
   </body>
 
