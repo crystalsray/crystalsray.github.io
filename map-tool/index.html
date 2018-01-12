@@ -188,7 +188,7 @@
             <div class="bg-success">
              <p class="text-center"><strong>Confirm Location</strong></p>
              <p>Is this the correct place?</p>
-             <p id="placeSearchResult"></p>
+             <p id="confirmPlaceAddress"></p>
              <input class="btn btn-success btn-block" type="submit" value="Confirm Location">
             </div>
           </div>
@@ -296,11 +296,8 @@ console.log("placeMarker()");
       updateDevValue(results[0].formatted_address);
 
       //check if Pin is added in correct place
-      pinInfo.style.display = "none";
-      statePinInfo.style.display = "none";
+      hideHelpFields(); //hide other helpfields
       confirm.style.display = "block";
-      console.log('tes');
-
     } 
     else { 
        window.alert('No results found'); 
@@ -328,7 +325,13 @@ function updateDevValue(val) {
 
 function geocodeLocation(geocoder, resultsMap, location, zoom) {
   console.log('geocodeLocation()');
-  geocoder.geocode({'address': location}, function(results, status) {
+  geocoder.geocode({
+    'address': location
+  }, 
+
+  function(results, status) {
+
+    //successful geocode attemp
     if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
       //map.setZoom(zoom);
@@ -336,33 +339,35 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
       if (place) {
           console.log("geocodeLocation() -> place: "+place);
           console.log("geocodeLocation() -> location: "+location);
+
+          //place marker
           marker = new google.maps.Marker({
             map: resultsMap,
             position: results[0].geometry.location
           });
+
+          //show info window above dropped pin with formatted address
           infowindow.setContent(results[0].formatted_address);
           infowindow.open(map, marker);
           //update the return value for the developer
           updateDevValue(results[0].formatted_address);
-          statePinInfo.style.display = "none";
+          hideHelpFields(); //hide other helpfields
+          document.getElementById("confirmPlaceAddress").innerHTML = results[0].formatted_address;
           confirm.style.display = "block";
       }
-    } else {
-      // Location not found from search text input field.
-      // Show insturctions to drop pin after two attempts.
+    } 
+
+    //unsuccesful geocode attempt
+    else {
+      // Show instructions to drop pin after two attempts.
       console.log("geocodeLocation() -> placeNameSearch: " + placeNameSearch);
       hideHelpFields(); //hide other helpfields
         if ( placeNameSearch > 1 ) {
-          
           pinInfo.style.display = "block"; // show instructional text to drop a pin
-
-          
         }
         else {
           notFound.style.display = "block"; // show info to search input field again
         }
-
-      //alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
@@ -381,10 +386,9 @@ function selectedState() {
   if (state === "Don't Know") {
     //show instructions for dropping a pin 
     hideTowns();
-    groupPlaceName.style.display = "none";  // If town and place name fields have been filled out, reset fields
+    groupPlaceName.style.display = "none";  // In the event that town and place name fields have been filled out, reset/clear fields
     statePinInfo.style.display = "block";
     updateDevValue("");
-
   }
 
   else {
@@ -423,7 +427,9 @@ function hideTowns() {
 
 function showTowns(state) {
 
+  //initialization
   hideTowns();
+ 
 
   //initialize selections, in the event that the user has already selected a town, but then chooses a different state.
   document.getElementById("conneticutTowns").value='Select a town/city';
@@ -461,6 +467,11 @@ function selectedTown(townID) {
   town = document.getElementById(townID).value;
   var location;
   console.log("selectedTown()" + town);
+
+  // Empty "Name of Place" text input field in the event the user filled it
+  // out for a previously selected town
+  document.getElementById("placeName").value = "";
+  placeNameSearch = 0;
 
   if (town==="Don't Know") {
     location= state; // if "Don't Know" is chosen for state, don't include town name in "location" for geocoding

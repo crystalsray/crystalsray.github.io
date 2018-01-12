@@ -5,3 +5,11 @@
 .bg-danger, .bg-success, .bg-info, .bg-warning {
 	padding: 10px;
 }
+
+#confirmPlaceAddress {
+	padding: 10px;
+    margin: 0px 5px;
+    background: #fff;
+    border: 1px solid #4cae4c;
+    margin-bottom: 20px;
+}
