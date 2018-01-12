@@ -148,27 +148,31 @@
             $("#CSLevels_illnesses_group").hide();
             $("#CS_levels_demographics_group").hide();
             $("#CS_levels_demographics_group2").show();
+            $("#CSLevels_illnesses_group2_map").hide();
           }
 
           else if(sheetName==="Dash CS Levels Map") {
-              $("#CSLevels_illnesses_group").show();
+              $("#CSLevels_illnesses_group").hide();
               $("#CS_levels_demographics_group").hide();
               $("#CS_levels_demographics_group2").hide();
+              $("#CSLevels_illnesses_group2_map").show();
               
               $('#CSLevels_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
               $('#CSLevels_region').multiselect('deselect', ['Regional Averages']);
           }
 
-          //CS Levels Bar
+          //Dash CS Levels Bar
           else  {
             //reset radio group button
             $("#CSlevelOpt1").addClass("active");
             $("#CSlevelOpt2").removeClass("active");
             $("#CSlevelOpt3").removeClass("active");
 
+
             $("#CSLevels_illnesses_group").show();
             $("#CS_levels_demographics_group").show();
             $("#CS_levels_demographics_group2").hide();
+            $("#CSLevels_illnesses_group2_map").hide();
                 
           }
 
@@ -556,6 +560,16 @@
                                         <div class="form-group" id="CSLevels_illnesses_group">
                                             <label for="CSLevels_illnesses">Illnesses</label>
                                             <select class="form-control shops-multiselect" onchange="showMultiple('CSLevels_illnesses','Illnesses')" id="CSLevels_illnesses" multiple="multiple">
+                                              <option selected>ARI</option>
+                                              <option selected>Diarrhea</option>
+                                              <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="CSLevels_illnesses_group2_map">
+                                            <label for="CSLevels_illnesses2_map">Illnesses 2 (map)</label>
+                                            <select class="form-control" onchange="showSingle('CSLevels_illnesses2_map','Illnesses')" id="CSLevels_illnesses2_map">
                                               <option selected>ARI</option>
                                               <option selected>Diarrhea</option>
                                               <option selected>Fever</option>
