@@ -1212,3 +1212,8 @@ select.form-control {
 #CSlevelOpt1.btn, #CSlevelOpt2.btn, #CSlevelOpt3.btn {
     font-size: 11px;
 }
+
+
+#CS_country_noavg_group, #IP_country_group, #CSLevels_country_group_noavg {
+    display: none;
+}
