@@ -256,11 +256,16 @@ function initMap() {
     center: {lat: 44.247658, lng: -71.553955}
   });
 
+  var options = {
+    //types:  ['aquarium'],
+    componentRestrictions: {country: "us"},
+  }
+
   geocoder = new google.maps.Geocoder();
   infowindow = new google.maps.InfoWindow; //for dropped pin
 
   var autoInput = document.getElementById("placeName");
-  var autocomplete = new google.maps.places.Autocomplete(autoInput);
+  var autocomplete = new google.maps.places.Autocomplete(autoInput, options);
   //autocomplete.setComponentRestrictions({
   //    'country': ['us']
   //});
@@ -269,6 +274,7 @@ function initMap() {
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
   autocomplete.bindTo('bounds', map);
+  autocomplete.setOptions({strictBounds: true});
 
   google.maps.event.addListener(map, 'click', function (evt) {
     placeMarker(evt.latLng);
@@ -507,7 +513,8 @@ function placeName(placeID) {
     location= place + ", " + state; // if "Don't Know" is chosen for state, don't include town name in "location" for geocoding
   }
   else {
-    location = place + ", " + town + ", " + state;
+    //location = place + ", " + town + ", " + state;
+    location = place; //use Autocomplete result
   }
 
   console.log(location);
