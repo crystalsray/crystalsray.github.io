@@ -338,7 +338,7 @@ function updateDevValue(val) {
 
 
 function geocodeLocation(geocoder, resultsMap, location, zoom) {
-  console.log('geocodeLocation()');
+  console.log('geocodeLocation(): ' + location);
   geocoder.geocode({
     'address': location
   }, 
@@ -349,7 +349,8 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
     if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
       //map.setZoom(zoom);
-      map.fitBounds(results[0].geometry.viewport); //zoom into select
+      map.fitBounds(results[0].geometry.viewport); //zoom into select state/town
+      console.log("geocode() -> status: ok");
       if (place) {
           console.log("geocodeLocation() -> place: "+place);
           console.log("geocodeLocation() -> location: "+location);
@@ -482,6 +483,12 @@ function selectedTown(townID) {
   var location;
   console.log("selectedTown()" + town);
 
+  hideHelpFields();
+  // if marker exists, delete marker
+  if (marker) {
+      marker.setMap(null);
+  }
+
   // Empty "Name of Place" text input field in the event the user filled it
   // out for a previously selected town
   document.getElementById("placeName").value = "";
@@ -508,25 +515,33 @@ function selectedTown(townID) {
 function placeName(placeID) {
   place = document.getElementById("placeName").value;
   var location;
-
-  if (town==="Don't Know") {
-    location= place + ", " + state; // if "Don't Know" is chosen for state, don't include town name in "location" for geocoding
-  }
-  else {
-    //location = place + ", " + town + ", " + state;
-    location = place; //use Autocomplete result
-  }
-
-  console.log(location);
   var zoom = 20;
 
-  geocodeLocation(geocoder, map, location, zoom);  
+
+  if (place=="") {
+
+    // increment attempt count
+    placeNameSearch++;
+
+     hideHelpFields();
+     if ( placeNameSearch > 1 ) { 
+          pinInfo.style.display = "block"; // show instructional text to drop a pin
+     }
+     else {
+        notFound.style.display = "block"; // show info to search input field again
+     }
+
+     console.log("place: empty");
+     location="";
+  }
+
+  else {
+    location = place; //use Autocomplete result
+    geocodeLocation(geocoder, map, location, zoom);  
+  }
 
   //update the return value for the developer
   updateDevValue(location);
-
-  // increment attempt count
-  placeNameSearch++;
               
 }
 
