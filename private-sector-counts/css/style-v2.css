@@ -1214,6 +1214,6 @@ select.form-control {
 }
 
 
-#CS_country_noavg_group, #IP_country_group, #CSLevels_country_group_noavg {
+#CS_country_noavg_group, #IP_country_group, #CSLevels_country_group_noavg, #IPillnesses_group3, #CSLevels_illnesses_group3 {
     display: none;
 }

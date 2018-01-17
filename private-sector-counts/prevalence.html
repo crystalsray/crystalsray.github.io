@@ -153,6 +153,7 @@
                 //hide muliple select illnesses
                 $("#IPillnesses_group1").hide();
                 $("#IPillnesses_group2").show();
+                $("#IPillnesses_group3").hide();
 
                 //show demographics for map
                 $("#IP_map_demographics_group").show();
@@ -257,6 +258,35 @@
                 $("#CSLevels_country_group_noavg").show();
               }
             }
+
+            //Bar Charts for #IP_demographics and #CSLevels_demographics
+            //If "Total Population" is selected as a Demographics
+            //Show multiple select for illness
+            //otherwise, show single select for illness
+            if(fieldID==="IP_demographics"){
+              if(value==="Total Population") {
+                $("#IPillnesses_group3").hide();
+                $("#IPillnesses_group2").show();
+              }
+              else {
+                $("#IPillnesses_group2").hide();
+                $("#IPillnesses_group3").show();
+              }
+            }
+
+            if(fieldID==="CSLevels_demographics"){
+              if(value==="Total Population") {
+                $("#CSLevels_illnesses_group3").hide();
+                $("#CSLevels_illnesses_group").show();
+              }
+              else {
+                $("#CSLevels_illnesses_group").hide();
+                $("#CSLevels_illnesses_group3").show();
+              }
+            }
+
+
+
 
         }
 
@@ -559,6 +589,7 @@
                                   <div class="panel-body">
 
                                   <form>
+                                        <!-- Show multiple select when "Total" is selected in Demographics -->
                                         <div class="form-group" id="IPillnesses_group2">
                                             <label for="IP_illnesses">Illnesses</label>
                                             <select class="form-control shops-multiselect" onchange="showMultiple('IP_illnesses','Illnesses')" id="IP_illnesses" multiple="multiple">
@@ -568,6 +599,15 @@
                                               <option selected>One or more illnesses</option>
                                             </select>
                                         </div><!-- form-group-->
+
+                                        <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
+                                        <div class="form-group" id="IPillnesses_group3">
+                                            <label for="IP_illnesses3">Illnesses</label>
+                                            <select class="form-control " id="IP_illnesses3">
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
 
                                         <!-- show Illness text above map -->
                                         <div class="form-group" id="IPillnesses_group1">
@@ -579,6 +619,9 @@
                                               <option selected>One or more illnesses</option>
                                             </select>
                                         </div><!-- form-group-->
+
+
+
 
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
@@ -713,6 +756,13 @@
                                               <option selected>ARI</option>
                                               <option selected>Diarrhea</option>
                                               <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="CSLevels_illnesses_group3">
+                                            <label for="CSLevels_illnesses3">Illnesses</label>
+                                            <select class="form-control" id="CSLevels_illnesses3">
                                               <option selected>One or more illnesses</option>
                                             </select>
                                         </div><!-- form-group-->
