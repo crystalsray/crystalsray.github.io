@@ -259,11 +259,16 @@ function initMap() {
   geocoder = new google.maps.Geocoder();
   infowindow = new google.maps.InfoWindow; //for dropped pin
 
-  /*var autoInput = document.getElementById("placeName");
+  var autoInput = document.getElementById("placeName");
   var autocomplete = new google.maps.places.Autocomplete(autoInput);
-  autocomplete.setComponentRestrictions({
-      'country': ['us']
-  });*/
+  //autocomplete.setComponentRestrictions({
+  //    'country': ['us']
+  //});
+
+  // Bind the map's bounds (viewport) property to the autocomplete object,
+  // so that the autocomplete requests use the current map bounds for the
+  // bounds option in the request.
+  autocomplete.bindTo('bounds', map);
 
   google.maps.event.addListener(map, 'click', function (evt) {
     placeMarker(evt.latLng);
@@ -276,9 +281,11 @@ function placeMarker(location) {
 console.log("placeMarker()");
   if (marker) {
       //if marker already was created change positon
+      console.log("   change marker positon");
       marker.setPosition(location);
   } else {
       //create a marker
+      console.log("   new marker");
       marker = new google.maps.Marker({          
           position: location,
           map: map,
@@ -297,14 +304,15 @@ console.log("placeMarker()");
 
       //check if Pin is added in correct place
       hideHelpFields(); //hide other helpfields
+      document.getElementById("confirmPlaceAddress").innerHTML = results[0].formatted_address;
       confirm.style.display = "block";
+
     } 
     else { 
        window.alert('No results found'); 
      }
   }); // end geocoder 
-
-  
+ 
 }
 
 //hide help fields
