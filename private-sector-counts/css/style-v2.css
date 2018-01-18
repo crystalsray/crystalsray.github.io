@@ -1213,7 +1213,13 @@ select.form-control {
     font-size: 11px;
 }
 
-
-#CS_country_noavg_group, #IP_country_group, #CSLevels_country_group_noavg, #IPillnesses_group3, #CSLevels_illnesses_group3 {
+#CSLevels_country_group_noavg, 
+#CSLevels_illnesses_oneoption_group,
+#CSLevels_region_noavg_group,
+#CS_country_noavg_group, 
+#IP_country_group,
+#IP_region_noavg_group, 
+#IPillnesses_oneoption_group,
+#IPillnesses_map_group  {
     display: none;
 }

@@ -132,9 +132,10 @@
                 $("#IPOption1").addClass("active");
                 $("#IPOption2").removeClass("active");
 
-                //hide muliple select illnesses
-                $("#IPillnesses_group1").show();
-                $("#IPillnesses_group2").hide();
+                //show single select illmess for map
+                $("#IPillnesses_map_group").show();
+                $("#IPillnesses_group").hide();
+                $("#IPillnesses_oneoption_group").hide();
 
                 //hide demographics for map
                 $("#IP_map_demographics_group").hide();
@@ -150,10 +151,10 @@
 
           else if ( sheetName==="Dash IP Bar" ) {
 
-                //hide muliple select illnesses
-                $("#IPillnesses_group1").hide();
-                $("#IPillnesses_group2").show();
-                $("#IPillnesses_group3").hide();
+                //show multiple select for illness
+                $("#IPillnesses_map_group").hide();
+                $("#IPillnesses_group").show();
+                $("#IPillnesses_oneoption_group").hide();
 
                 //show demographics for map
                 $("#IP_map_demographics_group").show();
@@ -171,7 +172,7 @@
             $("#CSLevels_illnesses_group").hide();
             $("#CS_levels_demographics_group").hide();
             $("#CS_levels_demographics_group2").show();
-            $("#CSLevels_illnesses_group2_map").hide();
+            $("#CSLevels_illnesses_map_group").hide();
 
             //show country list without averages
             $("#CSLevels_country_group_noavg").show();
@@ -180,9 +181,12 @@
 
           else if(sheetName==="Dash CS Levels Map") {
               $("#CSLevels_illnesses_group").hide();
+              $("#CSLevels_illnesses_oneoption_group").hide();
+              $("#CSLevels_illnesses_map_group").show();
+
               $("#CS_levels_demographics_group").hide();
               $("#CS_levels_demographics_group2").hide();
-              $("#CSLevels_illnesses_group2_map").show();
+              
               
               $('#CSLevels_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
               $('#CSLevels_region').multiselect('deselect', ['Regional Averages']);
@@ -207,7 +211,7 @@
             $("#CSLevels_illnesses_group").show();
             $("#CS_levels_demographics_group").show();
             $("#CS_levels_demographics_group2").hide();
-            $("#CSLevels_illnesses_group2_map").hide();
+            $("#CSLevels_illnesses_map_group").hide();
 
              //show country list without averages
             $("#CSLevels_country_group_noavg").hide();
@@ -226,10 +230,15 @@
 
             //for barchart, show Country with averages with "" is chosen
             // for other selections, do not show averages 
-            var demoValue = document.getElementById(fieldID).value;
+
+            //Bar Charts for #IP_demographics and #CSLevels_demographics
+            //If "Total Population" is selected as a Demographics
+            //Show multiple select for illness
+            //otherwise, show single select for illness
+
+
             if(fieldID==="CSsourcesBar_demographics") {
-              
-              if (demoValue==="Total Population") {
+              if (value==="Total Population") {
                 $("#CS_country_group").show();
                 $("#CS_country_noavg_group").hide();
               }
@@ -239,54 +248,64 @@
               }
             }
             else if (fieldID==="IP_demographics"){
-              if (demoValue==="Total Population") {
-                $("#IP_country_noavg_group").hide();
-                $("#IP_country_group").show();
+              if (value==="Total Population") {
+                //SHOW country with averages
+                $("#IP_country_noavg_group").hide(); 
+                $("#IP_country_group").show();        
+
+                //SHOW illness multiple select
+                $("#IPillnesses_oneoption_group").hide();
+                $("#IPillnesses_map_group").hide();
+                $("#IPillnesses_group").show(); 
+
+                // SHOW Regional average
+                $("#IP_region_noavg_group").hide(); 
+                $("#IP_region_group").show();
               }
               else {
-                $("#IP_country_noavg_group").show();
+                //HIDE country averages
+                $("#IP_country_noavg_group").show();    
                 $("#IP_country_group").hide();
+
+                // SHOW illness with single option
+                $("#IPillnesses_oneoption_group").show(); 
+                $("#IPillnesses_map_group").hide();
+                $("#IPillnesses_group").hide();
+                
+                // HIDE regional average
+                $("#IP_region_noavg_group").show(); 
+                $("#IP_region_group").hide();
               }
             }
             else if (fieldID==="CSLevels_demographics") {
-              if (demoValue ==="Total Population") {
+              if (value ==="Total Population") {
                 $("#CSLevels_country_group").show();
                 $("#CSLevels_country_group_noavg").hide();
+
+                //Show multiple select for Illnesses
+                $("#CSLevels_illnesses_oneoption_group").hide();
+                $("#CSLevels_illnesses_map_group").hide();
+                $("#CSLevels_illnesses_group").show();
+
+                //show "Regional Average" option
+                $("#CSLevels_region_noavg_group").hide();
+                $("#CSLevels_region_group").show();
               }
               else {
                 $("#CSLevels_country_group").hide();
                 $("#CSLevels_country_group_noavg").show();
-              }
-            }
 
-            //Bar Charts for #IP_demographics and #CSLevels_demographics
-            //If "Total Population" is selected as a Demographics
-            //Show multiple select for illness
-            //otherwise, show single select for illness
-            if(fieldID==="IP_demographics"){
-              if(value==="Total Population") {
-                $("#IPillnesses_group3").hide();
-                $("#IPillnesses_group2").show();
-              }
-              else {
-                $("#IPillnesses_group2").hide();
-                $("#IPillnesses_group3").show();
-              }
-            }
-
-            if(fieldID==="CSLevels_demographics"){
-              if(value==="Total Population") {
-                $("#CSLevels_illnesses_group3").hide();
-                $("#CSLevels_illnesses_group").show();
-              }
-              else {
+                //Show SINGLE select for illness
+                $("#CSLevels_illnesses_oneoption_group").show();
                 $("#CSLevels_illnesses_group").hide();
-                $("#CSLevels_illnesses_group3").show();
+                $("CSLevels_illnesses_map_group").hide();
+                
+
+                //hide" Regional Average" option
+                $("#CSLevels_region_noavg_group").show();
+                $("#CSLevels_region_group").hide();
               }
             }
-
-
-
 
         }
 
@@ -465,9 +484,7 @@
                                             <label for="CS_country">Country (avg)</label>
                                             <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
-                                                <option selected>Asia average</option>
                                                 <option selected>Bangladesh 2014</option>
-                                                <option selected>E.S. Africa average</option>
                                                 <option selected>Ethiopia 2011</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
@@ -482,16 +499,21 @@
                                                 <option selected>Myanmar 2015</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
-                                                <option selected>Other countries average</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>DRC 2013-14</option>
                                                 <option selected>Uganda 2011</option>
-                                                <option selected>W.C. Africa average</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
+
+                                                <option selected>Asia average</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>W.C. Africa average</option>
+
+
                                             </select>
                                         </div><!-- form-group-->
 
@@ -520,7 +542,7 @@
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>DRC 2013-14</option>
                                                 <option selected>Uganda 2011</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
@@ -590,7 +612,7 @@
 
                                   <form>
                                         <!-- Show multiple select when "Total" is selected in Demographics -->
-                                        <div class="form-group" id="IPillnesses_group2">
+                                        <div class="form-group" id="IPillnesses_group">
                                             <label for="IP_illnesses">Illnesses</label>
                                             <select class="form-control shops-multiselect" onchange="showMultiple('IP_illnesses','Illnesses')" id="IP_illnesses" multiple="multiple">
                                               <option selected>ARI</option>
@@ -601,7 +623,7 @@
                                         </div><!-- form-group-->
 
                                         <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
-                                        <div class="form-group" id="IPillnesses_group3">
+                                        <div class="form-group" id="IPillnesses_oneoption_group">
                                             <label for="IP_illnesses3">Illnesses</label>
                                             <select class="form-control " id="IP_illnesses3">
                                               <option selected>One or more illnesses</option>
@@ -610,7 +632,7 @@
 
 
                                         <!-- show Illness text above map -->
-                                        <div class="form-group" id="IPillnesses_group1">
+                                        <div class="form-group" id="IPillnesses_map_group">
                                             <label for="IP_illnesses2">Illnesses</label>
                                             <select class="form-control " onchange="showSingle('IP_illnesses2','Illnesses')" id="IP_illnesses2">
                                               <option selected>ARI</option>
@@ -629,9 +651,7 @@
                                             <label for="IP_country">Country (avg)</label>
                                             <select class="form-control shops-multiselect" id="IP_country" onchange="showMultiple('IP_country','Country')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
-                                                <option selected>Asia average</option>
                                                 <option selected>Bangladesh 2014</option>
-                                                <option selected>E.S. Africa average</option>
                                                 <option selected>Ethiopia 2011</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
@@ -646,16 +666,20 @@
                                                 <option selected>Myanmar 2015</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
-                                                <option selected>Other countries average</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>DRC 2013-14</option>
                                                 <option selected>Uganda 2011</option>
-                                                <option selected>W.C. Africa average</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
+
+
+                                                <option selected>Asia average</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>W.C. Africa average</option>
                                             </select>
                                         </div><!-- form-group-->
 
@@ -683,19 +707,32 @@
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>DRC 2013-14</option>
                                                 <option selected>Uganda 2011</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
                                             </select>
                                         </div><!-- form-group-->
 
-
-
-                                        <div class="form-group">
+                                        <!-- region with "Regional Average" option
+                                            Show when "Total Population" is selected -->
+                                        <div class="form-group" id="IP_region_group">
                                             <label for="IP_region">Region</label>
                                             <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        <!-- region without "Regional Average" 
+                                            Show when "Total Population" is NOT selected -->
+                                        <div class="form-group" id="IP_region_noavg_group">
+                                            <label for="IP_region_noavg">Region</label>
+                                            <select class="form-control shops-multiselect" id="IP_region_noavg" onchange="showMultiple('IP_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
                                               <option selected>West and Central Africa</option>
@@ -760,14 +797,14 @@
                                             </select>
                                         </div><!-- form-group-->
 
-                                        <div class="form-group" id="CSLevels_illnesses_group3">
+                                        <div class="form-group" id="CSLevels_illnesses_oneoption_group">
                                             <label for="CSLevels_illnesses3">Illnesses</label>
                                             <select class="form-control" id="CSLevels_illnesses3">
                                               <option selected>One or more illnesses</option>
                                             </select>
                                         </div><!-- form-group-->
 
-                                        <div class="form-group" id="CSLevels_illnesses_group2_map">
+                                        <div class="form-group" id="CSLevels_illnesses_map_group">
                                             <label for="CSLevels_illnesses2_map">Illnesses 2 (map)</label>
                                             <select class="form-control" onchange="showSingle('CSLevels_illnesses2_map','Illnesses')" id="CSLevels_illnesses2_map">
                                               <option selected>ARI</option>
@@ -784,9 +821,7 @@
                                             <label for="CSLevels_country">Country (avg)</label>
                                             <select class="form-control shops-multiselect" id="CSLevels_country" onchange="showMultiple('CSLevels_country','Country')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
-                                                <option selected>Asia average</option>
                                                 <option selected>Bangladesh 2014</option>
-                                                <option selected>E.S. Africa average</option>
                                                 <option selected>Ethiopia 2011</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
@@ -801,16 +836,19 @@
                                                 <option selected>Myanmar 2015</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
-                                                <option selected>Other countries average</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>DRC 2013-14</option>
                                                 <option selected>Uganda 2011</option>
-                                                <option selected>W.C. Africa average</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
+
+                                                <option selected>Asia average</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>W.C. Africa average</option>
                                             </select>
                                         </div><!-- form-group-->
 
@@ -838,7 +876,7 @@
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>The DRC 2013-14</option>
+                                                <option selected>DRC 2013-14</option>
                                                 <option selected>Uganda 2011</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
@@ -846,11 +884,10 @@
                                         </div><!-- form-group-->
 
 
-
-                                        <div class="form-group">
+                                        <!-- Show "Regional Averages" when "Total Population" is selected in Demographics -->
+                                        <div class="form-group" id="CSLevels_region_group">
                                             <label for="CSLevels_region">Region</label>
                                             <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Region')" multiple="multiple">
-                                              
                                               <option selected>Regional Averages</option>
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
@@ -858,6 +895,20 @@
                                               <option selected>Other Countries</option>
                                             </select>
                                         </div><!-- form-group-->
+
+                                        <!-- When "Total Population" in Demographics is NOT selected, do not show "Regional Averages" -->
+                                        <div class="form-group" id="CSLevels_region_noavg_group">
+                                            <label for="CSLevels_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Region')" multiple="multiple">
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+
 
                                         <div class="form-group" id="CS_levels_demographics_group">
                                             <label for="CSLevels_demographics">Demographics</label>
