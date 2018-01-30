@@ -1,4 +1,4 @@
-#groupConnecticutTowns, #groupMaineTowns, #groupMassachusettsTowns, #groupNewHampshireTowns, #groupRhodeIslandTowns, #groupPlaceName, #pinInstructions, #confirm, #pinInfoState, #placeNotFound {
+#groupConnecticutTowns, #groupMaineTowns, #groupMassachusettsTowns, #groupNewHampshireTowns, #groupRhodeIslandTowns, #groupPlaceName, #pinInstructions, #confirm, #pinInfoState, #placeNotFound, #checkbox_dontKnowPlaceName_group {
 	display: none;
 }
 
@@ -12,4 +12,8 @@
     background: #fff;
     border: 1px solid #4cae4c;
     margin-bottom: 20px;
+}
+
+textarea {
+	width: 100%;
 }
