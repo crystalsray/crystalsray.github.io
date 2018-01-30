@@ -132,8 +132,7 @@
           </div>
 
 
-          <!-- Select Place -->
-
+          <!-- Select Place Text Field -->
           <div id="groupPlaceName">
 
           <div class="form-group">
@@ -144,10 +143,18 @@
 
 
 
-
-          <button type="button" class="btn btn-default btn-block" aria-label="Left Align" onclick="placeName('placeName')">
+          <button type="button" class="btn btn-primary btn-block" aria-label="Search" onclick="placeName('placeName')" id="btn_search">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
           </button>
+
+
+          <br>
+           <div class="form-check" id="checkbox_dontKnowPlaceName_group">
+            <input class="form-check-input" type="checkbox" value="" id="checkbox_dontKnowPlaceName" onclick="checkbox_dontKnowPlaceName(this)">
+            <label class="form-check-label text-primary" for="checkbox_dontKnowPlaceName" style="font-weight: 400; display: inline;">
+              I can’t find the place on the map/I don’t know the name of this place is missing
+            </label>
+            </div>
 
           </div>
 
@@ -157,7 +164,7 @@
            <br>
               <div class="bg-warning">
                 <p class="text-center"><strong>Search Again</strong></p>
-                <p>The place has not been found. Please enter name of place in the field above. </p>
+                <p>The place has not been found. Please use the autocomplete to enter name of place in the field above. </p>
               </div>
           </div>
 
@@ -165,14 +172,24 @@
           <!-- Instructions to place pin -->
           <div id="pinInstructions">
            <br>
-              <div class="bg-danger">
+              <div class="bg-success">
                 <p class="text-center"><strong>Place Pin on the Map</strong></p>
-                <p>The place has not been found. Use the controls on the map to pan and zoom to location and <em>click</em> on the map to add a pin.</p>
+                <p>Please drop a PIN near the closest landmark you know and provide as many details as you remember about this place in the text box below.</p>
               </div>
+
+              <br>
+              <div>
+                <textarea class="form-control" aria-label="With textarea" placeholder="Provide as many details as you remember about this place" id="textarea_placeDetails"></textarea>
+              </div>
+              <br>
+              <p class="text-danger" id="warning_message"></p>
+              <button type="button" class="btn btn-success btn-block" aria-label="Continue" onclick="placeDetails()">
+                 Continue
+              </button>
           </div>
 
 
-          <!-- Pn Instructions if state isn't selected -->
+          <!-- Pin Instructions if state isn't selected -->
           <div id="pinInfoState">
            <br>
            <div class="bg-info">
@@ -205,6 +222,10 @@
 
       </div> <!--/ .row -->
 
+
+
+
+
       <div class="row">
         <div class="col-md-12">
           <hr>
@@ -235,6 +256,7 @@ var notFound = document.getElementById("placeNotFound");
 var pinInfo = document.getElementById("pinInstructions");
 var confirm = document.getElementById("confirm");
 var statePinInfo = document.getElementById("pinInfoState");
+var warning_message = document.getElementById("warning_message");
 
 var placeNameSearch = 0; //Count attempts by viewer in "Place" field
 var groupPlaceName = document.getElementById("groupPlaceName");
@@ -258,7 +280,7 @@ function initMap() {
 
   var options = {
     //types:  ['aquarium'],
-    componentRestrictions: {country: "us"},
+    componentRestrictions: {country: "us"}
   }
 
   geocoder = new google.maps.Geocoder();
@@ -279,6 +301,12 @@ function initMap() {
   google.maps.event.addListener(map, 'click', function (evt) {
     placeMarker(evt.latLng);
   });
+
+  //update bounds when viewport is changed
+  google.maps.event.addListener(map, 'idle', function() {
+     autocomplete.bindTo('bounds', map);
+  });
+
 
 }
 
@@ -308,10 +336,19 @@ console.log("placeMarker()");
       infowindow.open(map, marker); 
       updateDevValue(results[0].formatted_address);
 
-      //check if Pin is added in correct place
-      hideHelpFields(); //hide other helpfields
-      document.getElementById("confirmPlaceAddress").innerHTML = results[0].formatted_address;
-      confirm.style.display = "block";
+      //detect if checbox is checked.
+      // if checkbox is clicked, show additional input field
+      var checkbox_dontKnowPlaceName = document.getElementById("checkbox_dontKnowPlaceName");
+      if (checkbox_dontKnowPlaceName.checked) {
+
+      }
+      else {
+        //if checkbox is not checked
+        //check if Pin is added in correct place
+        hideHelpFields(); //hide other helpfields
+        document.getElementById("confirmPlaceAddress").innerHTML = results[0].formatted_address;
+        confirm.style.display = "block";
+      }
 
     } 
     else { 
@@ -329,9 +366,8 @@ function hideHelpFields() {
   statePinInfo.style.display = "none";
 }
 
-
+//update return value for the developer
 function updateDevValue(val) {
-  //update return value for the developer
   returnVal = val;
   document.getElementById("devReturnVal").innerHTML = returnVal;
 }
@@ -356,10 +392,25 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
           console.log("geocodeLocation() -> location: "+location);
 
           //place marker
-          marker = new google.maps.Marker({
-            map: resultsMap,
-            position: results[0].geometry.location
-          });
+          //marker = new google.maps.Marker({
+          //  map: resultsMap,
+          //  position: results[0].geometry.location
+          //});
+
+
+          if (marker) {
+            //if marker already was created change positon
+             console.log("   change marker positon");
+             marker.setPosition(results[0].geometry.location);
+          } else {
+              //create a marker
+              console.log("   new marker");
+              marker = new google.maps.Marker({          
+                  map: resultsMap,
+                  position: results[0].geometry.location
+              });  
+          }
+
 
           //show info window above dropped pin with formatted address
           infowindow.setContent(results[0].formatted_address);
@@ -369,6 +420,7 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
           hideHelpFields(); //hide other helpfields
           document.getElementById("confirmPlaceAddress").innerHTML = results[0].formatted_address;
           confirm.style.display = "block";
+
       }
     } 
 
@@ -402,8 +454,14 @@ function selectedState() {
     //show instructions for dropping a pin 
     hideTowns();
     groupPlaceName.style.display = "none";  // In the event that town and place name fields have been filled out, reset/clear fields
-    statePinInfo.style.display = "block";
+    pinInfo.style.display = "block";
     updateDevValue("");
+    
+
+    //initialize fields
+    document.getElementById("checkbox_dontKnowPlaceName").checked = true;
+    document.getElementById("warning_message").innerHTML="";
+    document.getElementById("textarea_placeDetails").value="";
   }
 
   else {
@@ -414,6 +472,8 @@ function selectedState() {
     document.getElementById("placeName").value = "";
     place=null;
 
+
+    document.getElementById("checkbox_dontKnowPlaceName").checked = false;
 
     //update the return value for the developer
     updateDevValue(state);
@@ -476,6 +536,7 @@ function showTowns(state) {
 }
 
 
+//Functione executes when a town has been selected
 function selectedTown(townID) {
   //center map on town
 
@@ -503,14 +564,24 @@ function selectedTown(townID) {
    
   var zoom = 14;
 
+  //geocode results, zoom in on map
   geocodeLocation(geocoder, map, location, zoom);
+
+  //show Textinput field for typing place name
   var placeName = document.getElementById("groupPlaceName");
   placeName.style.display = "block";
+
+  //start timer to show checkmark and text for placing pin after 1 minute
+  setTimeout(showCheckmarkTxt, 60000)
 
   //update the return value for the developer
   updateDevValue(location);
 }
 
+
+function showCheckmarkTxt() {
+  document.getElementById("checkbox_dontKnowPlaceName_group").style.display = "block";
+}
 
 function placeName(placeID) {
   place = document.getElementById("placeName").value;
@@ -543,6 +614,55 @@ function placeName(placeID) {
   //update the return value for the developer
   updateDevValue(location);
               
+}
+
+
+function checkbox_dontKnowPlaceName(checkboxElem){
+  if(checkboxElem.checked) {
+     hideHelpFields();
+     pinInfo.style.display = "block"; // show instructional text to drop a pin
+     // disable previous fields
+      document.getElementById("states").disabled = true;
+      document.getElementById("conneticutTowns").disabled = true;
+      document.getElementById("rhodeIslandTowns").disabled = true;
+      document.getElementById("massachusettsTowns").disabled = true;
+      document.getElementById("newHampshireTowns").disabled = true;
+      document.getElementById("maineTowns").disabled = true;
+      document.getElementById("placeName").disabled = true;
+      document.getElementById("btn_search").disabled = true;
+
+  } else{
+     hideHelpFields();
+     //enable  preios fields
+     document.getElementById("states").disabled = false;
+      document.getElementById("conneticutTowns").disabled = false;
+      document.getElementById("rhodeIslandTowns").disabled = false;
+      document.getElementById("massachusettsTowns").disabled = false;
+      document.getElementById("newHampshireTowns").disabled = false;
+      document.getElementById("maineTowns").disabled = false;
+      document.getElementById("placeName").disabled = false;
+      document.getElementById("btn_search").disabled = false;
+  }
+}
+
+
+// Textarea field for details of place
+// updateDevValue() with address and text field
+function placeDetails(){
+  // grab value from pin
+  // check if pin has been placed and text field has text
+  // if pin has been placed, update devValue with address and text field
+  var textarea_txt = document.getElementById("textarea_placeDetails").value;
+  if (marker && textarea_txt!="") {
+    updateDevValue(returnVal + "<br> <strong>Description: </strong>" + textarea_txt);
+    document.getElementById("");
+  }
+
+  //if pin has NOT been placed and/or text field is empty
+  // place message to place pin and/or enter text in field
+  else {
+    document.getElementById("warning_message").innerHTML="Place pin on map and/or enter text in field above.";
+  }
 }
 
 
