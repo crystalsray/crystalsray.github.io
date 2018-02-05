@@ -287,7 +287,7 @@ function initMap() {
   infowindow = new google.maps.InfoWindow; //for dropped pin
 
   var autoInput = document.getElementById("placeName");
-  var autocomplete = new google.maps.places.Autocomplete(autoInput, options);
+  //var autocomplete = new google.maps.places.Autocomplete(autoInput, options);
   //autocomplete.setComponentRestrictions({
   //    'country': ['us']
   //});
@@ -295,24 +295,30 @@ function initMap() {
   // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
-  autocomplete.bindTo('bounds', map);
-  autocomplete.setOptions({strictBounds: true});
+ // autocomplete.bindTo('bounds', map);
+  //autocomplete.setOptions({strictBounds: true});
 
   google.maps.event.addListener(map, 'click', function (evt) {
     placeMarker(evt.latLng);
   });
 
   //update bounds when viewport is changed
-  google.maps.event.addListener(map, 'idle', function() {
-     autocomplete.bindTo('bounds', map);
-  });
+  //google.maps.event.addListener(map, 'idle', function() {
+  //   autocomplete.bindTo('bounds', map);
+  //});
 
 
 }
 
 
 function placeMarker(location) {
+
 console.log("placeMarker()");
+
+//marker.setMap(null);
+
+//infowindow = null;
+
   if (marker) {
       //if marker already was created change positon
       console.log("   change marker positon");
@@ -330,9 +336,12 @@ console.log("placeMarker()");
   // change lat/lng coordinates to readable text
   var input = marker.getPosition();
   var latlng = {lat: input.lat(), lng: input.lng()};
+  console.log("     latlng: " + input.lat() + "    lng: " + input.lng() );
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') { 
+      console.log("     results[0].formatted_address: " + results[0].formatted_address);
       infowindow.setContent(results[0].formatted_address);
+
       infowindow.open(map, marker); 
       updateDevValue(results[0].formatted_address);
 
@@ -341,8 +350,7 @@ console.log("placeMarker()");
       var checkbox_dontKnowPlaceName = document.getElementById("checkbox_dontKnowPlaceName");
       if (checkbox_dontKnowPlaceName.checked) {
 
-      }
-      else {
+    } else {
         //if checkbox is not checked
         //check if Pin is added in correct place
         hideHelpFields(); //hide other helpfields
@@ -434,6 +442,7 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
         }
         else {
           notFound.style.display = "block"; // show info to search input field again
+          placeNameSearch++;
         }
     }
   });
@@ -606,8 +615,13 @@ function placeName(placeID) {
      location="";
   }
 
+  else if (town==="Don't Know") {
+    location= place + ", " + state; // exclude town if "Don't Know" is chosen
+    geocodeLocation(geocoder, map, location, zoom);
+  }
+
   else {
-    location = place; //use Autocomplete result
+    location = place + ", " + town + ", " + state; //use Autocomplete result
     geocodeLocation(geocoder, map, location, zoom);  
   }
 
