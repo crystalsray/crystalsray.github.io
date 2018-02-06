@@ -211,7 +211,7 @@
            <div class="form-check" id="checkbox_dontKnowPlaceName_group">
             <input class="form-check-input" type="checkbox" value="" id="checkbox_dontKnowPlaceName" onclick="checkbox_dontKnowPlaceName(this)">
             <label class="form-check-label text-primary" for="checkbox_dontKnowPlaceName" style="font-weight: 400; display: inline;">
-              I can’t find the place on the map/I don’t know the name of this place is missing
+              I can’t find the place on the map/I don’t remember the name.
             </label>
             </div>
 
@@ -233,7 +233,7 @@
            <br>
               <div class="bg-success">
                 <p class="text-center"><strong>Place Pin on the Map</strong></p>
-                <p>Please drop a PIN near the closest landmark you know and provide as many details as you remember about this place in the text box below. Use the + and - buttons at the bottom-right of the window to zoom in and out.</p>
+                <p>Please drop a PIN near the closest landmark you know and/or provide as many details as you remember about this place in the text box below. Use the + and - buttons at the bottom-right of the window to zoom in and out.</p>
               </div>
 
               <br>
@@ -530,7 +530,7 @@ function selectedState() {
     //show instructions for dropping a pin 
     hideTowns();
     groupPlaceName.style.display = "none";  // In the event that town and place name fields have been filled out, reset/clear fields
-    placeDescription.style.display = "block";
+    pinInfo.style.display = "block";
     updateDevValue("");
     
 
@@ -690,7 +690,7 @@ function placeName(placeID) {
   }
 
   else {
-    location = place + ", " + town + ", " + state; //use Autocomplete result
+    location = place + " " + town + " " + state; //use Autocomplete result
     geocodeLocation(geocoder, map, location, zoom);  
   }
 
@@ -736,7 +736,7 @@ function placeDetails(){
   // check if pin has been placed and text field has text
   // if pin has been placed, update devValue with address and text field
   var textarea_txt = document.getElementById("textarea_placeDetails").value;
-  if (marker && textarea_txt!="") {
+  if (marker | textarea_txt!="") { //don't need to enter both text and pin
     updateDevValue(returnVal + "<br> <strong>Description: </strong>" + textarea_txt);
     document.getElementById("");
   }
