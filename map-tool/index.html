@@ -174,7 +174,7 @@
            <br>
               <div class="bg-success">
                 <p class="text-center"><strong>Place Pin on the Map</strong></p>
-                <p>Please drop a PIN near the closest landmark you know and provide as many details as you remember about this place in the text box below.</p>
+                <p>Please drop a PIN near the closest landmark you know and provide as many details as you remember about this place in the text box below. Use the + and - buttons at the bottom-right of the window to zoom in and out.</p>
               </div>
 
               <br>
@@ -190,11 +190,17 @@
 
 
           <!-- Pin Instructions if state isn't selected -->
-          <div id="pinInfoState">
+          <div id="placeInfoInstructions">
            <br>
            <div class="bg-info">
-             <p class="text-center"><strong>Place Pin on the Map</strong></p>
-             <p>Use the controls on the map to pan and zoom to location and click on the map to add a pin.</p>
+             <p class="text-center"><strong>Provide Information about place</strong></p>
+             <p>Provide as many details as you remember about this place in the text box below.</p>
+             <textarea class="form-control" aria-label="With textarea" placeholder="Provide as many details as you remember about this place" id="textarea_placeDetails_only"></textarea>
+             <br>
+             <button type="button" class="btn btn-info btn-block" aria-label="Continue" onclick="placeDetailsOnly()">
+                 Continue
+              </button>
+              <br>
            </div>
           </div>
 
@@ -255,7 +261,7 @@ var place;
 var notFound = document.getElementById("placeNotFound");
 var pinInfo = document.getElementById("pinInstructions");
 var confirm = document.getElementById("confirm");
-var statePinInfo = document.getElementById("pinInfoState");
+var placeDescription = document.getElementById("placeInfoInstructions");
 var warning_message = document.getElementById("warning_message");
 
 var placeNameSearch = 0; //Count attempts by viewer in "Place" field
@@ -279,7 +285,6 @@ function initMap() {
   });
 
   var options = {
-    //types:  ['aquarium'],
     componentRestrictions: {country: "us"}
   }
 
@@ -362,17 +367,19 @@ console.log("placeMarker()");
     else { 
        window.alert('No results found'); 
      }
-  }); // end geocoder 
- 
+  }); // end geocoder  
 }
+
+
 
 //hide help fields
 function hideHelpFields() {
   notFound.style.display = "none";
   pinInfo.style.display = "none";
   confirm.style.display = "none";
-  statePinInfo.style.display = "none";
+  placeDescription.style.display = "none";
 }
+
 
 //update return value for the developer
 function updateDevValue(val) {
@@ -387,7 +394,8 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
     'address': location
   }, 
 
-  function(results, status) {
+
+    function(results, status) {
 
     //successful geocode attemp
     if (status === 'OK') {
@@ -463,7 +471,7 @@ function selectedState() {
     //show instructions for dropping a pin 
     hideTowns();
     groupPlaceName.style.display = "none";  // In the event that town and place name fields have been filled out, reset/clear fields
-    pinInfo.style.display = "block";
+    placeDescription.style.display = "block";
     updateDevValue("");
     
 
@@ -474,7 +482,6 @@ function selectedState() {
   }
 
   else {
-
     //RESET state, field and place name
     //Hide place name field, help text and search button in case the user has filled these out, but change the state
     groupPlaceName.style.display = "none";
@@ -491,6 +498,7 @@ function selectedState() {
     geocodeLocation(geocoder, map, state, zoom);
     showTowns(state);
   }
+
 
   // if marker exists, delete marker
   if (marker) {
@@ -581,7 +589,8 @@ function selectedTown(townID) {
   placeName.style.display = "block";
 
   //start timer to show checkmark and text for placing pin after 1 minute
-  setTimeout(showCheckmarkTxt, 60000)
+  //setTimeout(showCheckmarkTxt, 60000)
+  showCheckmarkTxt();
 
   //update the return value for the developer
   updateDevValue(location);
@@ -591,6 +600,7 @@ function selectedTown(townID) {
 function showCheckmarkTxt() {
   document.getElementById("checkbox_dontKnowPlaceName_group").style.display = "block";
 }
+
 
 function placeName(placeID) {
   place = document.getElementById("placeName").value;
@@ -678,6 +688,13 @@ function placeDetails(){
     document.getElementById("warning_message").innerHTML="Place pin on map and/or enter text in field above.";
   }
 }
+
+
+function placeDetailsOnly() {
+  var place_txt = document.getElementById("textarea_placeDetails_only").value;
+  updateDevValue(place_txt);
+}
+
 
 
 
