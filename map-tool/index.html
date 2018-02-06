@@ -76,6 +76,8 @@
 
       <div class="row">
 
+
+
         <div class="col-md-3">
 
           <!-- Select State -->
@@ -100,23 +102,14 @@
               <option disabled selected>Select a town/city</option>
               <option>Don't Know</option>
               <option>Annex</option> 
-              <option>Beals</option>
-              <option>Belfast Cty</option>
-              <option>Biddeford Cty</option>
-              <option>Boothbay</option>
-              <option>Boothbay Harbor</option>
               <option>Branford</option>
               <option>Bridgeport</option>
-              <option>Brunswick</option>
               <option>Camden</option>
-              <option>Cape Elizabeth</option>
-              <option>Centerville</option>
               <option>Clinton</option> 
               <option>Darien</option>
               <option>East Lyme</option>
               <option>East Shore</option>
-              <option>Falmouth</option>
-              <option>Frankfort</option>
+              <option>Fair Haven</option>
               <option>Fair Haven Heights</option>
               <option>Fairfield</option>
               <option>Greenwich</option>
@@ -129,8 +122,9 @@
               <option>Marshfield</option>
               <option>Mason's Island</option>
               <option>Milford</option>
+              <option>Momauguin</option>
               <option>Mount Desert</option>
-              <oiption>New Haven</oiption>
+              <option>New Haven</option>
               <option>Niantic</option>
               <option>North Haven</option>
               <option>Norwalk</option>
@@ -194,25 +188,22 @@
           <!-- Select Place Text Field -->
           <div id="groupPlaceName">
 
-          <div class="form-group">
-            <label for="placeName">Name of Place</label>
-            <input type="text" class="form-control" placeholder="Enter place name" id="placeName">
-            <small><span class="help-block text-muted">Examples: beach name, street name, marina, or park name.</span></small>
-          </div> <!--/ .form-group -->
+              <div class="form-group">
+                <label for="placeName">Name of Place</label>
+                <input type="text" class="form-control" placeholder="Enter place name" id="placeName">
+                <small><span class="help-block text-muted">Examples: beach name, street name, marina, or park name.</span></small>
+              </div> <!--/ .form-group -->
 
+              <button type="button" class="btn btn-primary btn-block" aria-label="Search" onclick="placeName('placeName')" id="btn_search">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+              </button>
 
-
-          <button type="button" class="btn btn-primary btn-block" aria-label="Search" onclick="placeName('placeName')" id="btn_search">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
-          </button>
-
-
-          <br>
-           <div class="form-check" id="checkbox_dontKnowPlaceName_group">
-            <input class="form-check-input" type="checkbox" value="" id="checkbox_dontKnowPlaceName" onclick="checkbox_dontKnowPlaceName(this)">
-            <label class="form-check-label text-primary" for="checkbox_dontKnowPlaceName" style="font-weight: 400; display: inline;">
-              I can’t find the place on the map/I don’t remember the name.
-            </label>
+                <br>
+               <div class="form-check" id="checkbox_dontKnowPlaceName_group">
+                <input class="form-check-input" type="checkbox" value="" id="checkbox_dontKnowPlaceName" onclick="checkbox_dontKnowPlaceName(this)">
+                <label class="form-check-label text-primary" for="checkbox_dontKnowPlaceName" style="font-weight: 400; display: inline;">
+                  I can’t find the place on the map/I don’t remember the name.
+                </label>
             </div>
 
           </div>
@@ -355,7 +346,6 @@ function initMap() {
   //google.maps.event.addListener(map, 'idle', function() {
   //   autocomplete.bindTo('bounds', map);
   //});
-
 
 }
 
@@ -564,7 +554,7 @@ function showTowns(state) {
 
   //initialization
   hideTowns();
- 
+  
 
   //initialize selections, in the event that the user has already selected a town, but then chooses a different state.
   document.getElementById("conneticutTowns").value='Select a town/city';
