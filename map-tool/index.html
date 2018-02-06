@@ -255,12 +255,22 @@
 
         </div> <!--/ .col-md-3 -->
 
+
+
         <div class="col-md-9">
 
           <!-- Show map -->
           <div id="map"></div>
 
+          <!-- Reset Button -->
+          <br>
+          <button type="button" class="btn btn-success btn-default" aria-label="Reset Form" onclick="resetForm()">
+                 Reset
+          </button>
+
         </div> <!-- / .col-md-9 -->
+
+        
 
       </div> <!--/ .row -->
 
@@ -714,6 +724,53 @@ function placeDetails(){
   }
 }
 
+
+//Reset Form
+
+function resetForm() {
+
+  // Reset state
+  document.getElementById("states").value="Select State";
+
+  //Reset towns
+  document.getElementById("conneticutTowns").value='Select a town/city';
+  document.getElementById("rhodeIslandTowns").value='Select a town/city';
+  document.getElementById("massachusettsTowns").value='Select a town/city';
+  document.getElementById("newHampshireTowns").value='Select a town/city';
+  document.getElementById("maineTowns").value='Select a town/city';
+
+  //hide place group field
+  groupPlaceName.style.display = "none";
+
+
+  //empty text fields,text areas
+  document.getElementById("checkbox_dontKnowPlaceName").checked = false;
+  document.getElementById("warning_message").innerHTML="";
+  document.getElementById("textarea_placeDetails").value="";
+
+  //hide town and help fields
+  hideTowns();
+  hideHelpFields();
+
+  ////enable  preios fields
+     document.getElementById("states").disabled = false;
+      document.getElementById("conneticutTowns").disabled = false;
+      document.getElementById("rhodeIslandTowns").disabled = false;
+      document.getElementById("massachusettsTowns").disabled = false;
+      document.getElementById("newHampshireTowns").disabled = false;
+      document.getElementById("maineTowns").disabled = false;
+      document.getElementById("placeName").disabled = false;
+      document.getElementById("btn_search").disabled = false;
+
+  //erase marker and info box
+  //marker.setMap(null);
+  //infowindow = null;
+
+  //reset map
+  infowindow.close();
+  map.setCenter({lat: 44.247658, lng: -71.553955});
+  map.setZoom(6);
+}
 
 
 
