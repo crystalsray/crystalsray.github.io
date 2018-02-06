@@ -248,20 +248,6 @@
           </div>
 
 
-          <!-- Pin Instructions if state isn't selected -->
-          <div id="placeInfoInstructions">
-           <br>
-           <div class="bg-info">
-             <p class="text-center"><strong>Provide Information about place</strong></p>
-             <p>Provide as many details as you remember about this place in the text box below.</p>
-             <textarea class="form-control" aria-label="With textarea" placeholder="Provide as many details as you remember about this place" id="textarea_placeDetails_only"></textarea>
-             <br>
-             <button type="button" class="btn btn-info btn-block" aria-label="Continue" onclick="placeDetailsOnly()">
-                 Continue
-              </button>
-              <br>
-           </div>
-          </div>
 
 
           <!-- Confirmation -->
@@ -320,7 +306,6 @@ var place;
 var notFound = document.getElementById("placeNotFound");
 var pinInfo = document.getElementById("pinInstructions");
 var confirm = document.getElementById("confirm");
-var placeDescription = document.getElementById("placeInfoInstructions");
 var warning_message = document.getElementById("warning_message");
 
 var placeNameSearch = 0; //Count attempts by viewer in "Place" field
@@ -436,7 +421,6 @@ function hideHelpFields() {
   notFound.style.display = "none";
   pinInfo.style.display = "none";
   confirm.style.display = "none";
-  placeDescription.style.display = "none";
 }
 
 
@@ -741,10 +725,6 @@ function placeDetails(){
 }
 
 
-function placeDetailsOnly() {
-  var place_txt = document.getElementById("textarea_placeDetails_only").value;
-  updateDevValue(place_txt);
-}
 
 
 
