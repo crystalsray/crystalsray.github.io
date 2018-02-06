@@ -672,16 +672,8 @@ function placeName(placeID) {
     // increment attempt count
     placeNameSearch++;
 
-     hideHelpFields();
-     if ( placeNameSearch > 1 ) { 
-          pinInfo.style.display = "block"; // show instructional text to drop a pin
-     }
-     else {
-        notFound.style.display = "block"; // show info to search input field again
-     }
-
-     console.log("place: empty");
-     location="";
+    location=town + ", " + state;
+     geocodeLocation(geocoder, map, location, zoom);
   }
 
   else if (town==="Don't Know") {
