@@ -429,6 +429,8 @@ function clearMarker(){
 function deleteMarker(){ 
   clearMarker()
   marker="";
+
+  infowindow.close();
 }
 
 
@@ -785,14 +787,9 @@ function resetForm() {
   if(marker) {
     deleteMarker();
   }
- 
-  
-
-  
-  //infowindow = null;
 
   //reset map
-  infowindow.close();
+
   map.setCenter({lat: 44.247658, lng: -71.553955});
   map.setZoom(6);
 }
