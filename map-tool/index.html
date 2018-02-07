@@ -361,6 +361,7 @@ function initMap() {
 }
 
 
+
 function placeMarker(location) {
 
 console.log("placeMarker()");
@@ -415,6 +416,20 @@ console.log("placeMarker()");
   }); // end geocoder  
 }
 
+
+//functions for erasing marker
+function setMapOnAll(map) {
+    marker.setMap(map);
+}
+
+function clearMarker(){
+   setMapOnAll(null);
+}
+
+function deleteMarker(){ 
+  clearMarker()
+  marker="";
+}
 
 
 //hide help fields
@@ -546,8 +561,9 @@ function selectedState() {
 
   // if marker exists, delete marker
   if (marker) {
-      marker.setMap(null);
-  } 
+    deleteMarker(); 
+  }
+  
   
 }
 
@@ -607,9 +623,10 @@ function selectedTown(townID) {
 
   hideHelpFields();
   // if marker exists, delete marker
-  if (marker) {
-      marker.setMap(null);
+  if(marker) {
+    deleteMarker();
   }
+  
 
   // Empty "Name of Place" text input field in the event the user filled it
   // out for a previously selected town
@@ -764,7 +781,14 @@ function resetForm() {
       document.getElementById("btn_search").disabled = false;
 
   //erase marker and info box
-  //marker.setMap(null);
+
+  if(marker) {
+    deleteMarker();
+  }
+ 
+  
+
+  
   //infowindow = null;
 
   //reset map
