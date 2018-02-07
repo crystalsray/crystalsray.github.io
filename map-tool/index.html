@@ -730,7 +730,7 @@ function placeDetails(){
   // check if pin has been placed and text field has text
   // if pin has been placed, update devValue with address and text field
   var textarea_txt = document.getElementById("textarea_placeDetails").value;
-  if (marker | textarea_txt!="") { //don't need to enter both text and pin
+  if (marker || textarea_txt!="") { //don't need to enter both text and pin
     updateDevValue(returnVal + "<br> <strong>Description: </strong>" + textarea_txt);
     document.getElementById("");
   }
