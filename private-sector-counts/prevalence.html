@@ -343,6 +343,7 @@
                  values.push(colOfSelectedOpt[i].value);
             }      
 
+            //filter for selected values
            sheet = viz.getWorkbook().getActiveSheet();
                if(sheet.getSheetType() === 'worksheet') {
                    sheet.applyFilterAsync(filterName, values, 'REPLACE');
@@ -353,6 +354,24 @@
                   worksheetArray[i].applyFilterAsync(filterName, values, 'REPLACE');
                  }
             }
+
+            //if Asia is selected, deselect asia countries
+            //If Asia is deselected, deselect asia countries
+
+            //Asian Countries
+            var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
+
+
+            //loop through values
+            for(var i=0;i<colOfSelectedOpt.length;i++) {
+                 var selected_cty = (colOfSelectedOpt[i].value);
+
+                 //if match for Asia
+                 if( selected_cty === "Asia") {
+                   $("#CS_country").multiselect('select', countries_asia);
+                 }
+            }
+
         }
 
 
