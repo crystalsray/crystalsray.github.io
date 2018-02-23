@@ -213,17 +213,28 @@
               <div class="bg-success">
                 <p class="text-center"><strong>Place Pin on the Map</strong></p>
                 <p>Please drop a PIN near the closest landmark you know and/or provide as many details as you remember about this place in the text box below. Use the + and - buttons at the bottom-right of the window to zoom in and out.</p>
+
+                <div>
+                  <textarea class="form-control" aria-label="With textarea" placeholder="Provide as many details as you remember about this place" id="textarea_placeDetails" rows="5"></textarea>
+                </div>
+
               </div>
 
               <br>
-              <div>
-                <textarea class="form-control" aria-label="With textarea" placeholder="Provide as many details as you remember about this place" id="textarea_placeDetails"></textarea>
-              </div>
+              
               <br>
+
+              <div class="bg-success">
+                <p class="text-center"><strong>Confirm Location</strong></p>
+                <p id="confirmPinDrop" class="placeConfirmation"></p>
+              </div>
+
               <p class="text-danger" id="warning_message"></p>
+              
               <button type="button" class="btn btn-success btn-block" aria-label="Continue" onclick="placeDetails()">
                  Confirm
               </button>
+
           </div>
 
 
@@ -356,10 +367,6 @@ function placeMarker(location) {
 
 console.log("placeMarker()");
 
-//marker.setMap(null);
-
-//infowindow = null;
-
   if (marker) {
       //if marker already was created change positon
       console.log("   change marker positon");
@@ -391,9 +398,13 @@ console.log("placeMarker()");
       //detect if checbox is checked.
       // if checkbox is clicked, show additional input field
       var checkbox_dontKnowPlaceName = document.getElementById("checkbox_dontKnowPlaceName");
-      if (checkbox_dontKnowPlaceName.checked) {
+      var select_state = document.getElementById("states").value;
+      if (checkbox_dontKnowPlaceName.checked || select_state ==="Don't Know") {
+        //hideHelpFields(); //hide other helpfields
+        document.getElementById("confirmPinDrop").innerHTML = results[0].formatted_address;
+        document.getElementById("warning_message").innerHTML = "";
 
-    } else {
+      } else {
         //if checkbox is not checked
         //check if Pin is added in correct place
         hideHelpFields(); //hide other helpfields
@@ -533,6 +544,7 @@ function selectedState() {
     document.getElementById("checkbox_dontKnowPlaceName").checked = true;
     document.getElementById("warning_message").innerHTML="";
     document.getElementById("textarea_placeDetails").value="";
+    document.getElementById("confirmPinDrop").innerHTML="";
   }
 
   else {
@@ -725,7 +737,7 @@ function placeDetails(){
   // check if pin has been placed and text field has text
   // if pin has been placed, update devValue with address and text field
   var textarea_txt = document.getElementById("textarea_placeDetails").value;
-  if (marker || textarea_txt!="") { //don't need to enter both text and pin
+  if (marker) { //don't need to enter both text and pin
     updateDevValue(returnVal + "<br> <strong>Description: </strong>" + textarea_txt);
     document.getElementById("warning_message").innerHTML="";
   }
