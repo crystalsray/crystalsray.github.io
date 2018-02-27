@@ -359,18 +359,18 @@
             //If Asia is deselected, deselect asia countries
 
             //Asian Countries
-            var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
+            //var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
 
 
             //loop through values
-            for(var i=0;i<colOfSelectedOpt.length;i++) {
+            /*for(var i=0;i<colOfSelectedOpt.length;i++) {
                  var selected_cty = (colOfSelectedOpt[i].value);
 
                  //if match for Asia
                  if( selected_cty === "Asia") {
                    $("#CS_country").multiselect('select', countries_asia);
                  }
-            }
+            }*/
 
         }
 
@@ -484,8 +484,9 @@
                               <div class="panel panel-default">
                                 <div class="panel-heading down-arrow" role="tab" id="headingOne">
                                   <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('Dash CS Sources Bar')">
-                                      Where do caregivers seek treatment for their sick children?
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('Dash IP Map')">
+                                      How often do children get sick? 
+
                                     </a>
                                   </h4>
                                 </div>
@@ -493,140 +494,8 @@
                                   <div class="panel-body">
 
                                   
-                                    <form id="formIllnessPrevalence">
+                                  
 
-                                        <!-- Maps & Bubble Charts: Remove average on country list -->
-                                        <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
-
-                                        <!-- Country list with averages -->
-                                        <div class="form-group" id="CS_country_group">
-                                            <label for="CS_country">Country <span class="text-muted">(avg)</span></label>
-                                            <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
-                                                <option selected>Afghanistan 2015</option>
-                                                <option selected>Bangladesh 2014</option>
-                                                <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
-                                                <option selected>Ghana 2014</option>
-                                                <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
-                                                <option selected>Indonesia 2012</option>
-                                                <option selected>Kenya 2014</option>
-                                                <option selected>Liberia 2013</option>
-                                                <option selected>Madagascar 2009</option>
-                                                <option selected>Malawi 2015-16</option>
-                                                <option selected>Mali 2012-13</option>
-                                                <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
-                                                <option selected>Nepal 2011</option>
-                                                <option selected>Nigeria 2013</option>
-                                                <option selected>Pakistan 2012-13</option>
-                                                <option selected>Rwanda 2015-16</option>
-                                                <option selected>Senegal 2016</option>
-                                                <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
-                                                <option selected>Yemen 2013</option>
-                                                <option selected>Zambia 2013-14</option>
-                                                <option selected>Asia average</option>
-                                                <option selected>E.S. Africa average</option>
-                                                <option selected>Other countries average</option>
-                                                <option selected>W.C. Africa average</option>
-
-
-                                            </select>
-                                        </div><!-- form-group-->
-
-                                        <!-- Country list without averages -->
-                                        <!-- show for Map & Bubble  charts -->
-                                        <div class="form-group" id="CS_country_noavg_group">
-                                            <label for="CS_country_noavg">Country <span class="text-muted">(no avg)</span></label>
-                                            <select class="form-control shops-multiselect" id="CS_country_noavg" onchange="showMultiple('CS_country_noavg','Country w/o reg avgs')" multiple="multiple">
-                                                <option selected>Afghanistan 2015</option>
-                                                <option selected>Bangladesh 2014</option>
-                                                <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
-                                                <option selected>Ghana 2014</option>
-                                                <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
-                                                <option selected>Indonesia 2012</option>
-                                                <option selected>Kenya 2014</option>
-                                                <option selected>Liberia 2013</option>
-                                                <option selected>Madagascar 2009</option>
-                                                <option selected>Malawi 2015-16</option>
-                                                <option selected>Mali 2012-13</option>
-                                                <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
-                                                <option selected>Nepal 2011</option>
-                                                <option selected>Nigeria 2013</option>
-                                                <option selected>Pakistan 2012-13</option>
-                                                <option selected>Rwanda 2015-16</option>
-                                                <option selected>Senegal 2016</option>
-                                                <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
-                                                <option selected>Yemen 2013</option>
-                                                <option selected>Zambia 2013-14</option>
-                                            </select>
-                                        </div><!-- form-group-->
-
-                                        <div class="form-group">
-                                            <label for="CSsourcesBar_region">Region</label>
-                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
-                                              <option selected>Regional Averages</option>
-                                              <option selected>Asia</option>
-                                              <option selected>East and Southern Africa</option>
-                                              <option selected>West and Central Africa</option>
-                                              <option selected>Other Countries</option>
-                                            </select>
-                                        </div><!-- form-group-->
-
-                                        <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
-                                            <label for="CSsourcesBar_demographics">Demographics <span class="text-muted">(bar chart)</span></label>
-                                            <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
-                                              <option selected>Total Population</option>
-                                              <option>All Quintiles</option>
-                                              <option>Poorest and Richest Quintiles</option>
-                                              <option>Rural and Urban</option>
-                                              <option>Maternal Education</option>
-                                            </select>
-                                        </div><!-- form-group-->
-
-
-                                        <div class="form-group" id="CSsourcesBar_group2"> <!-- Bubble chart -->
-                                            <label for="CSsourcesBar2_demographics">Demographics <span class="text-muted">(bubble chart)</span></label>
-                                            <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
-                                              <option>All Quintiles</option>
-                                              <option selected="">Poorest and Richest Quintiles</option>
-                                              <option>Rural and Urban</option>
-                                              <option>Maternal Education</option>
-                                            </select>
-                                        </div><!-- form-group-->
-                                   
-
-                                        <br>
-                                        <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-default active" onclick="switchView('Dash CS Sources Bar')" id="CSSourceOpt1">
-                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bar" checked>  Bar Chart
-                                          </label>
-                                          <label class="btn btn-default" onclick="switchView('Dash CS Sources Bubble')" id="CSSourceOpt2">
-                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bubble"> Bubble Chart
-                                          </label>
-                                        </div>
-                                     </form>
-
-                                  </div>
-                                </div>
-                              </div>
-
-                            <!-- Panel #2 Care-Seeking Levels -->
-                              <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                  <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="switchView('Dash IP Map')">
-                                      How often do children get sick? 
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                  <div class="panel-body">
 
                                   <form>
                                         <!-- Show multiple select when "Total" is selected in Demographics -->
@@ -785,24 +654,23 @@
 
 
                                   </form>
+                                    
+
                                   </div>
                                 </div>
                               </div>
 
-
-                              <!-- Panel #3 Care-Seeking Levels and Key Characteristics -->
+                            <!-- Panel #2 Care-Seeking Levels -->
                               <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
+                                <div class="panel-heading" role="tab" id="headingTwo">
                                   <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('Dash CS Levels Bar')">
-                                      How often do caregivers seek assistance outside the home?
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="switchView('Dash CS Levels Bar')">
+                                      How often do caregivers seek advice or treatment?
                                     </a>
                                   </h4>
                                 </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                   <div class="panel-body">
-
-
                                     <form>
 
                                         <div class="form-group" id="CSLevels_illnesses_group">
@@ -965,6 +833,150 @@
                                         </div>
 
                                      </form>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <!-- Panel #3 Care-Seeking Levels and Key Characteristics -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('Dash CS Sources Bar')">
+                                      Where do caregivers seek treatment for their sick children?
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                  <div class="panel-body">
+
+
+                                    
+
+
+
+                                     <form id="formIllnessPrevalence">
+
+                                        <!-- Maps & Bubble Charts: Remove average on country list -->
+                                        <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
+
+                                        <!-- Country list with averages -->
+                                        <div class="form-group" id="CS_country_group">
+                                            <label for="CS_country">Country <span class="text-muted">(avg)</span></label>
+                                            <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
+                                                <option selected>Afghanistan 2015</option>
+                                                <option selected>Bangladesh 2014</option>
+                                                <option selected>DRC 2013-14</option>
+                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ghana 2014</option>
+                                                <option selected>Haiti 2012</option>
+                                                <option selected>India 2005-06</option>
+                                                <option selected>Indonesia 2012</option>
+                                                <option selected>Kenya 2014</option>
+                                                <option selected>Liberia 2013</option>
+                                                <option selected>Madagascar 2009</option>
+                                                <option selected>Malawi 2015-16</option>
+                                                <option selected>Mali 2012-13</option>
+                                                <option selected>Mozambique 2011</option>
+                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Nepal 2011</option>
+                                                <option selected>Nigeria 2013</option>
+                                                <option selected>Pakistan 2012-13</option>
+                                                <option selected>Rwanda 2015-16</option>
+                                                <option selected>Senegal 2016</option>
+                                                <option selected>Tanzania 2015-16</option>
+                                                <option selected>Uganda 2011</option>
+                                                <option selected>Yemen 2013</option>
+                                                <option selected>Zambia 2013-14</option>
+                                                <option selected>Asia average</option>
+                                                <option selected>E.S. Africa average</option>
+                                                <option selected>Other countries average</option>
+                                                <option selected>W.C. Africa average</option>
+
+
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <!-- Country list without averages -->
+                                        <!-- show for Map & Bubble  charts -->
+                                        <div class="form-group" id="CS_country_noavg_group">
+                                            <label for="CS_country_noavg">Country <span class="text-muted">(no avg)</span></label>
+                                            <select class="form-control shops-multiselect" id="CS_country_noavg" onchange="showMultiple('CS_country_noavg','Country w/o reg avgs')" multiple="multiple">
+                                                <option selected>Afghanistan 2015</option>
+                                                <option selected>Bangladesh 2014</option>
+                                                <option selected>DRC 2013-14</option>
+                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ghana 2014</option>
+                                                <option selected>Haiti 2012</option>
+                                                <option selected>India 2005-06</option>
+                                                <option selected>Indonesia 2012</option>
+                                                <option selected>Kenya 2014</option>
+                                                <option selected>Liberia 2013</option>
+                                                <option selected>Madagascar 2009</option>
+                                                <option selected>Malawi 2015-16</option>
+                                                <option selected>Mali 2012-13</option>
+                                                <option selected>Mozambique 2011</option>
+                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Nepal 2011</option>
+                                                <option selected>Nigeria 2013</option>
+                                                <option selected>Pakistan 2012-13</option>
+                                                <option selected>Rwanda 2015-16</option>
+                                                <option selected>Senegal 2016</option>
+                                                <option selected>Tanzania 2015-16</option>
+                                                <option selected>Uganda 2011</option>
+                                                <option selected>Yemen 2013</option>
+                                                <option selected>Zambia 2013-14</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group">
+                                            <label for="CSsourcesBar_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
+                                              <option selected>Regional Averages</option>
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
+                                            <label for="CSsourcesBar_demographics">Demographics <span class="text-muted">(bar chart)</span></label>
+                                            <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
+                                              <option selected>Total Population</option>
+                                              <option>All Quintiles</option>
+                                              <option>Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        <div class="form-group" id="CSsourcesBar_group2"> <!-- Bubble chart -->
+                                            <label for="CSsourcesBar2_demographics">Demographics <span class="text-muted">(bubble chart)</span></label>
+                                            <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
+                                              <option>All Quintiles</option>
+                                              <option selected="">Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+                                   
+
+                                        <br>
+                                        <div class="btn-group" data-toggle="buttons">
+                                          <label class="btn btn-default active" onclick="switchView('Dash CS Sources Bar')" id="CSSourceOpt1">
+                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bar" checked>  Bar Chart
+                                          </label>
+                                          <label class="btn btn-default" onclick="switchView('Dash CS Sources Bubble')" id="CSSourceOpt2">
+                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bubble"> Bubble Chart
+                                          </label>
+                                        </div>
+                                     </form>
+
+
+
                                   </div>
                                 </div>
                               </div>

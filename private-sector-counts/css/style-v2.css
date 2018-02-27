@@ -1220,6 +1220,9 @@ select.form-control {
 #IP_country_group,
 #IP_region_noavg_group, 
 #IPillnesses_oneoption_group,
-#IPillnesses_map_group  {
+#IPillnesses_map_group,
+
+#CSLevels_illnesses_map_group,
+#CS_levels_demographics_group2  {
     display: none;
 }
