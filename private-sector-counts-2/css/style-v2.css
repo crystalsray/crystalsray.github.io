@@ -1223,6 +1223,7 @@ select.form-control {
 #IPillnesses_map_group,
 
 #CSLevels_illnesses_map_group,
-#CS_levels_demographics_group2  {
+#CS_levels_demographics_group2,
+#CSLevels_illnesses_oneoption_group   {
     display: none;
 }
