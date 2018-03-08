@@ -446,6 +446,7 @@ function placeSearchValue() {
   //check if state is selected
   state = document.getElementById("states").value;
   var townID = "";
+  var town = "";
 
   switch (state) {
   case "Connecticut":
@@ -472,9 +473,14 @@ function placeSearchValue() {
   if (townID!=="") {
     town = document.getElementById(townID).value;
   }
-  else {
+
+  if (town =="Don't Know" || town == "Select a town/city") {
     town = "";
   }
+
+  //uncheck checkbox if checkd
+  document.getElementById("checkbox_dontKnowPlaceName").checked = false;
+
 
 
   //check if place name is searched.
@@ -482,6 +488,7 @@ function placeSearchValue() {
 
   // return place name for geocode
   return place + " " + town + " " + state;
+
 }
 
 
@@ -553,6 +560,8 @@ function geocodeLocation(geocoder, resultsMap, location, setMarker) {
           notFound.style.display = "block"; // show info to search input field again
           placeNameSearch++;
         }
+
+      deleteMarker();
     }
   });
 }
@@ -573,7 +582,6 @@ function selectedState() {
     pinInfo.style.display = "block";
     updateDevValue("");
     
-
     //initialize fields
     document.getElementById("checkbox_dontKnowPlaceName").checked = true;
     document.getElementById("warning_message").innerHTML="";
@@ -598,11 +606,7 @@ function selectedState() {
 
 
   // if marker exists, delete marker
-  
   deleteMarker(); 
-  
-  
-  
 }
 
 
@@ -700,12 +704,15 @@ function placeName(placeID) {
 
   //geocode results, zoom in on map
   geocodeLocation(geocoder, map, place, true);
-
               
 }
 
 
 function checkbox_dontKnowPlaceName(checkboxElem){
+
+  document.getElementById("confirmPinDrop").innerHTML = "";
+  deleteMarker();
+
   if(checkboxElem.checked) {
      hideHelpFields();
      pinInfo.style.display = "block"; // show instructional text to drop a pin
@@ -719,9 +726,9 @@ function checkbox_dontKnowPlaceName(checkboxElem){
       document.getElementById("placeName").disabled = true;
       document.getElementById("btn_search").disabled = true;
 
-  } else{
+  } else {
      hideHelpFields();
-     //enable  preios fields
+     //enable  previous fields
      document.getElementById("states").disabled = false;
       document.getElementById("conneticutTowns").disabled = false;
       document.getElementById("rhodeIslandTowns").disabled = false;
@@ -730,6 +737,7 @@ function checkbox_dontKnowPlaceName(checkboxElem){
       document.getElementById("maineTowns").disabled = false;
       document.getElementById("placeName").disabled = false;
       document.getElementById("btn_search").disabled = false;
+
   }
 }
 
