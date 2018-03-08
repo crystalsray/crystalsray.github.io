@@ -305,7 +305,7 @@ var returnVal;
 
 var town;
 var state;
-var place;
+
 
 var notFound = document.getElementById("placeNotFound");
 var pinInfo = document.getElementById("pinInstructions");
@@ -484,10 +484,14 @@ function placeSearchValue() {
 
 
   //check if place name is searched.
-  place = document.getElementById("placeName").value;
+  var place = document.getElementById("placeName").value.trim();
 
   // return place name for geocode
   return place + " " + town + " " + state;
+
+
+  ////////////
+  //When changing towns and plae has been entered, do not zoom into place
 
 }
 
@@ -510,14 +514,16 @@ function geocodeLocation(geocoder, resultsMap, location, setMarker) {
      'bounds': bounds
   }, function(results, status) {
 
-    //successful geocode attemp
+    //successful geocode attempt
     if (status === 'OK') {
+
       resultsMap.setCenter(results[0].geometry.location);
       //map.setZoom(zoom);
       map.fitBounds(results[0].geometry.viewport); //zoom into select state/town
 
 
       console.log("geocode() -> status: ok");
+      console.log("setMarker: " + setMarker);
       if (setMarker) {
           console.log("geocodeLocation() -> place: "+place);
           console.log("geocodeLocation() -> location: "+location);
@@ -596,11 +602,11 @@ function selectedState() {
     document.getElementById("checkbox_dontKnowPlaceName").checked = false;
 
     //update the return value for the developer
-    place = placeSearchValue();
+    var place = placeSearchValue();
     updateDevValue(place);
 
     //geocode state
-    geocodeLocation(geocoder, map, state, false); // set false so pin is not placed, just zoom
+    geocodeLocation(geocoder, map, place, false); // set false so pin is not placed, just zoom
     showTowns(state);
   }
 
@@ -660,20 +666,14 @@ function selectedTown(townID) {
   //center map on town
 
   town = document.getElementById(townID).value;
-  var location;
   console.log("selectedTown()" + town);
 
   hideHelpFields();
-  // if marker exists, delete marker
+
   deleteMarker();
-
-
-  // Empty "Name of Place" text input field in the event the user filled it
-  // out for a previously selected town
-  document.getElementById("placeName").value = "";
   
 
-  place = placeSearchValue();
+  var place = placeSearchValue();
   updateDevValue(place);
 
 
@@ -682,24 +682,15 @@ function selectedTown(townID) {
 
 
   //start timer to show checkmark and text for placing pin after 1 minute
-  //setTimeout(showCheckmarkTxt, 60000)
-  showCheckmarkTxt();
-
-  //update the return value for the developer
-  updateDevValue(place);
-}
-
-
-function showCheckmarkTxt() {
   document.getElementById("checkbox_dontKnowPlaceName_group").style.display = "block";
+
 }
 
 
-
-
+// Place input field
 function placeName(placeID) {
 
-  place = placeSearchValue();
+  var place = placeSearchValue();
   updateDevValue(place);
 
   //geocode results, zoom in on map
