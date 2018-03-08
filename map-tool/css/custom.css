@@ -1,4 +1,14 @@
-#groupConnecticutTowns, #groupMaineTowns, #groupMassachusettsTowns, #groupNewHampshireTowns, #groupRhodeIslandTowns, #groupPlaceName, #pinInstructions, #confirm, #pinInfoState, #placeNotFound, #checkbox_dontKnowPlaceName_group, #placeInfoInstructions {
+#groupConnecticutTowns, 
+#groupMaineTowns, 
+#groupMassachusettsTowns, 
+#groupNewHampshireTowns, 
+#groupRhodeIslandTowns, 
+#pinInstructions, 
+#confirm, 
+#pinInfoState, 
+#placeNotFound, 
+#checkbox_dontKnowPlaceName_group, 
+#placeInfoInstructions {
 	display: none;
 }
 

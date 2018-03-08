@@ -339,25 +339,11 @@ function initMap() {
   infowindow = new google.maps.InfoWindow; //for dropped pin
 
   var autoInput = document.getElementById("placeName");
-  //var autocomplete = new google.maps.places.Autocomplete(autoInput, options);
-  //autocomplete.setComponentRestrictions({
-  //    'country': ['us']
-  //});
-
-  // Bind the map's bounds (viewport) property to the autocomplete object,
-  // so that the autocomplete requests use the current map bounds for the
-  // bounds option in the request.
- // autocomplete.bindTo('bounds', map);
-  //autocomplete.setOptions({strictBounds: true});
 
   google.maps.event.addListener(map, 'click', function (evt) {
     placeMarker(evt.latLng);
   });
 
-  //update bounds when viewport is changed
-  //google.maps.event.addListener(map, 'idle', function() {
-  //   autocomplete.bindTo('bounds', map);
-  //});
 
 }
 
@@ -429,11 +415,12 @@ function clearMarker(){
    setMapOnAll(null);
 }
 
-function deleteMarker(){ 
-  clearMarker()
-  marker="";
-
-  infowindow.close();
+function deleteMarker() { 
+  if (marker) {
+    clearMarker()
+    marker="";
+    infowindow.close();
+  }
 }
 
 
@@ -452,7 +439,56 @@ function updateDevValue(val) {
 }
 
 
-function geocodeLocation(geocoder, resultsMap, location, zoom) {
+
+//find place to geocode based on what's filled oout
+function placeSearchValue() {
+
+  //check if state is selected
+  state = document.getElementById("states").value;
+  var townID = "";
+
+  switch (state) {
+  case "Connecticut":
+      townID = "conneticutTowns";
+      break; 
+  case "Maine":
+      townID = "maineTowns" ;
+      break; 
+  case "Massachusetts":
+      townID = "massachusettsTowns";
+      break; 
+  case "New Hampshire":
+      townID = "newHampshireTowns" ;
+      break; 
+  case "Rhode Island":
+      townID =  "rhodeIslandTowns";
+      break;
+  default:  // Not Selected, Don't Know
+      state =  "";
+      break; 
+  }
+
+  // check if town is selected, if selected, include in place search
+  if (townID!=="") {
+    town = document.getElementById(townID).value;
+  }
+  else {
+    town = "";
+  }
+
+
+  //check if place name is searched.
+  place = document.getElementById("placeName").value;
+
+  // return place name for geocode
+  return place + " " + town + " " + state;
+}
+
+
+
+
+
+function geocodeLocation(geocoder, resultsMap, location, setMarker) {
   //get bounds of viewport
   var lat0 = map.getBounds().getNorthEast().lat();
   var lng0 = map.getBounds().getNorthEast().lng();
@@ -475,7 +511,7 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
 
 
       console.log("geocode() -> status: ok");
-      if (place) {
+      if (setMarker) {
           console.log("geocodeLocation() -> place: "+place);
           console.log("geocodeLocation() -> location: "+location);
 
@@ -525,8 +561,6 @@ function geocodeLocation(geocoder, resultsMap, location, zoom) {
 
 function selectedState() {
   state = document.getElementById("states").value;
-  var zoom = 8; //find way to fit state
-  placeNameSearch = 0;
 
   console.log("selectedState(): " + state);
 
@@ -535,7 +569,7 @@ function selectedState() {
   if (state === "Don't Know") {
     //show instructions for dropping a pin 
     hideTowns();
-    groupPlaceName.style.display = "none";  // In the event that town and place name fields have been filled out, reset/clear fields
+    //groupPlaceName.style.display = "none";  // In the event that town and place name fields have been filled out, reset/clear fields
     pinInfo.style.display = "block";
     updateDevValue("");
     
@@ -548,28 +582,25 @@ function selectedState() {
   }
 
   else {
-    //RESET state, field and place name
-    //Hide place name field, help text and search button in case the user has filled these out, but change the state
-    groupPlaceName.style.display = "none";
-    document.getElementById("placeName").value = "";
-    place=null;
 
+    // state has been chosen
 
     document.getElementById("checkbox_dontKnowPlaceName").checked = false;
 
     //update the return value for the developer
-    updateDevValue(state);
+    place = placeSearchValue();
+    updateDevValue(place);
 
     //geocode state
-    geocodeLocation(geocoder, map, state, zoom);
+    geocodeLocation(geocoder, map, state, false); // set false so pin is not placed, just zoom
     showTowns(state);
   }
 
 
   // if marker exists, delete marker
-  if (marker) {
-    deleteMarker(); 
-  }
+  
+  deleteMarker(); 
+  
   
   
 }
@@ -630,38 +661,28 @@ function selectedTown(townID) {
 
   hideHelpFields();
   // if marker exists, delete marker
-  if(marker) {
-    deleteMarker();
-  }
-  
+  deleteMarker();
+
 
   // Empty "Name of Place" text input field in the event the user filled it
   // out for a previously selected town
   document.getElementById("placeName").value = "";
-  placeNameSearch = 0;
+  
 
-  if (town==="Don't Know") {
-    location= state; // if "Don't Know" is chosen for state, don't include town name in "location" for geocoding
-  }
-  else {
-    location= town + ", " + state;
-  }
-   
-  var zoom = 14;
+  place = placeSearchValue();
+  updateDevValue(place);
+
 
   //geocode results, zoom in on map
-  geocodeLocation(geocoder, map, location, zoom);
+  geocodeLocation(geocoder, map, place, false);
 
-  //show Textinput field for typing place name
-  var placeName = document.getElementById("groupPlaceName");
-  placeName.style.display = "block";
 
   //start timer to show checkmark and text for placing pin after 1 minute
   //setTimeout(showCheckmarkTxt, 60000)
   showCheckmarkTxt();
 
   //update the return value for the developer
-  updateDevValue(location);
+  updateDevValue(place);
 }
 
 
@@ -670,33 +691,16 @@ function showCheckmarkTxt() {
 }
 
 
+
+
 function placeName(placeID) {
-  place = document.getElementById("placeName").value;
-  var location;
-  var zoom = 20;
 
+  place = placeSearchValue();
+  updateDevValue(place);
 
-  if (place=="") {
+  //geocode results, zoom in on map
+  geocodeLocation(geocoder, map, place, true);
 
-    // increment attempt count
-    placeNameSearch++;
-
-    location=town + ", " + state;
-     geocodeLocation(geocoder, map, location, zoom);
-  }
-
-  else if (town==="Don't Know") {
-    location= place + ", " + state; // exclude town if "Don't Know" is chosen
-    geocodeLocation(geocoder, map, location, zoom);
-  }
-
-  else {
-    location = place + " " + town + " " + state; //use Autocomplete result
-    geocodeLocation(geocoder, map, location, zoom);  
-  }
-
-  //update the return value for the developer
-  updateDevValue(location);
               
 }
 
@@ -764,8 +768,8 @@ function resetForm() {
   document.getElementById("newHampshireTowns").value='Select a town/city';
   document.getElementById("maineTowns").value='Select a town/city';
 
-  //hide place group field
-  groupPlaceName.style.display = "none";
+  //erase text in place name field
+  document.getElementById("placeName").value ="";
 
 
   //empty text fields,text areas
@@ -788,10 +792,8 @@ function resetForm() {
       document.getElementById("btn_search").disabled = false;
 
   //erase marker and info box
+ deleteMarker();
 
-  if(marker) {
-    deleteMarker();
-  }
 
   //reset map
 
