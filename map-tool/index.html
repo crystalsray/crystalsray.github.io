@@ -483,11 +483,10 @@ function placeSearchValue() {
 
 
 
-  //check if place name is searched.
-  var place = document.getElementById("placeName").value.trim();
+  
 
   // return place name for geocode
-  return place + " " + town + " " + state;
+  return town + " " + state;
 
 
   ////////////
@@ -525,9 +524,6 @@ function geocodeLocation(geocoder, resultsMap, location, setMarker) {
       console.log("geocode() -> status: ok");
       console.log("setMarker: " + setMarker);
       if (setMarker) {
-          console.log("geocodeLocation() -> place: "+place);
-          console.log("geocodeLocation() -> location: "+location);
-
 
           if (marker) {
             //if marker already was created change positon
@@ -690,8 +686,12 @@ function selectedTown(townID) {
 // Place input field
 function placeName(placeID) {
 
-  var place = placeSearchValue();
+  //check if place name is searched.
+  var placeNameTxt = document.getElementById("placeName").value.trim();
+  var place = placeNameTxt + " " + placeSearchValue();
   updateDevValue(place);
+
+
 
   //geocode results, zoom in on map
   geocodeLocation(geocoder, map, place, true);
