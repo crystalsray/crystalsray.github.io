@@ -359,18 +359,21 @@
             //If Asia is deselected, deselect asia countries
 
             //Asian Countries
-            //var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
+            var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
 
 
             //loop through values
-            /*for(var i=0;i<colOfSelectedOpt.length;i++) {
+            for(var i=0;i<colOfSelectedOpt.length;i++) {
                  var selected_cty = (colOfSelectedOpt[i].value);
+                 console.log(selected_cty);
+
+
 
                  //if match for Asia
-                 if( selected_cty === "Asia") {
-                   $("#CS_country").multiselect('select', countries_asia);
+                 if( selected_cty == "Asia") {
+                   $("#IP_country_noavg").multiselect('select', countries_asia);
                  }
-            }*/
+            }
 
         }
 
