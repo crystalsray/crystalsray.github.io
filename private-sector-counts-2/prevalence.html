@@ -47,6 +47,8 @@
         var workbook;
         var activeSheet;
 
+        var currentDashboardName="Dash IP Map";
+
 
               
         function initViz() {
@@ -77,6 +79,8 @@
 
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
+          currentDashboardName = sheetName;
+
           var workbook = viz.getWorkbook();
           // switch to new sheet and reset to original state
           workbook.activateSheetAsync(sheetName); 
@@ -353,13 +357,59 @@
                    for(var i = 0; i < worksheetArray.length; i++) {
                   worksheetArray[i].applyFilterAsync(filterName, values, 'REPLACE');
                  }
+                }
+
+
+            // Use ID to target country field, also use chart name to determine target field
+            // deselect items in target field (country)
+            // reselect items based on selection(s) from region
+
+            console.log("currentDashboardName -->" + currentDashboardName);
+            console.log("fieldID -->" + fieldID);
+
+
+            if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region")  {
+              $("#IP_country_noavg").multiselect('deselectAll',false);
             }
 
-            //if Asia is selected, deselect asia countries
-            //If Asia is deselected, deselect asia countries
+            /*
+            else if ()
+                
+            case "Dash IP Bar":
+                //code block
+                break;
+            case "Dash CS Levels Bar":
+                //code block
+                break;
+            case "Dash CS Levels Map":
+                //code block
+                break;
+            case "Dash CS Levels Bubbles":
+                //code block
+                break;
+            case "Dash CS Sources Bar":
+                //code block
+                break;
+            //case "Dash CS Sources Bubble":
+            default:
+                //code block
+                break;*/
+
+
+
 
             //Asian Countries
-            var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
+
+            var countries = {
+
+              "asia": ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'],
+              "es_africa" : ['Ethiopia 2011', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2011', 'Zambia 2013-14']
+            }
+            //var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
+
+            //var countries_e_s_africa = ['Ethiopia 2011', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2011', 'Zambia 2013-14']
+
+            
 
 
             //loop through values
@@ -368,12 +418,11 @@
                  console.log(selected_cty);
 
 
-
-                 //if match for Asia
+                 // if match for Asia
                  if( selected_cty == "Asia") {
-                   $("#IP_country_noavg").multiselect('select', countries_asia);
+                   $("#IP_country_noavg").multiselect('select', countries.asia);
                  }
-            }
+            } //end for
 
         }
 
