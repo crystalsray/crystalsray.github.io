@@ -51,9 +51,9 @@
 
         var countries = {
 
-          "asia": ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'],
+          "asia": ['Afghanistan 2015','Bangladesh 2014','India 2015-16','Indonesia 2012','Myanmar 2015-16','Pakistan 2012-13','Nepal 2011'],
 
-          "es_africa" : ['Ethiopia 2011', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2011', 'Zambia 2013-14'],
+          "es_africa" : ['Ethiopia 2016', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2016', 'Zambia 2013-14'],
 
           "wc_africa" : ['Ghana 2014', 'Liberia 2013', 'Mali 2012-13', 'Nigeria 2013', 'DRC 2013-14', 'Senegal 2016'],
 
@@ -66,7 +66,7 @@
               
         function initViz() {
             var containerDiv = document.getElementById("tableauViz"),
-            url = "https://public.tableau.com/views/DHSCHVizzes12jannofilterfixscroll/DashIPMap?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no",
+            url = "https://public.tableau.com/views/DHSCHVizzes26Mar2018/DashIPMap?:embed=y&:display_count=yes&publish=yes&:toolbar=no",
             options = {
                 hideTabs: true,
                 hideToolbar: true,
@@ -405,11 +405,11 @@
             // deselect items in target field (country)
             // reselect items based on selection(s) from region
 
-            //console.log("currentDashboardName -->" + currentDashboardName);
-            //console.log("fieldID -->" + fieldID);
-
             var targetyCountryID;
 
+            /*******************************************************************************/
+            /****  Deselect Country items based on region that was selected/deselected  ****/
+            /*******************************************************************************/
             ////////// 1st PANEL
             // Map
             if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region_noavg")  {
@@ -417,45 +417,51 @@
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
+            if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region_noavg")  {
+              targetyCountryID = "#IP_country_noavg";
+              $(targetyCountryID).multiselect('deselectAll',false);
+            }
+
             // bar chart
-            if (currentDashboardName=="Dash IP Bar" && fieldID=="IP_region")  {
+            else if (currentDashboardName=="Dash IP Bar" && fieldID=="IP_region")  {
               targetyCountryID = "#IP_country";
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
             ////////// 2nd PANEL
             // Bar Chart
-            if (currentDashboardName=="Dash CS Levels Bar" && fieldID=="CSLevels_region")  {
+            else if (currentDashboardName=="Dash CS Levels Bar" && fieldID=="CSLevels_region")  {
               targetyCountryID = "#CSLevels_country";
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
-            if (currentDashboardName=="Dash CS Levels Map" && fieldID=="CSLevels_region_noavg")  {
+            else if (currentDashboardName=="Dash CS Levels Map" && fieldID=="CSLevels_region_noavg")  {
               targetyCountryID = "#CSLevels_country_noavg";
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
-            if (currentDashboardName=="Dash CS Levels Bubbles" && fieldID=="CSLevels_region_noavg")  {
+            else if (currentDashboardName=="Dash CS Levels Bubbles" && fieldID=="CSLevels_region_noavg")  {
               targetyCountryID = "#CSLevels_country_noavg";
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
             ////////// 3rd PANEL
             // Bar Chart
-            if (currentDashboardName=="Dash CS Sources Bar" && fieldID=="CSsourcesBar_region")  {
+            else if (currentDashboardName=="Dash CS Sources Bar" && fieldID=="CSsourcesBar_region")  {
               targetyCountryID = "#CS_country";
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
             // Bubble Chart
-            if (currentDashboardName=="Dash CS Sources Bubble" && fieldID=="CSsourcesBar_region_noavg")  {
+            //if   {
+            else if (currentDashboardName=="Dash CS Sources Bubble" && fieldID=="CSsourcesBar_region_noavg") {
               targetyCountryID = "#CS_country_noavg";
               $(targetyCountryID).multiselect('deselectAll',false);
             }
 
-
-
-
+            else {
+              // do nothing
+            }
             
 
             //loop through values
@@ -653,10 +659,10 @@
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ethiopia 2016</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
+                                                <option selected>India 2015-16</option>
                                                 <option selected>Indonesia 2012</option>
                                                 <option selected>Kenya 2014</option>
                                                 <option selected>Liberia 2013</option>
@@ -664,14 +670,14 @@
                                                 <option selected>Malawi 2015-16</option>
                                                 <option selected>Mali 2012-13</option>
                                                 <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Myanmar 2015-16</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
+                                                <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
 
@@ -690,10 +696,10 @@
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ethiopia 2016</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
+                                                <option selected>India 2015-16</option>
                                                 <option selected>Indonesia 2012</option>
                                                 <option selected>Kenya 2014</option>
                                                 <option selected>Liberia 2013</option>
@@ -701,14 +707,14 @@
                                                 <option selected>Malawi 2015-16</option>
                                                 <option selected>Mali 2012-13</option>
                                                 <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Myanmar 2015-16</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
+                                                <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
                                             </select>
@@ -743,7 +749,7 @@
 
                                         <div class="form-group" id="IP_map_demographics_group">
                                             <label for="IP_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('IP_demographics','Demographics')" id="IP_demographics">
+                                            <select class="form-control" onchange="show('IP_demographics','Demographics calc')" id="IP_demographics">
                                               <option selected>Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
@@ -822,10 +828,10 @@
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ethiopia 2016</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
+                                                <option selected>India 2015-16</option>
                                                 <option selected>Indonesia 2012</option>
                                                 <option selected>Kenya 2014</option>
                                                 <option selected>Liberia 2013</option>
@@ -833,14 +839,14 @@
                                                 <option selected>Malawi 2015-16</option>
                                                 <option selected>Mali 2012-13</option>
                                                 <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Myanmar 2015-16</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
+                                                <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
 
@@ -858,10 +864,10 @@
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ethiopia 2016</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
+                                                <option selected>India 2015-16</option>
                                                 <option selected>Indonesia 2012</option>
                                                 <option selected>Kenya 2014</option>
                                                 <option selected>Liberia 2013</option>
@@ -869,7 +875,7 @@
                                                 <option selected>Malawi 2015-16</option>
                                                 <option selected>Mali 2012-13</option>
                                                 <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Myanmar 2015-16</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
                                                 <option selected>Pakistan 2012-13</option>
@@ -877,7 +883,7 @@
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
                                                 
-                                                <option selected>Uganda 2011</option>
+                                                <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
                                             </select>
@@ -981,10 +987,10 @@
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ethiopia 2016</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
+                                                <option selected>India 2015-16</option>
                                                 <option selected>Indonesia 2012</option>
                                                 <option selected>Kenya 2014</option>
                                                 <option selected>Liberia 2013</option>
@@ -992,14 +998,14 @@
                                                 <option selected>Malawi 2015-16</option>
                                                 <option selected>Mali 2012-13</option>
                                                 <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Myanmar 2015-16</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
+                                                <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
                                                 <option selected>Asia average</option>
@@ -1019,10 +1025,10 @@
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2011</option>
+                                                <option selected>Ethiopia 2016</option>
                                                 <option selected>Ghana 2014</option>
                                                 <option selected>Haiti 2012</option>
-                                                <option selected>India 2005-06</option>
+                                                <option selected>India 2015-16</option>
                                                 <option selected>Indonesia 2012</option>
                                                 <option selected>Kenya 2014</option>
                                                 <option selected>Liberia 2013</option>
@@ -1030,14 +1036,14 @@
                                                 <option selected>Malawi 2015-16</option>
                                                 <option selected>Mali 2012-13</option>
                                                 <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015</option>
+                                                <option selected>Myanmar 2015-16</option>
                                                 <option selected>Nepal 2011</option>
                                                 <option selected>Nigeria 2013</option>
                                                 <option selected>Pakistan 2012-13</option>
                                                 <option selected>Rwanda 2015-16</option>
                                                 <option selected>Senegal 2016</option>
                                                 <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2011</option>
+                                                <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
                                             </select>
