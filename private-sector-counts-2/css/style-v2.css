@@ -1218,12 +1218,14 @@ select.form-control {
 #CSLevels_region_noavg_group,
 #CS_country_noavg_group, 
 #IP_country_group,
-#IP_region_noavg_group, 
+#IP_region_group, 
 #IPillnesses_oneoption_group,
 #IPillnesses_map_group,
 
 #CSLevels_illnesses_map_group,
 #CS_levels_demographics_group2,
-#CSLevels_illnesses_oneoption_group   {
+#CSLevels_illnesses_oneoption_group,
+
+#CSsourcesBar_region_noavg_group  {
     display: none;
 }

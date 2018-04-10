@@ -49,6 +49,19 @@
 
         var currentDashboardName="Dash IP Map";
 
+        var countries = {
+
+          "asia": ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'],
+
+          "es_africa" : ['Ethiopia 2011', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2011', 'Zambia 2013-14'],
+
+          "wc_africa" : ['Ghana 2014', 'Liberia 2013', 'Mali 2012-13', 'Nigeria 2013', 'DRC 2013-14', 'Senegal 2016'],
+
+          "other" : ['Haiti 2012', 'Yemen 2013'],
+
+          "regional_avgs" : ['Asia average', 'E.S. Africa average', 'W.C. Africa average', 'Other countries average', 'All countries']
+        }
+
 
               
         function initViz() {
@@ -115,6 +128,9 @@
             // show country list with averages
             $("#CS_country_group").show();
             $("#CS_country_noavg_group").hide();
+
+            $("#CSsourcesBar_region_noavg_group").hide();
+            $("#CSsourcesBar_region_group").show();
           } 
 
           else if ( sheetName==="Dash CS Sources Bubble" ) {
@@ -125,6 +141,12 @@
             // show country list without averages
             $("#CS_country_group").hide();
             $("#CS_country_noavg_group").show();
+
+            $("#CSsourcesBar_region_noavg_group").show();
+            $("#CSsourcesBar_region_group").hide();
+
+
+
           }
 
 
@@ -151,6 +173,11 @@
                 $("#IP_country_noavg_group").show();
                 $("#IP_country_group").hide();
 
+                //region
+                $('#IP_region_noavg_group').show();
+                $('#IP_region_group').hide();
+
+
           }
 
           else if ( sheetName==="Dash IP Bar" ) {
@@ -166,6 +193,10 @@
                 //show country list with averages
                 $("#IP_country_noavg_group").hide();
                 $("#IP_country_group").show();
+
+                //region
+                $('#IP_region_noavg_group').hide();
+                $('#IP_region_group').show();
           }
 
 
@@ -181,6 +212,10 @@
             //show country list without averages
             $("#CSLevels_country_group_noavg").show();
             $("#CSLevels_country_group").hide();
+
+            $("#CSLevels_region_noavg_group").show();
+            $("#CSLevels_region_group").hide();
+
           }
 
           else if(sheetName==="Dash CS Levels Map") {
@@ -193,11 +228,14 @@
               
               
               $('#CSLevels_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
-              $('#CSLevels_region').multiselect('deselect', ['Regional Averages']);
+              //$('#CSLevels_region').multiselect('deselect', ['Regional Averages']);
 
                //show country list without averages
               $("#CSLevels_country_group_noavg").show();
               $("#CSLevels_country_group").hide();
+
+              $("#CSLevels_region_noavg_group").show();
+              $("#CSLevels_region_group").hide();
 
 
               //show Selected Illness as title above map
@@ -220,6 +258,9 @@
              //show country list without averages
             $("#CSLevels_country_group_noavg").hide();
             $("#CSLevels_country_group").show();
+
+            $("#CSLevels_region_noavg_group").hide();
+            $("#CSLevels_region_group").show();
                 
           }
 
@@ -292,8 +333,8 @@
                 $("#CSLevels_illnesses_group").show();
 
                 //show "Regional Average" option
-                $("#CSLevels_region_noavg_group").hide();
-                $("#CSLevels_region_group").show();
+                //$("#CSLevels_region_noavg_group").hide();
+                //$("#CSLevels_region_group").show();
               }
               else {
                 $("#CSLevels_country_group").hide();
@@ -306,8 +347,8 @@
                 
 
                 //hide" Regional Average" option
-                $("#CSLevels_region_noavg_group").show();
-                $("#CSLevels_region_group").hide();
+                //$("#CSLevels_region_noavg_group").show();
+                //$("#CSLevels_region_group").hide();
               }
             }
 
@@ -364,64 +405,84 @@
             // deselect items in target field (country)
             // reselect items based on selection(s) from region
 
-            console.log("currentDashboardName -->" + currentDashboardName);
-            console.log("fieldID -->" + fieldID);
+            //console.log("currentDashboardName -->" + currentDashboardName);
+            //console.log("fieldID -->" + fieldID);
 
+            var targetyCountryID;
 
-            if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region")  {
-              $("#IP_country_noavg").multiselect('deselectAll',false);
+            ////////// 1st PANEL
+            // Map
+            if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region_noavg")  {
+              targetyCountryID = "#IP_country_noavg";
+              $(targetyCountryID).multiselect('deselectAll',false);
             }
 
-            /*
-            else if ()
-                
-            case "Dash IP Bar":
-                //code block
-                break;
-            case "Dash CS Levels Bar":
-                //code block
-                break;
-            case "Dash CS Levels Map":
-                //code block
-                break;
-            case "Dash CS Levels Bubbles":
-                //code block
-                break;
-            case "Dash CS Sources Bar":
-                //code block
-                break;
-            //case "Dash CS Sources Bubble":
-            default:
-                //code block
-                break;*/
-
-
-
-
-            //Asian Countries
-
-            var countries = {
-
-              "asia": ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'],
-              "es_africa" : ['Ethiopia 2011', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2011', 'Zambia 2013-14']
+            // bar chart
+            if (currentDashboardName=="Dash IP Bar" && fieldID=="IP_region")  {
+              targetyCountryID = "#IP_country";
+              $(targetyCountryID).multiselect('deselectAll',false);
             }
-            //var countries_asia = ['Afghanistan 2015','Bangladesh 2014','India 2005-06','Indonesia 2012','Myanmar 2015','Pakistan 2012-13','Nepal 2011'];
 
-            //var countries_e_s_africa = ['Ethiopia 2011', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2011', 'Zambia 2013-14']
+            ////////// 2nd PANEL
+            // Bar Chart
+            if (currentDashboardName=="Dash CS Levels Bar" && fieldID=="CSLevels_region")  {
+              targetyCountryID = "#CSLevels_country";
+              $(targetyCountryID).multiselect('deselectAll',false);
+            }
+
+            if (currentDashboardName=="Dash CS Levels Map" && fieldID=="CSLevels_region_noavg")  {
+              targetyCountryID = "#CSLevels_country_noavg";
+              $(targetyCountryID).multiselect('deselectAll',false);
+            }
+
+            if (currentDashboardName=="Dash CS Levels Bubbles" && fieldID=="CSLevels_region_noavg")  {
+              targetyCountryID = "#CSLevels_country_noavg";
+              $(targetyCountryID).multiselect('deselectAll',false);
+            }
+
+            ////////// 3rd PANEL
+            // Bar Chart
+            if (currentDashboardName=="Dash CS Sources Bar" && fieldID=="CSsourcesBar_region")  {
+              targetyCountryID = "#CS_country";
+              $(targetyCountryID).multiselect('deselectAll',false);
+            }
+
+            // Bubble Chart
+            if (currentDashboardName=="Dash CS Sources Bubble" && fieldID=="CSsourcesBar_region_noavg")  {
+              targetyCountryID = "#CS_country_noavg";
+              $(targetyCountryID).multiselect('deselectAll',false);
+            }
+
+
+
 
             
-
 
             //loop through values
             for(var i=0;i<colOfSelectedOpt.length;i++) {
                  var selected_cty = (colOfSelectedOpt[i].value);
                  console.log(selected_cty);
 
-
-                 // if match for Asia
                  if( selected_cty == "Asia") {
-                   $("#IP_country_noavg").multiselect('select', countries.asia);
+                   $(targetyCountryID).multiselect('select', countries.asia);
                  }
+
+                 if( selected_cty == "Regional Averages") {
+                   $(targetyCountryID).multiselect('select', countries.regional_avgs);
+                 }
+
+                 if( selected_cty == "East and Southern Africa") {
+                   $(targetyCountryID).multiselect('select', countries.es_africa);
+                 }
+
+                 if( selected_cty == "West and Central Africa") {
+                   $(targetyCountryID).multiselect('select', countries.wc_africa);
+                 }
+
+                 if( selected_cty == "Other Countries") {
+                   $(targetyCountryID).multiselect('select', countries.other);
+                 }
+                    
             } //end for
 
         }
@@ -792,8 +853,8 @@
 
 
                                         <div class="form-group" id="CSLevels_country_group_noavg">
-                                            <label for="CSLevels_country">Country <span class="text-muted">(no avg)</span></label>
-                                            <select class="form-control shops-multiselect" id="CSLevels_country" onchange="showMultiple('CSLevels_country','Country w/o reg avgs')" multiple="multiple">
+                                            <label for="CSLevels_country_noavg">Country <span class="text-muted">(no avg)</span></label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_country_noavg" onchange="showMultiple('CSLevels_country_noavg','Country w/o reg avgs')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
@@ -837,8 +898,8 @@
 
                                         <!-- When "Total Population" in Demographics is NOT selected, do not show "Regional Averages" -->
                                         <div class="form-group" id="CSLevels_region_noavg_group">
-                                            <label for="CSLevels_region">Region</label>
-                                            <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Region')" multiple="multiple">
+                                            <label for="CSLevels_region_noavg">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_region_noavg" onchange="showMultiple('CSLevels_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
                                               <option selected>West and Central Africa</option>
@@ -982,7 +1043,8 @@
                                             </select>
                                         </div><!-- form-group-->
 
-                                        <div class="form-group">
+
+                                        <div class="form-group" id="CSsourcesBar_region_group">
                                             <label for="CSsourcesBar_region">Region</label>
                                             <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
@@ -992,6 +1054,19 @@
                                               <option selected>Other Countries</option>
                                             </select>
                                         </div><!-- form-group-->
+
+
+                                        <div class="form-group" id="CSsourcesBar_region_noavg_group">
+                                            <label for="CSsourcesBar_region_noavg">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region_noavg" onchange="showMultiple('CSsourcesBar_region_noavg','Region')" multiple="multiple">
+                                              <option selected>Asia</option>
+                                              <option selected>East and Southern Africa</option>
+                                              <option selected>West and Central Africa</option>
+                                              <option selected>Other Countries</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
 
                                         <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
                                             <label for="CSsourcesBar_demographics">Demographics <span class="text-muted">(bar chart)</span></label>
