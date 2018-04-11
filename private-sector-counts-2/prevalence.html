@@ -105,9 +105,9 @@
           $('.shops-multiselect').multiselect('refresh');
 
           //reset single value input fields
-          document.getElementById("CSsourcesBar_demographics").value='Total Population';
-          document.getElementById("IP_demographics").value="Total Population";
-          document.getElementById("CSLevels_demographics").value="Total Population";
+          document.getElementById("CSsourcesBar_demographics").value='Total Population (default)';
+          document.getElementById("IP_demographics").value="Total Population (default)";
+          document.getElementById("CSLevels_demographics").value="Total Population (default)";
           document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
           document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
           document.getElementById("IP_illnesses2").value="One or more illnesses";
@@ -749,8 +749,8 @@
 
                                         <div class="form-group" id="IP_map_demographics_group">
                                             <label for="IP_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('IP_demographics','Demographics calc')" id="IP_demographics">
-                                              <option selected>Total Population</option>
+                                            <select class="form-control" onchange="show('IP_demographics','Demographics')" id="IP_demographics">
+                                              <option selected value="Total Population (default)">Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
@@ -914,12 +914,10 @@
                                         </div><!-- form-group-->
 
 
-                                        /// is a parameter
-
                                         <div class="form-group" id="CS_levels_demographics_group">
                                             <label for="CSLevels_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('CSLevels_demographics','Demographics calc')" id="CSLevels_demographics">
-                                              <option selected>Total Population</option>
+                                            <select class="form-control" onchange="show('CSLevels_demographics','Demographics')" id="CSLevels_demographics">
+                                              <option value="Total Population (default)" selected>Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
@@ -1077,7 +1075,7 @@
                                         <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
                                             <label for="CSsourcesBar_demographics">Demographics <span class="text-muted">(bar chart)</span></label>
                                             <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
-                                              <option selected>Total Population</option>
+                                              <option value="Total Population (default)" selected>Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
