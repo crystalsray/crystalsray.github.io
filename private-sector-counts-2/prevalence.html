@@ -66,7 +66,7 @@
               
         function initViz() {
             var containerDiv = document.getElementById("tableauViz"),
-            url = "https://public.tableau.com/views/DHSCHVizzes26Mar2018/DashIPMap?:embed=y&:display_count=yes&publish=yes&:toolbar=no",
+            url = "https://public.tableau.com/views/DHSCHVizzes26Mar2018/DashCSSourcesBar?:embed=y&:display_count=yes&publish=yes&:toolbar=no",
             options = {
                 hideTabs: true,
                 hideToolbar: true,
@@ -603,8 +603,8 @@
                               <div class="panel panel-default">
                                 <div class="panel-heading down-arrow" role="tab" id="headingOne">
                                   <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('Dash IP Map')">
-                                      How often do children get sick? 
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('Dash CS Sources Bar')">
+                                       Where do caregivers seek treatment for their sick children?
 
                                     </a>
                                   </h4>
@@ -614,48 +614,15 @@
 
                                   
                                   
-
-
-                                  <form>
-                                        <!-- Show multiple select when "Total" is selected in Demographics -->
-                                        <div class="form-group" id="IPillnesses_group">
-                                            <label for="IP_illnesses">Illnesses</label>
-                                            <select class="form-control shops-multiselect" onchange="showMultiple('IP_illnesses','Illnesses')" id="IP_illnesses" multiple="multiple">
-                                              <option selected>ARI</option>
-                                              <option selected>Diarrhea</option>
-                                              <option selected>Fever</option>
-                                              <option selected>One or more illnesses</option>
-                                            </select>
-                                        </div><!-- form-group-->
-
-                                        <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
-                                        <div class="form-group" id="IPillnesses_oneoption_group">
-                                            <label for="IP_illnesses3">Illnesses</label>
-                                            <select class="form-control " id="IP_illnesses3">
-                                              <option selected>One or more illnesses</option>
-                                            </select>
-                                        </div><!-- form-group-->
-
-
-                                        <!-- show Illness text above map -->
-                                        <div class="form-group" id="IPillnesses_map_group">
-                                            <label for="IP_illnesses2">Illnesses</label>
-                                            <select class="form-control " onchange="showSingle('IP_illnesses2','Illnesses')" id="IP_illnesses2">
-                                              <option selected>ARI</option>
-                                              <option selected>Diarrhea</option>
-                                              <option selected>Fever</option>
-                                              <option selected>One or more illnesses</option>
-                                            </select>
-                                        </div><!-- form-group-->
-
-
-
+                                    <form id="formIllnessPrevalence">
 
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
-                                        <div class="form-group" id="IP_country_group">
-                                            <label for="IP_country">Country </label>
-                                            <select class="form-control shops-multiselect" id="IP_country" onchange="showMultiple('IP_country','Country')" multiple="multiple">
+
+                                        <!-- Country list with averages -->
+                                        <div class="form-group" id="CS_country_group">
+                                            <label for="CS_country">Country</label>
+                                            <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
@@ -680,8 +647,6 @@
                                                 <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
-
-
                                                 <option selected>Asia average</option>
                                                 <option selected>E.S. Africa average</option>
                                                 <option selected>Other countries average</option>
@@ -689,10 +654,11 @@
                                             </select>
                                         </div><!-- form-group-->
 
-
-                                        <div class="form-group" id="IP_country_noavg_group">
-                                            <label for="IP_country_noavg">Country</label>
-                                            <select class="form-control shops-multiselect" id="IP_country_noavg" onchange="showMultiple('IP_country_noavg','Country w/o reg avgs')" multiple="multiple">
+                                        <!-- Country list without averages -->
+                                        <!-- show for Map & Bubble  charts -->
+                                        <div class="form-group" id="CS_country_noavg_group">
+                                            <label for="CS_country_noavg">Country </label>
+                                            <select class="form-control shops-multiselect" id="CS_country_noavg" onchange="showMultiple('CS_country_noavg','Country w/o reg avgs')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
@@ -720,11 +686,10 @@
                                             </select>
                                         </div><!-- form-group-->
 
-                                        <!-- region with "Regional Average" option
-                                            Show when "Total Population" is selected -->
-                                        <div class="form-group" id="IP_region_group">
-                                            <label for="IP_region">Region</label>
-                                            <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Region')" multiple="multiple">
+
+                                        <div class="form-group" id="CSsourcesBar_region_group">
+                                            <label for="CSsourcesBar_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
@@ -734,11 +699,9 @@
                                         </div><!-- form-group-->
 
 
-                                        <!-- region without "Regional Average" 
-                                            Show when "Total Population" is NOT selected -->
-                                        <div class="form-group" id="IP_region_noavg_group">
-                                            <label for="IP_region_noavg">Region</label>
-                                            <select class="form-control shops-multiselect" id="IP_region_noavg" onchange="showMultiple('IP_region_noavg','Region')" multiple="multiple">
+                                        <div class="form-group" id="CSsourcesBar_region_noavg_group">
+                                            <label for="CSsourcesBar_region_noavg">Region</label>
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region_noavg" onchange="showMultiple('CSsourcesBar_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
                                               <option selected>West and Central Africa</option>
@@ -747,10 +710,11 @@
                                         </div><!-- form-group-->
 
 
-                                        <div class="form-group" id="IP_map_demographics_group">
-                                            <label for="IP_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('IP_demographics','Demographics')" id="IP_demographics">
-                                              <option selected value="Total Population (default)">Total Population</option>
+
+                                        <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
+                                            <label for="CSsourcesBar_demographics">Demographics </label>
+                                            <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
+                                              <option value="Total Population (default)" selected>Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
@@ -759,20 +723,29 @@
                                         </div><!-- form-group-->
 
 
-                                        
+                                        <div class="form-group" id="CSsourcesBar_group2"> <!-- Bubble chart -->
+                                            <label for="CSsourcesBar2_demographics">Demographics</label>
+                                            <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
+                                              <option>All Quintiles</option>
+                                              <option selected="">Poorest and Richest Quintiles</option>
+                                              <option>Rural and Urban</option>
+                                              <option>Maternal Education</option>
+                                            </select>
+                                        </div><!-- form-group-->
+                                   
 
+                                        <br>
                                         <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-default active" onclick="switchView('Dash IP Map')" id="IPOption1">
-                                            <input type="radio" name="IPOptions" id="IP Map" autocomplete="off" value="IP Map"> </i> Map
+                                          <label class="btn btn-default active" onclick="switchView('Dash CS Sources Bar')" id="CSSourceOpt1">
+                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bar" checked>  Bar Chart
                                           </label>
-                                          <label class="btn btn-default" onclick="switchView('Dash IP Bar')" id="IPOption2">
-                                            <input type="radio" name="IPOptions" id="IP bar" autocomplete="off" checked value="IP Map"> Bar Chart
+                                          <label class="btn btn-default" onclick="switchView('Dash CS Sources Bubble')" id="CSSourceOpt2">
+                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bubble"> Bubble Chart
                                           </label>
                                         </div>
+                                     </form>
 
-
-
-                                  </form>
+                                  
                                     
 
                                   </div>
@@ -960,28 +933,60 @@
                               <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingThree">
                                   <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('Dash CS Sources Bar')">
-                                      Where do caregivers seek treatment for their sick children?
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('Dash IP Map')"> 
+                                      
+
+                                      How often do children get sick?
                                     </a>
                                   </h4>
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                   <div class="panel-body">
 
-
-                                    
-
+                                     
 
 
-                                     <form id="formIllnessPrevalence">
+
+                                     <form>
+                                        <!-- Show multiple select when "Total" is selected in Demographics -->
+                                        <div class="form-group" id="IPillnesses_group">
+                                            <label for="IP_illnesses">Illnesses</label>
+                                            <select class="form-control shops-multiselect" onchange="showMultiple('IP_illnesses','Illnesses')" id="IP_illnesses" multiple="multiple">
+                                              <option selected>ARI</option>
+                                              <option selected>Diarrhea</option>
+                                              <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+                                        <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
+                                        <div class="form-group" id="IPillnesses_oneoption_group">
+                                            <label for="IP_illnesses3">Illnesses</label>
+                                            <select class="form-control " id="IP_illnesses3">
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+                                        <!-- show Illness text above map -->
+                                        <div class="form-group" id="IPillnesses_map_group">
+                                            <label for="IP_illnesses2">Illnesses</label>
+                                            <select class="form-control " onchange="showSingle('IP_illnesses2','Illnesses')" id="IP_illnesses2">
+                                              <option selected>ARI</option>
+                                              <option selected>Diarrhea</option>
+                                              <option selected>Fever</option>
+                                              <option selected>One or more illnesses</option>
+                                            </select>
+                                        </div><!-- form-group-->
+
+
+
 
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
-
-                                        <!-- Country list with averages -->
-                                        <div class="form-group" id="CS_country_group">
-                                            <label for="CS_country">Country</label>
-                                            <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
+                                        <div class="form-group" id="IP_country_group">
+                                            <label for="IP_country">Country </label>
+                                            <select class="form-control shops-multiselect" id="IP_country" onchange="showMultiple('IP_country','Country')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
@@ -1006,20 +1011,19 @@
                                                 <option selected>Uganda 2016</option>
                                                 <option selected>Yemen 2013</option>
                                                 <option selected>Zambia 2013-14</option>
+
+
                                                 <option selected>Asia average</option>
                                                 <option selected>E.S. Africa average</option>
                                                 <option selected>Other countries average</option>
                                                 <option selected>W.C. Africa average</option>
-
-
                                             </select>
                                         </div><!-- form-group-->
 
-                                        <!-- Country list without averages -->
-                                        <!-- show for Map & Bubble  charts -->
-                                        <div class="form-group" id="CS_country_noavg_group">
-                                            <label for="CS_country_noavg">Country </label>
-                                            <select class="form-control shops-multiselect" id="CS_country_noavg" onchange="showMultiple('CS_country_noavg','Country w/o reg avgs')" multiple="multiple">
+
+                                        <div class="form-group" id="IP_country_noavg_group">
+                                            <label for="IP_country_noavg">Country</label>
+                                            <select class="form-control shops-multiselect" id="IP_country_noavg" onchange="showMultiple('IP_country_noavg','Country w/o reg avgs')" multiple="multiple">
                                                 <option selected>Afghanistan 2015</option>
                                                 <option selected>Bangladesh 2014</option>
                                                 <option selected>DRC 2013-14</option>
@@ -1047,10 +1051,11 @@
                                             </select>
                                         </div><!-- form-group-->
 
-
-                                        <div class="form-group" id="CSsourcesBar_region_group">
-                                            <label for="CSsourcesBar_region">Region</label>
-                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
+                                        <!-- region with "Regional Average" option
+                                            Show when "Total Population" is selected -->
+                                        <div class="form-group" id="IP_region_group">
+                                            <label for="IP_region">Region</label>
+                                            <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
@@ -1060,9 +1065,11 @@
                                         </div><!-- form-group-->
 
 
-                                        <div class="form-group" id="CSsourcesBar_region_noavg_group">
-                                            <label for="CSsourcesBar_region_noavg">Region</label>
-                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region_noavg" onchange="showMultiple('CSsourcesBar_region_noavg','Region')" multiple="multiple">
+                                        <!-- region without "Regional Average" 
+                                            Show when "Total Population" is NOT selected -->
+                                        <div class="form-group" id="IP_region_noavg_group">
+                                            <label for="IP_region_noavg">Region</label>
+                                            <select class="form-control shops-multiselect" id="IP_region_noavg" onchange="showMultiple('IP_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
                                               <option selected>West and Central Africa</option>
@@ -1071,11 +1078,10 @@
                                         </div><!-- form-group-->
 
 
-
-                                        <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
-                                            <label for="CSsourcesBar_demographics">Demographics </label>
-                                            <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
-                                              <option value="Total Population (default)" selected>Total Population</option>
+                                        <div class="form-group" id="IP_map_demographics_group">
+                                            <label for="IP_demographics">Demographics</label>
+                                            <select class="form-control" onchange="show('IP_demographics','Demographics')" id="IP_demographics">
+                                              <option selected value="Total Population (default)">Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
                                               <option>Rural and Urban</option>
@@ -1084,27 +1090,20 @@
                                         </div><!-- form-group-->
 
 
-                                        <div class="form-group" id="CSsourcesBar_group2"> <!-- Bubble chart -->
-                                            <label for="CSsourcesBar2_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
-                                              <option>All Quintiles</option>
-                                              <option selected="">Poorest and Richest Quintiles</option>
-                                              <option>Rural and Urban</option>
-                                              <option>Maternal Education</option>
-                                            </select>
-                                        </div><!-- form-group-->
-                                   
+                                        
 
-                                        <br>
                                         <div class="btn-group" data-toggle="buttons">
-                                          <label class="btn btn-default active" onclick="switchView('Dash CS Sources Bar')" id="CSSourceOpt1">
-                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bar" checked>  Bar Chart
+                                          <label class="btn btn-default active" onclick="switchView('Dash IP Map')" id="IPOption1">
+                                            <input type="radio" name="IPOptions" id="IP Map" autocomplete="off" value="IP Map"> </i> Map
                                           </label>
-                                          <label class="btn btn-default" onclick="switchView('Dash CS Sources Bubble')" id="CSSourceOpt2">
-                                            <input type="radio" name="CSsourceOptions" autocomplete="off" value="CS Sources Bubble"> Bubble Chart
+                                          <label class="btn btn-default" onclick="switchView('Dash IP Bar')" id="IPOption2">
+                                            <input type="radio" name="IPOptions" id="IP bar" autocomplete="off" checked value="IP Map"> Bar Chart
                                           </label>
                                         </div>
-                                     </form>
+
+
+
+                                  </form>
 
 
 
