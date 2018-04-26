@@ -1289,8 +1289,8 @@ select.form-control {
 
 @media (min-width: 768px) {
     .navbar-nav>li>a {
-        padding-top: 15px;
-        padding-bottom: 15px;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
     }
 }
 
