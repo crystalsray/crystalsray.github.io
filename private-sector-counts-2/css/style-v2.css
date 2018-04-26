@@ -1230,3 +1230,42 @@ select.form-control {
 #CSsourcesBar_region_noavg_group  {
     display: none;
 }
+
+
+
+#btn-family-planning {
+    background-color: #54b9de;
+    border-color: #54b9de;
+    border-radius: 10px;
+}
+
+.btn-home {
+    background-image: url('../img/btn-family-planning.svg');
+    background-size: contain;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border-color: #54b9de;
+
+    width: 100%;
+    text-align: right;
+}
+
+.btn-home.btn-xl {
+    color: #213469;
+    text-decoration: none;
+    padding: 40px 40px;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+
+.btn-home.btn-xl:hover {
+    background-color: #39abd3;
+    border-color: #39abd3;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav>li>a {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
