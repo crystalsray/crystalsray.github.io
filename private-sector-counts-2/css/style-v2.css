@@ -1233,16 +1233,9 @@ select.form-control {
 
 
 
-.btn-bg {
-    background-color: #54b9de;
-    border-color: #54b9de;
-    border-radius: 10px;
-}
-
 
 #btn-family-planning-img, #btn-child-health-img {
     background-size: contain;
-    background-color: transparent;
     background-repeat: no-repeat;
 }
 
@@ -1256,9 +1249,10 @@ select.form-control {
 }
 
 .btn-home {
-    border-color: #54b9de;
     width: 100%;
     text-align: right;
+    background-color: #54b9de;
+    border-color: #54b9de;
 }
 
 
@@ -1270,14 +1264,44 @@ select.form-control {
     text-transform: capitalize;
 }
 
-.btn-home.btn-xl:hover {
-    background-color: #39abd3 !important;
-    border-color: #39abd3;
+.btn-home.btn-xl:hover, .btn-home.btn-xl:focus {
+    background-color: #002F6C !important;
+    border-color: #002F6C;
+    color: #fff;
 }
+
+#btn-child-health-img:hover {
+    background-image: url('../img/btn-child-health-white.svg');
+}
+
+#btn-family-planning-img:hover {
+    background-image: url('../img/btn-family-planning-white.svg');
+}
+
+
+/* No greater than 900px, no less than 400px */
+@media (max-width:992px) and (min-width:768px) {
+    .btn-home.btn-xl {
+        padding: 40px 10px;
+    }   
+}​
+
 
 @media (min-width: 768px) {
     .navbar-nav>li>a {
         padding-top: 15px;
         padding-bottom: 15px;
     }
+}
+
+@media (max-width: 425px) {
+    .btn-home.btn-xl {
+        padding: 20px 20px;
+    } 
+}
+
+@media (max-width: 330px) {
+    .btn-home.btn-xl {
+        padding: 10px 20px;
+    } 
 }
