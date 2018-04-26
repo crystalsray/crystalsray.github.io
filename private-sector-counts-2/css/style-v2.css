@@ -1233,22 +1233,34 @@ select.form-control {
 
 
 
-#btn-family-planning {
+.btn-bg {
     background-color: #54b9de;
     border-color: #54b9de;
     border-radius: 10px;
 }
 
-.btn-home {
-    background-image: url('../img/btn-family-planning.svg');
+
+#btn-family-planning-img, #btn-child-health-img {
     background-size: contain;
     background-color: transparent;
     background-repeat: no-repeat;
-    border-color: #54b9de;
+}
 
+#btn-child-health-img {
+    background-image: url('../img/btn-child-health.svg');
+}
+
+#btn-family-planning-img {
+    background-image: url('../img/btn-family-planning.svg');
+
+}
+
+.btn-home {
+    border-color: #54b9de;
     width: 100%;
     text-align: right;
 }
+
 
 .btn-home.btn-xl {
     color: #213469;
@@ -1259,7 +1271,7 @@ select.form-control {
 }
 
 .btn-home.btn-xl:hover {
-    background-color: #39abd3;
+    background-color: #39abd3 !important;
     border-color: #39abd3;
 }
 
