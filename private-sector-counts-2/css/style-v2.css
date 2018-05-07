@@ -595,6 +595,11 @@ section h3.section-subheading{
         padding-right:0px;
         padding-left: 0px;
     }
+
+    .navbar-nav>li>a, .navbar-nav li a, .navbar-nav>li>a.nav-link-a {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
 }
 
 .service-heading {
@@ -1288,6 +1293,8 @@ select.form-control {
 }
 
 
+
+
 /* No greater than 900px, no less than 400px */
 @media (max-width:992px) and (min-width:768px) {
     .btn-home.btn-xl {
@@ -1296,12 +1303,7 @@ select.form-control {
 }​
 
 
-@media (min-width: 768px) {
-    .navbar-nav>li>a, .navbar-nav li a {
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
-    }
-}
+
 
 @media (max-width: 425px) {
     .btn-home.btn-xl {
