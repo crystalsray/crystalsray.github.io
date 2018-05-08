@@ -516,16 +516,16 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default">
-       <div class="shops-logo-brand navbar-brand"><a class="page-scroll" href="http://www.shopsproject.org/"><img src="img/Shops_Plus_Color_sm.png" height="80px" /></a></div>
-       <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
+     <div class="shops-logo-brand navbar-brand"><a class="page-scroll" href="http://www.shopsproject.org/"><img src="img/Shops_Plus_Color_sm.png" height="80px" /></a></div>
+     <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -539,14 +539,32 @@
                     <a class="page-scroll" href="index.html">Home</a>
                 </li>
                 <li class="active-static">
-                    <a class="page-scroll" href="prevalence.html">Explore the Data</a>
+                    <a class="page-scroll" href="prevalence.html">Child Health Data</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="about-data.html">About the Data</a>
+              <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Family Planning Data<span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="http://www.privatesectorcounts.org/familyplanning/source.html">View by Source</a></li>
+                        <li><a href="http://www.privatesectorcounts.org/familyplanning/method.html">View by Method</a></li>
+                      </ul>
                 </li>
-                 <li>
-                    <a class="page-scroll" href="about.html">About this Tool</a>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About the data<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="about-data.html">Child Health</a></li>
+                        <li><a href="http://www.privatesectorcounts.org/familyplanning/about-data.html">Family Planning</a></li>
+                    </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About this Tool<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="about.html">Child Health</a></li>
+                        <li><a href="http://www.privatesectorcounts.org/familyplanning/about.html">Family Planning</a></li>
+                    </ul>
+                </li>
+
                <li>
                     <a class="page-scroll far-right" href="https://www.shopsplusproject.org/" target="_blank">SHOPSPlusProject.org</a>
                 </li>
@@ -555,16 +573,16 @@
             </div>
         </div>
         <!-- /.navbar-collapse -->
-    </nav>
+  </nav>
 
     <!-- About Section -->
     <section id="about" class="bg-light-gray">
         <div class="container">
 
             <div class="row">
-              <h2 class="text-center">Health Accounts Impact Policy Worldwide: <br><em>Helping countries raise, manage, and use health funds</em></h2>
+              <!--<h2 class="text-center">Header</h2>-->
 
-              <p style="margin: 30px 15px 0px 15px;">Explore over 60 examples of how countries have used Health Accounts data to inform health policy and planning decisions. Examples below are grouped by the type of policy use.</p>
+              
             </div>
 
             <p class="text-center">Hover over the visualizations for more detail.</p>
