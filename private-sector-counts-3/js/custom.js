@@ -5,7 +5,10 @@
  */
 
 
-       
+    /* Tooltip */
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
 
 
@@ -64,8 +67,12 @@ $('.panel-collapse').on('show.bs.collapse', function () {
   });
 
 
+
+
 $( document ).ready(function() {
-  //$('.CategoricalFilterBox').css()
+
+
+
 });
 
 

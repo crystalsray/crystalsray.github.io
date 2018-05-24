@@ -1298,6 +1298,37 @@ select.form-control {
 }
 
 
+/* tooltip styling */
+
+.tooltip {
+font-family: arial;
+  font-size: 14px;
+  opacity: 1;
+  filter: alpha(opacity=1);
+}
+
+.tooltip-inner {
+    text-align: left;
+    background-color: #58c7ef;
+    color: #213469;
+    padding: 8px 12px;
+
+}
+
+.tooltip.in {
+  opacity: 1;
+  filter: alpha(opacity=1);
+}
+
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: #58c7ef;
+}
+.tooltip.top-left .tooltip-arrow {
+  border-top-color: #58c7ef;
+}
+
+
 
 /* No greater than 900px, no less than 400px */
 @media (max-width:992px) and (min-width:768px) {
