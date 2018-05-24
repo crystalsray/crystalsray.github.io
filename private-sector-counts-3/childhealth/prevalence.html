@@ -131,6 +131,10 @@
 
             $("#CSsourcesBar_region_noavg_group").hide();
             $("#CSsourcesBar_region_group").show();
+
+
+            //text change above graph
+            $('#childhealth_introtext').html('<h2 class="text-center">Where do caregivers seek treatment for their sick children?</h2> <p>This graph shows which sources (private, public, both private and public, other) care seekers use when their children are sick with fever, diarrhea, and/or ARI symptoms. Use the menu on the right to look at specific countries or differences by demographic characteristics.</p>');
           } 
 
           else if ( sheetName==="Dash CS Sources Bubble" ) {
@@ -176,6 +180,9 @@
                 //region
                 $('#IP_region_noavg_group').show();
                 $('#IP_region_group').hide();
+
+                //text change above graph
+            $('#childhealth_introtext').html('<h2 class="text-center">How often do children get sick?</h2> <p>TThis visualization shows the burden of childhood illness for fever, diarrhea, and ARI in each country. Use the menu on the right to look at othe prevalence of each illness on its own.</p>');
 
 
           }
@@ -261,6 +268,11 @@
 
             $("#CSLevels_region_noavg_group").hide();
             $("#CSLevels_region_group").show();
+
+            //text change above graph
+            $('#childhealth_introtext').html('<h2 class="text-center">How often do caregivers seek advice or treatment?</h2> <p>This visualization shows the percent of caregivers in each country who seek advice or treatment for their sick children from any source. Use the menu on the right to look at the care-seeking level for particular countries or illnesses or by select demographic characteristics.</p>');
+
+
                 
           }
 
@@ -578,41 +590,18 @@
     <section id="about" class="bg-light-gray">
         <div class="container">
 
-            <div class="row">
-              <!--<h2 class="text-center">Header</h2>-->
+            <div class="row" id="childhealth_introtext">
 
-              
+              <h2 class="text-center">Where do caregivers seek treatment for their sick children?</h2>
+              <p>This graph shows which sources (private, public, both private and public, other) care seekers use when their children are sick with fever, diarrhea, and/or ARI symptoms. Use the menu on the right to look at specific countries or differences by demographic characteristics.</p>
+
             </div>
 
             <p class="text-center">Hover over the visualizations for more detail.</p>
 
             <div class="row">
 
-                <div class="col-lg-9">
-
-                    
-
-          					<!--desktop-->
-          					<div align="center" style="background: #fff; border: 1px solid #ccc;">
-
-          					 <div id="mapTitle"></div>
-                                  
-                                  <div id='tableauViz' style="width: 100%; height: 850px;">
-                                  </div>   
-
-                                  <script type='text/javascript'>
-                                      //Initialize the viz after the div is created
-                                      initViz();
-                                  </script>             
-
-                                  
-
-          					</div>
-
-
-				        </div> <!-- // col-lg-9 -->
-
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-lg-push-9">
                     <aside>
                         <nav>
                         
@@ -1151,6 +1140,32 @@
 
                     </aside>
                 </div>
+
+                <div class="col-lg-9 col-lg-pull-3">
+
+                    
+
+          					<!--desktop-->
+          					<div align="center" style="background: #fff; border: 1px solid #ccc;">
+
+          					 <div id="mapTitle"></div>
+                                  
+                                  <div id='tableauViz' style="width: 100%; height: 850px;">
+                                  </div>   
+
+                                  <script type='text/javascript'>
+                                      //Initialize the viz after the div is created
+                                      initViz();
+                                  </script>             
+
+                                  
+
+          					</div>
+
+
+				        </div> <!-- // col-lg-9 -->
+
+                
             </div>
         </div>
     </section>
