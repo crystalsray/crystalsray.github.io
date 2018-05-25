@@ -1328,7 +1328,60 @@ font-family: arial;
   border-top-color: #58c7ef;
 }
 
+@media (min-width: 768px)
+.dl-horizontal dt {
+    text-align: left;
+}
 
+
+/* definition styling 
+
+dl {
+    margin-left: 40px;
+
+}
+
+dt,dd {
+    float: left;
+    font-size: 16px;
+}
+
+dt {
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+.dl-horizontal {
+    margin-left: 40px;
+    font-size: 16px;
+}
+
+
+    .dl-horizontal dt {
+        text-align: left !important;
+        width: auto !important;
+    }
+
+
+
+
+    .dl-horizontal dd {
+        margin-left: 0px !important;
+    }*/
+
+
+p.indent {
+    margin-left: 40px;
+}
+
+
+.container ul, .container li {
+    font-size: 16px;
+}
+
+.container li , .container ul {
+    margin-bottom: 12px;
+}
 
 /* No greater than 900px, no less than 400px */
 @media (max-width:992px) and (min-width:768px) {
