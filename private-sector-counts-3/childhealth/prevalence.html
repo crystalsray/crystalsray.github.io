@@ -295,7 +295,7 @@
 
 
             if(fieldID==="CSsourcesBar_demographics") {
-              if (value==="Total Population") {
+              if (value==="Total Population (default)") {
                 $("#CS_country_group").show();
                 $("#CS_country_noavg_group").hide();
               }
@@ -305,7 +305,7 @@
               }
             }
             else if (fieldID==="IP_demographics"){
-              if (value==="Total Population") {
+              if (value==="Total Population (default)") {
                 //SHOW country with averages
                 $("#IP_country_noavg_group").hide(); 
                 $("#IP_country_group").show();        
@@ -335,7 +335,7 @@
               }
             }
             else if (fieldID==="CSLevels_demographics") {
-              if (value ==="Total Population") {
+              if (value ==="Total Population (default)") {
                 $("#CSLevels_country_group").show();
                 $("#CSLevels_country_group_noavg").hide();
 
@@ -343,6 +343,7 @@
                 $("#CSLevels_illnesses_oneoption_group").hide();
                 $("#CSLevels_illnesses_map_group").hide();
                 $("#CSLevels_illnesses_group").show();
+
 
                 //show "Regional Average" option
                 //$("#CSLevels_region_noavg_group").hide();
@@ -357,6 +358,7 @@
                 $("#CSLevels_illnesses_group").hide();
                 $("CSLevels_illnesses_map_group").hide();
                 
+
 
                 //hide" Regional Average" option
                 //$("#CSLevels_region_noavg_group").show();
