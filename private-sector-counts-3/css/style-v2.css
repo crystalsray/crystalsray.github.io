@@ -302,7 +302,7 @@ fieldset[disabled] .btn-xl.active {
     color:#000 ;
 }
 
-.dropdown-menu {
+.collapse.navbar-collapse .dropdown-menu {
     width: 100%;
 }
 
@@ -1375,11 +1375,11 @@ p.indent {
 }
 
 
-.container ul, .container li {
+.container.childhealth_about_data ul, .container.container.childhealth_about_data li {
     font-size: 16px;
 }
 
-.container li , .container ul {
+.container.childhealth_about_data li , .container.container.childhealth_about_data ul {
     margin-bottom: 12px;
 }
 
