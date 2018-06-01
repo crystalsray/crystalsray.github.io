@@ -46,6 +46,7 @@
         var viz;
         var workbook;
         var activeSheet;
+        var spanCoutner = 0;
 
         var currentDashboardName="Dash IP Map";
 
@@ -92,16 +93,24 @@
         }
 
         function hideSpan() {
+
           $("#spanInstruction").hide();
+          spanCoutner++;
+          console.log("hide span: " + spanCoutner);
         }
 
         function showSpan() {
-          $("#spanInstruction").show();
+          console.log("show span: " + spanCoutner);
+          if (spanCoutner < 2) {
+            $("#spanInstruction").show();
+          }
         }
 
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
           currentDashboardName = sheetName;
+          console.log("reset span: " + spanCoutner);
+          spanCoutner=0;
 
           var workbook = viz.getWorkbook();
           // switch to new sheet and reset to original state
@@ -118,8 +127,9 @@
           document.getElementById("IP_demographics").value="Total Population (default)";
           document.getElementById("CSLevels_demographics").value="Total Population (default)";
           document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
+          document.getElementById('CSLevels_illnesses3').value =""
           document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
-          document.getElementById("IP_illnesses2").value="One or more illnesses";
+          document.getElementById("IP_illnesses2").value="Select an option below";
 
           hideSpan();
 
@@ -271,9 +281,11 @@
 
 
             $("#CSLevels_illnesses_group").show();
+            $("#CSLevels_illnesses_map_group").hide();
+
             $("#CS_levels_demographics_group").show();
             $("#CS_levels_demographics_group2").hide();
-            $("#CSLevels_illnesses_map_group").hide();
+            
 
              //show country list without averages
             $("#CSLevels_country_group_noavg").hide();
@@ -373,7 +385,7 @@
                 //Show SINGLE select for illness
                 $("#CSLevels_illnesses_oneoption_group").show();
                 $("#CSLevels_illnesses_group").hide();
-                $("CSLevels_illnesses_map_group").hide();
+                $("#CSLevels_illnesses_map_group").hide();
                 
 
 
