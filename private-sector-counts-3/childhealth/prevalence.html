@@ -95,6 +95,7 @@
         function hideSpan() {
 
           $("#spanInstruction").hide();
+          $("#spanInstruction2").hide();
           spanCoutner++;
           console.log("hide span: " + spanCoutner);
         }
@@ -103,6 +104,7 @@
           console.log("show span: " + spanCoutner);
           if (spanCoutner < 2) {
             $("#spanInstruction").show();
+            $("#spanInstruction2").show();
           }
         }
 
@@ -1004,9 +1006,11 @@
 
                                         <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
                                         <div class="form-group" id="IPillnesses_oneoption_group">
-                                            <label for="IP_illnesses3">Illnesses</label>
-                                            <select class="form-control " id="IP_illnesses3">
-                                              <option selected>One or more illnesses</option>
+                                            <label for="IP_illnesses3">Illnesses <span style="color: rgb(255, 0, 0); font-weight: bold; display: inline;" id="spanInstruction2"> Select an option below</span></label>
+                                            <select class="form-control " id="IP_illnesses3" onchange="showSingle("",""); hideSpan();>
+                                              <option selected disabled> Select an option below </option> 
+                                              <option>One or more illnesses</option>
+
                                             </select>
                                         </div><!-- form-group-->
 
@@ -1123,7 +1127,7 @@
 
                                         <div class="form-group" id="IP_map_demographics_group">
                                             <label for="IP_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('IP_demographics','Demographics')" id="IP_demographics">
+                                            <select class="form-control" onchange="show('IP_demographics','Demographics'); showSpan();" id="IP_demographics">
                                               <option selected value="Total Population (default)">Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
