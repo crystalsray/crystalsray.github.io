@@ -85,9 +85,10 @@
 
             //Use to test whether a paramater change or filter event is happening
             //parametervaluechange, filterchange, vizresize, marksselection, tabswitch, toolbarstatechange, customviewsetdefault
-            viz.addEventListener('filterchange', function(event){
+            //viz.addEventListener('filterchange', function(event){
                 //console.log('event name: ' + event.getEventName());
-            });
+            ///});
+
         }
 
         // Switch the viz to the sheet specified
@@ -342,7 +343,11 @@
                 //Show multiple select for Illnesses
                 $("#CSLevels_illnesses_oneoption_group").hide();
                 $("#CSLevels_illnesses_map_group").hide();
-                $("#CSLevels_illnesses_group").show();
+                $("#CSLevels_illnesses_group").show(); //show selection of "One or more illnesses" only
+
+                //filter for one or more illnesses
+                //showSingle('CSLevels_illnesses3','Illnesses');
+                //showMultiple("CSLevels_illnesses3", "Illnesses");
 
 
                 //show "Regional Average" option
@@ -787,8 +792,9 @@
 
                                         <div class="form-group" id="CSLevels_illnesses_oneoption_group">
                                             <label for="CSLevels_illnesses3">Illnesses</label>
-                                            <select class="form-control" id="CSLevels_illnesses3">
-                                              <option selected>One or more illnesses</option>
+                                            <select class="form-control" id="CSLevels_illnesses3" onchange="showSingle('CSLevels_illnesses3','Illnesses')" >
+                                              <option>Select an option </option>
+                                              <option>One or more illnesses</option>
                                             </select>
                                         </div><!-- form-group-->
 
