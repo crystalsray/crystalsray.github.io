@@ -106,6 +106,20 @@
             $("#spanInstruction").show();
             $("#spanInstruction2").show();
           }
+
+          var demo_value = document.getElementById("CSLevels_demographics").value;
+          console.log("value: "+ demo_value);
+          if (demo_value.trim() === "Total Population (default)") {
+            $('#CSLevels_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
+            $('#CSLevels_illnesses').multiselect('select', ['One or more illnesses']);
+          }
+
+          var demo_value = document.getElementById("IP_demographics").value;
+          if (demo_value.trim() === "Total Population (default)") {
+            $('#IP_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
+            $('#IP_illnesses').multiselect('select', ['One or more illnesses']);
+          }
+
         }
 
         // Switch the viz to the sheet specified
@@ -221,6 +235,7 @@
 
                 //show demographics for map
                 $("#IP_map_demographics_group").show();
+                console.log("showing demographics");
 
                 //show country list with averages
                 $("#IP_country_noavg_group").hide();
@@ -1007,7 +1022,7 @@
                                         <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
                                         <div class="form-group" id="IPillnesses_oneoption_group">
                                             <label for="IP_illnesses3">Illnesses <span style="color: rgb(255, 0, 0); font-weight: bold; display: inline;" id="spanInstruction2"> Select an option below</span></label>
-                                            <select class="form-control " id="IP_illnesses3" onchange="showSingle("",""); hideSpan();>
+                                            <select class="form-control " id="IP_illnesses3" onchange="showSingle('IP_illnesses3','Illnesses')"); hideSpan();>
                                               <option selected disabled> Select an option below </option> 
                                               <option>One or more illnesses</option>
 
