@@ -91,6 +91,10 @@
 
         }
 
+        function hideSpan() {
+          $("#spanInstruction").hide();
+        }
+
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
           currentDashboardName = sheetName;
@@ -132,6 +136,8 @@
 
             $("#CSsourcesBar_region_noavg_group").hide();
             $("#CSsourcesBar_region_group").show();
+
+            $("#spanInstruction").show();
 
 
             //text change above graph
@@ -791,8 +797,8 @@
                                         </div><!-- form-group-->
 
                                         <div class="form-group" id="CSLevels_illnesses_oneoption_group">
-                                            <label for="CSLevels_illnesses3">Illnesses <span class="bg-danger"> Select an option below</span></label>
-                                            <select class="form-control" id="CSLevels_illnesses3" onchange="showSingle('CSLevels_illnesses3','Illnesses')">
+                                            <label for="CSLevels_illnesses3">Illnesses <span style="color: #ff0000; font-weight: bold;" id="spanInstruction"> Select an option below</span></label>
+                                            <select class="form-control" id="CSLevels_illnesses3" onchange="showSingle('CSLevels_illnesses3','Illnesses'); hideSpan();">
                                                 <option selected disabled> Select an option below</option>
                                                 <option>One or more illnesses</option>
                                             
