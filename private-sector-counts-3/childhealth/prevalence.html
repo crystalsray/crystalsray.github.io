@@ -791,9 +791,11 @@
                                         </div><!-- form-group-->
 
                                         <div class="form-group" id="CSLevels_illnesses_oneoption_group">
-                                            <label for="CSLevels_illnesses3">Illnesses </label>
-                                            <select class="form-control" id="CSLevels_illnesses3">
-                                              <option>One or more illnesses</option>
+                                            <label for="CSLevels_illnesses3">Illnesses <span class="bg-danger"> Select an option below</span></label>
+                                            <select class="form-control" id="CSLevels_illnesses3" onchange="showSingle('CSLevels_illnesses3','Illnesses')">
+                                                <option selected disabled> Select an option below</option>
+                                                <option>One or more illnesses</option>
+                                            
                                             </select>
                                         </div><!-- form-group-->
 
