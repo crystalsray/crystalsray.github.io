@@ -95,6 +95,10 @@
           $("#spanInstruction").hide();
         }
 
+        function showSpan() {
+          $("#spanInstruction").show();
+        }
+
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
           currentDashboardName = sheetName;
@@ -137,7 +141,7 @@
             $("#CSsourcesBar_region_noavg_group").hide();
             $("#CSsourcesBar_region_group").show();
 
-            $("#spanInstruction").show();
+
 
 
             //text change above graph
@@ -912,7 +916,7 @@
 
                                         <div class="form-group" id="CS_levels_demographics_group">
                                             <label for="CSLevels_demographics">Demographics</label>
-                                            <select class="form-control" onchange="show('CSLevels_demographics','Demographics')" id="CSLevels_demographics">
+                                            <select class="form-control" onchange="show('CSLevels_demographics','Demographics'); showSpan();" id="CSLevels_demographics">
                                               <option value="Total Population (default)" selected>Total Population</option>
                                               <option>All Quintiles</option>
                                               <option>Poorest and Richest Quintiles</option>
