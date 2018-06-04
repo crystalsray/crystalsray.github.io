@@ -96,6 +96,7 @@
 
           $("#spanInstruction").hide();
           $("#spanInstruction2").hide();
+
           spanCoutner++;
           console.log("hide span: " + spanCoutner);
         }
@@ -1022,7 +1023,7 @@
                                         <!-- show Single Select Illness when "Total" ISN'T selected in Demographics -->
                                         <div class="form-group" id="IPillnesses_oneoption_group">
                                             <label for="IP_illnesses3">Illnesses <span style="color: rgb(255, 0, 0); font-weight: bold; display: inline;" id="spanInstruction2"> Select an option below</span></label>
-                                            <select class="form-control " id="IP_illnesses3" onchange="showSingle('IP_illnesses3','Illnesses')"); hideSpan();>
+                                            <select class="form-control " id="IP_illnesses3" onchange="showSingle('IP_illnesses3','Illnesses'); hideSpan();">
                                               <option selected disabled> Select an option below </option> 
                                               <option>One or more illnesses</option>
 
