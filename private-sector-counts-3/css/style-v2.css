@@ -1375,11 +1375,13 @@ p.indent {
 }
 
 
-.container.childhealth_about_data ul, .container.container.childhealth_about_data li {
+.container.childhealth_about_data ul, .container.childhealth_about_data li,
+.container.childhealth_about ul, .container.childhealth_about li {
     font-size: 16px;
 }
 
-.container.childhealth_about_data li , .container.container.childhealth_about_data ul {
+.container.childhealth_about_data li , .container.childhealth_about_data ul
+.container.childhealth_about li , .container.childhealth_about ul {
     margin-bottom: 12px;
 }
 
