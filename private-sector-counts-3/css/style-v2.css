@@ -1334,40 +1334,6 @@ font-family: arial;
 }
 
 
-/* definition styling 
-
-dl {
-    margin-left: 40px;
-
-}
-
-dt,dd {
-    float: left;
-    font-size: 16px;
-}
-
-dt {
-    text-decoration: underline;
-    font-weight: normal;
-}
-
-.dl-horizontal {
-    margin-left: 40px;
-    font-size: 16px;
-}
-
-
-    .dl-horizontal dt {
-        text-align: left !important;
-        width: auto !important;
-    }
-
-
-
-
-    .dl-horizontal dd {
-        margin-left: 0px !important;
-    }*/
 
 
 p.indent {
@@ -1378,6 +1344,7 @@ p.indent {
 .container.childhealth_about_data ul, .container.childhealth_about_data li,
 .container.childhealth_about ul, .container.childhealth_about li {
     font-size: 16px;
+    line-height: 26px;
 }
 
 .container.childhealth_about_data li , .container.childhealth_about_data ul
