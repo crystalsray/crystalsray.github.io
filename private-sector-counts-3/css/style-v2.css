@@ -1393,7 +1393,9 @@ p.indent {
     border: 3px solid #fff;
 }
 
- 
+ .carousel-caption p {
+    font-size: 20px;
+ }
 
 @media (max-width: 991px) and (min-width: 768px)  {
     #home-content {
@@ -1404,11 +1406,19 @@ p.indent {
         background-image: none;
         text-align: center;
     }
+
+    p.p-family-btn {
+        margin-top: 26px;
+    }
 }
 
 @media (min-width:992px) {
     #home-content {
         height: 750px;
+    }
+
+    p.p-child-btn {
+        margin-top: 42px;
     }
 
 
