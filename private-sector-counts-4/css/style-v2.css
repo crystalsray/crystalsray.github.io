@@ -1411,6 +1411,8 @@ p.indent {
     font-weight: bold;
  }
 
+ 
+
 @media (max-width: 991px) and (min-width: 768px)  {
     #home-content {
         height: 800px;

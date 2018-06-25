@@ -21,7 +21,7 @@
     <link href="../css/style-v2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -589,7 +589,7 @@
 
     <div class="logo-bar text-center">
         
-            <h1>Private Sector Counts</h1>
+            <h1>Private Sector Counts - Child Health</h1>
             <p class="subheader">Explore the role of public and private sources</p>
     </div>
 
@@ -697,7 +697,7 @@
 
                                         <!-- Country list with averages -->
                                         <div class="form-group" id="CS_country_group">
-                                            <label for="CS_country">Country</label>
+                                            <label for="CS_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i>  </label>
                                             <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
@@ -741,7 +741,7 @@
                                         <!-- Country list without averages -->
                                         <!-- show for Map & Bubble  charts -->
                                         <div class="form-group" id="CS_country_noavg_group">
-                                            <label for="CS_country_noavg">Country </label>
+                                            <label for="CS_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
                                             <select class="form-control shops-multiselect" id="CS_country_noavg" onchange="showMultiple('CS_country_noavg','Country w/o reg avgs')" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
@@ -784,7 +784,7 @@
 
 
                                         <div class="form-group" id="CSsourcesBar_region_group">
-                                            <label for="CSsourcesBar_region">Region</label>
+                                            <label for="CSsourcesBar_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
                                               <option selected>Asia</option>
@@ -796,7 +796,7 @@
 
 
                                         <div class="form-group" id="CSsourcesBar_region_noavg_group">
-                                            <label for="CSsourcesBar_region_noavg">Region</label>
+                                            <label for="CSsourcesBar_region_noavg">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="CSsourcesBar_region_noavg" onchange="showMultiple('CSsourcesBar_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
@@ -808,7 +808,7 @@
 
 
                                         <div class="form-group" id="CSsourcesBar_group1"> <!-- bar chart -->
-                                            <label for="CSsourcesBar_demographics">Demographics </label>
+                                            <label for="CSsourcesBar_demographics">Demographics <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by socioeconomic status, maternal education, or  residence"></i></label>
                                             <select class="form-control" onchange="show('CSsourcesBar_demographics','Demographics')" id="CSsourcesBar_demographics">
                                               <option value="Total Population (default)" selected>Total Population</option>
                                               <option>All Quintiles</option>
@@ -820,7 +820,7 @@
 
 
                                         <div class="form-group" id="CSsourcesBar_group2"> <!-- Bubble chart -->
-                                            <label for="CSsourcesBar2_demographics">Demographics</label>
+                                            <label for="CSsourcesBar2_demographics">Demographics <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by socioeconomic status, maternal education, or  residence"></i></label>
                                             <select class="form-control" onchange="show('CSsourcesBar2_demographics','Demographics no total 1to4')" id="CSsourcesBar2_demographics">
                                               <option>All Quintiles</option>
                                               <option selected="">Poorest and Richest Quintiles</option>
@@ -894,76 +894,94 @@
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
                                         <div class="form-group" id="CSLevels_country_group">
-                                            <label for="CSLevels_country">Country </label>
+                                            <label for="CSLevels_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
                                             <select class="form-control shops-multiselect" id="CSLevels_country" onchange="showMultiple('CSLevels_country','Country')" multiple="multiple">
-                                                <option selected>Afghanistan 2015</option>
-                                                <option selected>Bangladesh 2014</option>
-                                                <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2016</option>
-                                                <option selected>Ghana 2014</option>
-                                                <option selected>Haiti 2012</option>
-                                                <option selected>India 2015-16</option>
-                                                <option selected>Indonesia 2012</option>
-                                                <option selected>Kenya 2014</option>
-                                                <option selected>Liberia 2013</option>
-                                                <option selected>Madagascar 2009</option>
-                                                <option selected>Malawi 2015-16</option>
-                                                <option selected>Mali 2012-13</option>
-                                                <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015-16</option>
-                                                <option selected>Nepal 2011</option>
-                                                <option selected>Nigeria 2013</option>
-                                                <option selected>Pakistan 2012-13</option>
-                                                <option selected>Rwanda 2015-16</option>
-                                                <option selected>Senegal 2016</option>
-                                                <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2016</option>
-                                                <option selected>Yemen 2013</option>
-                                                <option selected>Zambia 2013-14</option>
+                                                <optgroup label="Asia">
+                                                  <option selected>Afghanistan 2015</option>
+                                                  <option selected>Bangladesh 2014</option>
+                                                  <option selected>India 2015-16</option>
+                                                  <option selected>Indonesia 2012</option>
+                                                  <option selected>Myanmar 2015-16</option>
+                                                  <option selected>Nepal 2011</option>
+                                                  <option selected>Pakistan 2012-13</option>
+                                                </optgroup>
 
-                                                <option selected>Asia average</option>
-                                                <option selected>E.S. Africa average</option>
-                                                <option selected>Other countries average</option>
-                                                <option selected>W.C. Africa average</option>
+
+                                                <optgroup label="East and Southern Africa">
+                                                  <option selected>Ethiopia 2016</option>
+                                                  <option selected>Kenya 2014</option>
+                                                  <option selected>Madagascar 2009</option>
+                                                  <option selected>Malawi 2015-16</option>
+                                                  <option selected>Mozambique 2011</option> 
+                                                  <option selected>Rwanda 2015-16</option>
+                                                  <option selected>Tanzania 2015-16</option>
+                                                  <option selected>Uganda 2016</option>
+                                                  <option selected>Zambia 2013-14</option>
+                                                </optgroup>
+
+                                                <optgroup label="West and Central Africa">
+                                                  <option selected>DRC 2013-14</option>
+                                                  <option selected>Ghana 2014</option>
+                                                  <option selected>Mali 2012-13</option>
+                                                  <option selected>Liberia 2013</option>
+                                                  <option selected>Nigeria 2013</option>
+                                                  <option selected>Senegal 2016</option>                          
+                                                </optgroup>
+                                                  
+                                                <optgroup label="Other Countries">
+                                                  <option selected>Haiti 2012</option>
+                                                  <option selected>Yemen 2013</option>
+                                                </optgroup>
                                             </select>
                                         </div><!-- form-group-->
 
 
                                         <div class="form-group" id="CSLevels_country_group_noavg">
-                                            <label for="CSLevels_country_noavg">Country</label>
+                                            <label for="CSLevels_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
                                             <select class="form-control shops-multiselect" id="CSLevels_country_noavg" onchange="showMultiple('CSLevels_country_noavg','Country w/o reg avgs')" multiple="multiple">
-                                                <option selected>Afghanistan 2015</option>
-                                                <option selected>Bangladesh 2014</option>
-                                                <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2016</option>
-                                                <option selected>Ghana 2014</option>
-                                                <option selected>Haiti 2012</option>
-                                                <option selected>India 2015-16</option>
-                                                <option selected>Indonesia 2012</option>
-                                                <option selected>Kenya 2014</option>
-                                                <option selected>Liberia 2013</option>
-                                                <option selected>Madagascar 2009</option>
-                                                <option selected>Malawi 2015-16</option>
-                                                <option selected>Mali 2012-13</option>
-                                                <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015-16</option>
-                                                <option selected>Nepal 2011</option>
-                                                <option selected>Nigeria 2013</option>
-                                                <option selected>Pakistan 2012-13</option>
-                                                <option selected>Rwanda 2015-16</option>
-                                                <option selected>Senegal 2016</option>
-                                                <option selected>Tanzania 2015-16</option>
-                                                
-                                                <option selected>Uganda 2016</option>
-                                                <option selected>Yemen 2013</option>
-                                                <option selected>Zambia 2013-14</option>
+                                                <optgroup label="Asia">
+                                                  <option selected>Afghanistan 2015</option>
+                                                  <option selected>Bangladesh 2014</option>
+                                                  <option selected>India 2015-16</option>
+                                                  <option selected>Indonesia 2012</option>
+                                                  <option selected>Myanmar 2015-16</option>
+                                                  <option selected>Nepal 2011</option>
+                                                  <option selected>Pakistan 2012-13</option>
+                                                </optgroup>
+
+
+                                                <optgroup label="East and Southern Africa">
+                                                  <option selected>Ethiopia 2016</option>
+                                                  <option selected>Kenya 2014</option>
+                                                  <option selected>Madagascar 2009</option>
+                                                  <option selected>Malawi 2015-16</option>
+                                                  <option selected>Mozambique 2011</option> 
+                                                  <option selected>Rwanda 2015-16</option>
+                                                  <option selected>Tanzania 2015-16</option>
+                                                  <option selected>Uganda 2016</option>
+                                                  <option selected>Zambia 2013-14</option>
+                                                </optgroup>
+
+                                                <optgroup label="West and Central Africa">
+                                                  <option selected>DRC 2013-14</option>
+                                                  <option selected>Ghana 2014</option>
+                                                  <option selected>Mali 2012-13</option>
+                                                  <option selected>Liberia 2013</option>
+                                                  <option selected>Nigeria 2013</option>
+                                                  <option selected>Senegal 2016</option>                          
+                                                </optgroup>
+                                                  
+                                                <optgroup label="Other Countries">
+                                                  <option selected>Haiti 2012</option>
+                                                  <option selected>Yemen 2013</option>
+                                                </optgroup>
                                             </select>
                                         </div><!-- form-group-->
 
 
                                         <!-- Show "Regional Averages" when "Total Population" is selected in Demographics -->
                                         <div class="form-group" id="CSLevels_region_group">
-                                            <label for="CSLevels_region">Region</label>
+                                            <label for="CSLevels_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
                                               <option selected>Asia</option>
@@ -975,7 +993,7 @@
 
                                         <!-- When "Total Population" in Demographics is NOT selected, do not show "Regional Averages" -->
                                         <div class="form-group" id="CSLevels_region_noavg_group">
-                                            <label for="CSLevels_region_noavg">Region</label>
+                                            <label for="CSLevels_region_noavg">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="CSLevels_region_noavg" onchange="showMultiple('CSLevels_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
@@ -986,7 +1004,7 @@
 
 
                                         <div class="form-group" id="CS_levels_demographics_group">
-                                            <label for="CSLevels_demographics">Demographics</label>
+                                            <label for="CSLevels_demographics">Demographics <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by socioeconomic status, maternal education, or  residence"></i></label>
                                             <select class="form-control" onchange="show('CSLevels_demographics','Demographics'); showSpan();" id="CSLevels_demographics">
                                               <option value="Total Population (default)" selected>Total Population</option>
                                               <option>All Quintiles</option>
@@ -997,7 +1015,7 @@
                                         </div><!-- form-group-->
 
                                         <div class="form-group" id="CS_levels_demographics_group2">
-                                            <label for="CSLevels_demographics2">Demographics</label>
+                                            <label for="CSLevels_demographics2">Demographics <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by socioeconomic status, maternal education, or  residence"></i></label>
                                             <select class="form-control" onchange="show('CSLevels_demographics2','Demographics no total 1to4')" id="CSLevels_demographics2">
                                               <option>All Quintiles</option>
                                               <option selected>Poorest and Richest Quintiles</option>
@@ -1085,76 +1103,94 @@
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
                                         <div class="form-group" id="IP_country_group">
-                                            <label for="IP_country">Country </label>
+                                            <label for="IP_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
                                             <select class="form-control shops-multiselect" id="IP_country" onchange="showMultiple('IP_country','Country')" multiple="multiple">
-                                                <option selected>Afghanistan 2015</option>
-                                                <option selected>Bangladesh 2014</option>
-                                                <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2016</option>
-                                                <option selected>Ghana 2014</option>
-                                                <option selected>Haiti 2012</option>
-                                                <option selected>India 2015-16</option>
-                                                <option selected>Indonesia 2012</option>
-                                                <option selected>Kenya 2014</option>
-                                                <option selected>Liberia 2013</option>
-                                                <option selected>Madagascar 2009</option>
-                                                <option selected>Malawi 2015-16</option>
-                                                <option selected>Mali 2012-13</option>
-                                                <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015-16</option>
-                                                <option selected>Nepal 2011</option>
-                                                <option selected>Nigeria 2013</option>
-                                                <option selected>Pakistan 2012-13</option>
-                                                <option selected>Rwanda 2015-16</option>
-                                                <option selected>Senegal 2016</option>
-                                                <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2016</option>
-                                                <option selected>Yemen 2013</option>
-                                                <option selected>Zambia 2013-14</option>
+                                                <optgroup label="Asia">
+                                                  <option selected>Afghanistan 2015</option>
+                                                  <option selected>Bangladesh 2014</option>
+                                                  <option selected>India 2015-16</option>
+                                                  <option selected>Indonesia 2012</option>
+                                                  <option selected>Myanmar 2015-16</option>
+                                                  <option selected>Nepal 2011</option>
+                                                  <option selected>Pakistan 2012-13</option>
+                                                </optgroup>
 
 
-                                                <option selected>Asia average</option>
-                                                <option selected>E.S. Africa average</option>
-                                                <option selected>Other countries average</option>
-                                                <option selected>W.C. Africa average</option>
+                                                <optgroup label="East and Southern Africa">
+                                                  <option selected>Ethiopia 2016</option>
+                                                  <option selected>Kenya 2014</option>
+                                                  <option selected>Madagascar 2009</option>
+                                                  <option selected>Malawi 2015-16</option>
+                                                  <option selected>Mozambique 2011</option> 
+                                                  <option selected>Rwanda 2015-16</option>
+                                                  <option selected>Tanzania 2015-16</option>
+                                                  <option selected>Uganda 2016</option>
+                                                  <option selected>Zambia 2013-14</option>
+                                                </optgroup>
+
+                                                <optgroup label="West and Central Africa">
+                                                  <option selected>DRC 2013-14</option>
+                                                  <option selected>Ghana 2014</option>
+                                                  <option selected>Mali 2012-13</option>
+                                                  <option selected>Liberia 2013</option>
+                                                  <option selected>Nigeria 2013</option>
+                                                  <option selected>Senegal 2016</option>                          
+                                                </optgroup>
+                                                  
+                                                <optgroup label="Other Countries">
+                                                  <option selected>Haiti 2012</option>
+                                                  <option selected>Yemen 2013</option>
+                                                </optgroup>
                                             </select>
                                         </div><!-- form-group-->
 
 
                                         <div class="form-group" id="IP_country_noavg_group">
-                                            <label for="IP_country_noavg">Country</label>
+                                            <label for="IP_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
                                             <select class="form-control shops-multiselect" id="IP_country_noavg" onchange="showMultiple('IP_country_noavg','Country w/o reg avgs')" multiple="multiple">
-                                                <option selected>Afghanistan 2015</option>
-                                                <option selected>Bangladesh 2014</option>
-                                                <option selected>DRC 2013-14</option>
-                                                <option selected>Ethiopia 2016</option>
-                                                <option selected>Ghana 2014</option>
-                                                <option selected>Haiti 2012</option>
-                                                <option selected>India 2015-16</option>
-                                                <option selected>Indonesia 2012</option>
-                                                <option selected>Kenya 2014</option>
-                                                <option selected>Liberia 2013</option>
-                                                <option selected>Madagascar 2009</option>
-                                                <option selected>Malawi 2015-16</option>
-                                                <option selected>Mali 2012-13</option>
-                                                <option selected>Mozambique 2011</option>
-                                                <option selected>Myanmar 2015-16</option>
-                                                <option selected>Nepal 2011</option>
-                                                <option selected>Nigeria 2013</option>
-                                                <option selected>Pakistan 2012-13</option>
-                                                <option selected>Rwanda 2015-16</option>
-                                                <option selected>Senegal 2016</option>
-                                                <option selected>Tanzania 2015-16</option>
-                                                <option selected>Uganda 2016</option>
-                                                <option selected>Yemen 2013</option>
-                                                <option selected>Zambia 2013-14</option>
+                                                <optgroup label="Asia">
+                                                  <option selected>Afghanistan 2015</option>
+                                                  <option selected>Bangladesh 2014</option>
+                                                  <option selected>India 2015-16</option>
+                                                  <option selected>Indonesia 2012</option>
+                                                  <option selected>Myanmar 2015-16</option>
+                                                  <option selected>Nepal 2011</option>
+                                                  <option selected>Pakistan 2012-13</option>
+                                                </optgroup>
+
+
+                                                <optgroup label="East and Southern Africa">
+                                                  <option selected>Ethiopia 2016</option>
+                                                  <option selected>Kenya 2014</option>
+                                                  <option selected>Madagascar 2009</option>
+                                                  <option selected>Malawi 2015-16</option>
+                                                  <option selected>Mozambique 2011</option> 
+                                                  <option selected>Rwanda 2015-16</option>
+                                                  <option selected>Tanzania 2015-16</option>
+                                                  <option selected>Uganda 2016</option>
+                                                  <option selected>Zambia 2013-14</option>
+                                                </optgroup>
+
+                                                <optgroup label="West and Central Africa">
+                                                  <option selected>DRC 2013-14</option>
+                                                  <option selected>Ghana 2014</option>
+                                                  <option selected>Mali 2012-13</option>
+                                                  <option selected>Liberia 2013</option>
+                                                  <option selected>Nigeria 2013</option>
+                                                  <option selected>Senegal 2016</option>                          
+                                                </optgroup>
+                                                  
+                                                <optgroup label="Other Countries">
+                                                  <option selected>Haiti 2012</option>
+                                                  <option selected>Yemen 2013</option>
+                                                </optgroup>
                                             </select>
                                         </div><!-- form-group-->
 
                                         <!-- region with "Regional Average" option
                                             Show when "Total Population" is selected -->
                                         <div class="form-group" id="IP_region_group">
-                                            <label for="IP_region">Region</label>
+                                            <label for="IP_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Region')" multiple="multiple">
                                               <option selected>Regional Averages</option>
                                               <option selected>Asia</option>
@@ -1168,7 +1204,7 @@
                                         <!-- region without "Regional Average" 
                                             Show when "Total Population" is NOT selected -->
                                         <div class="form-group" id="IP_region_noavg_group">
-                                            <label for="IP_region_noavg">Region</label>
+                                            <label for="IP_region_noavg">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="IP_region_noavg" onchange="showMultiple('IP_region_noavg','Region')" multiple="multiple">
                                               <option selected>Asia</option>
                                               <option selected>East and Southern Africa</option>
@@ -1179,7 +1215,7 @@
 
 
                                         <div class="form-group" id="IP_map_demographics_group">
-                                            <label for="IP_demographics">Demographics</label>
+                                            <label for="IP_demographics">Demographics <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by socioeconomic status, maternal education, or  residence"></i></label>
                                             <select class="form-control" onchange="show('IP_demographics','Demographics'); showSpan();" id="IP_demographics">
                                               <option selected value="Total Population (default)">Total Population</option>
                                               <option>All Quintiles</option>
@@ -1251,10 +1287,10 @@
                                   </script>             
 
                                   
-
+                                  <p>Please highlight the graph first if you would like to download all data into an Excel document.</p>
           					</div>
 
-
+                    
 				        </div> <!-- // col-lg-9 -->
 
                 
