@@ -37,7 +37,8 @@ $(function() {
  $('.shops-multiselect').multiselect({
   includeSelectAllOption:true,
   selectAllText: 'Check Select/Deselect All',
-  selectAllNumber: false
+  selectAllNumber: false,
+  enableClickableOptGroups: true
  })
 
  //hide fields
