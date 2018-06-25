@@ -62,11 +62,19 @@ h6 {
     font-weight: 700;
 }
 
-h1, h2 {
+h2 {
     margin-bottom: 20px;
 }
 
+h1 {
+    margin-bottom: 0px;
+}
 
+.subheader {
+    font-weight: bold;
+    color: #7a85a5;
+    font-size: 18px;
+}
 
 
 .h2-capitalize {
@@ -1397,11 +1405,6 @@ p.indent {
     border: 3px solid #fff;
 }
 
-.subheader {
-    font-weight: bold;
-    color: #7a85a5;
-    font-size: 18px;
-}
 
  .carousel-caption p {
     font-size: 20px;
