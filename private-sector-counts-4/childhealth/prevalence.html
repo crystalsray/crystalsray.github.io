@@ -34,7 +34,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-     
+     <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
 
 
     <!-- Load Tableau JS API -->
@@ -73,13 +77,22 @@
             var chartURL
             var hash = window.location.hash;
             if (hash == "#css") { //3rd panel
-              chartURL = "https://public.tableau.com/views/DHSCHVizzes01June2018fixbubbledefaults/DashIPMap?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no"
+              chartURL = "https://public.tableau.com/views/DHSCHVizzes01June2018fixbubbledefaults/DashIPMap?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
+               $("#collapseThree").collapse('show');
+               $("#headingThree").addClass('down-arrow');
+
             }
             else if (hash=="#csl") { //2nd panel
               chartURL = "https://public.tableau.com/views/DHSCHVizzes01June2018fixbubbledefaults/DashCSLevelsBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
+              $("#collapseTwo").collapse('show');
+              $("#headingTwo").addClass('down-arrow'); 
+
             }
             else { //1st panel
               chartURL = "https://public.tableau.com/views/DHSCHVizzes01June2018fixbubbledefaults/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
+              $("#collapseOne").collapse('show');
+              $("#headingOne").addClass('down-arrow');
+              
             }
 
             //remove hashtag from url
@@ -103,12 +116,17 @@
             // Create a viz object and embed it in the container div.
             viz = new tableau.Viz(containerDiv, url, options);
 
-            //Use to test whether a paramater change or filter event is happening
-            //parametervaluechange, filterchange, vizresize, marksselection, tabswitch, toolbarstatechange, customviewsetdefault
-            //viz.addEventListener('filterchange', function(event){
-                //console.log('event name: ' + event.getEventName());
-            ///});
+        }
 
+        function showPanel1() {
+          /*$("#collapseOne").collapse('show');
+          $("#headingOne").addClass('down-arrow');
+
+          $("#collapseTwo").collapse('hide');
+          $("#headingTwo").removeClass('down-arrow');
+          $("#collapseThree").collapse('hide');
+          $("#headingThree").removeClass('down-arrow');*/
+          ('.panel-collapse').collapse('toggle');
         }
 
         function hideSpan() {
@@ -339,6 +357,8 @@
 
 
         } // end switchView()
+
+
 
         //use for single parameter changes
         function show(fieldID, filterName) {
@@ -677,15 +697,14 @@
 
                               <!-- Panel #1 Illness Prevalence -->
                               <div class="panel panel-default">
-                                <div class="panel-heading down-arrow" role="tab" id="headingOne">
+                                <div class="panel-heading" role="tab" id="headingOne">
                                   <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="switchView('Dash CS Sources Bar')">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="switchView('Dash CS Sources Bar')">
                                        Where do caregivers seek treatment for their sick children?
-
                                     </a>
                                   </h4>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                   <div class="panel-body">
 
                                   
@@ -785,12 +804,11 @@
 
                                         <div class="form-group" id="CSsourcesBar_region_group">
                                             <label for="CSsourcesBar_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
-                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Region')" multiple="multiple">
-                                              <option selected>Regional Averages</option>
-                                              <option selected>Asia</option>
-                                              <option selected>East and Southern Africa</option>
-                                              <option selected>West and Central Africa</option>
-                                              <option selected>Other Countries</option>
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Country')" multiple="multiple">
+                                              <option selected>Asia average</option>
+                                              <option selected>E.S. Africa average</option>
+                                              <option selected>Other countries average</option>
+                                              <option selected>W.C. Africa average</option>
                                             </select>
                                         </div><!-- form-group-->
 
@@ -982,12 +1000,11 @@
                                         <!-- Show "Regional Averages" when "Total Population" is selected in Demographics -->
                                         <div class="form-group" id="CSLevels_region_group">
                                             <label for="CSLevels_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
-                                            <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Region')" multiple="multiple">
-                                              <option selected>Regional Averages</option>
-                                              <option selected>Asia</option>
-                                              <option selected>East and Southern Africa</option>
-                                              <option selected>West and Central Africa</option>
-                                              <option selected>Other Countries</option>
+                                            <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Country')" multiple="multiple">
+                                              <option selected>Asia average</option>
+                                              <option selected>E.S. Africa average</option>
+                                              <option selected>Other countries average</option>
+                                              <option selected>W.C. Africa average</option>
                                             </select>
                                         </div><!-- form-group-->
 
@@ -1191,12 +1208,11 @@
                                             Show when "Total Population" is selected -->
                                         <div class="form-group" id="IP_region_group">
                                             <label for="IP_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
-                                            <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Region')" multiple="multiple">
-                                              <option selected>Regional Averages</option>
-                                              <option selected>Asia</option>
-                                              <option selected>East and Southern Africa</option>
-                                              <option selected>West and Central Africa</option>
-                                              <option selected>Other Countries</option>
+                                            <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Country')" multiple="multiple">
+                                              <option selected>Asia average</option>
+                                              <option selected>E.S. Africa average</option>
+                                              <option selected>Other countries average</option>
+                                              <option selected>W.C. Africa average</option>
                                             </select>
                                         </div><!-- form-group-->
 
@@ -1290,7 +1306,7 @@
                                   <p>Please highlight the graph first if you would like to download all data into an Excel document.</p>
           					</div>
 
-                    
+
 				        </div> <!-- // col-lg-9 -->
 
                 
@@ -1321,11 +1337,7 @@
 
 
 	
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

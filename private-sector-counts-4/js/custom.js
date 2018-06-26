@@ -67,6 +67,10 @@ $('.panel-collapse').on('show.bs.collapse', function () {
     $(this).siblings(".panel-heading").removeClass('down-arrow');
   });
 
+/*$('.panel-collapse').collapse({
+  toggle:  true
+})*/
+
 
 
 
