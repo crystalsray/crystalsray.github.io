@@ -1448,6 +1448,18 @@ p.indent {
     padding-right: 10px;
 }
 
+.rest-btn {
+    font-size: 10px;
+
+}
+
+.rest-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
 @media (max-width: 991px) and (min-width: 768px)  {
     #home-content {
         height: 800px;

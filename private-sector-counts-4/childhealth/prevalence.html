@@ -92,7 +92,6 @@
               chartURL = "https://public.tableau.com/views/DHSCHVizzes01June2018fixbubbledefaults/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
               $("#collapseOne").collapse('show');
               $("#headingOne").addClass('down-arrow');
-              
             }
 
             //remove hashtag from url
@@ -159,7 +158,7 @@
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
           currentDashboardName = sheetName;
-          console.log("reset span: " + spanCoutner);
+
           spanCoutner=0;
 
           var workbook = viz.getWorkbook();
@@ -357,6 +356,9 @@
 
 
         } // end switchView()
+
+
+
 
 
 
@@ -639,9 +641,9 @@
                 <li class="dropdown active-static">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Child Health Data<span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="../childhealth/prevalence.html#ip">Illness prevalence</a></li>
                         <li><a href="../childhealth/prevalence.html#csl">Care-seeking levels</a></li>
                         <li><a href="../childhealth/prevalence.html#css">Care-seeking sources</a></li>
+                        <li><a href="../childhealth/prevalence.html#ip">Illness prevalence</a></li>
                       </ul>
                 </li>
                 <li class="dropdown">
