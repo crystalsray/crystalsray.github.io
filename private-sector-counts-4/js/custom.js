@@ -38,13 +38,64 @@ $(function() {
   includeSelectAllOption:true,
   selectAllText: 'Check Select/Deselect All',
   selectAllNumber: false,
+  disabledText: 'Disabled ...',
   enableClickableOptGroups: true,
-  onChange: function(option, checked) {
-                console.log(option);
-            }
+  /*onChange: function(option, checked, selected, element) {
+      //console.log(option.length + ' options ' + (checked ? 'selected' : 'deselected'));
+      console.log(option.length);
+      var fieldID = $(element).attr("id");
+      var filterName = $(fieldID).data("country");
+      console.log("fieldID: " +fieldID + " filterName: " + filterName);
+
+      var newData = {};
+
+      var temp = jQuery.extend(true, {}, newData);
+
+                        var selectionData = [];
+                        var selectionGroup = [];
+                        $('#myid option:selected').each(function(e) {
+                            for (n in newData) {
+                                for (d in newData[n]) {
+                                    if (newData[n][d].value == $(this).val()) {
+                                        for (i in temp[n]) {
+                                            if (temp[n][i].value == $(this).val())
+                                                temp[n].splice(i, 1);
+                                        }
+
+                                    }
+                                }
+
+                            }
+                            selectionData.push($(this).val());
+                        });
+
+                        for (t in temp) {
+                            if (temp[t].length == 0) {
+                                selectionGroup.push(t);
+                            } else {
+                                for (tt in newData[t]) {
+                                    if (newData[t][tt] == temp[t][tt]) {
+                                        selectionData.push(newData[t][tt]["value"]);
+                                    }
+                                }
+                            }
+
+                        }
+                        console.log("Group : " + selectionGroup);
+                        console.log("Data : " + selectionData);
+                        $("#output").html("Group : " + selectionGroup + "<br>Data : " + selectionData);
+
+
+
+      //showMultiple(fieldID, filterName);
+   }*/
+
+   
+
+
  })
 
- //hide fields
+//hide fields
 $("#CSsourcesBar_group2").hide();
 
 

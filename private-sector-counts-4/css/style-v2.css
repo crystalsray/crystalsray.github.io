@@ -1467,6 +1467,11 @@ p.indent {
     background: rgb(33,52,105,1);
 }
 
+.notice-text {
+    font-size: 12px;
+    color: rgb(255, 0, 0);
+}
+
 
 @media (max-width: 991px) and (min-width: 768px)  {
     #home-content {
@@ -1499,8 +1504,6 @@ p.indent {
     .home-intro p {
         font-size: 20px;
     }
-
-
 }
 
 @media (min-width: 768px) {
