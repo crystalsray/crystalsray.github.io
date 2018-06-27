@@ -38,7 +38,10 @@ $(function() {
   includeSelectAllOption:true,
   selectAllText: 'Check Select/Deselect All',
   selectAllNumber: false,
-  enableClickableOptGroups: true
+  enableClickableOptGroups: true,
+  onChange: function(option, checked) {
+                console.log(option);
+            }
  })
 
  //hide fields
