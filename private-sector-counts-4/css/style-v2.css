@@ -1458,6 +1458,14 @@ p.indent {
     cursor: pointer;
 }
 
+.block-link {
+    display: block;
+
+}
+
+.block-link:hover .carousel-caption {
+    background: rgb(33,52,105,1);
+}
 
 
 @media (max-width: 991px) and (min-width: 768px)  {
@@ -1471,7 +1479,7 @@ p.indent {
     }
 
     p.p-family-btn {
-        margin-top: 26px;
+        margin-top: 20px;
     }
 
     .home-intro p {
@@ -1485,7 +1493,7 @@ p.indent {
     }
 
     p.p-child-btn {
-        margin-top: 42px;
+        margin-top: 47px;
     }
 
     .home-intro p {
