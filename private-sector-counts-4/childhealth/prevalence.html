@@ -76,16 +76,18 @@
             //grab chart to load depending on option that was picked.
             var chartURL
             var hash = window.location.hash;
-            if (hash == "#css") { //3rd panel
+            if (hash == "#ip") { //3rd panel
               chartURL = "https://public.tableau.com/views/DHSCHVizzes26Junepostbetatesting/DashIPMap?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
                $("#collapseThree").collapse('show');
                $("#headingThree").addClass('down-arrow');
+               $('#childhealth_introtext').html('<h2 class="text-center">What percent of children get sick?</h2> <p>This visualization shows the burden of childhood illness for fever, diarrhea, and ARI in each country. Use the menu on the right to look at othe prevalence of each illness on its own.</p>');
 
             }
             else if (hash=="#csl") { //2nd panel
               chartURL = "https://public.tableau.com/views/DHSCHVizzes26Junepostbetatesting/DashCSLevelsBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
               $("#collapseTwo").collapse('show');
-              $("#headingTwo").addClass('down-arrow'); 
+              $("#headingTwo").addClass('down-arrow');
+              $('#childhealth_introtext').html('<h2 class="text-center">What percent of caregivers seek treatment?</h2> <p>This visualization shows the percent of caregivers in each country who seek advice or treatment for their sick children from any source. Use the menu on the right to look at the care-seeking level for particular countries or illnesses or by select demographic characteristics.</p>');
 
             }
             else { //1st panel
@@ -254,7 +256,7 @@
                 $('#IP_region_group').hide();
 
                 //text change above graph
-            $('#childhealth_introtext').html('<h2 class="text-center">How often do children get sick?</h2> <p>This visualization shows the burden of childhood illness for fever, diarrhea, and ARI in each country. Use the menu on the right to look at othe prevalence of each illness on its own.</p>');
+            $('#childhealth_introtext').html('<h2 class="text-center">What percent of children get sick?</h2> <p>This visualization shows the burden of childhood illness for fever, diarrhea, and ARI in each country. Use the menu on the right to look at othe prevalence of each illness on its own.</p>');
 
 
           }
@@ -347,7 +349,7 @@
             $("#CSLevels_region_group").show();
 
             //text change above graph
-            $('#childhealth_introtext').html('<h2 class="text-center">How often do caregivers seek advice or treatment?</h2> <p>This visualization shows the percent of caregivers in each country who seek advice or treatment for their sick children from any source. Use the menu on the right to look at the care-seeking level for particular countries or illnesses or by select demographic characteristics.</p>');
+            $('#childhealth_introtext').html('<h2 class="text-center">What percent of caregivers seek treatment?</h2> <p>This visualization shows the percent of caregivers in each country who seek advice or treatment for their sick children from any source. Use the menu on the right to look at the care-seeking level for particular countries or illnesses or by select demographic characteristics.</p>');
 
 
                 
@@ -641,8 +643,8 @@
                 <li class="dropdown active-static">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Child Health Data<span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="../childhealth/prevalence.html#csl">Care-seeking levels</a></li>
                         <li><a href="../childhealth/prevalence.html#css">Care-seeking sources</a></li>
+                        <li><a href="../childhealth/prevalence.html#csl">Care-seeking levels</a></li>
                         <li><a href="../childhealth/prevalence.html#ip">Illness prevalence</a></li>
                       </ul>
                 </li>
@@ -874,7 +876,7 @@
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                   <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="switchView('Dash CS Levels Bar')">
-                                      How often do caregivers seek advice or treatment?
+                                      What percent of caregivers seek treatment?
                                     </a>
                                   </h4>
                                 </div>
@@ -1074,7 +1076,7 @@
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="switchView('Dash IP Map')"> 
                                       
 
-                                      How often do children get sick?
+                                      What percent of children get sick?
                                     </a>
                                   </h4>
                                 </div>
@@ -1310,7 +1312,7 @@
                                   </script>             
 
                                   
-                                  <p>Please highlight the graph first if you would like to download all data into an Excel document.</p>
+                                  <p>Please click the graph first if you would like to download all data into an Excel document.</p>
           					</div>
 
 
