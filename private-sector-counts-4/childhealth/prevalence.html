@@ -63,21 +63,21 @@
             var chartURL
             var hash = window.location.hash;
             if (hash == "#ip") { //3rd panel
-              chartURL = "https://public.tableau.com/views/DHSCHVizzes26Junepostbetatesting/DashIPMap?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
+              chartURL = "https://public.tableau.com/views/DHSCHVizzes28June/DashIPMap?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
                $("#collapseThree").collapse('show');
                $("#headingThree").addClass('down-arrow');
                $('#childhealth_introtext').html('<h2 class="text-center">What percent of children get sick?</h2> <p>This visualization shows the burden of childhood illness for fever, diarrhea, and ARI in each country. Use the menu on the right to look at othe prevalence of each illness on its own.</p>');
 
             }
             else if (hash=="#csl") { //2nd panel
-              chartURL = "https://public.tableau.com/views/DHSCHVizzes26Junepostbetatesting/DashCSLevelsBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
+              chartURL = "https://public.tableau.com/views/DHSCHVizzes28June/DashCSLevelsBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
               $("#collapseTwo").collapse('show');
               $("#headingTwo").addClass('down-arrow');
               $('#childhealth_introtext').html('<h2 class="text-center">What percent of caregivers seek treatment?</h2> <p>This visualization shows the percent of caregivers in each country who seek advice or treatment for their sick children from any source. Use the menu on the right to look at the care-seeking level for particular countries or illnesses or by select demographic characteristics.</p>');
 
             }
             else { //1st panel
-              chartURL = "https://public.tableau.com/views/DHSCHVizzes26Junepostbetatesting/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
+              chartURL = "https://public.tableau.com/views/DHSCHVizzes28June/DashCSSourcesBar?:embed=y&:useGuest=true&:display_count=yes&:toolbar=no";
               $("#collapseOne").collapse('show');
               $("#headingOne").addClass('down-arrow');
             }
