@@ -107,27 +107,47 @@
                 width: containerDiv.offsetWidth,
                 height: containerDiv.offsetHeight,
                 onFirstInteractive: function () {
-                    //run this code with the viz has bfinishe loading
+                    //run this code with the viz has finished loading
                     workbook = viz.getWorkbook();
                     activeSheet = workbook.getActiveSheet();
+
+                    // trying to add tooltip over legend
+                    /*$('.tabLegendColumnHolder').attr('data-toggle','tooltip');
+                    $('.tabLegendColumnHolder').attr('data-placement','top');
+                    $('.tabLegendColumnHolder').attr('data-original-title', 'test text');*/
                 }
 
             };
+
+
             
             // Create a viz object and embed it in the container div.
             viz = new tableau.Viz(containerDiv, url, options);
 
+            
+
         }
 
-        function showPanel1() {
-          /*$("#collapseOne").collapse('show');
-          $("#headingOne").addClass('down-arrow');
+        function showPanel(panel) {
 
-          $("#collapseTwo").collapse('hide');
-          $("#headingTwo").removeClass('down-arrow');
-          $("#collapseThree").collapse('hide');
-          $("#headingThree").removeClass('down-arrow');*/
-          ('.panel-collapse').collapse('toggle');
+          $('.panel-collapse.in').collapse('toggle');
+
+          if (panel == "ip") { //show panel 3
+            $("#collapseThree").collapse('show');
+            $("#headingThree").addClass('down-arrow');
+
+          }
+
+          else if (panel == "csl") {//show panel 2
+            $("#collapseTwo").collapse('show');
+            $("#headingTwo").addClass('down-arrow');
+          } 
+
+          else { //show panel 1
+            $("#collapseOne").collapse('show');
+            $("#headingOne").addClass('down-arrow');
+          }
+          
         }
 
         function hideSpan() {
@@ -159,6 +179,9 @@
 
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
+
+          
+
           currentDashboardName = sheetName;
 
           spanCoutner=0;
@@ -665,9 +688,9 @@
                 <li class="dropdown active-static">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Child Health Data<span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
-                        <li><a href="../childhealth/prevalence.html#css">Care-seeking sources</a></li>
-                        <li><a href="../childhealth/prevalence.html#csl">Care-seeking levels</a></li>
-                        <li><a href="../childhealth/prevalence.html#ip">Illness prevalence</a></li>
+                        <li><a href="../childhealth/prevalence.html#css" onclick="switchView('Dash CS Sources Bar'); showPanel('css');">Care-seeking sources</a></li>
+                        <li><a href="../childhealth/prevalence.html#csl" onclick="switchView('Dash CS Levels Bar'); showPanel('csl');">Care-seeking levels</a></li>
+                        <li><a href="../childhealth/prevalence.html#ip" onclick="switchView('Dash IP Map'); showPanel('ip');" >Illness prevalence</a></li>
                       </ul>
                 </li>
                 <li class="dropdown">
