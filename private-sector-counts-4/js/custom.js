@@ -35,10 +35,24 @@ $(function() {
 
 // format mulselect into checkboxes
  $('.shops-multiselect').multiselect({
-  includeSelectAllOption: true,
+  includeSelectAllOption: false,
   selectAllText: 'Check Select/Deselect All',
   selectAllNumber: false,
-  disabledText: 'Disabled ...',
+  onSelectAll: function (justVisible, triggerOnSelectAll) {
+        console.log("select-all-nonreq");
+        console.log(justVisible);
+        console.log(triggerOnSelectAll);
+        triggerOnSelectAll = true; //patch, broken
+        var justVisible = typeof justVisible === 'undefined' ? true : justVisible;
+    },
+  onDeselectAll: function (justVisible, triggerOnSelectAll) {
+        console.log("deselect-all-nonreq");
+    },
+  /*selectAll: function (justVisible, triggerOnSelectAll) {
+        console.log("selectAll");
+        triggerOnSelectAll = true; //patch, broken
+        var justVisible = typeof justVisible === 'undefined' ? true : justVisible;
+  },*/
   enableClickableOptGroups: true,
   onChange: function(option, checked, selected, element) {
 
@@ -61,15 +75,16 @@ $(function() {
       }
 
       $('#' + id + ' option:selected').each(function(index, element) {
-          selectionData.push($(element).val()); // get selected values of country dropdown
+          selectionData.push($(element).val()); // get selected values of country (or other multiselect) dropdown
       });
 
-      /////// If country filter has regional average filter, include selection of corresponding region filter.
+      /////// If multiselect field has countries, it'll likely have a corresponding regional average filter. 
+      /////// Include regional average in array of selected items
       // CS_country <---> CSsourcesBar_region
       // CSLevels_country <---> CSLevels_region
       // IP_country <---> IP_region
 
-      // PANEL 1
+      ////// PANEL 1
       if(id=="CS_country") {
         $('#CSsourcesBar_region option:selected').each(function(index, element) {
           selectionData.push($(element).val()); // get selected values of region dropdown
@@ -81,7 +96,7 @@ $(function() {
         });
       }
 
-      // PANEL 2
+      ////// PANEL 2
       else if(id=="CSLevels_country") {
         $('#CSLevels_region option:selected').each(function(index, element) {
           selectionData.push($(element).val()); // get selected values of region dropdown
@@ -93,7 +108,7 @@ $(function() {
         });
       }
 
-      // PANEL 3
+      ////// PANEL 3
       else if(id=="IP_country") {
         $('#IP_region option:selected').each(function(index, element) {
           selectionData.push($(element).val()); // get selected values of region dropdown
