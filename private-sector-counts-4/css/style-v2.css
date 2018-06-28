@@ -1267,11 +1267,11 @@ select.form-control {
 }
 
 #btn-child-health-img {
-    background-image: url('../img/btn-child-health.svg');
+    background-image: url('../img/btn-child-health.png');
 }
 
 #btn-family-planning-img {
-    background-image: url('../img/btn-family-planning.svg');
+    background-image: url('../img/btn-family-planning.png');
 
 }
 
@@ -1298,11 +1298,11 @@ select.form-control {
 }
 
 #btn-child-health-img:hover {
-    background-image: url('../img/btn-child-health-white.svg');
+    background-image: url('../img/btn-child-health-white.png');
 }
 
 #btn-family-planning-img:hover {
-    background-image: url('../img/btn-family-planning-white.svg');
+    background-image: url('../img/btn-family-planning-white.png');
 }
 
 
@@ -1400,13 +1400,7 @@ p.indent {
     height: auto;
 }
 
-.carousel-caption {
-    padding-bottom: 0px;
-    background: rgb(33,52,105,.7);
-    bottom: 0px;
-    right: 0;
-    left: 0;
-}
+
 
 .home-text {
     padding: 20px;
@@ -1463,9 +1457,22 @@ p.indent {
 
 }
 
-.block-link:hover .carousel-caption {
-    background: rgb(33,52,105,1);
+.carousel-caption {
+    padding-bottom: 0px;
+    background: rgba(33,52,105,.7);
+    bottom: 0px;
+    right: 0;
+    left: 0;
+
+
 }
+
+.block-link:hover .carousel-caption{
+    background: rgba(33,52,105,1);
+
+}
+
+
 
 .notice-text {
     font-size: 12px;
