@@ -765,7 +765,7 @@
 
                                         <!-- Country list with averages -->
                                         <div class="form-group" id="CS_country_group">
-                                            <label for="CS_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i>  </label>
+                                            <label for="CS_country">Country <span style="display: none">**</span> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i>  </label>
                                             <select class="form-control shops-multiselect" id="CS_country" data-filter="Country" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option> 
@@ -809,7 +809,7 @@
                                         <!-- Country list without averages -->
                                         <!-- show for Map & Bubble  charts -->
                                         <div class="form-group" id="CS_country_noavg_group">
-                                            <label for="CS_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
+                                            <label for="CS_country_noavg">Country <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
                                             <select class="form-control shops-multiselect" id="CS_country_noavg" data-filter="Country w/o reg avgs" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
@@ -852,7 +852,7 @@
 
 
                                         <div class="form-group" id="CSsourcesBar_region_group">
-                                            <label for="CSsourcesBar_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
+                                            <label for="CSsourcesBar_region">Regional Averages <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
                                             <select class="form-control shops-multiselect" id="CSsourcesBar_region" data-filter="Country"  multiple="multiple">
                                               <option selected>Asia average</option>
                                               <option selected>E.S. Africa average</option>
@@ -933,8 +933,8 @@
                                     <form>
 
                                         <div class="form-group" id="CSLevels_illnesses_group">
-                                            <label for="CSLevels_illnesses">Illnesses</label>
-                                            <select class="form-control shops-multiselect" onchange="showMultiple('CSLevels_illnesses','Illnesses')" id="CSLevels_illnesses" multiple="multiple">
+                                            <label for="CSLevels_illnesses">Illnesses <span style="display: none">**</span></label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_illnesses" data-filter="Illnesses" multiple="multiple">
                                               <option selected>ARI</option>
                                               <option selected>Diarrhea</option>
                                               <option selected>Fever</option>
@@ -965,8 +965,8 @@
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
                                         <div class="form-group" id="CSLevels_country_group">
-                                            <label for="CSLevels_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
-                                            <select class="form-control shops-multiselect" id="CSLevels_country" onchange="showMultiple('CSLevels_country','Country')" multiple="multiple">
+                                            <label for="CSLevels_country">Country <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_country" data-filter="Country" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
                                                   <option selected>Bangladesh 2014</option>
@@ -1008,8 +1008,8 @@
 
 
                                         <div class="form-group" id="CSLevels_country_group_noavg">
-                                            <label for="CSLevels_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
-                                            <select class="form-control shops-multiselect" id="CSLevels_country_noavg" onchange="showMultiple('CSLevels_country_noavg','Country w/o reg avgs')" multiple="multiple">
+                                            <label for="CSLevels_country_noavg">Country <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_country_noavg" data-filter="Country w/o reg avgs" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
                                                   <option selected>Bangladesh 2014</option>
@@ -1052,8 +1052,8 @@
 
                                         <!-- Show "Regional Averages" when "Total Population" is selected in Demographics -->
                                         <div class="form-group" id="CSLevels_region_group">
-                                            <label for="CSLevels_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
-                                            <select class="form-control shops-multiselect" id="CSLevels_region" onchange="showMultiple('CSLevels_region','Country')" multiple="multiple">
+                                            <label for="CSLevels_region">Regional Averages <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
+                                            <select class="form-control shops-multiselect" id="CSLevels_region" data-filter="Country" multiple="multiple">
                                               <option selected>Asia average</option>
                                               <option selected>E.S. Africa average</option>
                                               <option selected>Other countries average</option>
@@ -1141,8 +1141,8 @@
                                      <form>
                                         <!-- Show multiple select when "Total" is selected in Demographics -->
                                         <div class="form-group" id="IPillnesses_group">
-                                            <label for="IP_illnesses">Illnesses</label>
-                                            <select class="form-control shops-multiselect" onchange="showMultiple('IP_illnesses','Illnesses')" id="IP_illnesses" multiple="multiple">
+                                            <label for="IP_illnesses">Illnesses <span style="display: none">**</span></label>
+                                            <select class="form-control shops-multiselect" data-filter="Illnesses" id="IP_illnesses" multiple="multiple">
                                               <option selected>ARI</option>
                                               <option selected>Diarrhea</option>
                                               <option selected>Fever</option>
@@ -1178,8 +1178,8 @@
                                         <!-- Maps & Bubble Charts: Remove average on country list -->
                                         <!-- Bar Charts: When total is selected, show average. Anything else, hide averages -->
                                         <div class="form-group" id="IP_country_group">
-                                            <label for="IP_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
-                                            <select class="form-control shops-multiselect" id="IP_country" onchange="showMultiple('IP_country','Country')" multiple="multiple">
+                                            <label for="IP_country">Country <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
+                                            <select class="form-control shops-multiselect" id="IP_country" data-filter="Country" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
                                                   <option selected>Bangladesh 2014</option>
@@ -1221,8 +1221,8 @@
 
 
                                         <div class="form-group" id="IP_country_noavg_group">
-                                            <label for="IP_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
-                                            <select class="form-control shops-multiselect" id="IP_country_noavg" onchange="showMultiple('IP_country_noavg','Country w/o reg avgs')" multiple="multiple">
+                                            <label for="IP_country_noavg">Country <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
+                                            <select class="form-control shops-multiselect" id="IP_country_noavg" data-filter="Country w/o reg avgs" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
                                                   <option selected>Bangladesh 2014</option>
@@ -1265,8 +1265,8 @@
                                         <!-- region with "Regional Average" option
                                             Show when "Total Population" is selected -->
                                         <div class="form-group" id="IP_region_group">
-                                            <label for="IP_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
-                                            <select class="form-control shops-multiselect" id="IP_region" onchange="showMultiple('IP_region','Country')" multiple="multiple">
+                                            <label for="IP_region">Regional Averages <span style="display: none">**</span><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
+                                            <select class="form-control shops-multiselect" id="IP_region" data-filter="Country" multiple="multiple">
                                               <option selected>Asia average</option>
                                               <option selected>E.S. Africa average</option>
                                               <option selected>Other countries average</option>

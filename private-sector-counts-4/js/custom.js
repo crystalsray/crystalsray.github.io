@@ -82,8 +82,28 @@ $(function() {
       }
 
       // PANEL 2
+      else if(id=="CSLevels_country") {
+        $('#CSLevels_region option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of region dropdown
+        });
+      }
+      else if (id == "CSLevels_region") {
+        $('#CSLevels_country option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of country dropdown
+        });
+      }
 
       // PANEL 3
+      else if(id=="IP_country") {
+        $('#IP_region option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of region dropdown
+        });
+      }
+      else if (id == "IP_region") {
+        $('#IP_country option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of country dropdown
+        });
+      }
 
 
 
@@ -91,6 +111,7 @@ $(function() {
 
 
    } // end onchange()
+   
 
    
  });
