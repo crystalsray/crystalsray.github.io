@@ -40,14 +40,55 @@ $(function() {
   selectAllNumber: false,
   disabledText: 'Disabled ...',
   enableClickableOptGroups: true,
-  /*onChange: function(option, checked, selected, element) {
-      //console.log(option.length + ' options ' + (checked ? 'selected' : 'deselected'));
+  onChange: function(option, checked, selected, element) {
+
       console.log(option.length);
-      var fieldID = $(element).attr("id");
-      var filterName = $(fieldID).data("country");
+
+      var count = option.length;
+      console.log(option);
+
+
+      if (count > 1) {
+        var selectionData = [];
+
+        var id  = $(option[0][0].offsetParent).attr("id");
+        var filter = $(option[0][0].offsetParent).data("filter");
+
+        console.log("id: " + id);
+        console.log("filter: " + filter);
+
+        $('#' + id + ' option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values
+        });
+      }
+
+      else {
+        var selectionData = [];
+
+        var id  = $(option[0].offsetParent).attr("id");
+        var filter = $(option[0].offsetParent).data("filter");
+        var value = $(option[0]).val();
+
+        console.log("id: " + id);
+        console.log("filter: " + filter);
+        console.log("value " + value);
+
+        $('#' + id + ' option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values
+        });
+
+      }
+
+      showMultiple('#'+id, filter, selectionData); // push to multiselect
+
+      
+
+
+
+      /*var filterName = $(fieldID).data("country");
       console.log("fieldID: " +fieldID + " filterName: " + filterName);
 
-      var newData = {};
+      /*var newData = {};
 
       var temp = jQuery.extend(true, {}, newData);
 
@@ -87,13 +128,16 @@ $(function() {
 
 
 
-      //showMultiple(fieldID, filterName);
-   }*/
+      //showMultiple(fieldID, filterName);*/
+   }
 
    
 
 
  })
+
+
+
 
 //hide fields
 $("#CSsourcesBar_group2").hide();

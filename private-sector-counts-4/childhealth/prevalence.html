@@ -524,26 +524,26 @@
         }
 
         //use for multiple select filter change
-        function showMultiple(fieldID, filterName) {
+        function showMultiple(fieldID, filterName, arr) {
             //filter worksheet based on multiple select fields
-            var colOfSelectedOpt = document.getElementById(fieldID).selectedOptions; 
-            //var colOfSelectedOpt  = $(fieldID).prop("selected", true);
-            console.log('showMultiple(): ' + colOfSelectedOpt); 
+            //var colOfSelectedOpt = document.getElementById(fieldID).selectedOptions; 
+
+            //console.log('showMultiple(): ' + colOfSelectedOpt); 
 
             var values = [];
-            for(var i=0;i<colOfSelectedOpt.length;i++) {
+            /*for(var i=0;i<colOfSelectedOpt.length;i++) {
                  values.push(colOfSelectedOpt[i].value);
-            }      
+            } */     
 
             //filter for selected values
            sheet = viz.getWorkbook().getActiveSheet();
                if(sheet.getSheetType() === 'worksheet') {
-                   sheet.applyFilterAsync(filterName, values, 'REPLACE');
+                   sheet.applyFilterAsync(filterName, arr, 'REPLACE');
                 } else {
 
                    worksheetArray = sheet.getWorksheets();
                    for(var i = 0; i < worksheetArray.length; i++) {
-                  worksheetArray[i].applyFilterAsync(filterName, values, 'REPLACE');
+                  worksheetArray[i].applyFilterAsync(filterName, arr, 'REPLACE');
                  }
                 }
 
@@ -766,7 +766,7 @@
                                         <!-- Country list with averages -->
                                         <div class="form-group" id="CS_country_group">
                                             <label for="CS_country">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i>  </label>
-                                            <select class="form-control shops-multiselect" id="CS_country" onchange="showMultiple('CS_country','Country')" multiple="multiple">
+                                            <select class="form-control shops-multiselect" id="CS_country" data-filter="Country" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option> 
                                                   <option selected>Bangladesh 2014</option>
