@@ -117,6 +117,7 @@
         function showPanel(panel) {
 
           $('.panel-collapse.in').collapse('toggle');
+          $('.panel-collapse').removeClass('down-arrow');
 
           if (panel == "ip") { //show panel 3
             $("#collapseThree").collapse('show');
@@ -193,6 +194,15 @@
 
           hideSpan();
 
+          //hide notice text
+          /*$("#notice-text-1").hide();
+          $("#notice-text-2").hide();
+          $("#notice-text-3").hide();
+          $('#CSsourcesBar_region_group .btn-group').show();
+          $('#CSLevels_region_group .btn-group').show();
+          $("#IP_region_group .btn-group").show();*/
+
+
           //empty text above maps
           //show Selected Illness
           document.getElementById("mapTitle").innerHTML = "";
@@ -212,6 +222,9 @@
 
             $("#CSsourcesBar_region_noavg_group").hide();
             $("#CSsourcesBar_region_group").show();
+
+          
+            
 
 
 
