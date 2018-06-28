@@ -56,20 +56,6 @@
 
         var currentDashboardName="Dash IP Map";
 
-        var countries = {
-
-          "asia": ['Afghanistan 2015','Bangladesh 2014','India 2015-16','Indonesia 2012','Myanmar 2015-16','Pakistan 2012-13','Nepal 2016'],
-
-          "es_africa" : ['Ethiopia 2016', 'Kenya 2014', 'Madagascar 2009', 'Malawi 2015-16', 'Mozambique 2011', 'Rwanda 2015-16', 'Tanzania 2015-16', 'Uganda 2016', 'Zambia 2013-14'],
-
-          "wc_africa" : ['Ghana 2014', 'Liberia 2013', 'Mali 2012-13', 'Nigeria 2013', 'DRC 2013-14', 'Senegal 2016'],
-
-          "other" : ['Haiti 2012', 'Yemen 2013'],
-
-          "regional_avgs" : ['Asia average', 'E.S. Africa average', 'W.C. Africa average', 'Other countries average', 'All countries']
-        }
-
-
               
         function initViz() {
 
@@ -525,15 +511,8 @@
 
         //use for multiple select filter change
         function showMultiple(fieldID, filterName, arr) {
-            //filter worksheet based on multiple select fields
-            //var colOfSelectedOpt = document.getElementById(fieldID).selectedOptions; 
 
-            //console.log('showMultiple(): ' + colOfSelectedOpt); 
-
-            var values = [];
-            /*for(var i=0;i<colOfSelectedOpt.length;i++) {
-                 values.push(colOfSelectedOpt[i].value);
-            } */     
+            var values = [];    
 
             //filter for selected values
            sheet = viz.getWorkbook().getActiveSheet();
@@ -546,97 +525,6 @@
                   worksheetArray[i].applyFilterAsync(filterName, arr, 'REPLACE');
                  }
                 }
-
-
-            // Use ID to target country field, also use chart name to determine target field
-            // deselect items in target field (country)
-            // reselect items based on selection(s) from region
-
-            var targetyCountryID;
-
-            /*******************************************************************************/
-            /****  Deselect Country items based on region that was selected/deselected  ****/
-            /*******************************************************************************/
-            ////////// 1st PANEL
-            // Map
-            if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region_noavg")  {
-              targetyCountryID = "#IP_country_noavg";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            if (currentDashboardName=="Dash IP Map" && fieldID=="IP_region_noavg")  {
-              targetyCountryID = "#IP_country_noavg";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            // bar chart
-            else if (currentDashboardName=="Dash IP Bar" && fieldID=="IP_region")  {
-              targetyCountryID = "#IP_country";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            ////////// 2nd PANEL
-            // Bar Chart
-            else if (currentDashboardName=="Dash CS Levels Bar" && fieldID=="CSLevels_region")  {
-              targetyCountryID = "#CSLevels_country";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            else if (currentDashboardName=="Dash CS Levels Map" && fieldID=="CSLevels_region_noavg")  {
-              targetyCountryID = "#CSLevels_country_noavg";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            else if (currentDashboardName=="Dash CS Levels Bubbles" && fieldID=="CSLevels_region_noavg")  {
-              targetyCountryID = "#CSLevels_country_noavg";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            ////////// 3rd PANEL
-            // Bar Chart
-            else if (currentDashboardName=="Dash CS Sources Bar" && fieldID=="CSsourcesBar_region")  {
-              targetyCountryID = "#CS_country";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            // Bubble Chart
-            //if   {
-            else if (currentDashboardName=="Dash CS Sources Bubble" && fieldID=="CSsourcesBar_region_noavg") {
-              targetyCountryID = "#CS_country_noavg";
-              $(targetyCountryID).multiselect('deselectAll',false);
-            }
-
-            else {
-              // do nothing
-            }
-            
-
-            //loop through values
-            for(var i=0;i<colOfSelectedOpt.length;i++) {
-                 var selected_cty = (colOfSelectedOpt[i].value);
-                 console.log(selected_cty);
-
-                 if( selected_cty == "Asia") {
-                   $(targetyCountryID).multiselect('select', countries.asia);
-                 }
-
-                 if( selected_cty == "Regional Averages") {
-                   $(targetyCountryID).multiselect('select', countries.regional_avgs);
-                 }
-
-                 if( selected_cty == "East and Southern Africa") {
-                   $(targetyCountryID).multiselect('select', countries.es_africa);
-                 }
-
-                 if( selected_cty == "West and Central Africa") {
-                   $(targetyCountryID).multiselect('select', countries.wc_africa);
-                 }
-
-                 if( selected_cty == "Other Countries") {
-                   $(targetyCountryID).multiselect('select', countries.other);
-                 }
-                    
-            } //end for
 
         }
 
