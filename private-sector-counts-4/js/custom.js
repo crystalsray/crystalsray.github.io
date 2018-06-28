@@ -35,106 +35,61 @@ $(function() {
 
 // format mulselect into checkboxes
  $('.shops-multiselect').multiselect({
-  includeSelectAllOption:true,
+  includeSelectAllOption: true,
   selectAllText: 'Check Select/Deselect All',
   selectAllNumber: false,
   disabledText: 'Disabled ...',
   enableClickableOptGroups: true,
   onChange: function(option, checked, selected, element) {
 
-      console.log(option.length);
-
-      var count = option.length;
       console.log(option);
 
+      var count = option.length;
+      var selectionData = [];
+      var id;
+      var filter;
+      var value;
 
       if (count > 1) {
-        var selectionData = [];
-
-        var id  = $(option[0][0].offsetParent).attr("id");
-        var filter = $(option[0][0].offsetParent).data("filter");
-
-        console.log("id: " + id);
-        console.log("filter: " + filter);
-
-        $('#' + id + ' option:selected').each(function(index, element) {
-          selectionData.push($(element).val()); // get selected values
-        });
+        id  = $(option[0][0].offsetParent).attr("id");
+        filter = $(option[0][0].offsetParent).data("filter");
       }
-
       else {
-        var selectionData = [];
-
-        var id  = $(option[0].offsetParent).attr("id");
-        var filter = $(option[0].offsetParent).data("filter");
-        var value = $(option[0]).val();
-
-        console.log("id: " + id);
-        console.log("filter: " + filter);
-        console.log("value " + value);
-
-        $('#' + id + ' option:selected').each(function(index, element) {
-          selectionData.push($(element).val()); // get selected values
-        });
-
+        id  = $(option[0].offsetParent).attr("id");
+        filter = $(option[0].offsetParent).data("filter");
+        value = $(option[0]).val();
       }
+
+      $('#' + id + ' option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of country dropdown
+      });
+
+      /////// If country filter has regional average filter, include selection of corresponding region filter.
+      // CS_country -- CSsourcesBar_region
+      // CSLevels_country -- CSLevels_region
+      // IP_country -- IP_region
+
+      // PANEL 1
+      if(id=="CS_country") {
+        $('#CSsourcesBar_region option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of region dropdown
+        });
+      }
+      else if (id == "CSsourcesBar_region") {
+        $('#CS_country option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of country dropdown
+        });
+      }
+
+
 
       showMultiple('#'+id, filter, selectionData); // push to multiselect
 
-      
 
-
-
-      /*var filterName = $(fieldID).data("country");
-      console.log("fieldID: " +fieldID + " filterName: " + filterName);
-
-      /*var newData = {};
-
-      var temp = jQuery.extend(true, {}, newData);
-
-                        var selectionData = [];
-                        var selectionGroup = [];
-                        $('#myid option:selected').each(function(e) {
-                            for (n in newData) {
-                                for (d in newData[n]) {
-                                    if (newData[n][d].value == $(this).val()) {
-                                        for (i in temp[n]) {
-                                            if (temp[n][i].value == $(this).val())
-                                                temp[n].splice(i, 1);
-                                        }
-
-                                    }
-                                }
-
-                            }
-                            selectionData.push($(this).val());
-                        });
-
-                        for (t in temp) {
-                            if (temp[t].length == 0) {
-                                selectionGroup.push(t);
-                            } else {
-                                for (tt in newData[t]) {
-                                    if (newData[t][tt] == temp[t][tt]) {
-                                        selectionData.push(newData[t][tt]["value"]);
-                                    }
-                                }
-                            }
-
-                        }
-                        console.log("Group : " + selectionGroup);
-                        console.log("Data : " + selectionData);
-                        $("#output").html("Group : " + selectionGroup + "<br>Data : " + selectionData);
-
-
-
-      //showMultiple(fieldID, filterName);*/
-   }
+   } // end onchange()
 
    
-
-
- })
+ });
 
 
 

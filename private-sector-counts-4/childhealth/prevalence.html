@@ -810,7 +810,7 @@
                                         <!-- show for Map & Bubble  charts -->
                                         <div class="form-group" id="CS_country_noavg_group">
                                             <label for="CS_country_noavg">Country <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View results by particular countries"></i></label>
-                                            <select class="form-control shops-multiselect" id="CS_country_noavg" onchange="showMultiple('CS_country_noavg','Country w/o reg avgs')" multiple="multiple">
+                                            <select class="form-control shops-multiselect" id="CS_country_noavg" data-filter="Country w/o reg avgs" multiple="multiple">
                                                 <optgroup label="Asia">
                                                   <option selected>Afghanistan 2015</option>
                                                   <option selected>Bangladesh 2014</option>
@@ -853,7 +853,7 @@
 
                                         <div class="form-group" id="CSsourcesBar_region_group">
                                             <label for="CSsourcesBar_region">Regional Averages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="View the averages across regions. Visit “About the Data” to see a list of countries in each region"></i></label>
-                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" onchange="showMultiple('CSsourcesBar_region','Country')" multiple="multiple">
+                                            <select class="form-control shops-multiselect" id="CSsourcesBar_region" data-filter="Country"  multiple="multiple">
                                               <option selected>Asia average</option>
                                               <option selected>E.S. Africa average</option>
                                               <option selected>Other countries average</option>
