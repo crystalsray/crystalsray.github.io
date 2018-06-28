@@ -48,7 +48,7 @@ $(function() {
       var selectionData = [];
       var id;
       var filter;
-      var value;
+      //var value;
 
       if (count > 1) {
         id  = $(option[0][0].offsetParent).attr("id");
@@ -57,7 +57,7 @@ $(function() {
       else {
         id  = $(option[0].offsetParent).attr("id");
         filter = $(option[0].offsetParent).data("filter");
-        value = $(option[0]).val();
+        //value = $(option[0]).val();
       }
 
       $('#' + id + ' option:selected').each(function(index, element) {
@@ -65,9 +65,9 @@ $(function() {
       });
 
       /////// If country filter has regional average filter, include selection of corresponding region filter.
-      // CS_country -- CSsourcesBar_region
-      // CSLevels_country -- CSLevels_region
-      // IP_country -- IP_region
+      // CS_country <---> CSsourcesBar_region
+      // CSLevels_country <---> CSLevels_region
+      // IP_country <---> IP_region
 
       // PANEL 1
       if(id=="CS_country") {
@@ -80,6 +80,10 @@ $(function() {
           selectionData.push($(element).val()); // get selected values of country dropdown
         });
       }
+
+      // PANEL 2
+
+      // PANEL 3
 
 
 
