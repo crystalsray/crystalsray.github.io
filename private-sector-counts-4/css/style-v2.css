@@ -1416,9 +1416,7 @@ p.indent {
     padding-right: 0px;
 }
 
-.btn-home.btn-xl {
-        padding: 15px;
-    }  
+ 
 
 #home-content {
     margin-bottom: 0px;
@@ -1477,21 +1475,42 @@ p.indent {
 .notice-text {
     font-size: 12px;
     color: rgb(255, 0, 0);
+
+}
+.home-text > div {
+
+    
 }
 
+.btn-home.btn-xl {
+    padding: 15px;
+
+}
+
+@media (min-width:1200px) {
+    .home-text > div {
+        height: 240px;
+    }
+}
+
+@media (max-width:1200px) and (min-width: 992px) {
+    .home-text > div {
+        height: 280px;
+    }
+}
 
 @media (max-width: 991px) and (min-width: 768px)  {
     #home-content {
-        height: 800px;
+        height: 730px;
+    }
+
+    .home-text > div {
+        height: 340px;
     }
 
     #btn-child-health-img,   #btn-family-planning-img, #btn-child-health-img:hover, #btn-family-planning-img:hover {
         background-image: none;
         text-align: center;
-    }
-
-    p.p-family-btn {
-        margin-top: 20px;
     }
 
     .home-intro p {
@@ -1504,9 +1523,7 @@ p.indent {
         height: 750px;
     }
 
-    p.p-child-btn {
-        margin-top: 47px;
-    }
+
 
     .home-intro p {
         font-size: 20px;
