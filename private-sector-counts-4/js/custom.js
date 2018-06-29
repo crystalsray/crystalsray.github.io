@@ -33,6 +33,8 @@ $(function() {
 });
 
 
+
+
 // format mulselect into checkboxes
  $('.shops-multiselect').multiselect({
   includeSelectAllOption: false,
@@ -64,15 +66,8 @@ $(function() {
       var filter;
       //var value;
 
-      if (count > 1) {
-        id  = $(option[0][0].offsetParent).attr("id");
-        filter = $(option[0][0].offsetParent).data("filter");
-      }
-      else {
-        id  = $(option[0].offsetParent).attr("id");
-        filter = $(option[0].offsetParent).data("filter");
-        //value = $(option[0]).val();
-      }
+      id = this.$select.attr('id');
+      filter = this.$select.data('filter');
 
       $('#' + id + ' option:selected').each(function(index, element) {
           selectionData.push($(element).val()); // get selected values of country (or other multiselect) dropdown
