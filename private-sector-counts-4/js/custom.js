@@ -37,24 +37,37 @@ $(function() {
 
 // format mulselect into checkboxes
  $('.shops-multiselect').multiselect({
-  includeSelectAllOption: false,
+  includeSelectAllOption: true,
   selectAllText: 'Check Select/Deselect All',
   selectAllNumber: false,
   onSelectAll: function (justVisible, triggerOnSelectAll) {
-        console.log("select-all-nonreq");
-        console.log(justVisible);
-        console.log(triggerOnSelectAll);
-        triggerOnSelectAll = true; //patch, broken
-        var justVisible = typeof justVisible === 'undefined' ? true : justVisible;
+        var selectionData = [];
+
+        id = this.$select.attr('id');
+        filter = this.$select.data('filter');
+
+        $('#'+ id +' option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of country dropdown
+        });
+
+        combineDropdown(id,selectionData); //add selections from Region/Country filter
+
+        showMultiple('#'+id, filter, selectionData); // push to multiselect
     },
   onDeselectAll: function (justVisible, triggerOnSelectAll) {
-        console.log("deselect-all-nonreq");
+        var selectionData = [];
+
+        id = this.$select.attr('id');
+        filter = this.$select.data('filter');
+
+        $('#'+ id +' option:selected').each(function(index, element) {
+          selectionData.push($(element).val()); // get selected values of country dropdown
+        });
+
+        combineDropdown(id,selectionData); //add selections from Region/Country filter
+
+        showMultiple('#'+id, filter, selectionData); // push to multiselect
     },
-  /*selectAll: function (justVisible, triggerOnSelectAll) {
-        console.log("selectAll");
-        triggerOnSelectAll = true; //patch, broken
-        var justVisible = typeof justVisible === 'undefined' ? true : justVisible;
-  },*/
   enableClickableOptGroups: true,
   onChange: function(option, checked, selected, element) {
 
@@ -73,6 +86,19 @@ $(function() {
           selectionData.push($(element).val()); // get selected values of country (or other multiselect) dropdown
       });
 
+      combineDropdown(id,selectionData); //add selections from Region/Country filter
+
+
+      showMultiple('#'+id, filter, selectionData); // push to multiselect
+
+
+   } // end onchange()
+   
+
+   
+ });
+
+ function combineDropdown(id,selectionData) {
       /////// If multiselect field has countries, it'll likely have a corresponding regional average filter. 
       /////// Include regional average in array of selected items
       // CS_country <---> CSsourcesBar_region
@@ -115,16 +141,8 @@ $(function() {
         });
       }
 
-
-
-      showMultiple('#'+id, filter, selectionData); // push to multiselect
-
-
-   } // end onchange()
-   
-
-   
- });
+      return selectionData;
+ }
 
 
 
