@@ -166,7 +166,11 @@
 
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
-          $(".panel-collapse").collapse('hide');
+          // if ($(this).parents().find('')) {
+          //   $(".panel-collapse").collapse('hide');
+          // }
+          console.log($(this).attr('id'));
+
           currentDashboardName = sheetName;
 
           spanCoutner=0;
@@ -540,7 +544,13 @@
 
         }
 
+        $( document ).ready(function() {
 
+          $("a[data-toggle='collapse']").click(function() {
+            $("div[role='tabpanel']").collapse('hide');
+          });
+
+        });
 
 
     </script>
