@@ -88,7 +88,6 @@ $(function() {
 
       combineDropdown(id,selectionData); //add selections from Region/Country filter
 
-
       showMultiple('#'+id, filter, selectionData); // push to multiselect
 
 

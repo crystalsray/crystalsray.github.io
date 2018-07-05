@@ -183,14 +183,14 @@
           $('.shops-multiselect option').each(function() { $(this).prop('selected',true); });
           $('.shops-multiselect').multiselect('refresh');
 
-          //reset single value input fields
-          document.getElementById("CSsourcesBar_demographics").value='Total Population (default)';
-          document.getElementById("IP_demographics").value="Total Population (default)";
-          document.getElementById("CSLevels_demographics").value="Total Population (default)";
-          document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
-          document.getElementById('CSLevels_illnesses3').value =""
-          document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
-          document.getElementById("IP_illnesses2").value="Select an option below";
+          // //reset single value input fields
+          // document.getElementById("CSsourcesBar_demographics").value='Total Population (default)';
+          // document.getElementById("IP_demographics").value="Total Population (default)";
+          // document.getElementById("CSLevels_demographics").value="Total Population (default)";
+          // document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
+          // document.getElementById('CSLevels_illnesses3').value =""
+          // document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
+          // document.getElementById("IP_illnesses2").value="Select an option below";
 
           hideSpan();
 
@@ -449,8 +449,8 @@
                 // HIDE regional average
                 $("#IP_region_noavg_group").show(); 
                 //$("#IP_region_group").hide();
-                $("#IP_region_group .btn-group").hide();
-                $("#notice-text-3").text("Option not available with this demographic");
+                $("#IP_region_group .btn-group").show();
+                // $("#notice-text-3").text("Option not available with this demographic");
 
 
               }
@@ -528,16 +528,17 @@
             var values = [];    
 
             //filter for selected values
-           sheet = viz.getWorkbook().getActiveSheet();
-               if(sheet.getSheetType() === 'worksheet') {
-                   sheet.applyFilterAsync(filterName, arr, 'REPLACE');
-                } else {
+            sheet = viz.getWorkbook().getActiveSheet();
 
-                   worksheetArray = sheet.getWorksheets();
-                   for(var i = 0; i < worksheetArray.length; i++) {
-                  worksheetArray[i].applyFilterAsync(filterName, arr, 'REPLACE');
-                 }
-                }
+             if(sheet.getSheetType() === 'worksheet') {
+                 sheet.applyFilterAsync(filterName, arr, 'REPLACE');
+              } else {
+
+                 worksheetArray = sheet.getWorksheets();
+                 for(var i = 0; i < worksheetArray.length; i++) {
+                 worksheetArray[i].applyFilterAsync(filterName, arr, 'REPLACE');
+               }
+              }
 
         }
 
