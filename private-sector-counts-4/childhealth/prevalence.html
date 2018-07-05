@@ -166,11 +166,6 @@
 
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
-          // if ($(this).parents().find('')) {
-          //   $(".panel-collapse").collapse('hide');
-          // }
-          console.log($(this).attr('id'));
-
           currentDashboardName = sheetName;
 
           spanCoutner=0;
@@ -226,11 +221,6 @@
             $("#CSsourcesBar_region_group").show();
 
           
-            
-
-
-
-
             //text change above graph
             $('#childhealth_introtext').html('<h2 class="text-center">Where do caregivers seek treatment for their sick children?</h2> <p>This graph shows which sources (private, public, both private and public, other) care seekers use when their children are sick with fever, diarrhea, and/or ARI symptoms. Use the menu on the right to look at specific countries or differences by demographic characteristics.</p>');
           } 
@@ -550,6 +540,114 @@
             $("div[role='tabpanel']").collapse('hide');
           });
 
+          $("button#panel1-reset-btn").click(function() {
+            //reset multiselect fields
+            $('div#collapseOne .shops-multiselect option').each(function() { $(this).prop('selected',true); });
+            $('div#collapseOne .shops-multiselect').multiselect('refresh');
+
+            //reset single value input fields
+            document.getElementById("CSsourcesBar_demographics").value='Total Population (default)';
+            document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
+            hideSpan();
+
+            var currentBtnActive = $("div#collapseOne .btn-group label.active").attr('id');
+            var currentSheetName = "Dash CS Sources Bar";
+            if (currentBtnActive == 'CSSourceOpt1') {
+              currentSheetName = "Dash CS Sources Bar";
+
+              $("#CS_country_group").show();
+              $("#CS_country_noavg_group").hide();
+
+              //hide information text 
+              $("#notice-text-1").text("");
+              $('#CSsourcesBar_region_group .btn-group').show();
+            } else if (currentBtnActive == 'CSSourceOpt2') {
+              currentSheetName = "Dash CS Sources Bubble";
+            }
+
+            var workbook = viz.getWorkbook();
+            // switch to new sheet and reset to original state
+            workbook.activateSheetAsync(currentSheetName); 
+            workbook.revertAllAsync();
+          });
+
+
+
+          $("button#panel2-reset-btn").click(function() {
+            //reset multiselect fields
+            $('div#collapseTwo .shops-multiselect option').each(function() { $(this).prop('selected',true); });
+            $('div#collapseTwo .shops-multiselect').multiselect('refresh');
+
+            //reset single value input fields
+            document.getElementById("CSLevels_demographics").value="Total Population (default)";
+            document.getElementById('CSLevels_illnesses3').value =""
+            document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
+            document.getElementById("CSLevels_illnesses2_map")
+            hideSpan();
+
+            var currentBtnActive = $("div#collapseTwo .btn-group label.active").attr('id');
+            var currentSheetName = "Dash CS Levels Bubbles";
+            if (currentBtnActive == 'CSlevelOpt1') {
+              currentSheetName = "Dash CS Levels Bar";
+
+              $("#CSLevels_country_group").show();
+              $("#CSLevels_country_group_noavg").hide();
+
+              //Show multiple select for Illnesses
+              $("#CSLevels_illnesses_oneoption_group").hide();
+              $("#CSLevels_illnesses_map_group").hide();
+              $("#CSLevels_illnesses_group").show(); //show selection of "One or more illnesses" only
+
+
+              $("#notice-text-2").text("");
+              $('#CSLevels_region_group .btn-group').show();
+            } else if (currentBtnActive == 'CSlevelOpt2') {
+              currentSheetName = "Dash CS Levels Map";
+
+              document.getElementById("CSLevels_illnesses2_map").value="One or more illnesses";
+              document.getElementById("mapTitle").innerHTML = "<h3>One or more illnesses</h3>";
+            } else if (currentBtnActive == 'CSlevelOpt3') {
+              currentSheetName = "Dash CS Levels Bubbles";
+            }
+
+            var workbook = viz.getWorkbook();
+            // switch to new sheet and reset to original state
+            workbook.activateSheetAsync(currentSheetName); 
+            workbook.revertAllAsync();
+          });
+
+          $("button#panel3-reset-btn").click(function() {
+            //reset multiselect fields
+            $('div#collapseThree .shops-multiselect option').each(function() { $(this).prop('selected',true); });
+            $('div#collapseThree .shops-multiselect').multiselect('refresh');
+
+            //reset single value input fields
+            document.getElementById("IP_demographics").value="Total Population (default)";
+            document.getElementById("IP_illnesses2").value="Select an option below";
+            hideSpan();
+
+            var currentBtnActive = $("div#collapseThree .btn-group label.active").attr('id');
+            var currentSheetName = "Dash IP Map";
+            if (currentBtnActive == 'IPOption1') {
+              currentSheetName = "Dash IP Map";
+
+              document.getElementById("IP_illnesses2").value="One or more illnesses";
+              document.getElementById("mapTitle").innerHTML = "<h3>One or more illnesses</h3>";
+            } else if (currentBtnActive == 'IPOption2') {
+              currentSheetName = "Dash IP Bar";
+
+              //show multiple select for illness
+              $("#IPillnesses_map_group").hide();
+              $("#IPillnesses_group").show();
+              $("#IPillnesses_oneoption_group").hide();
+            }
+
+            var workbook = viz.getWorkbook();
+            // switch to new sheet and reset to original state
+            workbook.activateSheetAsync(currentSheetName); 
+            workbook.revertAllAsync();
+          });
+
         });
 
 
@@ -671,8 +769,9 @@
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                   <div class="panel-body">
-
-                                  
+                                    <button type="button" id="panel1-reset-btn" class="btn btn-warning pull-right">
+                                      <span class="glyphicon glyphicon-repeat"></span>
+                                    </button>
                                   
                                     <form id="formIllnessPrevalence">
 
@@ -846,6 +945,10 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                   <div class="panel-body">
+                                    <button type="button" id="panel2-reset-btn" class="btn btn-warning pull-right">
+                                      <span class="glyphicon glyphicon-repeat"></span>
+                                    </button>
+
                                     <form>
 
                                         <div class="form-group" id="CSLevels_illnesses_group">
@@ -1049,11 +1152,10 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                   <div class="panel-body">
-
+                                    <button type="button" id="panel3-reset-btn" class="btn btn-warning pull-right">
+                                      <span class="glyphicon glyphicon-repeat"></span>
+                                    </button>
                                      
-
-
-
                                      <form>
                                         <!-- Show multiple select when "Total" is selected in Demographics -->
                                         <div class="form-group" id="IPillnesses_group">
