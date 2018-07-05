@@ -183,24 +183,24 @@
           $('.shops-multiselect option').each(function() { $(this).prop('selected',true); });
           $('.shops-multiselect').multiselect('refresh');
 
-          // //reset single value input fields
-          // document.getElementById("CSsourcesBar_demographics").value='Total Population (default)';
-          // document.getElementById("IP_demographics").value="Total Population (default)";
-          // document.getElementById("CSLevels_demographics").value="Total Population (default)";
-          // document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
-          // document.getElementById('CSLevels_illnesses3').value =""
-          // document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
-          // document.getElementById("IP_illnesses2").value="Select an option below";
+          //reset single value input fields
+          document.getElementById("CSsourcesBar_demographics").value='Total Population (default)';
+          document.getElementById("IP_demographics").value="Total Population (default)";
+          document.getElementById("CSLevels_demographics").value="Total Population (default)";
+          document.getElementById("CSsourcesBar2_demographics").value="Poorest and Richest Quintiles";
+          document.getElementById('CSLevels_illnesses3').value =""
+          document.getElementById("CSLevels_demographics2").value="Poorest and Richest Quintiles";
+          document.getElementById("IP_illnesses2").value="Select an option below";
 
           hideSpan();
 
           //hide notice text
-          /*$("#notice-text-1").hide();
-          $("#notice-text-2").hide();
-          $("#notice-text-3").hide();
+          $("#notice-text-1").html('');
+          $("#notice-text-2").html('');
+          // $("#notice-text-3").html('');
           $('#CSsourcesBar_region_group .btn-group').show();
           $('#CSLevels_region_group .btn-group').show();
-          $("#IP_region_group .btn-group").show();*/
+          // $("#IP_region_group .btn-group").show();
 
 
           //empty text above maps
