@@ -115,7 +115,7 @@
         }
 
         function showPanel(panel) {
-
+          $('.panel-collapse').collapse('hide');
           $('.panel-collapse.in').collapse('toggle');
           $('.panel-collapse').removeClass('down-arrow');
 
@@ -143,14 +143,14 @@
         }
 
         function showSpan() {
-          console.log("show span: " + spanCoutner);
+          // console.log("show span: " + spanCoutner);
           if (spanCoutner < 2) {
             $("#spanInstruction").show();
             $("#spanInstruction2").show();
           }
 
           var demo_value = document.getElementById("CSLevels_demographics").value;
-          console.log("value: "+ demo_value);
+          // console.log("value: "+ demo_value);
           if (demo_value.trim() === "Total Population (default)") {
             $('#CSLevels_illnesses').multiselect('deselect', ['ARI','Diarrhea','Fever']);
             $('#CSLevels_illnesses').multiselect('select', ['One or more illnesses']);
@@ -166,9 +166,7 @@
 
         // Switch the viz to the sheet specified
         function switchView(sheetName) {
-
-          
-
+          $(".panel-collapse").collapse('hide');
           currentDashboardName = sheetName;
 
           spanCoutner=0;
@@ -292,7 +290,7 @@
 
                 //show demographics for map
                 $("#IP_map_demographics_group").show();
-                console.log("showing demographics");
+                // console.log("showing demographics");
 
                 //show country list with averages
                 $("#IP_country_noavg_group").hide();
@@ -348,7 +346,7 @@
 
           //Dash CS Levels Bar
           else  {
-            console.log("Dash CS Levels Bar");
+            // console.log("Dash CS Levels Bar");
             //reset radio group button
             $("#CSlevelOpt1").addClass("active");
             $("#CSlevelOpt2").removeClass("active");
@@ -503,7 +501,7 @@
             var value = document.getElementById(fieldID).value;
 
             sheet = viz.getWorkbook().getActiveSheet();
-            console.log(sheet);
+            // console.log(sheet);
                if(sheet.getSheetType() === 'worksheet') {
                    sheet.applyFilterAsync(filterName, value, 'REPLACE');
                 } else {

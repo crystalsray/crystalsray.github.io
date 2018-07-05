@@ -71,7 +71,7 @@ $(function() {
   enableClickableOptGroups: true,
   onChange: function(option, checked, selected, element) {
 
-      console.log(option);
+      // console.log(option);
 
       var count = option.length;
       var selectionData = [];
